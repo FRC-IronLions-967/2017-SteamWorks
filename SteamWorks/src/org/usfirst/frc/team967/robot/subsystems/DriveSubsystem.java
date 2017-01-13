@@ -57,6 +57,9 @@ public class DriveSubsystem extends Subsystem {
     public void initDefaultCommand() {
     	setDefaultCommand(new ArcadeDrive());
     }
+    public void log(){
+        
+    }
     
 }
 

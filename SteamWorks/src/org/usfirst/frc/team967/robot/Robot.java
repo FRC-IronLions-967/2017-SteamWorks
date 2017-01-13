@@ -114,4 +114,11 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+    public void log(){
+    	oi.log();
+    	driveSubsystem.log();
+    	shooterSubsystem.log();
+    	gearSubsystem.log();
+    	climberSubsystem.log();
+    }
 }
