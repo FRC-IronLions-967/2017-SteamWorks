@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
+import org.usfirst.frc.team967.robot.commands.ArcadeDrive;
 
 public class DriveSubsystem extends Subsystem {
 	 
@@ -54,7 +55,7 @@ public class DriveSubsystem extends Subsystem {
 	    }
 
     public void initDefaultCommand() {
-       // setDefaultCommand(new ());
+    	setDefaultCommand(new ArcadeDrive());
     }
     
 }
