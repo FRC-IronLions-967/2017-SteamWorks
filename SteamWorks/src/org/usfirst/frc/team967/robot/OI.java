@@ -1,38 +1,118 @@
 package org.usfirst.frc.team967.robot;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-import org.usfirst.frc.team967.robot.commands.ExampleCommand;
+//import org.usfirst.frc.team967.robot.commands.ShiftDriveHigh;
+//import org.usfirst.frc.team967.robot.commands.ShiftDriveLow;
 
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
 public class OI {
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Joystick stick = new Joystick(port);
-    // Button button = new JoystickButton(stick, buttonNumber);
+    private Joystick xbox1 = new Joystick(0);
+    private Joystick xbox2 = new Joystick(1);
     
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
+    double leftTrigger;
+    double rightTrigger;			
     
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
+    public AxisButton xbox1_lT = new AxisButton(xbox1, 2, .75, 1);
+    public AxisButton xbox1_RT = new AxisButton(xbox1, 3, .75, 1);
+    public AxisButton xbox2_y1 = new AxisButton(xbox2, 1, .2, 2);
+    public AxisButton xbox2_R1 = new AxisButton(xbox2, 1, .2, 2);
     
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
+    public POVButton xbox1povN = new POVButton(xbox1, 0, 0);
+    public POVButton xbox1povNE = new POVButton(xbox1, 0, 45);
+    public POVButton xbox1povE = new POVButton(xbox1, 0, 90);
+    public POVButton xbox1povSE = new POVButton(xbox1, 0, 135);
+    public POVButton xbox1povS = new POVButton(xbox1, 0, 180);
+    public POVButton xbox1povSW = new POVButton(xbox1, 0, 225);
+    public POVButton xbox1povW = new POVButton(xbox1, 0, 270);
+    public POVButton xbox1povNW = new POVButton(xbox1, 0, 315);
     
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
-}
+    public POVButton xbox2povN = new POVButton(xbox2, 0, 0);
+    public POVButton xbox2povNE = new POVButton(xbox2, 0, 45);
+    public POVButton xbox2povE = new POVButton(xbox2, 0, 90);
+    public POVButton xbox2povSE = new POVButton(xbox2, 0, 135);
+    public POVButton xbox2povS = new POVButton(xbox2, 0, 180);
+    public POVButton xbox2povSW = new POVButton(xbox2, 0, 225);
+    public POVButton xbox2povW = new POVButton(xbox2, 0, 270);
+    public POVButton xbox2povNW = new POVButton(xbox2, 0, 315);
 
+    public OI() {
+    	
+    	//*******************************************************************
+    	// Setting up the variables to the buttons on controller 1
+    	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
+    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
+    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
+    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
+    	JoystickButton xbox1_lb = new JoystickButton(xbox1, 5);
+    	JoystickButton xbox1_rb = new JoystickButton(xbox1, 6);
+    	JoystickButton xbox1_back = new JoystickButton(xbox1, 7);
+    	JoystickButton xbox1_start = new JoystickButton(xbox1, 8);
+    	JoystickButton xbox1_leftStickButton = new JoystickButton(xbox1, 9);
+    	JoystickButton xbox1_rightStickButton = new JoystickButton(xbox1, 10);
+    	
+    	//xbox1.getPOV();//0=north, 90=east, 180=south, 45=NE, ect.
+    	
+    	//**********************************************************************
+    	//Setting up the variables to the buttons on controller 2
+    	JoystickButton xbox2_a = new JoystickButton(xbox2, 1);
+    	JoystickButton xbox2_b = new JoystickButton(xbox2, 2);
+    	JoystickButton xbox2_x = new JoystickButton(xbox2, 3);
+    	JoystickButton xbox2_y = new JoystickButton(xbox2, 4);
+    	JoystickButton xbox2_lb = new JoystickButton(xbox2, 5);
+    	JoystickButton xbox2_rb = new JoystickButton(xbox2, 6);
+    	JoystickButton xbox2_back = new JoystickButton(xbox2, 7);
+    	JoystickButton xbox2_start = new JoystickButton(xbox2, 8);
+    	JoystickButton xbox2_leftStickButton = new JoystickButton(xbox2, 9);
+    	JoystickButton xbox2_rightStickButton = new JoystickButton(xbox2, 10);
+    	//JoystickButton xbox2_lt = new JoystickButton(xbox2, 11);   	
+    	
+    	
+    	//*********************************************************************
+    	//Setting the button variables to the commands for controller number 1
+   
+    	//xbox1_start.whenPressed(new PTOShiftOn());
+    	
+//    	xbox1_a.whenPressed(command);
+//    	xbox1_b.whenPressed(command);
+//    	xbox1_x.whenPressed(command);
+//    	xbox1_y.whenPressed(command);
+//    	xbox1_lb.whenPressed(command);
+//    	xbox1_rb.whenPressed(command);
+//    	xbox1_back.whenPressed(command);
+//    	xbox1_start.whenPressed(command);
+//    	xbox1_leftStickButton.whenPressed(command);
+//    	xbox1_rightStickButton.whenPressed(command);
+
+    	
+    	//**********************************************************************
+    	//Setting the button variables to the commands for controller number 2
+    	
+    	//xbox2_start.whenPressed(new ClimberToExtended());
+    	
+//    	xbox2_a.whenPressed(command);
+//    	xbox2_b.whenPressed(command);
+//    	xbox2_x.whenPressed(command);
+//    	xbox2_y.whenPressed(command);
+//    	xbox2_lb.whenPressed(command);
+//    	xbox2_rb.whenPressed(command);
+//    	xbox2_back.whenPressed(command);
+//    	xbox2_start.whenPressed(command);
+//    	xbox2_leftStickButton.whenPressed(command);
+//    	xbox2_rightStickButton.whenPressed(command);
+    	
+    }
+    
+    public void log(){
+
+    }
+    
+    public Joystick getXbox1() {
+    	return xbox1;
+    }
+    public Joystick getXbox2() {
+    	return xbox2;
+    }
+}
