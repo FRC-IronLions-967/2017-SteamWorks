@@ -6,3 +6,6 @@ tmp/
 .metadata
 .project
 .settings/
+.classpath
+.properties
+.xml
