@@ -16,13 +16,7 @@ public class DriveSubsystem extends Subsystem {
 	private final CANTalon driveRightLead = RobotMap.driveRightLead;
 	private final CANTalon driveRightFollow = RobotMap.driveRightFollow;
 	
-	
-	public void move(double left, double right){
-		driveLeftLead.set(left);
-    	driveLeftFollow.set(left);
-    	driveRightLead.set(-right);
-    	driveRightFollow.set(-right);
-    }
+	public boolean InHighGear;
 	
 	public void arcadeDrive(double yAxis, double xAxis) {
     	double deadband = .2;
@@ -41,6 +35,13 @@ public class DriveSubsystem extends Subsystem {
     	SmartDashboard.putNumber("L", L);
     	SmartDashboard.putNumber("R/max", R/max);
     	SmartDashboard.putNumber("L/max", L/max);
+    }
+	
+	public void move(double left, double right){
+		driveLeftLead.set(left);
+    	driveLeftFollow.set(left);
+    	driveRightLead.set(-right);
+    	driveRightFollow.set(-right);
     }
 	
 	 public void shiftLow() {

@@ -4,5 +4,4 @@ public class RobotConstraints {
 
 	public static final String TEST = "test";
 	
-	public boolean InHighGear;
 }
