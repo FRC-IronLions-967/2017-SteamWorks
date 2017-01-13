@@ -9,5 +9,3 @@ tmp/
 *.classpath
 *.properties
 *.xml
-.recommenders/
-*.recommenders
