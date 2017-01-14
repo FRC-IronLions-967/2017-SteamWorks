@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class OI {
-    private Joystick xbox1 = new Joystick(0);
-    private Joystick xbox2 = new Joystick(1);
+    private Joystick xbox1 = new Joystick(1);
+    private Joystick xbox2 = new Joystick(2);
     
     double leftTrigger;
     double rightTrigger;			

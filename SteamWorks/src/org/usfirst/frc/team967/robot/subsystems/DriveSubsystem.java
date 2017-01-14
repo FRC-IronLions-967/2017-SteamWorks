@@ -1,6 +1,5 @@
 package org.usfirst.frc.team967.robot.subsystems;
 
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -8,6 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.ArcadeDrive;
+
+import com.ctre.CANTalon;
 
 public class DriveSubsystem extends Subsystem {
 	 
