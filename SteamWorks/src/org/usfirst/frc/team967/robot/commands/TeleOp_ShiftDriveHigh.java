@@ -6,9 +6,9 @@ import org.usfirst.frc.team967.robot.Robot;
 /**
  *
  */
-public class ShiftDriveHigh extends Command {
+public class TeleOp_ShiftDriveHigh extends Command {
 
-    public ShiftDriveHigh() {
+    public TeleOp_ShiftDriveHigh() {
     	requires(Robot.driveSubsystem);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

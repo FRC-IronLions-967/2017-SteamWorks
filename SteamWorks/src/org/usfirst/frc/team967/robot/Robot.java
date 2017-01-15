@@ -37,9 +37,9 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         chooser = new SendableChooser();
-        chooser.addDefault("Auto1", new Auto1());
-        chooser.addObject("Auto2", new Auto2());
-        chooser.addObject("Auto3", new Auto3());
+        chooser.addDefault("Auto1", new Autonomous_CG_1());
+        chooser.addObject("Auto2", new Autonomous_CG_3());
+        chooser.addObject("Auto3", new Autonomous_CG_2());
         SmartDashboard.putData("Auto mode", chooser);
     }
 	
@@ -72,13 +72,13 @@ public class Robot extends IterativeRobot {
 		switch(autoSelected) {
 		case "Auto1":
 			default:
-			autonomousCommand = new Auto1();
+			autonomousCommand = new Autonomous_CG_1();
 			break;
 		case "Auto2":
-			autonomousCommand = new Auto2();
+			autonomousCommand = new Autonomous_CG_3();
 			break;
 		case "Auto3":
-			autonomousCommand = new Auto3();
+			autonomousCommand = new Autonomous_CG_2();
 			break;
 		} 
     	

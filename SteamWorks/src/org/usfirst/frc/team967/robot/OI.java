@@ -1,7 +1,7 @@
 package org.usfirst.frc.team967.robot;
 
-import org.usfirst.frc.team967.robot.commands.ShiftDriveHigh;
-import org.usfirst.frc.team967.robot.commands.ShiftDriveLow;
+import org.usfirst.frc.team967.robot.commands.TeleOp_ShiftDriveHigh;
+import org.usfirst.frc.team967.robot.commands.TeleOp_ShiftDriveLow;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -75,8 +75,8 @@ public class OI {
    
     	//xbox1_start.whenPressed(new PTOShiftOn());
     	
-    	xbox1_a.whenPressed(new ShiftDriveLow());
-    	xbox1_a.whenReleased(new ShiftDriveHigh());
+    	xbox1_a.whenPressed(new TeleOp_ShiftDriveLow());
+    	xbox1_a.whenReleased(new TeleOp_ShiftDriveHigh());
 //    	xbox1_b.whenPressed(command);
 //    	xbox1_x.whenPressed(command);
 //    	xbox1_y.whenPressed(command);
