@@ -1,7 +1,6 @@
 package org.usfirst.frc.team967.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-
 import com.ctre.CANTalon;
 
 /**
@@ -31,7 +30,8 @@ public class RobotMap {
 	
 	
 	//-----------Climber---------------------
-	
+	public static CANTalon climber1;
+	public static CANTalon climber2;
 	//----------------------------------------
 	
 	
@@ -61,5 +61,12 @@ public class RobotMap {
 		//------------------------------
 		
 		//-------------Shooter----------
+		//------------------------------
+		
+		//-----------Climber---------------------
+		climber1 = new CANTalon(40);		// The First climber motor 
+		climber2 = new CANTalon(41);		// The Second Climber Motor
+		//----------------------------------------
+		
 	}
 }
