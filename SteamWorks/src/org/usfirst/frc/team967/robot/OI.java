@@ -1,8 +1,8 @@
 package org.usfirst.frc.team967.robot;
 
 import org.usfirst.frc.team967.robot.commands.Climb;
-import org.usfirst.frc.team967.robot.commands.ShiftDriveHigh;
-import org.usfirst.frc.team967.robot.commands.ShiftDriveLow;
+
+import org.usfirst.frc.team967.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
