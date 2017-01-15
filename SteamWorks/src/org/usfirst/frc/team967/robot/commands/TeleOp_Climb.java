@@ -1,24 +1,21 @@
 package org.usfirst.frc.team967.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team967.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ShiftDriveLow extends Command {
+public class TeleOp_Climb extends Command {
 
-    public ShiftDriveLow() {
-    	requires(Robot.driveSubsystem);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public TeleOp_Climb() {
+    	requires(Robot.climberSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	if(Robot.oi.getXbox1().getRawAxis(2) < .75){
-        	Robot.driveSubsystem.shiftLow();
-//        }
+    	Robot.climberSubsystem.climb();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,8 +24,7 @@ public class ShiftDriveLow extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//        return false;
-    	return true;
+        return false;
     }
 
     // Called once after isFinished returns true

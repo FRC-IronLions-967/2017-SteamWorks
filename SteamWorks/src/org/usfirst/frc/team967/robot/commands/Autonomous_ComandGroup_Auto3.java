@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Auto3 extends CommandGroup {
+public class Autonomous_ComandGroup_Auto3 extends CommandGroup {
     
-    public  Auto3() {
+    public  Autonomous_ComandGroup_Auto3() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
