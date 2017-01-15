@@ -31,6 +31,7 @@ public class ClimberSubsystem extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void log(){
+    	SmartDashboard.putNumber("ClimberSpeed", ClimberSpeed);
     }
 }
 
