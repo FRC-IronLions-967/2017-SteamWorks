@@ -1,11 +1,12 @@
 package org.usfirst.frc.team967.robot;
 
-import org.usfirst.frc.team967.robot.commands.ShiftDriveHigh;
-import org.usfirst.frc.team967.robot.commands.ShiftDriveLow;
+import org.usfirst.frc.team967.robot.commands.Climb;
+
+import org.usfirst.frc.team967.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class OI {
@@ -43,30 +44,30 @@ public class OI {
     	//*******************************************************************
     	// Setting up the variables to the buttons on controller 1
     	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
-    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
-    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
-    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
-    	JoystickButton xbox1_lb = new JoystickButton(xbox1, 5);
-    	JoystickButton xbox1_rb = new JoystickButton(xbox1, 6);
-    	JoystickButton xbox1_back = new JoystickButton(xbox1, 7);
-    	JoystickButton xbox1_start = new JoystickButton(xbox1, 8);
-    	JoystickButton xbox1_leftStickButton = new JoystickButton(xbox1, 9);
-    	JoystickButton xbox1_rightStickButton = new JoystickButton(xbox1, 10);
+//    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
+//    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
+//    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
+//    	JoystickButton xbox1_lb = new JoystickButton(xbox1, 5);
+//    	JoystickButton xbox1_rb = new JoystickButton(xbox1, 6);
+//    	JoystickButton xbox1_back = new JoystickButton(xbox1, 7);
+//    	JoystickButton xbox1_start = new JoystickButton(xbox1, 8);
+//    	JoystickButton xbox1_leftStickButton = new JoystickButton(xbox1, 9);
+//    	JoystickButton xbox1_rightStickButton = new JoystickButton(xbox1, 10);
     	
     	//xbox1.getPOV();//0=north, 90=east, 180=south, 45=NE, ect.
     	
     	//**********************************************************************
     	//Setting up the variables to the buttons on controller 2
     	JoystickButton xbox2_a = new JoystickButton(xbox2, 1);
-    	JoystickButton xbox2_b = new JoystickButton(xbox2, 2);
-    	JoystickButton xbox2_x = new JoystickButton(xbox2, 3);
-    	JoystickButton xbox2_y = new JoystickButton(xbox2, 4);
-    	JoystickButton xbox2_lb = new JoystickButton(xbox2, 5);
-    	JoystickButton xbox2_rb = new JoystickButton(xbox2, 6);
-    	JoystickButton xbox2_back = new JoystickButton(xbox2, 7);
-    	JoystickButton xbox2_start = new JoystickButton(xbox2, 8);
-    	JoystickButton xbox2_leftStickButton = new JoystickButton(xbox2, 9);
-    	JoystickButton xbox2_rightStickButton = new JoystickButton(xbox2, 10);
+//    	JoystickButton xbox2_b = new JoystickButton(xbox2, 2);
+//    	JoystickButton xbox2_x = new JoystickButton(xbox2, 3);
+//    	JoystickButton xbox2_y = new JoystickButton(xbox2, 4);
+//    	JoystickButton xbox2_lb = new JoystickButton(xbox2, 5);
+//    	JoystickButton xbox2_rb = new JoystickButton(xbox2, 6);
+//    	JoystickButton xbox2_back = new JoystickButton(xbox2, 7);
+//    	JoystickButton xbox2_start = new JoystickButton(xbox2, 8);
+//    	JoystickButton xbox2_leftStickButton = new JoystickButton(xbox2, 9);
+//    	JoystickButton xbox2_rightStickButton = new JoystickButton(xbox2, 10);
     	//JoystickButton xbox2_lt = new JoystickButton(xbox2, 11);   	
     	
     	
@@ -93,7 +94,7 @@ public class OI {
     	
     	//xbox2_start.whenPressed(new ClimberToExtended());
     	
-//    	xbox2_a.whenPressed(command);
+    	xbox2_a.whenPressed(new Climb());
 //    	xbox2_b.whenPressed(command);
 //    	xbox2_x.whenPressed(command);
 //    	xbox2_y.whenPressed(command);

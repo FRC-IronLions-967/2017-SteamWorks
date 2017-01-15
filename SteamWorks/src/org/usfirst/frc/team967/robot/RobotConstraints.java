@@ -1,7 +1,8 @@
 package org.usfirst.frc.team967.robot;
 
 public class RobotConstraints {
-
-	public static final String TEST = "test";
 	
+	/*** DRIVETRAIN Constraints ***/
+
+	public static final double ClimberSubsystem_ClimberSpeed = .5;
 }
