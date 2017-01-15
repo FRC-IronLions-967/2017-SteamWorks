@@ -50,12 +50,11 @@ public class RobotMap {
 		
 		//-------------Drive-------------
 		driveLeftLead = new CANTalon(30);    // The left drive lead motor
-		driveLeftFollow = new com.ctre.CANTalon(31);  // The left drive follow motor
-		driveLeftFollow = new com.ctre.CANTalon(33);
-		
-		driveRightLead = new com.ctre.CANTalon(34);   // The right drive lead motor
-		driveRightFollow = new com.ctre.CANTalon(35);
-		driveRightFollow = new com.ctre.CANTalon(36);// The right drive follow motor
+		driveLeftFollow = new CANTalon(31);  // The left drive follow motor
+		driveLeftFollow = new CANTalon(33);
+		driveRightLead = new CANTalon(34);   // The right drive lead motor
+		driveRightFollow = new CANTalon(35);
+		driveRightFollow = new CANTalon(36);// The right drive follow motor
 		
 		shifter = new DoubleSolenoid(0, 0, 8); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
 		//------------------------------
