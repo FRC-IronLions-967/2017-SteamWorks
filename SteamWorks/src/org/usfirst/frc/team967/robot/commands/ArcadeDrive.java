@@ -9,9 +9,9 @@ import org.usfirst.frc.team967.robot.*;
 /**
  *
  */
-public class TeleOp_ArcadeDrive extends Command {
+public class ArcadeDrive extends Command {
 
-    public TeleOp_ArcadeDrive() {
+    public ArcadeDrive() {
      
     	requires(Robot.driveSubsystem);
     }
