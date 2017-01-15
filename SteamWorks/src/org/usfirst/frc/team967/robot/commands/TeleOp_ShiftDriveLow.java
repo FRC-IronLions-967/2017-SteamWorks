@@ -1,44 +1,42 @@
 package org.usfirst.frc.team967.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team967.robot.subsystems.*;
-import org.usfirst.frc.team967.robot.*;
+import org.usfirst.frc.team967.robot.Robot;
 
 /**
  *
  */
-public class ArcadeDrive extends Command {
+public class TeleOp_ShiftDriveLow extends Command {
 
-    public ArcadeDrive() {
-     
+    public TeleOp_ShiftDriveLow() {
     	requires(Robot.driveSubsystem);
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+//    	if(Robot.oi.getXbox1().getRawAxis(2) < .75){
+        	Robot.driveSubsystem.shiftLow();
+//        }
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.arcadeDrive(-Robot.oi.getXbox1().getRawAxis(1), (Robot.oi.getXbox1().getRawAxis(4))*.75);
-    }	
+    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+//        return false;
+    	return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-//    	Robot.drivetrain.move(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-//    	end();
     }
 }

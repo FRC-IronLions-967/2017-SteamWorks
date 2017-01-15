@@ -1,6 +1,6 @@
 package org.usfirst.frc.team967.robot;
 
-import org.usfirst.frc.team967.robot.commands.Climb;
+import org.usfirst.frc.team967.robot.commands.TeleOp_Climb;
 
 import org.usfirst.frc.team967.robot.commands.*;
 
@@ -76,8 +76,8 @@ public class OI {
    
     	//xbox1_start.whenPressed(new PTOShiftOn());
     	
-    	xbox1_a.whenPressed(new ShiftDriveLow());
-    	xbox1_a.whenReleased(new ShiftDriveHigh());
+    	xbox1_a.whenPressed(new TeleOp_ShiftDriveLow());
+    	xbox1_a.whenReleased(new TeleOp_ShiftDriveHigh());
 //    	xbox1_b.whenPressed(command);
 //    	xbox1_x.whenPressed(command);
 //    	xbox1_y.whenPressed(command);
@@ -94,7 +94,7 @@ public class OI {
     	
     	//xbox2_start.whenPressed(new ClimberToExtended());
     	
-    	xbox2_a.whenPressed(new Climb());
+    	xbox2_a.whenPressed(new TeleOp_Climb());
 //    	xbox2_b.whenPressed(command);
 //    	xbox2_x.whenPressed(command);
 //    	xbox2_y.whenPressed(command);
