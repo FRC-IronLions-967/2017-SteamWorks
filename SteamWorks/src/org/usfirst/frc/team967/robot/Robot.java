@@ -5,10 +5,10 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team967.robot.commands.*;
+//import org.usfirst.frc.team967.robot.commands.*;
 
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
@@ -30,7 +30,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
     Command autonomousCommand;
-    SendableChooser chooser;
+//    SendableChooser chooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -38,11 +38,11 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
-        chooser = new SendableChooser();
-        chooser.addDefault("Auto1", new Autonomous_ComandGroup_Auto3());
-        chooser.addObject("Auto2", new Autonomous_ComandGroup_Auto2());
-        chooser.addObject("Auto3", new Autonomous_ComandGroup_Auto1());
-        SmartDashboard.putData("Auto mode", chooser);
+//        chooser = new SendableChooser();
+//        chooser.addDefault("Auto1", new Autonomous_ComandGroup_Auto3());
+//        chooser.addObject("Auto2", new Autonomous_ComandGroup_Auto2());
+//        chooser.addObject("Auto3", new Autonomous_ComandGroup_Auto1());
+//        SmartDashboard.putData("Auto mode", chooser);
     }
 	
 	/**
@@ -68,21 +68,20 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
-		 String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "Auto1":
-			default:
-			autonomousCommand = new Autonomous_ComandGroup_Auto3();
-			break;
-		case "Auto2":
-			autonomousCommand = new Autonomous_ComandGroup_Auto2();
-			break;
-		case "Auto3":
-			autonomousCommand = new Autonomous_ComandGroup_Auto1();
-			break;
-		} 
+//        autonomousCommand = (Command) chooser.getSelected();
+//        
+//		 String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+//		switch(autoSelected) {
+//		case "Auto1":
+//			default:
+//			autonomousCommand = new Autonomous_ComandGroup_Auto3();
+//			break;
+//		case "Auto2":
+//			autonomousCommand = new Autonomous_ComandGroup_Auto2();
+//			break;
+//		case "Auto3":
+//			autonomousCommand = new Autonomous_ComandGroup_Auto1();
+//			break;
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();

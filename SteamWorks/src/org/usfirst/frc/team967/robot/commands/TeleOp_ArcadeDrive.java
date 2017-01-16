@@ -1,10 +1,7 @@
 package org.usfirst.frc.team967.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team967.robot.subsystems.*;
-import org.usfirst.frc.team967.robot.*;
+import org.usfirst.frc.team967.robot.Robot;
 
 /**
  *

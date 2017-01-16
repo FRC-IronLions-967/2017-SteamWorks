@@ -18,12 +18,13 @@ public class DriveSubsystem extends Subsystem {
 	private final CANTalon driveRightLead = RobotMap.driveRightLead;
 	private final CANTalon driveRightFollow = RobotMap.driveRightFollow;
 	
+	private final double deadBand = RobotConstraints.DriveSubsystem_deadBand;
+	
 	public boolean InHighGear;
 	
 	public void arcadeDrive(double yAxis, double xAxis) {
-    	double deadband = .2;
-    	if((yAxis< deadband) && (yAxis > -deadband)){ yAxis=0;}
-    	if((xAxis< deadband) && (xAxis > -deadband)){ xAxis=0;}
+    	if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
+    	if((xAxis< deadBand) && (xAxis > -deadBand)){ xAxis=0;}
     	
     	double L = yAxis + xAxis;
     	double R = yAxis - xAxis;
