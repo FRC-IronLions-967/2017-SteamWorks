@@ -9,9 +9,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team967.robot.commands.*;
-import org.usfirst.frc.team967.robot.subsystems.*;
 
-
+import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
+import org.usfirst.frc.team967.robot.subsystems.GearSubsystem;
+import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
