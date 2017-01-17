@@ -59,7 +59,7 @@ public class OI {
     	//**********************************************************************
     	//Setting up the variables to the buttons on controller 2
     	JoystickButton xbox2_a = new JoystickButton(xbox2, 1);
-//    	JoystickButton xbox2_b = new JoystickButton(xbox2, 2);
+    	JoystickButton xbox2_b = new JoystickButton(xbox2, 2);
 //    	JoystickButton xbox2_x = new JoystickButton(xbox2, 3);
 //    	JoystickButton xbox2_y = new JoystickButton(xbox2, 4);
 //    	JoystickButton xbox2_lb = new JoystickButton(xbox2, 5);
@@ -95,7 +95,7 @@ public class OI {
     	//xbox2_start.whenPressed(new ClimberToExtended());
     	
     	xbox2_a.whenPressed(new TeleOp_Climb());
-//    	xbox2_b.whenPressed(command);
+    	xbox2_b.whenPressed(new TeleOp_Shoot());
 //    	xbox2_x.whenPressed(command);
 //    	xbox2_y.whenPressed(command);
 //    	xbox2_lb.whenPressed(command);
