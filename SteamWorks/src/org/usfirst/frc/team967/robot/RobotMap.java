@@ -24,7 +24,8 @@ public class RobotMap {
 	
 	
 	//-----------Shooter----------------------
-	
+	public static CANTalon shooterLead;
+	public static CANTalon shooterFollow;
 	//----------------------------------------
 	
 	
@@ -60,6 +61,8 @@ public class RobotMap {
 		//------------------------------
 		
 		//-------------Shooter----------
+		shooterLead = new CANTalon(45);
+		shooterLead = new CANTalon(46);
 		//------------------------------
 		
 		//-----------Climber---------------------

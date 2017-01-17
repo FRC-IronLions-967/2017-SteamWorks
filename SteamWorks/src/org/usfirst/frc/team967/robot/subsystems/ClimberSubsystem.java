@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.*;
 
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
+import org.usfirst.frc.team967.robot.commands.TeleOp_Climb;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
@@ -28,7 +29,7 @@ public class ClimberSubsystem extends Subsystem {
  
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new TeleOp_Climb());
     }
     public void log(){
     	SmartDashboard.putNumber("ClimberSpeed", ClimberSpeed);
