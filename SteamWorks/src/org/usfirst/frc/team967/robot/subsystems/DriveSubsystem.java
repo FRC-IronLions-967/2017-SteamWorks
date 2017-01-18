@@ -9,6 +9,7 @@ import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
 public class DriveSubsystem extends Subsystem {
 	 
@@ -23,7 +24,12 @@ public class DriveSubsystem extends Subsystem {
 	public boolean InHighGear;
 	
 	public void arcadeDrive(double yAxis, double xAxis) {
-    	if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
+		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);
+		driveLeftFollow.changeControlMode(TalonControlMode.PercentVbus);
+		driveRightLead.changeControlMode(TalonControlMode.PercentVbus);
+		driveRightFollow.changeControlMode(TalonControlMode.PercentVbus);
+		
+		if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
     	if((xAxis< deadBand) && (xAxis > -deadBand)){ xAxis=0;}
     	
     	double L = yAxis + xAxis;
@@ -42,9 +48,9 @@ public class DriveSubsystem extends Subsystem {
 	
 	public void move(double left, double right){
 		driveLeftLead.set(left);
-    	driveLeftFollow.set(left);
-    	driveRightLead.set(-right);
-    	driveRightFollow.set(-right);
+		driveLeftFollow.setSetpoint(left);
+    	driveRightLead.setSetpoint(-right);
+    	driveRightFollow.setSetpoint(-right);
     }
 	
 	 public void shiftLow() {

@@ -23,8 +23,8 @@ public class ClimberSubsystem extends Subsystem {
     
 	public void climb(){
 		climber2.changeControlMode(TalonControlMode.Follower);
-		climber2.set(climber1.getDeviceID());
-		climber1.set(ClimberSpeed); 
+		climber2.setSetpoint(climber1.getDeviceID());
+		climber1.setSetpoint(ClimberSpeed); 
 	}
  
     public void initDefaultCommand() {

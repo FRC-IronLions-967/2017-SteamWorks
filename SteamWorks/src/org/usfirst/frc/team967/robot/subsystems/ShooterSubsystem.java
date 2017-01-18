@@ -25,7 +25,7 @@ public class ShooterSubsystem extends Subsystem {
     private final double shooterLead_F = RobotConstraints.ShooterSubsystem_Shooter_F;
     private final double shooterSpeed = RobotConstraints.ShooterSubsystem_ShooterSpeed;
     
-    public void Shooter(){
+    public void Shoot(){
     	shooterFollow.changeControlMode(TalonControlMode.Follower);
 		shooterFollow.set(shooterLead.getDeviceID());
     	
@@ -41,7 +41,11 @@ public class ShooterSubsystem extends Subsystem {
     	shooterLead.setD(shooterLead_D);
     	shooterLead.setF(shooterLead_F);// www.chiefdelphi.com/forums/showthread.php?t=142381
     	
-    	shooterLead.set(shooterSpeed);
+    	shooterLead.setSetpoint(shooterSpeed);
+    }
+    
+    public void StopShooter(){
+    	shooterLead.setSetpoint(0);
     }
      
     public void initDefaultCommand() {

@@ -15,7 +15,7 @@ public class TeleOp_Shoot extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooterSubsystem.Shooter();
+    	Robot.shooterSubsystem.Shoot();
     }
 
     // Called repeatedly when this Command is scheduled to run
