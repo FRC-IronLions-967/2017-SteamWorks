@@ -47,7 +47,7 @@ public class RobotMap {
 	
 	
 	
-	public static void init(){
+	public void init(){
 		
 		//-------------Drive-------------
 		driveLeftLead = new CANTalon(30);    // The left drive lead motor

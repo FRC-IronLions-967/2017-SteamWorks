@@ -4,20 +4,33 @@ public class RobotConstraints {
 	
 	/*** DRIVETRAIN Constraints ***/
 
-	public static final double ClimberSubsystem_ClimberSpeed = .5;
-	public static final double DriveSubsystem_deadBand = .2;
+	public static double ClimberSubsystem_ClimberSpeed;
+	public static double DriveSubsystem_deadBand;
 	
 	
 	
 	
 	
-	public static final int ShooterSubsystem_Shooter_Profile = 0;
-	public static final double ShooterSubsystem_Shooter_P = 1;
-	public static final double ShooterSubsystem_Shooter_I = 0;
-	public static final double ShooterSubsystem_Shooter_D = 0;
-	public static final double ShooterSubsystem_Shooter_F = 0;
+	public static int ShooterSubsystem_Shooter_Profile;
+	public static double ShooterSubsystem_Shooter_P;
+	public static double ShooterSubsystem_Shooter_I;
+	public static double ShooterSubsystem_Shooter_D;
+	public static double ShooterSubsystem_Shooter_F;
 	
-	public static final double ShooterSubsystem_ShooterSpeed = 0;
+	public static double ShooterSubsystem_ShooterSpeed;
+	
+	public void init(){
+		ClimberSubsystem_ClimberSpeed = .5;	
+		DriveSubsystem_deadBand = .2;
+		
+		ShooterSubsystem_Shooter_Profile = 0;
+		ShooterSubsystem_Shooter_P = 1;
+		ShooterSubsystem_Shooter_I = 0;
+		ShooterSubsystem_Shooter_D = 0;
+		ShooterSubsystem_Shooter_F = 0;
+		
+		ShooterSubsystem_ShooterSpeed = 0;
+	}
 	
 
 }

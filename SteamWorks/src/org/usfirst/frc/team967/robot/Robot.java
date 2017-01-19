@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 //import org.usfirst.frc.team967.robot.commands.*;
 
+import org.usfirst.frc.team967.robot.RobotMap;
+
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.GearSubsystem;
@@ -27,6 +29,8 @@ public class Robot extends IterativeRobot {
 	public static final ShooterSubsystem  shooterSubsystem = new ShooterSubsystem();
 	public static final GearSubsystem  gearSubsystem = new GearSubsystem();
 	public static final ClimberSubsystem  climberSubsystem = new ClimberSubsystem();
+	public static final RobotMap robotMap = new RobotMap();
+	public static final RobotConstraints robotConstraints = new RobotConstraints();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -37,6 +41,8 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	robotMap.init();
+    	robotConstraints.init();
 		oi = new OI();
 //        chooser = new SendableChooser();
 //        chooser.addDefault("Auto1", new Autonomous_ComandGroup_Auto3());
