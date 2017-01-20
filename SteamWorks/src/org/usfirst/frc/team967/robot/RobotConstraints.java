@@ -10,9 +10,6 @@ public class RobotConstraints {
 	public static double DriveSubsystem_deadBand;
 	
 	
-	
-	
-	
 	public static int ShooterSubsystem_Shooter_Profile;
 	public static double ShooterSubsystem_Shooter_P;
 	public static double ShooterSubsystem_Shooter_I;
@@ -21,7 +18,7 @@ public class RobotConstraints {
 	
 	public static double ShooterSubsystem_ShooterSpeed;
 	
-	public void init(){
+	public RobotConstraints() {
 		SmartDashboard.putNumber("hi", 5);
 		
 		ClimberSubsystem_ClimberSpeed = .5;	
@@ -35,6 +32,4 @@ public class RobotConstraints {
 		
 		ShooterSubsystem_ShooterSpeed = 0;
 	}
-	
-
 }

@@ -24,15 +24,16 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	
+	
+	public static RobotMap robotMap;
+	public static RobotConstraints robotConstraints;
 	public static final DriveSubsystem  driveSubsystem = new DriveSubsystem();
 	public static final ShooterSubsystem  shooterSubsystem = new ShooterSubsystem();
 	public static final GearSubsystem  gearSubsystem = new GearSubsystem();
 	public static final ClimberSubsystem  climberSubsystem = new ClimberSubsystem();
-	public static final RobotMap robotMap = new RobotMap();
-	public static final RobotConstraints robotConstraints = new RobotConstraints();
 	public static OI oi;
-
+	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -42,8 +43,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		robotMap.init();
-    	robotConstraints.init();
+		robotMap = new RobotMap();
+    	robotConstraints = new RobotConstraints();
 		oi = new OI();
 //		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());

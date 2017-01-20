@@ -15,8 +15,8 @@ import org.usfirst.frc.team967.robot.RobotMap;
  */
 public class ShooterSubsystem extends Subsystem {
     
-    private final CANTalon shooterLead = RobotMap.shooterLead;
-    private final CANTalon shooterFollow = RobotMap.shooterFollow;
+    private CANTalon shooterLead = RobotMap.shooterLead;
+    private CANTalon shooterFollow = RobotMap.shooterFollow;
     
     private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
     private final double shooterLead_P = RobotConstraints.ShooterSubsystem_Shooter_P;
@@ -26,6 +26,8 @@ public class ShooterSubsystem extends Subsystem {
     private final double shooterSpeed = RobotConstraints.ShooterSubsystem_ShooterSpeed;
     
     public void Shoot(){
+    	shooterLead = new CANTalon(45);
+		shooterLead = new CANTalon(46);
     	shooterFollow.changeControlMode(TalonControlMode.Follower);
 		shooterFollow.set(shooterLead.getDeviceID());
     	

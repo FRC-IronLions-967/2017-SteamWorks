@@ -16,12 +16,14 @@ import com.ctre.CANTalon.TalonControlMode;
  */
 public class ClimberSubsystem extends Subsystem {
 	
-	private final CANTalon climber1 = RobotMap.climber1;
-	private final CANTalon climber2 = RobotMap.climber2;
+	private CANTalon climber1 = RobotMap.climber1;
+	private CANTalon climber2 = RobotMap.climber2;
 	
 	private final double ClimberSpeed = RobotConstraints.ClimberSubsystem_ClimberSpeed;
     
 	public void climb(){
+		climber2 = new CANTalon(40);
+		climber1 = new CANTalon(41);
 		climber2.changeControlMode(TalonControlMode.Follower);
 		climber2.setSetpoint(climber1.getDeviceID());
 		climber1.setSetpoint(ClimberSpeed); 

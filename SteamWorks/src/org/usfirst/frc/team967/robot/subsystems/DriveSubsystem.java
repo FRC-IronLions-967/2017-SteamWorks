@@ -40,7 +40,7 @@ public class DriveSubsystem extends Subsystem {
 		driveRightFollow = new CANTalon(35);
 		driveRightFollow = new CANTalon(36);// The right drive follow motor
 		
-		shifter = new DoubleSolenoid(0, 0, 1); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
+		shifter = new DoubleSolenoid(0, 2, 1); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
 	}
 	
 	public void arcadeDrive(double yAxis, double xAxis) {
