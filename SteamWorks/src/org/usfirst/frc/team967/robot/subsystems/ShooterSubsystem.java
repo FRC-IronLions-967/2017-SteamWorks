@@ -18,12 +18,12 @@ public class ShooterSubsystem extends Subsystem {
     private CANTalon shooterLead;
     private CANTalon shooterFollow;
     
-    private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
-    private final double shooterLead_P = RobotConstraints.ShooterSubsystem_Shooter_P;
-    private final double shooterLead_I = RobotConstraints.ShooterSubsystem_Shooter_I;
-    private final double shooterLead_D = RobotConstraints.ShooterSubsystem_Shooter_D;
-    private final double shooterLead_F = RobotConstraints.ShooterSubsystem_Shooter_F;
-    private final double shooterSpeed = RobotConstraints.ShooterSubsystem_ShooterSpeed;
+//    private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
+//    private final double shooterLead_P = RobotConstraints.ShooterSubsystem_Shooter_P;
+//    private final double shooterLead_I = RobotConstraints.ShooterSubsystem_Shooter_I;
+//    private final double shooterLead_D = RobotConstraints.ShooterSubsystem_Shooter_D;
+//    private final double shooterLead_F = RobotConstraints.ShooterSubsystem_Shooter_F;
+//    private final double shooterSpeed = RobotConstraints.ShooterSubsystem_ShooterSpeed;
     
     public void Shoot(){
     	shooterLead = new CANTalon(45);
@@ -37,13 +37,13 @@ public class ShooterSubsystem extends Subsystem {
     	shooterLead.configEncoderCodesPerRev(12);//Needs to be checked with sensors. 
     	shooterLead.configNominalOutputVoltage(+0.0f, -0.0f);
     	shooterLead.configPeakOutputVoltage(+12.0f, -12.0f);
-    	shooterLead.setProfile(shooterLead_Profile);//1
-    	shooterLead.setP(shooterLead_P);//1
-    	shooterLead.setI(shooterLead_I);//1
-    	shooterLead.setD(shooterLead_D);
-    	shooterLead.setF(shooterLead_F);// www.chiefdelphi.com/forums/showthread.php?t=142381
+    	shooterLead.setProfile(1);//1
+    	shooterLead.setP(1);//1
+    	shooterLead.setI(0);//1
+    	shooterLead.setD(0);
+    	shooterLead.setF(0);// www.chiefdelphi.com/forums/showthread.php?t=142381
     	
-    	shooterLead.setSetpoint(shooterSpeed);
+    	shooterLead.setSetpoint(0);
     }
     
     public void StopShooter(){
