@@ -18,6 +18,9 @@ public class ShooterSubsystem extends Subsystem {
     private CANTalon shooterLead;
     private CANTalon shooterFollow;
     
+    int shooterRpm;
+	int incrementVal = 10;
+    
 //    private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
 //    private final double shooterLead_P = RobotConstraints.ShooterSubsystem_Shooter_P;
 //    private final double shooterLead_I = RobotConstraints.ShooterSubsystem_Shooter_I;
@@ -43,16 +46,24 @@ public class ShooterSubsystem extends Subsystem {
     	shooterLead.setD(0);
     	shooterLead.setF(0);// www.chiefdelphi.com/forums/showthread.php?t=142381
     	
-    	shooterLead.setSetpoint(0);
+    	shooterLead.setSetpoint(200);
     }
     
     public void StopShooter(){
     	shooterLead.setSetpoint(0);
     }
+    public void ShootSpeedUp(){
+    	shooterRpm = shooterRpm + incrementVal;
+    }
+    public void ShootSpeedDown(){
+    	shooterRpm = shooterRpm + -incrementVal;
+    }
      
     public void initDefaultCommand() {
 //    	setDefaultCommand(new ());
     }
+    
+    
     
     public void log(){
     	SmartDashboard.getNumber("Fly Wheel Speed", shooterLead.get());
