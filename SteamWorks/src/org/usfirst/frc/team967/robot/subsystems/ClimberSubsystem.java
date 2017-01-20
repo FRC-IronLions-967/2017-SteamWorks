@@ -16,8 +16,8 @@ import com.ctre.CANTalon.TalonControlMode;
  */
 public class ClimberSubsystem extends Subsystem {
 	
-	private CANTalon climber1 = RobotMap.climber1;
-	private CANTalon climber2 = RobotMap.climber2;
+	public CANTalon climber1;
+	public CANTalon climber2;
 	
 	private final double ClimberSpeed = RobotConstraints.ClimberSubsystem_ClimberSpeed;
     

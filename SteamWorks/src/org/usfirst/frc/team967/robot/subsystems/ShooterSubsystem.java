@@ -15,8 +15,8 @@ import org.usfirst.frc.team967.robot.RobotMap;
  */
 public class ShooterSubsystem extends Subsystem {
     
-    private CANTalon shooterLead = RobotMap.shooterLead;
-    private CANTalon shooterFollow = RobotMap.shooterFollow;
+    private CANTalon shooterLead;
+    private CANTalon shooterFollow;
     
     private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
     private final double shooterLead_P = RobotConstraints.ShooterSubsystem_Shooter_P;

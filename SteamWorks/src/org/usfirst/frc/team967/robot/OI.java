@@ -1,9 +1,9 @@
 package org.usfirst.frc.team967.robot;
 
-//import org.usfirst.frc.team967.robot.commands.*;
+import org.usfirst.frc.team967.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
-//import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
