@@ -1,9 +1,9 @@
 package org.usfirst.frc.team967.robot;
 
-import org.usfirst.frc.team967.robot.commands.*;
+//import org.usfirst.frc.team967.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+//import edu.wpi.first.wpilibj.buttons.JoystickButton;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -42,9 +42,9 @@ public class OI {
     	//*******************************************************************
     	// Setting up the variables to the buttons on controller 1
 //    	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
-    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
-    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
-    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
+//    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
+//    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
+//    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
 //    	JoystickButton xbox1_lb = new JoystickButton(xbox1, 5);
 //    	JoystickButton xbox1_rb = new JoystickButton(xbox1, 6);
 //    	JoystickButton xbox1_back = new JoystickButton(xbox1, 7);
@@ -76,10 +76,10 @@ public class OI {
     	
 //    	xbox1_a.whenPressed(new TeleOp_ShiftDriveLow());
 //    	xbox1_a.whenReleased(new TeleOp_ShiftDriveHigh());
-    	xbox1_b.whenPressed(new TeleOp_Shoot());
-    	xbox1_b.whenReleased(new TeleOp_StopShooting());
-    	xbox1_x.whenPressed(new TeleOp_shootSpeedUp());
-    	xbox1_y.whenPressed(new TeleOp_ShootSpeedDown());
+//    	xbox1_b.whenPressed(new TeleOp_Shoot());
+//    	xbox1_b.whenReleased(new TeleOp_StopShooting());
+//    	xbox1_x.whenPressed(new TeleOp_shootSpeedUp());
+//    	xbox1_y.whenPressed(new TeleOp_ShootSpeedDown());
 //    	xbox1_lb.whenPressed(command);
 //    	xbox1_rb.whenPressed(command);
 //    	xbox1_back.whenPressed(command);

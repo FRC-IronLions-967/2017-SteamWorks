@@ -25,10 +25,10 @@ public class DriveSubsystem extends Subsystem {
 	public void driveSubsystem(){
 		driveLeftLead = new CANTalon(30);    // The left drive lead motor
 		driveLeftFollow = new CANTalon(31);  // The left drive follow motor
-		driveLeftFollow = new CANTalon(33);
+		driveLeftFollow1 = new CANTalon(33);
 		driveRightLead = new CANTalon(34);   // The right drive lead motor
 		driveRightFollow = new CANTalon(35);
-		driveRightFollow = new CANTalon(36);// The right drive follow motor
+		driveRightFollow1 = new CANTalon(36);// The right drive follow motor
 		
 		shifter = new DoubleSolenoid(0, 2, 1); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
 	}
@@ -57,15 +57,18 @@ public class DriveSubsystem extends Subsystem {
 	
 	public void move(double left, double right){
 		driveLeftLead.set(left);
-		driveLeftFollow.setSetpoint(left);
-    	driveRightLead.setSetpoint(-right);
-    	driveRightFollow.setSetpoint(-right);
+		driveLeftFollow.set(left);
+		driveLeftFollow1.set(left);
+    	driveRightLead.set(-right);
+    	driveRightFollow.set(-right);
+    	driveRightFollow1.set(-right);
     }
 	
 	public void shiftLow() {
 	    InHighGear = false;
 	    shifter.set(DoubleSolenoid.Value.kReverse);
 	}
+	
 	public void shiftHigh() {
 	    InHighGear = true;
 	    shifter.set(DoubleSolenoid.Value.kForward);
@@ -74,9 +77,9 @@ public class DriveSubsystem extends Subsystem {
     public void initDefaultCommand() {
     	setDefaultCommand(new TeleOp_ArcadeDrive());
     }
+    
     public void log(){
         
     }
-    
 }
 
