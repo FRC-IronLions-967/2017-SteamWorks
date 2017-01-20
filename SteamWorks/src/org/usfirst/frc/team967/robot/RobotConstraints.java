@@ -1,5 +1,7 @@
 package org.usfirst.frc.team967.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class RobotConstraints {
 	
 	/*** DRIVETRAIN Constraints ***/
@@ -20,6 +22,8 @@ public class RobotConstraints {
 	public static double ShooterSubsystem_ShooterSpeed;
 	
 	public void init(){
+		SmartDashboard.putNumber("hi", 5);
+		
 		ClimberSubsystem_ClimberSpeed = .5;	
 		DriveSubsystem_deadBand = .2;
 		

@@ -15,6 +15,7 @@ public class TeleOp_ArcadeDrive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.driveSubsystem.driveSubsystem();
     	
     }
 

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team967.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.CANTalon;
 
 /**
@@ -48,6 +50,7 @@ public class RobotMap {
 	
 	
 	public void init(){
+		SmartDashboard.putNumber("test", 5);
 		
 		//-------------Drive-------------
 		driveLeftLead = new CANTalon(30);    // The left drive lead motor
@@ -57,7 +60,7 @@ public class RobotMap {
 		driveRightFollow = new CANTalon(35);
 		driveRightFollow = new CANTalon(36);// The right drive follow motor
 		
-		shifter = new DoubleSolenoid(0, 0, 8); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
+		shifter = new DoubleSolenoid(0, 0, 1); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
 		//------------------------------
 		
 		//-------------Shooter----------

@@ -29,7 +29,7 @@ public class ClimberSubsystem extends Subsystem {
  
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new TeleOp_Climb());
+//        setDefaultCommand(new TeleOp_Climb());
     }
     public void log(){
     	SmartDashboard.putNumber("ClimberSpeed", ClimberSpeed);
