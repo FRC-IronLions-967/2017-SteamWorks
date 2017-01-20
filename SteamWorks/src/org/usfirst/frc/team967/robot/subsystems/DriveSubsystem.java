@@ -23,12 +23,7 @@ public class DriveSubsystem extends Subsystem {
 	
 	public DoubleSolenoid shifter;
 	
-//	private final CANTalon driveLeftLead = RobotMap.driveLeftLead;
-//	private final CANTalon driveLeftFollow = RobotMap.driveLeftFollow;
-//	private final CANTalon driveRightLead = RobotMap.driveRightLead;
-//	private final CANTalon driveRightFollow = RobotMap.driveRightFollow;
-	
-	private final double deadBand = RobotConstraints.DriveSubsystem_deadBand;
+	private final double deadBand = .2;
 	
 	public boolean InHighGear;
 	
@@ -73,14 +68,14 @@ public class DriveSubsystem extends Subsystem {
     	driveRightFollow.setSetpoint(-right);
     }
 	
-//	public void shiftLow() {
-//	    InHighGear = false;
-//	    shifter.set(DoubleSolenoid.Value.kReverse);
-//	}
-//	public void shiftHigh() {
-//	    InHighGear = true;
-//	    shifter.set(DoubleSolenoid.Value.kForward);
-//	}
+	public void shiftLow() {
+	    InHighGear = false;
+	    shifter.set(DoubleSolenoid.Value.kReverse);
+	}
+	public void shiftHigh() {
+	    InHighGear = true;
+	    shifter.set(DoubleSolenoid.Value.kForward);
+	}
 
     public void initDefaultCommand() {
     	setDefaultCommand(new TeleOp_ArcadeDrive());
