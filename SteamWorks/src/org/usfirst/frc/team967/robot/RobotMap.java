@@ -12,29 +12,29 @@ import com.ctre.CANTalon;
  * floating around.
  */
 public class RobotMap {
-	
-	//------------Drive----------------------
-	public static CANTalon driveLeftLead;
-	public static CANTalon driveLeftFollow;
-	public static CANTalon driveLeftFollow1;
-	public static CANTalon driveRightLead;
-	public static CANTalon driveRightFollow;
-	public static CANTalon driveRightFollow1;
-	
-	public static DoubleSolenoid shifter;
+//	
+//	//------------Drive----------------------
+//	public static CANTalon driveLeftLead;
+//	public static CANTalon driveLeftFollow;
+//	public static CANTalon driveLeftFollow1;
+//	public static CANTalon driveRightLead;
+//	public static CANTalon driveRightFollow;
+//	public static CANTalon driveRightFollow1;
+//	
+//	public static DoubleSolenoid shifter;
 	//----------------------------------------
 	
 	
 	//-----------Shooter----------------------
-	public static CANTalon shooterLead;
-	public static CANTalon shooterFollow;
+//	public static CANTalon shooterLead;
+//	public static CANTalon shooterFollow;
 	//----------------------------------------
 	
 	
 	
-	//-----------Climber---------------------
-	public static CANTalon climber1;
-	public static CANTalon climber2;
+//	//-----------Climber---------------------
+//	public static CANTalon climber1;
+//	public static CANTalon climber2;
 	//----------------------------------------
 	
 	
