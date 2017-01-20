@@ -16,20 +16,22 @@ import com.ctre.CANTalon.TalonControlMode;
  */
 public class ClimberSubsystem extends Subsystem {
 	
-	private final CANTalon climber1 = RobotMap.climber1;
-	private final CANTalon climber2 = RobotMap.climber2;
+	private CANTalon climber1 = RobotMap.climber1;
+	private CANTalon climber2 = RobotMap.climber2;
 	
 	private final double ClimberSpeed = RobotConstraints.ClimberSubsystem_ClimberSpeed;
     
 	public void climb(){
+		climber2 = new CANTalon(40);
+		climber1 = new CANTalon(41);
 		climber2.changeControlMode(TalonControlMode.Follower);
-		climber2.set(climber1.getDeviceID());
-		climber1.set(ClimberSpeed); 
+		climber2.setSetpoint(climber1.getDeviceID());
+		climber1.setSetpoint(ClimberSpeed); 
 	}
  
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new TeleOp_Climb());
+//        setDefaultCommand(new TeleOp_Climb());
     }
     public void log(){
     	SmartDashboard.putNumber("ClimberSpeed", ClimberSpeed);

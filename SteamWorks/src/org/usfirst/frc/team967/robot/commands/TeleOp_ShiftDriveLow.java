@@ -16,8 +16,7 @@ public class TeleOp_ShiftDriveLow extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	if(Robot.oi.getXbox1().getRawAxis(2) < .75){
-        	Robot.driveSubsystem.shiftLow();
+//        	Robot.driveSubsystem.shiftLow();
 //        }
     }
 

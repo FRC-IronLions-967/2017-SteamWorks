@@ -1,11 +1,9 @@
 package org.usfirst.frc.team967.robot;
 
-import org.usfirst.frc.team967.robot.commands.TeleOp_Climb;
-
-import org.usfirst.frc.team967.robot.commands.*;
+//import org.usfirst.frc.team967.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+//import edu.wpi.first.wpilibj.buttons.JoystickButton;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -43,7 +41,7 @@ public class OI {
     	
     	//*******************************************************************
     	// Setting up the variables to the buttons on controller 1
-    	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
+//    	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
 //    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
 //    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
 //    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
@@ -58,8 +56,8 @@ public class OI {
     	
     	//**********************************************************************
     	//Setting up the variables to the buttons on controller 2
-    	JoystickButton xbox2_a = new JoystickButton(xbox2, 1);
-    	JoystickButton xbox2_b = new JoystickButton(xbox2, 2);
+//    	JoystickButton xbox2_a = new JoystickButton(xbox2, 1);
+//    	JoystickButton xbox2_b = new JoystickButton(xbox2, 2);
 //    	JoystickButton xbox2_x = new JoystickButton(xbox2, 3);
 //    	JoystickButton xbox2_y = new JoystickButton(xbox2, 4);
 //    	JoystickButton xbox2_lb = new JoystickButton(xbox2, 5);
@@ -76,8 +74,8 @@ public class OI {
    
     	//xbox1_start.whenPressed(new PTOShiftOn());
     	
-    	xbox1_a.whenPressed(new TeleOp_ShiftDriveLow());
-    	xbox1_a.whenReleased(new TeleOp_ShiftDriveHigh());
+//    	xbox1_a.whenPressed(new TeleOp_ShiftDriveLow());
+//    	xbox1_a.whenReleased(new TeleOp_ShiftDriveHigh());
 //    	xbox1_b.whenPressed(command);
 //    	xbox1_x.whenPressed(command);
 //    	xbox1_y.whenPressed(command);
@@ -94,8 +92,8 @@ public class OI {
     	
     	//xbox2_start.whenPressed(new ClimberToExtended());
     	
-    	xbox2_a.whenPressed(new TeleOp_Climb());
-    	xbox2_b.whenPressed(new TeleOp_Shoot());
+//    	xbox2_a.whenPressed(new TeleOp_Climb());
+//    	xbox2_b.whenPressed(new TeleOp_Shoot());
 //    	xbox2_x.whenPressed(command);
 //    	xbox2_y.whenPressed(command);
 //    	xbox2_lb.whenPressed(command);

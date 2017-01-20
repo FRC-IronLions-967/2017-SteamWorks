@@ -15,8 +15,8 @@ import org.usfirst.frc.team967.robot.RobotMap;
  */
 public class ShooterSubsystem extends Subsystem {
     
-    private final CANTalon shooterLead = RobotMap.shooterLead;
-    private final CANTalon shooterFollow = RobotMap.shooterFollow;
+    private CANTalon shooterLead = RobotMap.shooterLead;
+    private CANTalon shooterFollow = RobotMap.shooterFollow;
     
     private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
     private final double shooterLead_P = RobotConstraints.ShooterSubsystem_Shooter_P;
@@ -25,7 +25,9 @@ public class ShooterSubsystem extends Subsystem {
     private final double shooterLead_F = RobotConstraints.ShooterSubsystem_Shooter_F;
     private final double shooterSpeed = RobotConstraints.ShooterSubsystem_ShooterSpeed;
     
-    public void Shooter(){
+    public void Shoot(){
+    	shooterLead = new CANTalon(45);
+		shooterLead = new CANTalon(46);
     	shooterFollow.changeControlMode(TalonControlMode.Follower);
 		shooterFollow.set(shooterLead.getDeviceID());
     	
@@ -41,7 +43,11 @@ public class ShooterSubsystem extends Subsystem {
     	shooterLead.setD(shooterLead_D);
     	shooterLead.setF(shooterLead_F);// www.chiefdelphi.com/forums/showthread.php?t=142381
     	
-    	shooterLead.set(shooterSpeed);
+    	shooterLead.setSetpoint(shooterSpeed);
+    }
+    
+    public void StopShooter(){
+    	shooterLead.setSetpoint(0);
     }
      
     public void initDefaultCommand() {
