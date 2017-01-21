@@ -15,17 +15,22 @@ import org.usfirst.frc.team967.robot.RobotMap;
  */
 public class ShooterSubsystem extends Subsystem {
     
-    private final CANTalon shooterLead = RobotMap.shooterLead;
-    private final CANTalon shooterFollow = RobotMap.shooterFollow;
+    private CANTalon shooterLead;
+    private CANTalon shooterFollow;
     
-    private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
-    private final double shooterLead_P = RobotConstraints.ShooterSubsystem_Shooter_P;
-    private final double shooterLead_I = RobotConstraints.ShooterSubsystem_Shooter_I;
-    private final double shooterLead_D = RobotConstraints.ShooterSubsystem_Shooter_D;
-    private final double shooterLead_F = RobotConstraints.ShooterSubsystem_Shooter_F;
-    private final double shooterSpeed = RobotConstraints.ShooterSubsystem_ShooterSpeed;
+    int shooterRpm;
+	int incrementVal = 10;
     
-    public void Shooter(){
+//    private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
+//    private final double shooterLead_P = RobotConstraints.ShooterSubsystem_Shooter_P;
+//    private final double shooterLead_I = RobotConstraints.ShooterSubsystem_Shooter_I;
+//    private final double shooterLead_D = RobotConstraints.ShooterSubsystem_Shooter_D;
+//    private final double shooterLead_F = RobotConstraints.ShooterSubsystem_Shooter_F;
+//    private final double shooterSpeed = RobotConstraints.ShooterSubsystem_ShooterSpeed;
+    
+    public void Shoot(){
+    	shooterLead = new CANTalon(45);
+		shooterLead = new CANTalon(46);
     	shooterFollow.changeControlMode(TalonControlMode.Follower);
 		shooterFollow.set(shooterLead.getDeviceID());
     	
@@ -35,18 +40,30 @@ public class ShooterSubsystem extends Subsystem {
     	shooterLead.configEncoderCodesPerRev(12);//Needs to be checked with sensors. 
     	shooterLead.configNominalOutputVoltage(+0.0f, -0.0f);
     	shooterLead.configPeakOutputVoltage(+12.0f, -12.0f);
-    	shooterLead.setProfile(shooterLead_Profile);//1
-    	shooterLead.setP(shooterLead_P);//1
-    	shooterLead.setI(shooterLead_I);//1
-    	shooterLead.setD(shooterLead_D);
-    	shooterLead.setF(shooterLead_F);// www.chiefdelphi.com/forums/showthread.php?t=142381
+    	shooterLead.setProfile(1);//1
+    	shooterLead.setP(1);//1
+    	shooterLead.setI(0);//1
+    	shooterLead.setD(0);
+    	shooterLead.setF(0);// www.chiefdelphi.com/forums/showthread.php?t=142381
     	
-    	shooterLead.set(shooterSpeed);
+    	shooterLead.setSetpoint(200);
+    }
+    
+    public void StopShooter(){
+    	shooterLead.setSetpoint(0);
+    }
+    public void ShootSpeedUp(){
+    	shooterRpm = shooterRpm + incrementVal;
+    }
+    public void ShootSpeedDown(){
+    	shooterRpm = shooterRpm + -incrementVal;
     }
      
     public void initDefaultCommand() {
 //    	setDefaultCommand(new ());
     }
+    
+    
     
     public void log(){
     	SmartDashboard.getNumber("Fly Wheel Speed", shooterLead.get());

@@ -6,8 +6,7 @@ tmp/
 .metadata
 .project
 .settings/
-*.classpath
-*.properties
-*.xml
 .recommenders/
 *.recommenders
+
+*.jar
