@@ -105,8 +105,8 @@ public class OI {
 //    	xbox2_leftStickButton.whenPressed(command);
 //    	xbox2_rightStickButton.whenPressed(command);
 
-    	SmartDashboard.putData("upSetRPM", new TeleOp_shootSpeedUp());
-    	SmartDashboard.putData("downSetRPM", new TeleOp_ShootSpeedDown());
+//    	SmartDashboard.putData("upSetRPM", new TeleOp_shootSpeedUp());
+//    	SmartDashboard.putData("downSetRPM", new TeleOp_ShootSpeedDown());
     	SmartDashboard.putData("shoot", new TeleOp_Shoot());
     	SmartDashboard.putData("P Up", new P_up());
     	SmartDashboard.putData("P down", new P_down());

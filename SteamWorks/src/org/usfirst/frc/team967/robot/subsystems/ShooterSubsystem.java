@@ -19,11 +19,11 @@ public class ShooterSubsystem extends Subsystem {
     private CANTalon shooterLead;
     private CANTalon shooterFollow;
     
-    int shooterRpm = 500;
+    int shooterRpm = 200;
 	int incrementVal = 50;
     
-	double pValue = 1.;
-	double iValue = .0;
+	double pValue = 1.0;
+	double iValue = 0.0;
 	double dValue = 0.00;
 	
 //    private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
@@ -45,38 +45,38 @@ public class ShooterSubsystem extends Subsystem {
     	shooterLead.configPeakOutputVoltage(+12.0f, -12.0f);//+12.0f, -12.0f
     	shooterLead.setProfile(1);
     	shooterLead.setP(pValue);//
-    	shooterLead.setI(iValue);//1 this is a commments !!!!!!!!!!!!!! hacker manwas here
-    	shooterLead.setD(dValue);
+    	shooterLead.setI(iValue);//
+    	shooterLead.setD(dValue);//
     	shooterLead.setF(.0);// www.chiefdelphi.com/forums/showthread.php?t=142381
-	
 		shooterFollow.changeControlMode(TalonControlMode.Follower);
-		shooterFollow.set(shooterLead.getDeviceID());
-    	
+		shooterFollow.set(shooterLead.getDeviceID());    	
+    }
+	
+	public void Shoot(){
+    	shooterLead.set(shooterRpm);//setSetpoint
     }
 	
 	public void PUp(){
-		dValue += .01;
+		iValue +=  .01;
 		shooterLead.setI(iValue);
+//		Shoot();
 	}
 	public void PDown(){
-		dValue -= .01;
+		iValue -= .01;
 		shooterLead.setI(iValue);
+//		Shoot();
 	}
-	
-    public void Shoot(){
-    	shooterLead.setSetpoint(shooterRpm);//setSetpoint
-    }
     
     public void StopShooter(){
-    	shooterLead.setSetpoint(0);//setSetpoint
+    	shooterLead.set(0);//setSetpoint
     }
     
     public void ShootSpeedUp(){
-    	shooterRpm = shooterRpm + incrementVal;
+    //	shooterRpm = shooterRpm + incrementVal;
     }
     
     public void ShootSpeedDown(){
-    	shooterRpm = shooterRpm + -incrementVal;
+    //	shooterRpm = shooterRpm - incrementVal;
     }
     
     public void initDefaultCommand() {
@@ -87,7 +87,8 @@ public class ShooterSubsystem extends Subsystem {
     	SmartDashboard.putNumber("Bus Voltage", shooterLead.getBusVoltage());
     	SmartDashboard.putNumber("Output Voltage", shooterLead.getOutputVoltage());
     	SmartDashboard.putNumber("Output Current", shooterLead.getOutputCurrent());
-    	
+
+    	SmartDashboard.putNumber("Shooter RPM", shooterRpm);
     	SmartDashboard.putNumber("Fly Wheel Speed", shooterLead.get());
     	SmartDashboard.putNumber("Fly Wheel P", shooterLead.getP());
     	SmartDashboard.putNumber("Fly Wheel I", shooterLead.getI());
