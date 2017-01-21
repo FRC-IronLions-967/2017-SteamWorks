@@ -28,10 +28,6 @@ public class Robot extends IterativeRobot {
 	
 //	public static RobotMap robotMap;
 //	public static RobotConstraints robotConstraints;
-	public static final DriveSubsystem  driveSubsystem = new DriveSubsystem();
-	public static final ShooterSubsystem  shooterSubsystem = new ShooterSubsystem();
-	public static final GearSubsystem  gearSubsystem = new GearSubsystem();
-	public static final ClimberSubsystem  climberSubsystem = new ClimberSubsystem();
 	public static OI oi;
 	
 	Command autonomousCommand;
@@ -45,6 +41,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 //		robotMap = new RobotMap();
 //    	robotConstraints = new RobotConstraints();
+		driveSubsystem = new DriveSubsystem();
+		gearSubsystem = new GearSubsystem();
+		climberSubsystem = new ClimberSubsystem();		
+		shooterSubsystem = new ShooterSubsystem();
 		oi = new OI();
 //		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -117,6 +117,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		log();
 	}
 
 	/**
@@ -127,10 +128,16 @@ public class Robot extends IterativeRobot {
 		LiveWindow.run();
 	}
 	public void log(){
-	    	oi.log();
-	    	driveSubsystem.log();
-	    	shooterSubsystem.log();
-	    	gearSubsystem.log();
-	    	climberSubsystem.log();
+    	SmartDashboard.putData(shooterSubsystem);
+    	SmartDashboard.putData(climberSubsystem);
+    	SmartDashboard.putData(gearSubsystem);
+    	SmartDashboard.putData(driveSubsystem);
+    	SmartDashboard.putData(Scheduler.getInstance());
+    
+    	oi.log();
+    	driveSubsystem.log();
+    	shooterSubsystem.log();
+    	gearSubsystem.log();
+    	climberSubsystem.log();
 	}
 }

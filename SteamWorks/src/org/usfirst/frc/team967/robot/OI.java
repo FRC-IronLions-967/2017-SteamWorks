@@ -5,6 +5,7 @@ import org.usfirst.frc.team967.robot.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class OI {
@@ -42,9 +43,9 @@ public class OI {
     	//*******************************************************************
     	// Setting up the variables to the buttons on controller 1
     	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
-//    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
-//    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
-//    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
+    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
+    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
+    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
 //    	JoystickButton xbox1_lb = new JoystickButton(xbox1, 5);
 //    	JoystickButton xbox1_rb = new JoystickButton(xbox1, 6);
 //    	JoystickButton xbox1_back = new JoystickButton(xbox1, 7);
@@ -74,11 +75,11 @@ public class OI {
    
     	//xbox1_start.whenPressed(new PTOShiftOn());
     	
-//    	xbox1_a.whenReleased(new TeleOp_ShiftDriveLow());
+    	xbox1_a.whenReleased(new TeleOp_shootSpeedUp());
 //    	xbox1_a.whenPressed(new TeleOp_ShiftDriveHigh());
-//    	xbox1_b.whenPressed(new TeleOp_Shoot());
+    	xbox1_b.whenPressed(new TeleOp_ShootSpeedDown());
 //    	xbox1_b.whenReleased(new TeleOp_StopShooting());
-//    	xbox1_x.whenPressed(new TeleOp_shootSpeedUp());
+//    	xbox1_x.whenPressed(new TeleOp_shootSpeedDown());
 //    	xbox1_y.whenPressed(new TeleOp_ShootSpeedDown());
 //    	xbox1_lb.whenPressed(command);
 //    	xbox1_rb.whenPressed(command);
@@ -103,11 +104,15 @@ public class OI {
 //    	xbox2_start.whenPressed(command);
 //    	xbox2_leftStickButton.whenPressed(command);
 //    	xbox2_rightStickButton.whenPressed(command);
-    	
+
+    	SmartDashboard.putData("upSetRPM", new TeleOp_shootSpeedUp());
+    	SmartDashboard.putData("downSetRPM", new TeleOp_ShootSpeedDown());
+    	SmartDashboard.putData("shoot", new TeleOp_Shoot());
+    	SmartDashboard.putData("P Up", new P_up());
+    	SmartDashboard.putData("P down", new P_down());
     }
     
     public void log(){
-
     }
     
     public Joystick getXbox1() {

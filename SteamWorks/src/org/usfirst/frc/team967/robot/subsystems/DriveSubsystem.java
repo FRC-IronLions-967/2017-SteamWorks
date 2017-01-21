@@ -1,6 +1,6 @@
 package org.usfirst.frc.team967.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+//import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.CANTalon.TalonControlMode;
@@ -17,26 +17,32 @@ public class DriveSubsystem extends Subsystem {
 	public CANTalon driveRightFollow;
 	public CANTalon driveRightFollow1;
 	
-	public DoubleSolenoid shifter;
+//	public DoubleSolenoid shifter;
 	
 	private final double deadBand = .2;
 	public boolean InHighGear;	
 	
-	public void driveSubsystem(){
+	public DriveSubsystem(){
 		driveLeftLead = new CANTalon(30);    // The left drive lead motor
 		driveLeftFollow = new CANTalon(31);  // The left drive follow motor
 		driveLeftFollow1 = new CANTalon(33);
 		driveRightLead = new CANTalon(34);   // The right drive lead motor
 		driveRightFollow = new CANTalon(35);
 		driveRightFollow1 = new CANTalon(36);// The right drive follow motor
-	}
-	
-	public void arcadeDrive(double yAxis, double xAxis) {
+		
+//		shifter = new DoubleSolenoid(0, 2, 1); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
+		
+		
 		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);
 		driveLeftFollow.changeControlMode(TalonControlMode.PercentVbus);
 		driveRightLead.changeControlMode(TalonControlMode.PercentVbus);
 		driveRightFollow.changeControlMode(TalonControlMode.PercentVbus);
-		
+		driveRightFollow1.changeControlMode(TalonControlMode.PercentVbus);
+		driveLeftFollow1.changeControlMode(TalonControlMode.PercentVbus);
+	
+	}
+	
+	public void arcadeDrive(double yAxis, double xAxis) {	
 		if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
     	if((xAxis< deadBand) && (xAxis > -deadBand)){ xAxis=0;}
     	double L = yAxis + xAxis;
@@ -62,18 +68,14 @@ public class DriveSubsystem extends Subsystem {
     	driveRightFollow1.set(-right);
     }
 	
-	public void shifting(){
-		shifter = new DoubleSolenoid(0, 2, 1); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
-	}
-	
 	public void shiftLow() {
 	    InHighGear = false;
-	    shifter.set(DoubleSolenoid.Value.kReverse);
+//	    shifter.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void shiftHigh() {
 	    InHighGear = true;
-	    shifter.set(DoubleSolenoid.Value.kForward);
+//	    shifter.set(DoubleSolenoid.Value.kForward);
 	}
 	
     public void initDefaultCommand() {
@@ -84,4 +86,3 @@ public class DriveSubsystem extends Subsystem {
         
     }
 }
-
