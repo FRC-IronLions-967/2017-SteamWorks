@@ -28,6 +28,10 @@ public class Robot extends IterativeRobot {
 	
 //	public static RobotMap robotMap;
 //	public static RobotConstraints robotConstraints;
+	public static DriveSubsystem  driveSubsystem;
+	public static ShooterSubsystem  shooterSubsystem;
+	public static GearSubsystem  gearSubsystem;
+	public static ClimberSubsystem  climberSubsystem;
 	public static OI oi;
 	
 	Command autonomousCommand;
