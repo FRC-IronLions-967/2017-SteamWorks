@@ -41,7 +41,7 @@ public class OI {
     	
     	//*******************************************************************
     	// Setting up the variables to the buttons on controller 1
-//    	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
+    	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
 //    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
 //    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
 //    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
@@ -74,11 +74,12 @@ public class OI {
    
     	//xbox1_start.whenPressed(new PTOShiftOn());
     	
-//    	xbox1_a.whenPressed(new TeleOp_ShiftDriveLow());
-//    	xbox1_a.whenReleased(new TeleOp_ShiftDriveHigh());
-//    	xbox1_b.whenPressed(command);
-//    	xbox1_x.whenPressed(command);
-//    	xbox1_y.whenPressed(command);
+//    	xbox1_a.whenReleased(new TeleOp_ShiftDriveLow());
+//    	xbox1_a.whenPressed(new TeleOp_ShiftDriveHigh());
+//    	xbox1_b.whenPressed(new TeleOp_Shoot());
+//    	xbox1_b.whenReleased(new TeleOp_StopShooting());
+//    	xbox1_x.whenPressed(new TeleOp_shootSpeedUp());
+//    	xbox1_y.whenPressed(new TeleOp_ShootSpeedDown());
 //    	xbox1_lb.whenPressed(command);
 //    	xbox1_rb.whenPressed(command);
 //    	xbox1_back.whenPressed(command);

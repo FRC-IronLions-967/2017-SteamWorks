@@ -49,7 +49,7 @@ public class RobotMap {
 	
 	
 	public RobotMap(){
-		SmartDashboard.putNumber("test", 5);
+//		SmartDashboard.putNumber("test", 5);
 		
 		//-------------Drive-------------
 //		driveLeftLead = new CANTalon(30);    // The left drive lead motor

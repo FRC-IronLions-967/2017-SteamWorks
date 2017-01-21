@@ -26,8 +26,8 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
 public class Robot extends IterativeRobot {
 	
 	
-	public static RobotMap robotMap;
-	public static RobotConstraints robotConstraints;
+//	public static RobotMap robotMap;
+//	public static RobotConstraints robotConstraints;
 	public static final DriveSubsystem  driveSubsystem = new DriveSubsystem();
 	public static final ShooterSubsystem  shooterSubsystem = new ShooterSubsystem();
 	public static final GearSubsystem  gearSubsystem = new GearSubsystem();
@@ -43,8 +43,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		robotMap = new RobotMap();
-    	robotConstraints = new RobotConstraints();
+//		robotMap = new RobotMap();
+//    	robotConstraints = new RobotConstraints();
 		oi = new OI();
 //		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());

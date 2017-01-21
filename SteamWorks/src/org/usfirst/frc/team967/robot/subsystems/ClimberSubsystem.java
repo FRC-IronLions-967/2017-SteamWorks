@@ -19,19 +19,21 @@ public class ClimberSubsystem extends Subsystem {
 	public CANTalon climber1;
 	public CANTalon climber2;
 	
-	private final double ClimberSpeed = RobotConstraints.ClimberSubsystem_ClimberSpeed;
+	private double ClimberSpeed = .5;
     
-	public void climb(){
+	public void init(){
 		climber2 = new CANTalon(40);
 		climber1 = new CANTalon(41);
 		climber2.changeControlMode(TalonControlMode.Follower);
-		climber2.setSetpoint(climber1.getDeviceID());
-		climber1.setSetpoint(ClimberSpeed); 
+		climber2.set(climber1.getDeviceID());
+	}
+	
+	public void climb(){
+		climber1.set(ClimberSpeed); 
 	}
  
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-//        setDefaultCommand(new TeleOp_Climb());
+        //setDefaultCommand(new TeleOp_Climb());
     }
     public void log(){
     	SmartDashboard.putNumber("ClimberSpeed", ClimberSpeed);
