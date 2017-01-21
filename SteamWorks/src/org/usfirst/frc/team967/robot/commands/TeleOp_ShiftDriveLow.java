@@ -16,6 +16,7 @@ public class TeleOp_ShiftDriveLow extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    		Robot.driveSubsystem.shifting();
         	Robot.driveSubsystem.shiftLow();
     }    
 
