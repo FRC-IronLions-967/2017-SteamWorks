@@ -4,5 +4,6 @@ tmp/
 *.metadata
 .recommenders/
 *.recommenders
+*.class
 
 
