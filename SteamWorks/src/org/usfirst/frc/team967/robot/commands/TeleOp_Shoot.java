@@ -15,16 +15,16 @@ public class TeleOp_Shoot extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooterSubsystem.Shoot();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.shooterSubsystem.Shoot();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

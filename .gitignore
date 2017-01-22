@@ -1,12 +1,9 @@
-*.class
-
 bin/
 tmp/
 *.tmp
-.metadata
-.project
-.settings/
+*.metadata
 .recommenders/
 *.recommenders
+*.class
 
 

@@ -21,11 +21,12 @@ public class ClimberSubsystem extends Subsystem {
 	
 	private double ClimberSpeed = .5;
     
-	public void init(){
+	public ClimberSubsystem(){
 		climber2 = new CANTalon(40);
 		climber1 = new CANTalon(41);
 		climber2.changeControlMode(TalonControlMode.Follower);
 		climber2.set(climber1.getDeviceID());
+	
 	}
 	
 	public void climb(){
