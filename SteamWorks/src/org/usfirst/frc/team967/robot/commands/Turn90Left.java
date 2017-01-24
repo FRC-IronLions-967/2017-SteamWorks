@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auto_1 extends Command {
+public class Turn90Left extends Command {
 
-    public Auto_1() {
+    public Turn90Left() {
+    	requires(Robot.driveSubsystem);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.driveSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveSubsystem.moveTime(.5,.5,1);
+    	Robot.driveSubsystem.turn90Left();
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -46,8 +46,8 @@ public class OI {
     	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
     	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
     	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
-//    	JoystickButton xbox1_lb = new JoystickButton(xbox1, 5);
-//    	JoystickButton xbox1_rb = new JoystickButton(xbox1, 6);
+    	JoystickButton xbox1_lb = new JoystickButton(xbox1, 5);
+    	JoystickButton xbox1_rb = new JoystickButton(xbox1, 6);
 //    	JoystickButton xbox1_back = new JoystickButton(xbox1, 7);
 //    	JoystickButton xbox1_start = new JoystickButton(xbox1, 8);
 //    	JoystickButton xbox1_leftStickButton = new JoystickButton(xbox1, 9);
@@ -81,8 +81,8 @@ public class OI {
 //    	xbox1_b.whenReleased(new TeleOp_StopShooting());
     	xbox1_x.whenPressed(new TeleOp_ShiftDriveHigh());
     	xbox1_x.whenReleased(new TeleOp_ShiftDriveLow());
-//    	xbox1_lb.whenPressed(command);
-//    	xbox1_rb.whenPressed(command);
+    	xbox1_lb.whenPressed(new Turn90Left());
+    	xbox1_rb.whenPressed(new Turn90Right());
 //    	xbox1_back.whenPressed(command);
 //    	xbox1_start.whenPressed(command);
 //    	xbox1_leftStickButton.whenPressed(command);

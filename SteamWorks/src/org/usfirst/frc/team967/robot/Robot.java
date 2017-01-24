@@ -24,7 +24,7 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
  */
 public class Robot extends IterativeRobot {
 	
-	
+
 //	public static RobotMap robotMap;
 //	public static RobotConstraints robotConstraints;
 	public static DriveSubsystem  driveSubsystem;

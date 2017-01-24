@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon;
 
@@ -13,9 +15,18 @@ import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
 
-public class DriveSubsystem extends Subsystem {
+public class DriveSubsystem extends Subsystem implements PIDOutput{
 	
 	AHRS ahrs;
+	PIDController turnController;
+	double rotateToAngleRate;
+	
+	static final double kP = 0.03;
+	static final double kI = 0.00;
+	static final double kD = 0.00;
+	static final double kF = 0.00;
+	
+	static final double kToleranceDegrees = 2.0f;
 	  
 	public CANTalon driveLeftLead;
 	public CANTalon driveLeftFollow;
@@ -54,6 +65,12 @@ public class DriveSubsystem extends Subsystem {
 	     }
 		 
 		 ahrs.zeroYaw();
+		 
+		 turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
+	     turnController.setInputRange(-180.0f,  180.0f);
+	     turnController.setOutputRange(-1.0, 1.0);
+	     turnController.setAbsoluteTolerance(kToleranceDegrees);
+	     turnController.setContinuous(true);
 	}
 	
 	public void arcadeDrive(double yAxis, double xAxis) {	
@@ -82,10 +99,18 @@ public class DriveSubsystem extends Subsystem {
     	driveRightFollow1.set(-right);
     }
 	
-	public void auto_1(double left,double right, double time){
+	public void moveTime(double left,double right, double time){
 		move(left,right);
 		Timer.delay(time);
 		move(0,0);
+	}
+	
+	public void turn90Left(){
+		turnController.setSetpoint(90.0f);
+	}
+	
+	public void turn90Right (){
+		turnController.setSetpoint(-90.0f);		
 	}
 	
 	public void shiftLow() {
@@ -180,4 +205,10 @@ public class DriveSubsystem extends Subsystem {
          SmartDashboard.putNumber(   "IMU_Byte_Count",       ahrs.getByteCount());
          SmartDashboard.putNumber(   "IMU_Update_Count",     ahrs.getUpdateCount());
     }
+
+	@Override
+	public void pidWrite(double output) {
+		// TODO Auto-generated method stub
+		
+	}
 }
