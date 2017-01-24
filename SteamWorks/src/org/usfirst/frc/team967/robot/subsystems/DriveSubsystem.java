@@ -1,14 +1,21 @@
 package org.usfirst.frc.team967.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DriverStation;
 //import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon;
 
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Timer;
+
 import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
 
 public class DriveSubsystem extends Subsystem {
+	
+	AHRS ahrs;
 	  
 	public CANTalon driveLeftLead;
 	public CANTalon driveLeftFollow;
@@ -31,8 +38,6 @@ public class DriveSubsystem extends Subsystem {
 		driveRightFollow1 = new CANTalon(36);// The right drive follow motor
 		
 //		shifter = new DoubleSolenoid(0, 2, 1); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
-		
-		
 		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);
 		driveLeftFollow.changeControlMode(TalonControlMode.PercentVbus);
 		driveRightLead.changeControlMode(TalonControlMode.PercentVbus);
@@ -40,6 +45,13 @@ public class DriveSubsystem extends Subsystem {
 		driveRightFollow1.changeControlMode(TalonControlMode.PercentVbus);
 		driveLeftFollow1.changeControlMode(TalonControlMode.PercentVbus);
 	
+		 try {
+			 ahrs = new AHRS(SPI.Port.kMXP); 
+	     } 
+		 catch (RuntimeException ex ) 
+		 {
+			 DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+	     }
 	}
 	
 	public void arcadeDrive(double yAxis, double xAxis) {	
@@ -67,6 +79,17 @@ public class DriveSubsystem extends Subsystem {
     	driveRightFollow.set(-right);
     	driveRightFollow1.set(-right);
     }
+	
+	public void auto_1(){
+		move(.5,-.5);
+		Timer.delay(5);
+		move(0,0);
+	}
+	public void auto_2(){
+		move(1,1);
+		Timer.delay(1);
+		move(0,0);
+	}
 	
 	public void shiftLow() {
 	    InHighGear = false;
