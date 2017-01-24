@@ -81,21 +81,35 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = (Command) chooser.getSelected();
-        
-		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "Auto_2":
-			autonomousCommand = new Auto_2();
-			break;
-		case "Auto_1":
-		default:
-			autonomousCommand = new Auto_1();
-			break;
-		}
-    	
-    	// schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+		  autonomousCommand = chooser.getSelected();
+		  String autoSelected = SmartDashboard.getString("Auto Selector","Auto_1");
+		  switch(autoSelected) {
+		  case "Auto_2": autonomousCommand = new Auto_2();
+		  break;
+		  case "Auto_1":
+		  default:
+		  autonomousCommand = new Auto_1(); 
+		  break; 
+		  }
+		 
+
+		// schedule the autonomous command (example)
+		if (autonomousCommand != null)autonomousCommand.start();
+//		autonomousCommand = (Command) chooser.getSelected();
+//        
+//		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+//		switch(autoSelected) {
+//		case "Auto_2":
+//			autonomousCommand = new Auto_2();
+//			break;
+//		case "Auto_1":
+//		default:
+//			autonomousCommand = new Auto_1();
+//			break;
+//		}
+//    	
+//    	// schedule the autonomous command (example)
+//        if (autonomousCommand != null) autonomousCommand.start();
 	}
 
 	/**
@@ -139,10 +153,10 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putData(driveSubsystem);
     	SmartDashboard.putData(Scheduler.getInstance());
     
-    	oi.log();
+//    	oi.log();
     	driveSubsystem.log();
-    	shooterSubsystem.log();
-    	gearSubsystem.log();
-    	climberSubsystem.log();
+//    	shooterSubsystem.log();
+//    	gearSubsystem.log();
+//    	climberSubsystem.log();
 	}
 }
