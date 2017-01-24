@@ -8,9 +8,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team967.robot.RobotMap;
-import org.usfirst.frc.team967.robot.RobotConstraints;
-
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.GearSubsystem;
