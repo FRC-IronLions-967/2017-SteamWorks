@@ -66,7 +66,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 		 
 		 ahrs.zeroYaw();
 		 
-		 turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
+		 turnController = new PIDController(kP, kI, kD, kF, ahrs, PID output);
 	     turnController.setInputRange(-180.0f,  180.0f);
 	     turnController.setOutputRange(-1.0, 1.0);
 	     turnController.setAbsoluteTolerance(kToleranceDegrees);
@@ -109,8 +109,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 		turnController.setSetpoint(90.0f);
 	}
 	
-	public void turn90Right (){
-		turnController.setSetpoint(-90.0f);		
+	public void turn (double amount){
+		turnController.setSetpoint(amount);		
 	}
 	
 	public void shiftLow() {
