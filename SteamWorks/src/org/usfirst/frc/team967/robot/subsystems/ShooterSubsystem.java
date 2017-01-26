@@ -57,13 +57,33 @@ public class ShooterSubsystem extends Subsystem {
     }
 	
 	public void PUp(){
+		pValue +=  .01;
+		shooterLead.setP(pValue);
+//		Shoot();
+	}
+	public void PDown(){
+		pValue -= .01;
+		shooterLead.setP(pValue);
+//		Shoot();
+	}
+	public void IUp(){
 		iValue +=  .01;
 		shooterLead.setI(iValue);
 //		Shoot();
 	}
-	public void PDown(){
+	public void IDown(){
 		iValue -= .01;
 		shooterLead.setI(iValue);
+//		Shoot();
+	}
+	public void DUp(){
+		dValue +=  .01;
+		shooterLead.setD(dValue);
+//		Shoot();
+	}
+	public void DDown(){
+		dValue -= .01;
+		shooterLead.setD(dValue);
 //		Shoot();
 	}
     
