@@ -108,8 +108,13 @@ public class OI {
 //    	SmartDashboard.putData("upSetRPM", new TeleOp_shootSpeedUp());
 //    	SmartDashboard.putData("downSetRPM", new TeleOp_ShootSpeedDown());
     	SmartDashboard.putData("shoot", new TeleOp_Shoot());
-    	SmartDashboard.putData("P Up", new P_up());
-    	SmartDashboard.putData("P down", new P_down());
+    	SmartDashboard.putData("P Up", new Testing_P_up());
+    	SmartDashboard.putData("P down", new Testing_P_down());
+    	SmartDashboard.putData("I Up", new Testing_I_up());
+    	SmartDashboard.putData("I down", new Testing_I_down());
+    	SmartDashboard.putData("D Up", new Testing_D_up());
+    	SmartDashboard.putData("D down", new Testing_D_down());
+    	SmartDashboard.putData("Stop shooter", new Testing_Stop_Flywheel());
     }
     
     public void log(){

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team967.robot.subsystems;
 
-//import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.CANTalon.TalonControlMode;
@@ -17,7 +17,7 @@ public class DriveSubsystem extends Subsystem {
 	public CANTalon driveRightFollow;
 	public CANTalon driveRightFollow1;
 	
-//	public DoubleSolenoid shifter;
+	public DoubleSolenoid shifter;
 	
 	private final double deadBand = .2;
 	public boolean InHighGear;	
@@ -30,8 +30,8 @@ public class DriveSubsystem extends Subsystem {
 		driveRightFollow = new CANTalon(35);
 		driveRightFollow1 = new CANTalon(36);// The right drive follow motor
 		
-//		shifter = new DoubleSolenoid(0, 2, 1); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
-		
+	//	shifter = new DoubleSolenoid(0, 0, 7); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
+		shifter = new DoubleSolenoid(0, 7); //defaults to module 0
 		
 		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);
 		driveLeftFollow.changeControlMode(TalonControlMode.PercentVbus);
@@ -72,7 +72,11 @@ public class DriveSubsystem extends Subsystem {
 	    InHighGear = false;
 //	    shifter.set(DoubleSolenoid.Value.kReverse);
 	}
-	
+	/*
+	 * 	exampleDouble.set(DoubleSolenoid.Value.kOff);
+	 *	exampleDouble.set(DoubleSolenoid.Value.kForward);
+	 *	exampleDouble.set(DoubleSolenoid.Value.kReverse);
+	 */
 	public void shiftHigh() {
 	    InHighGear = true;
 //	    shifter.set(DoubleSolenoid.Value.kForward);
