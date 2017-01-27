@@ -17,7 +17,7 @@ public class Turn90Right extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveSubsystem.turn90Right();
+    	Robot.driveSubsystem.turn(90);
     }
 
     // Called repeatedly when this Command is scheduled to run

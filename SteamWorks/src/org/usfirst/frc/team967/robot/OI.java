@@ -79,8 +79,8 @@ public class OI {
 //    	xbox1_a.whenPressed(new TeleOp_ShiftDriveHigh());
     	xbox1_b.whenPressed(new TeleOp_ShootSpeedDown());
 //    	xbox1_b.whenReleased(new TeleOp_StopShooting());
-    	xbox1_x.whenPressed(new TeleOp_ShiftDriveHigh());
-    	xbox1_x.whenReleased(new TeleOp_ShiftDriveLow());
+    	xbox1_x.whenReleased(new TeleOp_ShiftDriveHigh());
+    	xbox1_x.whenPressed(new TeleOp_ShiftDriveLow());
     	xbox1_lb.whenPressed(new Turn90Left());
     	xbox1_rb.whenPressed(new Turn90Right());
 //    	xbox1_back.whenPressed(command);
