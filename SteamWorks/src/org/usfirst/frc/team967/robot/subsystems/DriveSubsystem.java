@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import com.ctre.CANTalon.TalonControlMode;
@@ -14,7 +16,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
 
-public class DriveSubsystem extends Subsystem implements PIDOutput{
+public class DriveSubsystem extends Subsystem implements PIDOutput,PIDSource{
 	
 	AHRS ahrs;
 	PIDController turnController;
@@ -66,9 +68,6 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 		 ahrs.zeroYaw();
 		 
 		 turnController = new PIDController(kP, kI, kD, ahrs,this);
-//		 driveRightLead.changeControlMode(TalonControlMode.Follower);
-//		 driveRightLead.set(driveLeftLead.getDeviceID());
-//		 driveRightLead.reverseOutput(true);
 		 turnController.disable();
 	     turnController.setInputRange(-180.0f,  180.0f);
 	     turnController.setOutputRange(-1.0, 1.0);
@@ -218,5 +217,23 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 	public void pidWrite(double output) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void setPIDSourceType(PIDSourceType pidSource) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public PIDSourceType getPIDSourceType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double pidGet() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
