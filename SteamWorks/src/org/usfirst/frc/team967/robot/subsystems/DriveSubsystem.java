@@ -20,11 +20,11 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 	PIDController turnController;
 	double rotateToAngleRate;
 	
-	static final double kP = 0.01;
-	static final double kI = 1.00;
-	static final double kD = 0.00;
+	static final double kP = 0.03;
+	static final double kI = 0.10;
+	static final double kD = 0.000001;
 	
-	static final double kToleranceDegrees = 2.0f;
+	static final double kToleranceDegrees = 20.0f;
 	  
 	public CANTalon driveLeftLead;
 	public CANTalon driveLeftFollow;
@@ -66,9 +66,6 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 		 ahrs.zeroYaw();
 		 
 		 turnController = new PIDController(kP, kI, kD, ahrs,this);
-//		 driveRightLead.changeControlMode(TalonControlMode.Follower);
-//		 driveRightLead.set(driveLeftLead.getDeviceID());
-//		 driveRightLead.reverseOutput(true);
 		 turnController.disable();
 	     turnController.setInputRange(-180.0f,  180.0f);
 	     turnController.setOutputRange(-1.0, 1.0);
@@ -110,7 +107,9 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 	
 	public void turn (double amount){
 		turnController.enable();
-		turnController.setSetpoint(amount);		
+		turnController.setSetpoint(amount);	
+		double val = turnController.get();
+		move(val,-val);
 	}
 	public void pidStop(){
 		turnController.disable();
