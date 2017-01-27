@@ -6,12 +6,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
-import com.ctre.CANTalon.TalonControlMode;
-import com.ctre.CANTalon;
-
-import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
+import com.ctre.CANTalon.TalonControlMode;
+import com.ctre.CANTalon;
+import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
 
@@ -21,10 +20,9 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 	PIDController turnController;
 	double rotateToAngleRate;
 	
-	static final double kP = 0.03;
-	static final double kI = 0.00;
+	static final double kP = 0.01;
+	static final double kI = 1.00;
 	static final double kD = 0.00;
-	static final double kF = 0.00;
 	
 	static final double kToleranceDegrees = 2.0f;
 	  
@@ -41,6 +39,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 	public boolean InHighGear;	
 	
 	public DriveSubsystem(){
+		
 		driveLeftLead = new CANTalon(30);    // The left drive lead motor
 		driveLeftFollow = new CANTalon(31);  // The left drive follow motor
 		driveLeftFollow1 = new CANTalon(33);
@@ -48,7 +47,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 		driveRightFollow = new CANTalon(35);
 		driveRightFollow1 = new CANTalon(36);// The right drive follow motor
 		
-//		shifter = new DoubleSolenoid(0, 2, 1); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
+		shifter = new DoubleSolenoid(0, 0, 1); // The shifter for high-low gear. (CAN bus ID, On port, Off port)
 		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);
 		driveLeftFollow.changeControlMode(TalonControlMode.PercentVbus);
 		driveRightLead.changeControlMode(TalonControlMode.PercentVbus);
@@ -66,7 +65,11 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 		 
 		 ahrs.zeroYaw();
 		 
-		 turnController = new PIDController(kP, kI, kD, kF, ahrs, PID output);
+		 turnController = new PIDController(kP, kI, kD, ahrs,this);
+//		 driveRightLead.changeControlMode(TalonControlMode.Follower);
+//		 driveRightLead.set(driveLeftLead.getDeviceID());
+//		 driveRightLead.reverseOutput(true);
+		 turnController.disable();
 	     turnController.setInputRange(-180.0f,  180.0f);
 	     turnController.setOutputRange(-1.0, 1.0);
 	     turnController.setAbsoluteTolerance(kToleranceDegrees);
@@ -105,12 +108,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
 		move(0,0);
 	}
 	
-	public void turn90Left(){
-		turnController.setSetpoint(90.0f);
-	}
-	
 	public void turn (double amount){
+		turnController.enable();
 		turnController.setSetpoint(amount);		
+	}
+	public void pidStop(){
+		turnController.disable();
 	}
 	
 	public void shiftLow() {
@@ -128,6 +131,11 @@ public class DriveSubsystem extends Subsystem implements PIDOutput{
     }
     
     public void log(){
+    
+		turnController.getError();
+    	
+		SmartDashboard.putNumber("error" , turnController.getError());
+		
     	 SmartDashboard.putBoolean(  "IMU_Connected",        ahrs.isConnected());
          SmartDashboard.putBoolean(  "IMU_IsCalibrating",    ahrs.isCalibrating());
          SmartDashboard.putNumber(   "IMU_Yaw",              ahrs.getYaw());
