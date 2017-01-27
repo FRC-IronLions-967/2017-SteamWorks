@@ -37,7 +37,7 @@ public class ClimberSubsystem extends Subsystem {
         //setDefaultCommand(new TeleOp_Climb());
     }
     public void log(){
-    	SmartDashboard.putNumber("ClimberSpeed", ClimberSpeed);
+    //	SmartDashboard.putNumber("ClimberSpeed", ClimberSpeed);
     }
 }
 

@@ -22,7 +22,7 @@ public class ShooterSubsystem extends Subsystem {
     int shooterRpm = 200;
 	int incrementVal = 50;
     
-	double pValue = 1.0;
+	double pValue = .22;
 	double iValue = 0.0;
 	double dValue = 0.00;
 	
@@ -36,47 +36,72 @@ public class ShooterSubsystem extends Subsystem {
 	public ShooterSubsystem(){
 		shooterLead = new CANTalon(6);
 		shooterFollow = new CANTalon(5);
-
-		shooterLead.changeControlMode(TalonControlMode.Speed);
-    	shooterLead.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	shooterLead.reverseSensor(false);
+		
+		shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
+    	//shooterLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		shooterLead.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		shooterLead.reverseSensor(false);
     	shooterLead.configEncoderCodesPerRev(12);//Needs to be checked with sensors. 
     	shooterLead.configNominalOutputVoltage(+0.0f, -0.0f);
-    	shooterLead.configPeakOutputVoltage(+12.0f, -12.0f);//+12.0f, -12.0f
-    	shooterLead.setProfile(1);
-    	shooterLead.setP(pValue);//
-    	shooterLead.setI(iValue);//
-    	shooterLead.setD(dValue);//
-    	shooterLead.setF(.0);// www.chiefdelphi.com/forums/showthread.php?t=142381
-		shooterFollow.changeControlMode(TalonControlMode.Follower);
+    	shooterLead.configPeakOutputVoltage(+12.0f, 0.0f);//+12.0f, -12.0f
+    	shooterLead.setPID(.12, 0, .5, .014, 8525, 0, 0);
+    	shooterLead.setProfile(0);
+//    	shooterLead.setP(pValue);//7-i;
+//    	shooterLead.setI(iValue);//
+//    	shooterLead.setD(dValue);//
+//    	shooterLead.setF( 0.00109728);// www.chiefdelphi.com/forums/showthread.php?t=142381
+		shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
 		shooterFollow.set(shooterLead.getDeviceID());    	
     }
 	
 	public void Shoot(){
-    	shooterLead.set(shooterRpm);//setSetpoint
+    	shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
+    	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
+    	shooterFollow.set(shooterLead.getDeviceID());
+		shooterLead.set(shooterRpm);//setSetpoint
     }
 	
 	public void PUp(){
+		pValue +=  .01;
+		shooterLead.setP(pValue);
+//		Shoot();
+	}
+	public void PDown(){
+		pValue -= .01;
+		shooterLead.setP(pValue);
+//		Shoot();
+	}
+	public void IUp(){
 		iValue +=  .01;
 		shooterLead.setI(iValue);
 //		Shoot();
 	}
-	public void PDown(){
+	public void IDown(){
 		iValue -= .01;
 		shooterLead.setI(iValue);
 //		Shoot();
 	}
+	public void DUp(){
+		dValue +=  .01;
+		shooterLead.setD(dValue);
+//		Shoot();
+	}
+	public void DDown(){
+		dValue -= .01;
+		shooterLead.setD(dValue);
+//		Shoot();
+	}
     
     public void StopShooter(){
-    	shooterLead.set(0);//setSetpoint
+    	shooterRpm = 0;
     }
     
     public void ShootSpeedUp(){
-    //	shooterRpm = shooterRpm + incrementVal;
+    	shooterRpm = shooterRpm + incrementVal;
     }
     
     public void ShootSpeedDown(){
-    //	shooterRpm = shooterRpm - incrementVal;
+    	shooterRpm = shooterRpm - incrementVal;
     }
     
     public void initDefaultCommand() {
@@ -87,9 +112,9 @@ public class ShooterSubsystem extends Subsystem {
     	SmartDashboard.putNumber("Bus Voltage", shooterLead.getBusVoltage());
     	SmartDashboard.putNumber("Output Voltage", shooterLead.getOutputVoltage());
     	SmartDashboard.putNumber("Output Current", shooterLead.getOutputCurrent());
-
+    	SmartDashboard.putNumber("Shooter.getSpeed", shooterLead.getSpeed());
     	SmartDashboard.putNumber("Shooter RPM", shooterRpm);
-    	SmartDashboard.putNumber("Fly Wheel Speed", shooterLead.get());
+    	SmartDashboard.putNumber("Fly Wheel .get()", shooterLead.get());
     	SmartDashboard.putNumber("Fly Wheel P", shooterLead.getP());
     	SmartDashboard.putNumber("Fly Wheel I", shooterLead.getI());
     	SmartDashboard.putNumber("Fly Wheel D", shooterLead.getD());

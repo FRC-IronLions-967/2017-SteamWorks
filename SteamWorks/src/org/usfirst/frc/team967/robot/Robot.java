@@ -136,9 +136,9 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putData(Scheduler.getInstance());
     
     	oi.log();
-    	driveSubsystem.log();
+    //	driveSubsystem.log();
     	shooterSubsystem.log();
-    	gearSubsystem.log();
-    	climberSubsystem.log();
+    //	gearSubsystem.log();
+    //	climberSubsystem.log();
 	}
 }
