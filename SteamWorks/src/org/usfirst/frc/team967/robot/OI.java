@@ -115,6 +115,8 @@ public class OI {
     	SmartDashboard.putData("D Up", new Testing_D_up());
     	SmartDashboard.putData("D down", new Testing_D_down());
     	SmartDashboard.putData("Stop shooter", new Testing_Stop_Flywheel());
+    	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
+    	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
     }
     
     public void log(){
