@@ -1,35 +1,30 @@
 package org.usfirst.frc.team967.robot;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class RobotConstraints {
 	
 	/*** DRIVETRAIN Constraints ***/
-
-//	public static double ClimberSubsystem_ClimberSpeed;
-//	public static double DriveSubsystem_deadBand;
-//	
-//	
-//	public static int ShooterSubsystem_Shooter_Profile;
-//	public static double ShooterSubsystem_Shooter_P;
-//	public static double ShooterSubsystem_Shooter_I;
-//	public static double ShooterSubsystem_Shooter_D;
-//	public static double ShooterSubsystem_Shooter_F;
-//	
-//	public static double ShooterSubsystem_ShooterSpeed;
+	public static final double DriveSubsystem_deadBand = .2;
+	
+	/*** Shooter Constraints ***/
+	public static int ShooterSubsystem_Shooter_Profile;
+	public static final double ShooterSubsystem_Shooter_P = .12;
+	public static final double ShooterSubsystem_Shooter_I = 0;
+	public static final double ShooterSubsystem_Shooter_D = .5;
+	public static final double ShooterSubsystem_Shooter_F = .014;
+	public static final int ShooterSubsystem_Shooter_Izone = 8525;
+	public static final double ShooterSubsystem_Shooter_CloseLoopRampRate = 0;
+	public static final int ShooterSubsystem_Shooter_profile = 0;
+	
+	public static final int ShooterSubsystem_ShooterSpeed = 800;//will change
+	
+	/*** Climber Constraints ***/
+//	public static double ClimberSubsystem_ClimberSpeed = .5;
+	
+	
+	/*** Gear Constraints ***/
 	
 	public RobotConstraints() {
-//		SmartDashboard.putNumber("hi", 5);
-//		
-//		ClimberSubsystem_ClimberSpeed = .5;	
-//		DriveSubsystem_deadBand = .2;
-//		
-//		ShooterSubsystem_Shooter_Profile = 0;
-//		ShooterSubsystem_Shooter_P = 1;
-//		ShooterSubsystem_Shooter_I = 0;
-//		ShooterSubsystem_Shooter_D = 0;
-//		ShooterSubsystem_Shooter_F = 0;
-//		
-//		ShooterSubsystem_ShooterSpeed = 0;
+
+		
 	}
 }

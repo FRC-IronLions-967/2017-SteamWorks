@@ -10,16 +10,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OI {
     private Joystick xbox1 = new Joystick(1);
-    private Joystick xbox2 = new Joystick(2);
+    //private Joystick xbox2 = new Joystick(2);
     
     double leftTrigger;
     double rightTrigger;			
     
     public AxisButton xbox1_lT = new AxisButton(xbox1, 2, .75, 1);
     public AxisButton xbox1_RT = new AxisButton(xbox1, 3, .75, 1);
-    public AxisButton xbox2_y1 = new AxisButton(xbox2, 1, .2, 2);
-    public AxisButton xbox2_R1 = new AxisButton(xbox2, 1, .2, 2);
-    
+//    public AxisButton xbox2_y1 = new AxisButton(xbox2, 1, .2, 2);
+//    public AxisButton xbox2_R1 = new AxisButton(xbox2, 1, .2, 2);
+//    
     public POVButton xbox1povN = new POVButton(xbox1, 0, 0);
     public POVButton xbox1povNE = new POVButton(xbox1, 0, 45);
     public POVButton xbox1povE = new POVButton(xbox1, 0, 90);
@@ -29,14 +29,14 @@ public class OI {
     public POVButton xbox1povW = new POVButton(xbox1, 0, 270);
     public POVButton xbox1povNW = new POVButton(xbox1, 0, 315);
     
-    public POVButton xbox2povN = new POVButton(xbox2, 0, 0);
-    public POVButton xbox2povNE = new POVButton(xbox2, 0, 45);
-    public POVButton xbox2povE = new POVButton(xbox2, 0, 90);
-    public POVButton xbox2povSE = new POVButton(xbox2, 0, 135);
-    public POVButton xbox2povS = new POVButton(xbox2, 0, 180);
-    public POVButton xbox2povSW = new POVButton(xbox2, 0, 225);
-    public POVButton xbox2povW = new POVButton(xbox2, 0, 270);
-    public POVButton xbox2povNW = new POVButton(xbox2, 0, 315);
+//    public POVButton xbox2povN = new POVButton(xbox2, 0, 0);
+//    public POVButton xbox2povNE = new POVButton(xbox2, 0, 45);
+//    public POVButton xbox2povE = new POVButton(xbox2, 0, 90);
+//    public POVButton xbox2povSE = new POVButton(xbox2, 0, 135);
+//    public POVButton xbox2povS = new POVButton(xbox2, 0, 180);
+//    public POVButton xbox2povSW = new POVButton(xbox2, 0, 225);
+//    public POVButton xbox2povW = new POVButton(xbox2, 0, 270);
+//    public POVButton xbox2povNW = new POVButton(xbox2, 0, 315);
 
     public OI() {
     	
@@ -125,7 +125,7 @@ public class OI {
     public Joystick getXbox1() {
     	return xbox1;
     }
-    public Joystick getXbox2() {
-    	return xbox2;
-    }
+//    public Joystick getXbox2() {
+//    	return xbox2;
+//    }
 }

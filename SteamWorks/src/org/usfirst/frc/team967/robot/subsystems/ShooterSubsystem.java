@@ -19,12 +19,12 @@ public class ShooterSubsystem extends Subsystem {
     private CANTalon shooterLead;
     private CANTalon shooterFollow;
     
-    int shooterRpm = 200;
+    int shooterRpm = RobotConstraints.ShooterSubsystem_ShooterSpeed;
 	int incrementVal = 50;
     
-	double pValue = .22;
-	double iValue = 0.0;
-	double dValue = 0.00;
+	double pValue = RobotConstraints.ShooterSubsystem_Shooter_P;
+	double iValue = RobotConstraints.ShooterSubsystem_Shooter_I;
+	double dValue = RobotConstraints.ShooterSubsystem_Shooter_D;
 	
 //    private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
 //    private final double shooterLead_P = RobotConstraints.ShooterSubsystem_Shooter_P;
@@ -34,8 +34,8 @@ public class ShooterSubsystem extends Subsystem {
 //    private final double shooterSpeed = RobotConstraints.ShooterSubsystem_ShooterSpeed;
     
 	public ShooterSubsystem(){
-		shooterLead = new CANTalon(6);
-		shooterFollow = new CANTalon(5);
+		shooterLead = new CANTalon(RobotMap.shooterLead);
+		shooterFollow = new CANTalon(RobotMap.shooterFollow);
 		
 		shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
     	//shooterLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
@@ -44,8 +44,8 @@ public class ShooterSubsystem extends Subsystem {
     	shooterLead.configEncoderCodesPerRev(12);//Needs to be checked with sensors. 
     	shooterLead.configNominalOutputVoltage(+0.0f, -0.0f);
     	shooterLead.configPeakOutputVoltage(+12.0f, 0.0f);//+12.0f, -12.0f
-    	shooterLead.setPID(.12, 0, .5, .014, 8525, 0, 0);
-    	shooterLead.setProfile(0);
+    	shooterLead.setPID(RobotConstraints.ShooterSubsystem_Shooter_P, RobotConstraints.ShooterSubsystem_Shooter_I, RobotConstraints.ShooterSubsystem_Shooter_D, RobotConstraints.ShooterSubsystem_Shooter_F, RobotConstraints.ShooterSubsystem_Shooter_Izone, RobotConstraints.ShooterSubsystem_Shooter_CloseLoopRampRate, RobotConstraints.ShooterSubsystem_Shooter_profile);
+//    	shooterLead.setProfile(0);
 //    	shooterLead.setP(pValue);//7-i;
 //    	shooterLead.setI(iValue);//
 //    	shooterLead.setD(dValue);//
