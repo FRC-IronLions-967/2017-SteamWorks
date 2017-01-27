@@ -6,6 +6,4 @@ tmp/
 *.recommenders
 *.class
 
-/build/
-/dist/
 
