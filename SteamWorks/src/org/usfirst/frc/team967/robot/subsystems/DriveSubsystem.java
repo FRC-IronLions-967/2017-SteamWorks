@@ -41,7 +41,6 @@ public class DriveSubsystem extends Subsystem {
 		driveRightFollow.changeControlMode(TalonControlMode.PercentVbus);
 		driveRightFollow1.changeControlMode(TalonControlMode.PercentVbus);
 		driveLeftFollow1.changeControlMode(TalonControlMode.PercentVbus);
-	
 	}
 	
 	public void arcadeDrive(double yAxis, double xAxis) {	
@@ -72,7 +71,7 @@ public class DriveSubsystem extends Subsystem {
 	
 	public void shiftLow() {
 	    InHighGear = false;
-//	    shifter.set(DoubleSolenoid.Value.kReverse);
+	    shifter.set(DoubleSolenoid.Value.kReverse);
 	}
 	/*
 	 * 	exampleDouble.set(DoubleSolenoid.Value.kOff);
@@ -81,7 +80,7 @@ public class DriveSubsystem extends Subsystem {
 	 */
 	public void shiftHigh() {
 	    InHighGear = true;
-//	    shifter.set(DoubleSolenoid.Value.kForward);
+	    shifter.set(DoubleSolenoid.Value.kForward);
 	}
 	
     public void initDefaultCommand() {

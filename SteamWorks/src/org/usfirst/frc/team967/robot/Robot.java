@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.GearSubsystem;
+import org.usfirst.frc.team967.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
 
 /**
@@ -23,12 +24,13 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
 public class Robot extends IterativeRobot {
 	
 	
-//	public static RobotMap robotMap;
-//	public static RobotConstraints robotConstraints;
-	public static DriveSubsystem  driveSubsystem;
-	public static ShooterSubsystem  shooterSubsystem;
-	public static GearSubsystem  gearSubsystem;
-	public static ClimberSubsystem  climberSubsystem;
+	public static RobotMap robotMap;
+	public static RobotConstraints robotConstraints;
+	public static final DriveSubsystem  driveSubsystem = new DriveSubsystem();
+	public static final ShooterSubsystem  shooterSubsystem = new ShooterSubsystem();
+	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+	public static final GearSubsystem  gearSubsystem = new GearSubsystem();
+	public static final ClimberSubsystem  climberSubsystem = new ClimberSubsystem();
 	public static OI oi;
 	
 	Command autonomousCommand;
@@ -40,16 +42,16 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-//		robotMap = new RobotMap();
-//    	robotConstraints = new RobotConstraints();
-		driveSubsystem = new DriveSubsystem();
-		gearSubsystem = new GearSubsystem();
-		climberSubsystem = new ClimberSubsystem();		
-		shooterSubsystem = new ShooterSubsystem();
+		robotMap = new RobotMap();
+    	robotConstraints = new RobotConstraints();
+//		driveSubsystem = new DriveSubsystem();
+//		gearSubsystem = new GearSubsystem();
+//		climberSubsystem = new ClimberSubsystem();		
+//		shooterSubsystem = new ShooterSubsystem();
 		oi = new OI();
 //		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+	//	SmartDashboard.putData("Auto mode", chooser);
 	}
 
 	/**
@@ -100,6 +102,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		log();
 	}
 
 	@Override
@@ -131,12 +134,14 @@ public class Robot extends IterativeRobot {
 	public void log(){
     	SmartDashboard.putData(shooterSubsystem);
     	SmartDashboard.putData(climberSubsystem);
+    	SmartDashboard.putData(intakeSubsystem);
     	SmartDashboard.putData(gearSubsystem);
     	SmartDashboard.putData(driveSubsystem);
     	SmartDashboard.putData(Scheduler.getInstance());
     
     	oi.log();
     	driveSubsystem.log();
+    	intakeSubsystem.log();
     	shooterSubsystem.log();
     	gearSubsystem.log();
     	climberSubsystem.log();

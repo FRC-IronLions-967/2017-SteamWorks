@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OI {
     private Joystick xbox1 = new Joystick(1);
+    private Joystick customBox = new Joystick(0);
     //private Joystick xbox2 = new Joystick(2);
     
     double leftTrigger;
@@ -19,7 +20,7 @@ public class OI {
     public AxisButton xbox1_RT = new AxisButton(xbox1, 3, .75, 1);
 //    public AxisButton xbox2_y1 = new AxisButton(xbox2, 1, .2, 2);
 //    public AxisButton xbox2_R1 = new AxisButton(xbox2, 1, .2, 2);
-//    
+    
     public POVButton xbox1povN = new POVButton(xbox1, 0, 0);
     public POVButton xbox1povNE = new POVButton(xbox1, 0, 45);
     public POVButton xbox1povE = new POVButton(xbox1, 0, 90);

@@ -41,6 +41,7 @@ public class ShooterSubsystem extends Subsystem {
     	//shooterLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		shooterLead.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		shooterLead.reverseSensor(false);
+		shooterLead.reverseOutput(true);
     	shooterLead.configEncoderCodesPerRev(12);//Needs to be checked with sensors. 
     	shooterLead.configNominalOutputVoltage(+0.0f, -0.0f);
     	shooterLead.configPeakOutputVoltage(+12.0f, 0.0f);//+12.0f, -12.0f
@@ -58,7 +59,7 @@ public class ShooterSubsystem extends Subsystem {
     	shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
     	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
     	shooterFollow.set(shooterLead.getDeviceID());
-		shooterLead.set(shooterRpm);//setSetpoint
+		shooterLead.set(-shooterRpm);//setSetpoint
     }
 	
 	public void PUp(){
