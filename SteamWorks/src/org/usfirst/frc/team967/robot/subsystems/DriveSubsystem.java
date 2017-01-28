@@ -37,7 +37,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public CANTalon driveRightFollow;
 	public CANTalon driveRightFollow1;
 	
-	public DoubleSolenoid shifter;
+	private DoubleSolenoid shifter;
 	
 	private final double deadBand = RobotConstraints.DriveSubsystem_deadBand;
 	public boolean InHighGear;	
