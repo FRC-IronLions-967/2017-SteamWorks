@@ -138,7 +138,6 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putData(gearSubsystem);
     	SmartDashboard.putData(driveSubsystem);
     	SmartDashboard.putData(Scheduler.getInstance());
-    
     	oi.log();
     	driveSubsystem.log();
     	intakeSubsystem.log();

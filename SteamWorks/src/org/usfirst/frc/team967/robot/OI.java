@@ -57,6 +57,18 @@ public class OI {
     	//xbox1.getPOV();//0=north, 90=east, 180=south, 45=NE, ect.
     	
     	//**********************************************************************
+    	// Setting up the variables to the custom button box
+    	JoystickButton customBox1 = new JoystickButton(customBox, 1);
+    	JoystickButton customBox2 = new JoystickButton(customBox, 2);
+    	JoystickButton customBox3 = new JoystickButton(customBox, 3);
+    	JoystickButton customBox4 = new JoystickButton(customBox, 4);
+    	JoystickButton customBox5 = new JoystickButton(customBox, 5);
+    	JoystickButton customBox6 = new JoystickButton(customBox, 6);
+    	JoystickButton customBox7 = new JoystickButton(customBox, 7);
+    	JoystickButton customBox8 = new JoystickButton(customBox, 8);
+    	
+    	
+    	//**********************************************************************
     	//Setting up the variables to the buttons on controller 2
 //    	JoystickButton xbox2_a = new JoystickButton(xbox2, 1);
 //    	JoystickButton xbox2_b = new JoystickButton(xbox2, 2);
@@ -76,9 +88,9 @@ public class OI {
    
     	//xbox1_start.whenPressed(new PTOShiftOn());
     	
-    	xbox1_a.whenReleased(new TeleOp_shootSpeedUp());
+//    	xbox1_a.whenReleased(new TeleOp_shootSpeedUp());
 //    	xbox1_a.whenPressed(new TeleOp_ShiftDriveHigh());
-    	xbox1_b.whenPressed(new TeleOp_ShootSpeedDown());
+//    	xbox1_b.whenPressed(new TeleOp_ShootSpeedDown());
 //    	xbox1_b.whenReleased(new TeleOp_StopShooting());
 //    	xbox1_x.whenPressed(new TeleOp_shootSpeedDown());
 //    	xbox1_y.whenPressed(new TeleOp_ShootSpeedDown());
@@ -89,7 +101,25 @@ public class OI {
 //    	xbox1_leftStickButton.whenPressed(command);
 //    	xbox1_rightStickButton.whenPressed(command);
 
-    	
+    	//**********************************************************************
+    	//Setting the button variables to the commands for custom box
+//    	customBox1.whenPressed(new command);
+//    	customBox1.whenReleased(new command);
+//    	customBox2.whenPressed(new command);
+//    	customBox2.whenReleased(new command);
+//    	customBox3.whenPressed(new command);
+//    	customBox3.whenReleased(new command);
+//    	customBox4.whenPressed(new command);
+//    	customBox4.whenReleased(new command);
+//    	customBox5.whenPressed(new command);
+//    	customBox5.whenReleased(new command);
+//    	customBox6.whenPressed(new command);
+//    	customBox6.whenReleased(new command);
+//    	customBox7.whenPressed(new command);
+//    	customBox7.whenReleased(new command);
+//    	customBox8.whenPressed(new command);
+//    	customBox8.whenReleased(new command);
+//    	
     	//**********************************************************************
     	//Setting the button variables to the commands for controller number 2
     	
@@ -106,15 +136,12 @@ public class OI {
 //    	xbox2_leftStickButton.whenPressed(command);
 //    	xbox2_rightStickButton.whenPressed(command);
 
-//    	SmartDashboard.putData("upSetRPM", new TeleOp_shootSpeedUp());
-//    	SmartDashboard.putData("downSetRPM", new TeleOp_ShootSpeedDown());
-    	SmartDashboard.putData("shoot", new TeleOp_Shoot());
-    	SmartDashboard.putData("P Up", new Testing_P_up());
-    	SmartDashboard.putData("P down", new Testing_P_down());
-    	SmartDashboard.putData("I Up", new Testing_I_up());
-    	SmartDashboard.putData("I down", new Testing_I_down());
-    	SmartDashboard.putData("D Up", new Testing_D_up());
-    	SmartDashboard.putData("D down", new Testing_D_down());
+//    	SmartDashboard.putData("P Up", new Testing_P_up());
+//    	SmartDashboard.putData("P down", new Testing_P_down());
+//    	SmartDashboard.putData("I Up", new Testing_I_up());
+//    	SmartDashboard.putData("I down", new Testing_I_down());
+//    	SmartDashboard.putData("D Up", new Testing_D_up());
+//    	SmartDashboard.putData("D down", new Testing_D_down());
     	SmartDashboard.putData("Stop shooter", new Testing_Stop_Flywheel());
     	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
     	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
@@ -126,7 +153,4 @@ public class OI {
     public Joystick getXbox1() {
     	return xbox1;
     }
-//    public Joystick getXbox2() {
-//    	return xbox2;
-//    }
 }
