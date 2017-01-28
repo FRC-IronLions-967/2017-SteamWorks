@@ -9,10 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
-import org.usfirst.frc.team967.robot.commands.Auto_1;
-import org.usfirst.frc.team967.robot.commands.Auto_2;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.GearSubsystem;
+import org.usfirst.frc.team967.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
 
 /**
@@ -24,13 +23,14 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
  */
 public class Robot extends IterativeRobot {
 	
-
-//	public static RobotMap robotMap;
-//	public static RobotConstraints robotConstraints;
-	public static DriveSubsystem  driveSubsystem;
-	public static ShooterSubsystem  shooterSubsystem;
-	public static GearSubsystem  gearSubsystem;
-	public static ClimberSubsystem  climberSubsystem;
+	
+	public static RobotMap robotMap;
+	public static RobotConstraints robotConstraints;
+	public static final DriveSubsystem  driveSubsystem = new DriveSubsystem();
+	public static final ShooterSubsystem  shooterSubsystem = new ShooterSubsystem();
+	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+	public static final GearSubsystem  gearSubsystem = new GearSubsystem();
+	public static final ClimberSubsystem  climberSubsystem = new ClimberSubsystem();
 	public static OI oi;
 	
 	Command autonomousCommand;
@@ -42,15 +42,16 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		driveSubsystem = new DriveSubsystem();
-		gearSubsystem = new GearSubsystem();
-		climberSubsystem = new ClimberSubsystem();		
-		shooterSubsystem = new ShooterSubsystem();
+		robotMap = new RobotMap();
+    	robotConstraints = new RobotConstraints();
+//		driveSubsystem = new DriveSubsystem();
+//		gearSubsystem = new GearSubsystem();
+//		climberSubsystem = new ClimberSubsystem();		
+//		shooterSubsystem = new ShooterSubsystem();
 		oi = new OI();
-		
-		chooser.addDefault("Auto1", new Auto_1());
-		chooser.addObject("Auto2", new Auto_2());
-		SmartDashboard.putData("Auto mode", chooser);
+//		chooser.addDefault("Default Auto", new ExampleCommand());
+		// chooser.addObject("My Auto", new MyAutoCommand());
+	//	SmartDashboard.putData("Auto mode", chooser);
 	}
 
 	/**
@@ -60,7 +61,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		Robot.driveSubsystem.pidStop();
+
 	}
 
 	@Override
@@ -81,35 +82,18 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		  autonomousCommand = chooser.getSelected();
-		  String autoSelected = SmartDashboard.getString("Auto Selector","Auto_1");
-		  switch(autoSelected) {
-		  case "Auto_2": autonomousCommand = new Auto_2();
-		  break;
-		  case "Auto_1":
-		  default:
-		  autonomousCommand = new Auto_1(); 
-		  break; 
-		  }
-		 
+		autonomousCommand = chooser.getSelected();
+
+		/*
+		 * String autoSelected = SmartDashboard.getString("Auto Selector",
+		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
+		 * = new MyAutoCommand(); break; case "Default Auto": default:
+		 * autonomousCommand = new ExampleCommand(); break; }
+		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)autonomousCommand.start();
-//		autonomousCommand = (Command) chooser.getSelected();
-//        
-//		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-//		switch(autoSelected) {
-//		case "Auto_2":
-//			autonomousCommand = new Auto_2();
-//			break;
-//		case "Auto_1":
-//		default:
-//			autonomousCommand = new Auto_1();
-//			break;
-//		}
-//    	
-//    	// schedule the autonomous command (example)
-//        if (autonomousCommand != null) autonomousCommand.start();
+		if (autonomousCommand != null)
+			autonomousCommand.start();
 	}
 
 	/**
@@ -150,14 +134,16 @@ public class Robot extends IterativeRobot {
 	public void log(){
     	SmartDashboard.putData(shooterSubsystem);
     	SmartDashboard.putData(climberSubsystem);
+    	SmartDashboard.putData(intakeSubsystem);
     	SmartDashboard.putData(gearSubsystem);
     	SmartDashboard.putData(driveSubsystem);
     	SmartDashboard.putData(Scheduler.getInstance());
     
-//    	oi.log();
+    	oi.log();
     	driveSubsystem.log();
-//    	shooterSubsystem.log();
-//    	gearSubsystem.log();
-//    	climberSubsystem.log();
+    	intakeSubsystem.log();
+    	shooterSubsystem.log();
+    	gearSubsystem.log();
+    	climberSubsystem.log();
 	}
 }
