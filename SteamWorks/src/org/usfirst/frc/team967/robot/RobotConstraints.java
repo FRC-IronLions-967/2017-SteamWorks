@@ -15,16 +15,18 @@ public class RobotConstraints {
 	public static final double ShooterSubsystem_Shooter_CloseLoopRampRate = 0;
 	public static final int ShooterSubsystem_Shooter_profile = 0;
 	
-	public static final int ShooterSubsystem_ShooterSpeed = 800;//will change
+	public static final int ShooterSubsystem_ShooterSpeed = 650;//will change (450 for 1 to 1)
 	
 	/*** Climber Constraints ***/
 //	public static double ClimberSubsystem_ClimberSpeed = .5;
 	
 	
 	/*** Gear Constraints ***/
+	public static int GearSubsystem_Servo_Open = 95;
+	public static int GearSubsystem_Servo_Closed = 0;
+	
 	
 	public RobotConstraints() {
 
-		
 	}
 }

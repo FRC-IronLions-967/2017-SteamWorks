@@ -20,30 +20,31 @@ public class RobotMap {
 	public static final int driveShifterLow = 0;
 	//----------------------------------------
 	
-	
 	//-----------Shooter----------------------
 	public static final int shooterLead = 6;
 	public static final int shooterFollow = 5;
 	//----------------------------------------
 	
+	//-----------Intake-----------------------
+	public static final int intakeLead = 10;
+	public static final int intakeUpperOut = 2;
+	public static final int intakeUpperIn = 5;
+	public static final int intakeLowerOut = 3;
+	public static final int intakeLowerIn = 4;
+	//----------------------------------------
 	
-	
-	//-----------Climber---------------------
+	//-----------Climber----------------------
 	public static final int climberLead = 41;
 	public static final int climberFollow = 40;
 	//----------------------------------------
 	
-	
 	//-----------Gears------------------------
-	public static final int gearShifterHigh = 1;
-	public static final int gearShifterLow = 6;
+	public static final int gearServo = 0;
 	//----------------------------------------
-	
 	
 	//---------Navigation--------------------
 	
 	//---------------------------------------
-	
 	
 	public RobotMap(){
 		
