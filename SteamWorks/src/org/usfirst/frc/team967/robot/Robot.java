@@ -13,6 +13,7 @@ import org.usfirst.frc.team967.robot.commands.Auto_1;
 import org.usfirst.frc.team967.robot.commands.Auto_2;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.GearSubsystem;
+import org.usfirst.frc.team967.robot.subsystems.NavxSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
 
 /**
@@ -31,6 +32,7 @@ public class Robot extends IterativeRobot {
 	public static ShooterSubsystem  shooterSubsystem;
 	public static GearSubsystem  gearSubsystem;
 	public static ClimberSubsystem  climberSubsystem;
+	public static NavxSubsystem navxSubsystem;
 	public static OI oi;
 	
 	Command autonomousCommand;
@@ -46,6 +48,7 @@ public class Robot extends IterativeRobot {
 		gearSubsystem = new GearSubsystem();
 		climberSubsystem = new ClimberSubsystem();		
 		shooterSubsystem = new ShooterSubsystem();
+		navxSubsystem = new NavxSubsystem();
 		oi = new OI();
 		
 		chooser.addDefault("Auto1", new Auto_1());
