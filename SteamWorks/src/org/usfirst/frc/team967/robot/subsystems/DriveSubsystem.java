@@ -12,14 +12,14 @@ import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
 
 public class DriveSubsystem extends Subsystem {
 	  
-	public CANTalon driveLeftLead;
-	public CANTalon driveLeftFollow;
-	public CANTalon driveLeftFollow1;
-	public CANTalon driveRightLead;
-	public CANTalon driveRightFollow;
-	public CANTalon driveRightFollow1;
+	private CANTalon driveLeftLead;
+	private CANTalon driveLeftFollow;
+	private CANTalon driveLeftFollow1;
+	private CANTalon driveRightLead;
+	private CANTalon driveRightFollow;
+	private CANTalon driveRightFollow1;
 	
-	public DoubleSolenoid shifter;
+	private DoubleSolenoid shifter;
 	
 	private final double deadBand = RobotConstraints.DriveSubsystem_deadBand;
 	public boolean InHighGear;	
