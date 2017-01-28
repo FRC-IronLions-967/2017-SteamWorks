@@ -2,5 +2,9 @@ Stuff to save and things about the robot code in general
 ->things to know when starting
 ->general notes
 
-
-More files ideas:
+Subsystems (5):
+->	Climber 			->	ClimberSubsystem
+->	Drivetrain 			->	DriveSubsystem
+->	Gear manipulator 	->	GearSubsystem
+->	Intake 				->	IntakeSubsystem
+->	Shooter 			->	ShooterSubsystem
