@@ -16,28 +16,28 @@ import com.ctre.CANTalon.TalonControlMode;
  */
 public class ClimberSubsystem extends Subsystem {
 	
-	public CANTalon climber1;
-	public CANTalon climber2;
+	public CANTalon climberLead;
+	public CANTalon climberFollow;
 	
 	private double ClimberSpeed = .5;
     
 	public ClimberSubsystem(){
-		climber2 = new CANTalon(40);
-		climber1 = new CANTalon(41);
-		climber2.changeControlMode(TalonControlMode.Follower);
-		climber2.set(climber1.getDeviceID());
+		climberFollow = new CANTalon(RobotMap.climberFollow);
+		climberLead = new CANTalon(RobotMap.climberLead);
+		climberFollow.changeControlMode(TalonControlMode.Follower);
+		climberFollow.set(climberLead.getDeviceID());
 	
 	}
 	
 	public void climb(){
-		climber1.set(ClimberSpeed); 
+		climberLead.set(ClimberSpeed); 
 	}
  
     public void initDefaultCommand() {
         //setDefaultCommand(new TeleOp_Climb());
     }
     public void log(){
-    	SmartDashboard.putNumber("ClimberSpeed", ClimberSpeed);
+    //	SmartDashboard.putNumber("ClimberSpeed", ClimberSpeed);
     }
 }
 

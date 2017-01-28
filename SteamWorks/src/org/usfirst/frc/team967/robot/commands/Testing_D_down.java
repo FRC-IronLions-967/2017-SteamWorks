@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class P_up extends Command {
+public class Testing_D_down extends Command {
 
-    public P_up() {
+    public Testing_D_down() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.shooterSubsystem);
@@ -17,7 +17,7 @@ public class P_up extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooterSubsystem.PUp();
+    	Robot.shooterSubsystem.DDown();
     }
 
     // Called repeatedly when this Command is scheduled to run
