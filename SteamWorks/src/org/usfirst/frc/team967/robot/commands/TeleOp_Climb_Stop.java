@@ -1,22 +1,22 @@
 package org.usfirst.frc.team967.robot.commands;
 
 import org.usfirst.frc.team967.robot.Robot;
-import org.usfirst.frc.team967.robot.RobotConstraints;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class TeleOp_Climb extends Command {
+public class TeleOp_Climb_Stop extends Command {
 
-    public TeleOp_Climb() {
+    public TeleOp_Climb_Stop() {
     	requires(Robot.climberSubsystem);
+        // Use requires() here to declare subsystem dependencies
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.climberSubsystem.climb(RobotConstraints.ClimberSubsystem_ClimberSpeed);
+    	Robot.climberSubsystem.climb(0);
     }
 
     // Called repeatedly when this Command is scheduled to run

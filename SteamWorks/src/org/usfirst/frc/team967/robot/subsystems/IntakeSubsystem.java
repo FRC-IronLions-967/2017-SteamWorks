@@ -2,6 +2,8 @@ package org.usfirst.frc.team967.robot.subsystems;
 
 import org.usfirst.frc.team967.robot.RobotMap;
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -27,6 +29,7 @@ public class IntakeSubsystem extends Subsystem {
 		UpperExtended = false;
 		LowerExtended = false;
 		
+		intakeLead.changeControlMode(TalonControlMode.PercentVbus);
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -67,4 +70,3 @@ public class IntakeSubsystem extends Subsystem {
     	
     }
 }
-
