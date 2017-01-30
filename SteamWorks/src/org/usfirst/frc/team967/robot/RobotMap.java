@@ -8,7 +8,7 @@ package org.usfirst.frc.team967.robot;
  */
 public class RobotMap {
 	
-	//------------Drive----------------------
+	/**------------Drive----------------------**/
 	public static final int driveLeftLead = 30;
 	public static final int driveLeftFollow = 31;
 	public static final int driveLeftFollow1 = 33;
@@ -20,29 +20,31 @@ public class RobotMap {
 	public static final int driveShifterLow = 0;
 	//----------------------------------------
 	
-	//-----------Shooter----------------------
+	/**-----------Shooter----------------------**/
 	public static final int shooterLead = 6;
 	public static final int shooterFollow = 5;
+	public static final int shooterFeed = 7;
 	//----------------------------------------
 	
-	//-----------Intake-----------------------
+	/**----------Intake-----------------------**/
 	public static final int intakeLead = 10;
+	
 	public static final int intakeUpperOut = 2;
 	public static final int intakeUpperIn = 5;
 	public static final int intakeLowerOut = 3;
 	public static final int intakeLowerIn = 4;
 	//----------------------------------------
 	
-	//-----------Climber----------------------
+	/**----------Climber----------------------**/
 	public static final int climberLead = 41;
 	public static final int climberFollow = 40;
 	//----------------------------------------
 	
-	//-----------Gears------------------------
+	/**----------Gears------------------------**/
 	public static final int gearServo = 0;
 	//----------------------------------------
 	
-	//---------Navigation--------------------
+	/**--------Navigation---------------------**/
 	
 	//---------------------------------------
 	

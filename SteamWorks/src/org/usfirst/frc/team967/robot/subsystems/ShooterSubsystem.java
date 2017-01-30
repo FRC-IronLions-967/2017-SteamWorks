@@ -15,6 +15,7 @@ public class ShooterSubsystem extends Subsystem {
     
     private CANTalon shooterLead;
     private CANTalon shooterFollow;
+    private CANTalon shooterFeed;
     
     int shooterRpm = RobotConstraints.ShooterSubsystem_ShooterSpeed;
 	int incrementVal = 50;
@@ -33,6 +34,7 @@ public class ShooterSubsystem extends Subsystem {
 	public ShooterSubsystem(){
 		shooterLead = new CANTalon(RobotMap.shooterLead);
 		shooterFollow = new CANTalon(RobotMap.shooterFollow);
+		shooterFeed = new CANTalon(RobotMap.shooterFeed);
 		
 		shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
     	//shooterLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
@@ -49,7 +51,8 @@ public class ShooterSubsystem extends Subsystem {
 //    	shooterLead.setD(dValue);//
 //    	shooterLead.setF( 0.00109728);// www.chiefdelphi.com/forums/showthread.php?t=142381
 		shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
-		shooterFollow.set(shooterLead.getDeviceID());    	
+		shooterFollow.set(shooterLead.getDeviceID());
+		shooterFeed.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     }
 	
 	public void Shoot(){
@@ -100,6 +103,10 @@ public class ShooterSubsystem extends Subsystem {
     
     public void ShootSpeedDown(){
     	shooterRpm = shooterRpm - incrementVal;
+    }
+    
+    public void FeedShooter(double speed){
+    	shooterFeed.set(speed);
     }
     
     public void initDefaultCommand() {
