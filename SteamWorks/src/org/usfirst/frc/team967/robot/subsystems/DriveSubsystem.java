@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import com.kauailabs.navx.frc.AHRS;
 
+import org.usfirst.frc.team967.robot.Robot;
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
@@ -109,30 +110,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		Timer.delay(time);
 		move(0,0);
 	}
-	public void gyroNoPid(double set){
-			SmartDashboard.putNumber("set",set );
-			if (gyro.getYaw() > set){
-				move(.3,-.3);
-				isSet = false;
-			}
-			else if (gyro.getYaw() < set){
-				move(.3,-.3);
-				isSet = false;
-			}
-			else if (gyro.getYaw() == set){
-				move(0,0);
-				isSet = true;
-		}
-	}
 	
-	public void turn (double amount){
-		turnController.enable();
-		double yawVal = gyro.getYaw() + amount;
-		turnController.setSetpoint(yawVal);
-		double val = turnController.get();
-		move(val,-val);
-//		turnController.disable();
-	}
 	public void pidStop(){
 		turnController.disable();
 	}
@@ -149,6 +127,19 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public void shiftHigh() {
 	    InHighGear = true;
 	    shifter.set(DoubleSolenoid.Value.kForward);
+	}
+	
+	public void pidWrite(double output) {
+		turnController.enable();
+		double yawVal = gyro.getYaw() + output;
+		turnController.setSetpoint(yawVal);
+		double val = turnController.get();
+		move(val,-val);
+		if (yawVal == output) pidStop();
+	}
+	
+	public void resetYaw(){
+		gyro.zeroYaw();
 	}
 	
     public void initDefaultCommand() {
@@ -237,10 +228,4 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
         SmartDashboard.putNumber(   "RawMag_X",             gyro.getRawMagX());
 		
     }
-	
-	@Override
-	public void pidWrite(double output) {
-		// TODO Auto-generated method stub
-		
-	}
 }
