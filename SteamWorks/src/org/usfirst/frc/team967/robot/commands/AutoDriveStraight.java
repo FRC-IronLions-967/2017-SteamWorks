@@ -4,17 +4,13 @@ import org.usfirst.frc.team967.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
-
 /**
  *
  */
-public class Turn90Left extends Command {
+public class AutoDriveStraight extends Command {
 
-    public Turn90Left() {
+    public AutoDriveStraight() {
     	requires(Robot.driveSubsystem);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -24,17 +20,11 @@ public class Turn90Left extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.pidWrite(90);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Robot.driveSubsystem.isSet){
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
+        return false;
     }
 
     // Called once after isFinished returns true

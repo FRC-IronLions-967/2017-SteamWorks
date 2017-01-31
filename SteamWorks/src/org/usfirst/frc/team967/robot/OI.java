@@ -145,6 +145,9 @@ public class OI {
     	SmartDashboard.putData("Stop shooter", new Testing_Stop_Flywheel());
     	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
     	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
+    	
+    	SmartDashboard.putData("RESET YAW ",new resetYaw() );
+    	SmartDashboard.putData(" Call Drive ",new TeleOp_ArcadeDrive() );
     }
     
     public void log(){
