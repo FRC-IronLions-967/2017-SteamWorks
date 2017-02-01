@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team967.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -9,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team967.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.IntakeSubsystem;
@@ -31,7 +33,9 @@ public class Robot extends IterativeRobot {
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 	public static final GearSubsystem  gearSubsystem = new GearSubsystem();
 	public static final ClimberSubsystem  climberSubsystem = new ClimberSubsystem();
+	public static final CameraSubsystem  cameraSubsystem = new CameraSubsystem();
 	public static OI oi;
+	CameraServer serverFront;
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -45,9 +49,6 @@ public class Robot extends IterativeRobot {
 		robotMap = new RobotMap();
     	robotConstraints = new RobotConstraints();
 //		driveSubsystem = new DriveSubsystem();
-//		gearSubsystem = new GearSubsystem();
-//		climberSubsystem = new ClimberSubsystem();		
-//		shooterSubsystem = new ShooterSubsystem();
 		oi = new OI();
 //		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
