@@ -111,10 +111,6 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		move(0,0);
 	}
 	
-	public void pidStop(){
-		turnController.disable();
-	}
-	
 	public void shiftLow() {
 	    InHighGear = false;
 	    shifter.set(DoubleSolenoid.Value.kReverse);
@@ -129,6 +125,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	    shifter.set(DoubleSolenoid.Value.kForward);
 	}
 	
+	public void driveStraight(){
+		pidWrite(0);
+	    double speed = Robot.oi.getXbox1().getRawAxis(1);
+	    move(0,0);
+	}
+	
 	public void pidWrite(double output) {
 		turnController.enable();
 		double yawVal = gyro.getYaw() + output;
@@ -140,6 +142,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	public void resetYaw(){
 		gyro.zeroYaw();
+	}
+	
+	public void pidStop(){
+		turnController.disable();
 	}
 	
     public void initDefaultCommand() {
