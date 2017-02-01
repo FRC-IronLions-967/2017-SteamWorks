@@ -1,4 +1,4 @@
-package org.usfirst.frc.team967.robot.commands;
+package org.usfirst.frc.team967.robot.commands.testing;
 
 import org.usfirst.frc.team967.robot.Robot;
 
@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_GearBoxClosed extends Command {
+public class Testing_D_down extends Command {
 
-    public TeleOp_GearBoxClosed() {
+    public Testing_D_down() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.gearSubsystem);
+    	requires(Robot.shooterSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gearSubsystem.gearBoxClosed();
+    	Robot.shooterSubsystem.DDown();
     }
 
     // Called repeatedly when this Command is scheduled to run

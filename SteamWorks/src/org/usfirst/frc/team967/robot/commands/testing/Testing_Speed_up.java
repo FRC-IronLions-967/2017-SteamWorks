@@ -1,4 +1,4 @@
-package org.usfirst.frc.team967.robot.commands;
+package org.usfirst.frc.team967.robot.commands.testing;
 
 import org.usfirst.frc.team967.robot.Robot;
 
@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Testing_P_up extends Command {
+public class Testing_Speed_up extends Command {
 
-    public Testing_P_up() {
+    public Testing_Speed_up() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.shooterSubsystem);
@@ -17,7 +17,7 @@ public class Testing_P_up extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooterSubsystem.PUp();
+    	Robot.shooterSubsystem.ShootSpeedUp();
     }
 
     // Called repeatedly when this Command is scheduled to run
