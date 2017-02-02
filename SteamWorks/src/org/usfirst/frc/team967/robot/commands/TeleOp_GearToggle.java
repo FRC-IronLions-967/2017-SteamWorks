@@ -7,17 +7,22 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Testing_D_up extends Command {
+public class TeleOp_GearToggle extends Command {
 
-    public Testing_D_up() {
+    public TeleOp_GearToggle() {
+    	requires(Robot.gearSubsystem);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.shooterSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooterSubsystem.DUp();
+    	if(Robot.gearSubsystem.isOpen){
+    		Robot.gearSubsystem.gearBoxClosed();
+    	}
+    	else{
+    		Robot.gearSubsystem.gearBoxOpen();
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

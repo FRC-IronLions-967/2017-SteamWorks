@@ -22,11 +22,11 @@ public class RobotConstraints {
 	
 	
 	/*** Gear Constraints ***/
-	public static int GearSubsystem_Servo_Open = 95;
-	public static int GearSubsystem_Servo_Closed = 0;
+//	public static int GearSubsystem_Servo_Open = 95;
+//	public static int GearSubsystem_Servo_Closed = 0;
 	
 	
 	public RobotConstraints() {
-
+	
 	}
 }

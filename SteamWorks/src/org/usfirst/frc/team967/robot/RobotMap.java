@@ -41,7 +41,9 @@ public class RobotMap {
 	//----------------------------------------
 	
 	/**----------Gears------------------------**/
-	public static final int gearServo = 0;
+	public static final int gearClosed = 1;
+	public static final int gearOpen = 6;
+	
 	//----------------------------------------
 	
 	/**--------Navigation---------------------**/

@@ -114,8 +114,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	    InHighGear = false;
 	    shifter.set(DoubleSolenoid.Value.kReverse);
 	}
-	/*
-	 * 	exampleDouble.set(DoubleSolenoid.Value.kOff);
+	/*	exampleDouble.set(DoubleSolenoid.Value.kOff);
 	 *	exampleDouble.set(DoubleSolenoid.Value.kForward);
 	 *	exampleDouble.set(DoubleSolenoid.Value.kReverse);
 	 */
