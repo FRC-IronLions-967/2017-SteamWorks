@@ -7,6 +7,8 @@ package org.usfirst.frc.team967.robot;
  * floating around.
  */
 public class RobotMap {
+	/**-----------General---------------------**/
+	public static final int PCM = 0;
 	
 	/**------------Drive----------------------**/
 	public static final int driveLeftLead = 30;

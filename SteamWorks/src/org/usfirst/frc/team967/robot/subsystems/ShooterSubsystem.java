@@ -24,13 +24,6 @@ public class ShooterSubsystem extends Subsystem {
 	double iValue = RobotConstraints.ShooterSubsystem_Shooter_I;
 	double dValue = RobotConstraints.ShooterSubsystem_Shooter_D;
 	
-//    private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
-//    private final double shooterLead_P = RobotConstraints.ShooterSubsystem_Shooter_P;
-//    private final double shooterLead_I = RobotConstraints.ShooterSubsystem_Shooter_I;
-//    private final double shooterLead_D = RobotConstraints.ShooterSubsystem_Shooter_D;
-//    private final double shooterLead_F = RobotConstraints.ShooterSubsystem_Shooter_F;
-//    private final double shooterSpeed = RobotConstraints.ShooterSubsystem_ShooterSpeed;
-    
 	public ShooterSubsystem(){
 		shooterLead = new CANTalon(RobotMap.shooterLead);
 		shooterFollow = new CANTalon(RobotMap.shooterFollow);
