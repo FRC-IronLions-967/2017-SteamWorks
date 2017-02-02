@@ -24,13 +24,6 @@ public class ShooterSubsystem extends Subsystem {
 	double iValue = RobotConstraints.ShooterSubsystem_Shooter_I;
 	double dValue = RobotConstraints.ShooterSubsystem_Shooter_D;
 	
-//    private final int shooterLead_Profile = RobotConstraints.ShooterSubsystem_Shooter_Profile;
-//    private final double shooterLead_P = RobotConstraints.ShooterSubsystem_Shooter_P;
-//    private final double shooterLead_I = RobotConstraints.ShooterSubsystem_Shooter_I;
-//    private final double shooterLead_D = RobotConstraints.ShooterSubsystem_Shooter_D;
-//    private final double shooterLead_F = RobotConstraints.ShooterSubsystem_Shooter_F;
-//    private final double shooterSpeed = RobotConstraints.ShooterSubsystem_ShooterSpeed;
-    
 	public ShooterSubsystem(){
 		shooterLead = new CANTalon(RobotMap.shooterLead);
 		shooterFollow = new CANTalon(RobotMap.shooterFollow);
@@ -44,12 +37,13 @@ public class ShooterSubsystem extends Subsystem {
     	shooterLead.configEncoderCodesPerRev(12);//Needs to be checked with sensors. 
     	shooterLead.configNominalOutputVoltage(+0.0f, -0.0f);
     	shooterLead.configPeakOutputVoltage(+12.0f, 0.0f);//+12.0f, -12.0f
-    	shooterLead.setPID(RobotConstraints.ShooterSubsystem_Shooter_P, RobotConstraints.ShooterSubsystem_Shooter_I, RobotConstraints.ShooterSubsystem_Shooter_D, RobotConstraints.ShooterSubsystem_Shooter_F, RobotConstraints.ShooterSubsystem_Shooter_Izone, RobotConstraints.ShooterSubsystem_Shooter_CloseLoopRampRate, RobotConstraints.ShooterSubsystem_Shooter_profile);
-//    	shooterLead.setProfile(0);
-//    	shooterLead.setP(pValue);//7-i;
-//    	shooterLead.setI(iValue);//
-//    	shooterLead.setD(dValue);//
-//    	shooterLead.setF( 0.00109728);// www.chiefdelphi.com/forums/showthread.php?t=142381
+    	shooterLead.setPID(RobotConstraints.ShooterSubsystem_Shooter_P, 
+    					   RobotConstraints.ShooterSubsystem_Shooter_I, 
+    					   RobotConstraints.ShooterSubsystem_Shooter_D, 
+    					   RobotConstraints.ShooterSubsystem_Shooter_F, 
+    					   RobotConstraints.ShooterSubsystem_Shooter_Izone, 
+    					   RobotConstraints.ShooterSubsystem_Shooter_CloseLoopRampRate, 
+    					   RobotConstraints.ShooterSubsystem_Shooter_profile);
 		shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
 		shooterFollow.set(shooterLead.getDeviceID());
 		shooterFeed.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
@@ -65,32 +59,26 @@ public class ShooterSubsystem extends Subsystem {
 	public void PUp(){
 		pValue +=  .01;
 		shooterLead.setP(pValue);
-//		Shoot();
 	}
 	public void PDown(){
 		pValue -= .01;
 		shooterLead.setP(pValue);
-//		Shoot();
 	}
 	public void IUp(){
 		iValue +=  .01;
 		shooterLead.setI(iValue);
-//		Shoot();
 	}
 	public void IDown(){
 		iValue -= .01;
 		shooterLead.setI(iValue);
-//		Shoot();
 	}
 	public void DUp(){
 		dValue +=  .01;
 		shooterLead.setD(dValue);
-//		Shoot();
 	}
 	public void DDown(){
 		dValue -= .01;
 		shooterLead.setD(dValue);
-//		Shoot();
 	}
     
     public void StopShooter(){
