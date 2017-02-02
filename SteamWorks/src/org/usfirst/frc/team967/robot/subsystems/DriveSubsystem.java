@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import com.kauailabs.navx.frc.AHRS;
 
-import org.usfirst.frc.team967.robot.Robot;
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
@@ -23,13 +22,13 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	PIDController turnController;
 	double rotateToAngleRate;
 	
-	static final double kP = 0.005;
+	static final double kP = 0.004;
 	static final double kI = 0.00;
 	static final double kD = 0.00;
 	
-	static final double kToleranceDegrees = 2.0f;
+	public boolean Finished;
 	
-	public boolean isSet = false;
+	static final double kToleranceDegrees = 1.0f;
 	  
 	private CANTalon driveLeftLead;
 	private CANTalon driveLeftFollow;
@@ -126,9 +125,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	}
 	
 	public void driveStraight(){
-		pidWrite(0);
-	    double speed = Robot.oi.getXbox1().getRawAxis(1);
-	    move(0,0);
+		
 	}
 	
 	public void pidWrite(double output) {
@@ -136,8 +133,20 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		double yawVal = gyro.getYaw() + output;
 		turnController.setSetpoint(yawVal);
 		double val = turnController.get();
-		move(val,-val);
-		if (yawVal == output) pidStop();
+		if(gyro.getYaw() > output){
+			Finished = false;
+			move(val,-val);
+		}
+		else if (gyro.getYaw() < output){
+			Finished = false;
+			move(-val,val);
+		}
+		
+		else if (gyro.getYaw() == output){
+			Finished = true;
+			turnController.disable();
+		}
+		
 	}
 	
 	public void resetYaw(){
@@ -145,6 +154,11 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	}
 	
 	public void pidStop(){
+		turnController.disable();
+	}
+	
+	public void pidSafeStop(){
+		Timer.delay(6);
 		turnController.disable();
 	}
 	
