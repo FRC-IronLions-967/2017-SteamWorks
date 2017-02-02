@@ -147,7 +147,9 @@ public class OI {
     	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
     	
     	SmartDashboard.putData("RESET YAW ",new resetYaw() );
-    	SmartDashboard.putData(" Call Drive ",new TeleOp_ArcadeDrive() );
+    	SmartDashboard.putData(" Call Drive ",new TeleOp_ArcadeDrive());
+    	SmartDashboard.putData(" Drive Stright ",new AutoDriveStraight());
+    	
     }
     
     public void log(){

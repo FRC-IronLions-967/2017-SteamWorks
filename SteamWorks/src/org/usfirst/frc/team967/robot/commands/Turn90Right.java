@@ -27,7 +27,7 @@ public class Turn90Right extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Robot.driveSubsystem.isSet){
+    	if(Robot.driveSubsystem.Finished){
     		return true;
     	}
     	else{
@@ -37,7 +37,8 @@ public class Turn90Right extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    }
+//    	Robot.driveSubsystem.pidSafeStop();
+    	}
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
