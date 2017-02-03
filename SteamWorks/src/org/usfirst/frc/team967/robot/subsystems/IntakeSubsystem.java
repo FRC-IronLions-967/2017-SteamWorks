@@ -23,8 +23,8 @@ public class IntakeSubsystem extends Subsystem {
 	public IntakeSubsystem(){
 		intakeLead = new CANTalon(RobotMap.intakeLead);
 		//IntakeFollow = new CANTalon(RobotMap.driveLeftFollow);
-		upperArm = new DoubleSolenoid(RobotMap.intakeUpperIn, RobotMap.intakeUpperOut);
-		lowerArm = new DoubleSolenoid(RobotMap.intakeLowerIn, RobotMap.intakeLowerOut);
+		upperArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeUpperIn, RobotMap.intakeUpperOut);
+		lowerArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeLowerIn, RobotMap.intakeLowerOut);
 		
 		UpperExtended = false;
 		LowerExtended = false;

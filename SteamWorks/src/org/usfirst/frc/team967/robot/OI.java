@@ -1,13 +1,11 @@
 package org.usfirst.frc.team967.robot;
 
-
-import org.usfirst.frc.team967.robot.commands.testing.Testing_Speed_down;
-import org.usfirst.frc.team967.robot.commands.testing.Testing_Speed_up;
+import org.usfirst.frc.team967.robot.commands.*;
+import org.usfirst.frc.team967.robot.commands.testing.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 
 public class OI {
     private Joystick xbox1 = new Joystick(1);
@@ -59,7 +57,6 @@ public class OI {
     	//*********************************************************************
     	//Setting the button variables to the commands for controller number 1
    
-    	//xbox1_start.whenPressed(new PTOShiftOn());
     	
 //    	xbox1_a.whenReleased(new TeleOp_shootSpeedUp());
 //    	xbox1_a.whenPressed(new TeleOp_ShiftDriveHigh());
@@ -70,18 +67,20 @@ public class OI {
 //    	xbox1_lb.whenPressed(new command);
 //    	xbox1_rb.whenPressed(new command);
 //    	xbox1_back.whenPressed(new command);
+//    	xbox1_back.whenReleased(new command);
 //    	xbox1_start.whenPressed(new command);
+//    	xbox1_start.whenReleased(new command);
 //    	xbox1_leftStickButton.whenPressed(new command);
 //    	xbox1_rightStickButton.whenPressed(new command);
-
+//
     	//**********************************************************************
     	//Setting the button variables to the commands for custom box
-//    	customBox1.whenPressed(new command);
-//    	customBox1.whenReleased(new command);
-//    	customBox2.whenPressed(new command);
-//    	customBox2.whenReleased(new command);
-//    	customBox3.whenPressed(new command);
-//    	customBox3.whenReleased(new command);
+//    	customBox1.whenPressed(new TeleOp_Shooter_Feed(1));
+//    	customBox1.whenReleased(new TeleOp_Shooter_Feed(0));
+//    	customBox2.whenPressed(new TeleOp_Intake_In());
+//    	customBox2.whenReleased(new TeleOp_Intake_Stop());
+//    	customBox3.whenPressed(new TeleOp_Intake_Out());
+//    	customBox3.whenReleased(new TeleOp_Intake_Stop());
 //    	customBox4.whenPressed(new command);
 //    	customBox4.whenReleased(new command);
 //    	customBox5.whenPressed(new command);
@@ -92,7 +91,7 @@ public class OI {
 //    	customBox7.whenReleased(new command);
 //    	customBox8.whenPressed(new command);
 //    	customBox8.whenReleased(new command);
-    	
+
 
 //    	SmartDashboard.putData("P Up", new Testing_P_up());
 //    	SmartDashboard.putData("P down", new Testing_P_down());

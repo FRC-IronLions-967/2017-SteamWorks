@@ -6,5 +6,8 @@ Things to add in the future listed here:
 Completed:
 -> PID Shooter
 -> Drive code
+<<<<<<< HEAD
 -> Autonomous Gyro PID Control
 -> Camera for streaming
+=======
+>>>>>>> refs/remotes/origin/master

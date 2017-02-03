@@ -4,6 +4,7 @@ public class RobotConstraints {
 	
 	/*** DRIVETRAIN Constraints ***/
 	public static final double DriveSubsystem_deadBand = .2;
+	//now that input is squared, this could probly come down
 	
 	/*** Shooter Constraints ***/
 	public static int ShooterSubsystem_Shooter_Profile;
@@ -24,7 +25,6 @@ public class RobotConstraints {
 	/*** Gear Constraints ***/
 //	public static int GearSubsystem_Servo_Open = 95;
 //	public static int GearSubsystem_Servo_Closed = 0;
-	
 	
 	public RobotConstraints() {
 	
