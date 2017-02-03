@@ -1,6 +1,5 @@
 package org.usfirst.frc.team967.robot;
 
-
 import org.usfirst.frc.team967.robot.commands.*;
 import org.usfirst.frc.team967.robot.commands.testing.*;
 
@@ -76,12 +75,12 @@ public class OI {
 //
     	//**********************************************************************
     	//Setting the button variables to the commands for custom box
-    	customBox1.whenPressed(new TeleOp_Shooter_Feed(1));
-    	customBox1.whenReleased(new TeleOp_Shooter_Feed(0));
-    	customBox2.whenPressed(new TeleOp_Intake_In());
-    	customBox2.whenReleased(new TeleOp_Intake_Stop());
-    	customBox3.whenPressed(new TeleOp_Intake_Out());
-    	customBox3.whenReleased(new TeleOp_Intake_Stop());
+//    	customBox1.whenPressed(new TeleOp_Shooter_Feed(1));
+//    	customBox1.whenReleased(new TeleOp_Shooter_Feed(0));
+//    	customBox2.whenPressed(new TeleOp_Intake_In());
+//    	customBox2.whenReleased(new TeleOp_Intake_Stop());
+//    	customBox3.whenPressed(new TeleOp_Intake_Out());
+//    	customBox3.whenReleased(new TeleOp_Intake_Stop());
 //    	customBox4.whenPressed(new command);
 //    	customBox4.whenReleased(new command);
 //    	customBox5.whenPressed(new command);

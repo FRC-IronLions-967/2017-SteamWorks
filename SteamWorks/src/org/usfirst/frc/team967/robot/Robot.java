@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team967.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -22,8 +21,7 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	
-	
+		
 	public static RobotMap robotMap;
 	public static RobotConstraints robotConstraints;
 	public static final DriveSubsystem  driveSubsystem = new DriveSubsystem();
