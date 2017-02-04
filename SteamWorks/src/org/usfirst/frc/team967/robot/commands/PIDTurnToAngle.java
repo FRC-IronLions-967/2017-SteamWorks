@@ -1,22 +1,24 @@
 package org.usfirst.frc.team967.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team967.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class TeleOp_ShiftDriveHigh extends Command {
+public class PIDTurnToAngle extends Command {
 
-    public TeleOp_ShiftDriveHigh() {
+    public PIDTurnToAngle(double angle) {
     	requires(Robot.driveSubsystem);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    	Angle = angle;
     }
+    
+    public double Angle;
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveSubsystem.shiftHigh();
+    	Robot.driveSubsystem.pidSetPoint(Angle);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,7 +27,7 @@ public class TeleOp_ShiftDriveHigh extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return true;
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -35,6 +37,5 @@ public class TeleOp_ShiftDriveHigh extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	
     }
 }

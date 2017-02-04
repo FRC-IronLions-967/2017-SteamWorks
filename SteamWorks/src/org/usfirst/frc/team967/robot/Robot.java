@@ -59,12 +59,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		Robot.driveSubsystem.pidStop();
 	}
 
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		log();
 	}
 
 	/**
