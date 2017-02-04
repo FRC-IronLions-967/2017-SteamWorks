@@ -61,10 +61,10 @@ public class OI {
     	
     	
     	
-    	xbox1_a.whenPressed(new AutoTurn_180());
-     	xbox1_b.whenPressed(new AutoTurn_90());
-     	xbox1_x.whenPressed(new AutoTurn_270());
-     	xbox1_y.whenPressed(new AutoTurn_0());
+    	xbox1_a.whenPressed(new PIDTurnToAngle(180));
+     	xbox1_b.whenPressed(new PIDTurnToAngle(90));
+     	xbox1_x.whenPressed(new PIDTurnToAngle(-90));
+     	xbox1_y.whenPressed(new PIDTurnToAngle(0));
 //      xbox1_lb.whenPressed(new AutoTurn_0());
 //    	xbox1_rb.whenPressed(new AutoTurn_90());
 //    	xbox1_back.whenPressed(new command);
