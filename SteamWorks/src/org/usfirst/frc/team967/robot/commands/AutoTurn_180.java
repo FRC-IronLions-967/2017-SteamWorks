@@ -7,31 +7,30 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoDriveStraight extends Command {
+public class AutoTurn_180 extends Command {
 
-    public AutoDriveStraight() {
+    public AutoTurn_180() {
     	requires(Robot.driveSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	Robot.driveSubsystem.pidSetPoint(180);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.pidWrite(0);
-    	Robot.driveSubsystem.arcadeDrive(Robot.oi.getXbox1().getRawAxis(1),0);
+    
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveSubsystem.pidSafeStop();
+
     }
 
     // Called when another command which requires one or more of the same

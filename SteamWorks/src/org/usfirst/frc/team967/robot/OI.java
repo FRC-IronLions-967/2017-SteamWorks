@@ -59,14 +59,14 @@ public class OI {
     	//Setting the button variables to the commands for controller number 1
    
     	
-//    	xbox1_a.whenReleased(new TeleOp_shootSpeedUp());
-//    	xbox1_a.whenPressed(new TeleOp_ShiftDriveHigh());
-//    	xbox1_b.whenPressed(new TeleOp_ShootSpeedDown());
-//    	xbox1_b.whenReleased(new TeleOp_StopShooting());
-//    	xbox1_x.whenPressed(new TeleOp_shootSpeedDown());
-//    	xbox1_y.whenPressed(new TeleOp_ShootSpeedDown());
-//    	xbox1_lb.whenPressed(new command);
-//    	xbox1_rb.whenPressed(new command);
+    	
+    	
+    	xbox1_a.whenPressed(new AutoTurn_180());
+     	xbox1_b.whenPressed(new AutoTurn_90());
+     	xbox1_x.whenPressed(new AutoTurn_270());
+     	xbox1_y.whenPressed(new AutoTurn_0());
+//      xbox1_lb.whenPressed(new AutoTurn_0());
+//    	xbox1_rb.whenPressed(new AutoTurn_90());
 //    	xbox1_back.whenPressed(new command);
 //    	xbox1_back.whenReleased(new command);
 //    	xbox1_start.whenPressed(new command);
@@ -76,12 +76,12 @@ public class OI {
 //
     	//**********************************************************************
     	//Setting the button variables to the commands for custom box
-    	customBox1.whenPressed(new TeleOp_Shooter_Feed(1));
-    	customBox1.whenReleased(new TeleOp_Shooter_Feed(0));
-    	customBox2.whenPressed(new TeleOp_Intake_In());
-    	customBox2.whenReleased(new TeleOp_Intake_Stop());
-    	customBox3.whenPressed(new TeleOp_Intake_Out());
-    	customBox3.whenReleased(new TeleOp_Intake_Stop());
+//    	customBox1.whenPressed(new TeleOp_Shooter_Feed(1));
+//    	customBox1.whenReleased(new TeleOp_Shooter_Feed(0));
+//    	customBox2.whenPressed(new TeleOp_Intake_In());
+//    	customBox2.whenReleased(new TeleOp_Intake_Stop());
+//    	customBox3.whenPressed(new TeleOp_Intake_Out());
+//    	customBox3.whenReleased(new TeleOp_Intake_Stop());
 //    	customBox4.whenPressed(new command);
 //    	customBox4.whenReleased(new command);
 //    	customBox5.whenPressed(new command);
@@ -101,8 +101,8 @@ public class OI {
 //    	SmartDashboard.putData("D Up", new Testing_D_up());
 //    	SmartDashboard.putData("D down", new Testing_D_down());
 //    	SmartDashboard.putData("Stop shooter", new Testing_Stop_Flywheel());
-    	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
-    	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
+//    	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
+//    	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
     }
     
     public void log(){

@@ -5,12 +5,31 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon;
-
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
+import com.kauailabs.navx.frc.AHRS;
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
 
-public class DriveSubsystem extends Subsystem {
+public class DriveSubsystem extends Subsystem implements PIDOutput {
+	
+	AHRS gyro;
+	PIDController turnController;
+	double rotateToAngleRate;
+	
+	public double Output;
+	
+	static final double kP = 0.004;
+	static final double kI = 0.00;
+	static final double kD = 0.00;
+	
+	public boolean Finished;
+	
+	static final double kToleranceDegrees = 1.0f;
 	
 	private CANTalon driveLeftLead;
 	private CANTalon driveLeftFollow;
@@ -44,6 +63,23 @@ public class DriveSubsystem extends Subsystem {
 		//these will go away
 		driveRightFollow1.changeControlMode(TalonControlMode.PercentVbus);
 		driveLeftFollow1.changeControlMode(TalonControlMode.PercentVbus);
+		
+		try {
+			 gyro = new AHRS(SPI.Port.kMXP); 
+	     } 
+		 catch (RuntimeException ex ) 
+		 {
+			 DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+	     }
+		 
+		 gyro.zeroYaw();
+		 
+		 turnController = new PIDController(kP, kI, kD, gyro,this);
+		 turnController.disable();
+	     turnController.setInputRange(-180.0f,  180.0f);
+	     turnController.setOutputRange(-1.0, 1.0);
+	     turnController.setAbsoluteTolerance(kToleranceDegrees);
+	     turnController.setContinuous(true);
 	}
 	
 	public void arcadeDrive(double yAxis, double xAxis) {	
@@ -68,12 +104,41 @@ public class DriveSubsystem extends Subsystem {
 	
 	public void move(double left, double right){
 		driveLeftLead.set(left);
-		//driveLeftFollow.set(left);
 		driveLeftFollow1.set(left);
     	driveRightLead.set(-right);
-    	//driveRightFollow.set(-right);
     	driveRightFollow1.set(-right);
     }
+	
+	public void moveTime(double left,double right, double time){
+		move(left,right);
+		Timer.delay(time);
+		move(0,0);
+	}
+	public void pidSetPoint(double input){
+		turnController.enable();	
+		turnController.setSetpoint(input);
+	}
+	public void pidWrite(double output) {		
+		Output = output;
+//		turnController.enable();
+//		double yawVal = gyro.getYaw() + output;
+		//turnController.setSetpoint(output);
+		
+		if(turnController.getDeltaSetpoint() < 0){
+			move(output,-output);
+		}
+		else {
+			move(-output,output);
+		}
+	}
+	
+	public void resetYaw(){
+		gyro.zeroYaw();
+	}
+	
+	public void pidStop(){
+		turnController.disable();
+	}
 	
 	public void shiftLow() {
 	    InHighGear = false;
@@ -89,6 +154,87 @@ public class DriveSubsystem extends Subsystem {
     }
     
     public void log(){
+		SmartDashboard.putNumber("output", Output);
         SmartDashboard.putBoolean("High Gear", InHighGear);
+		SmartDashboard.putNumber("setPiont", turnController.getSetpoint());
+		SmartDashboard.putNumber("deltaSetPiont", turnController.getDeltaSetpoint());
+   	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
+        SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());
+        SmartDashboard.putNumber(   "IMU_Yaw",              gyro.getYaw());
+        SmartDashboard.putNumber(   "IMU_Pitch",            gyro.getPitch());
+        SmartDashboard.putNumber(   "IMU_Roll",             gyro.getRoll());
+        
+        /* Display tilt-corrected, Magnetometer-based heading (requires             */
+        /* magnetometer calibration to be useful)                                   */
+        
+        SmartDashboard.putNumber(   "IMU_CompassHeading",   gyro.getCompassHeading());
+        
+        /* Display 9-axis Heading (requires magnetometer calibration to be useful)  */
+        SmartDashboard.putNumber(   "IMU_FusedHeading",     gyro.getFusedHeading());
+
+        /* These functions are compatible w/the WPI Gyro Class, providing a simple  */
+        /* path for upgrading from the Kit-of-Parts gyro to the navx-MXP            */
+        
+        SmartDashboard.putNumber(   "IMU_TotalYaw",         gyro.getAngle());
+        SmartDashboard.putNumber(   "IMU_YawRateDPS",       gyro.getRate());
+
+        /* Display Processed Acceleration Data (Linear Acceleration, Motion Detect) */
+		SmartDashboard.putNumber(   "IMU_Accel_X",          gyro.getWorldLinearAccelX());
+        SmartDashboard.putNumber(   "IMU_Accel_Y",          gyro.getWorldLinearAccelY());
+        SmartDashboard.putBoolean(  "IMU_IsMoving",         gyro.isMoving());
+        SmartDashboard.putNumber("error" , gyro.getYaw());
+		
+   	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
+        SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());
+        SmartDashboard.putNumber(   "IMU_Yaw",              gyro.getYaw());
+        SmartDashboard.putNumber(   "IMU_Pitch",            gyro.getPitch());
+        SmartDashboard.putNumber(   "IMU_Roll",             gyro.getRoll());
+        
+        /* Display tilt-corrected, Magnetometer-based heading (requires             */
+        /* magnetometer calibration to be useful)                                   */
+        
+        SmartDashboard.putNumber(   "IMU_CompassHeading",   gyro.getCompassHeading());
+        
+        /* Display 9-axis Heading (requires magnetometer calibration to be useful)  */
+        SmartDashboard.putNumber(   "IMU_FusedHeading",     gyro.getFusedHeading());
+
+        /* These functions are compatible w/the WPI Gyro Class, providing a simple  */
+        /* path for upgrading from the Kit-of-Parts gyro to the navx-MXP            */
+        
+        SmartDashboard.putNumber(   "IMU_TotalYaw",         gyro.getAngle());
+        SmartDashboard.putNumber(   "IMU_YawRateDPS",       gyro.getRate());
+
+        /* Display Processed Acceleration Data (Linear Acceleration, Motion Detect) */
+		SmartDashboard.putNumber(   "IMU_Accel_X",          gyro.getWorldLinearAccelX());
+        SmartDashboard.putNumber(   "IMU_Accel_Y",          gyro.getWorldLinearAccelY());
+        SmartDashboard.putBoolean(  "IMU_IsMoving",         gyro.isMoving());
+        
+        SmartDashboard.putNumber("gyro Yaw" , gyro.getYaw());
+		
+   	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
+        SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());
+        SmartDashboard.putNumber(   "IMU_Yaw",              gyro.getYaw());
+        SmartDashboard.putNumber(   "IMU_Pitch",            gyro.getPitch());
+        SmartDashboard.putNumber(   "IMU_Roll",             gyro.getRoll());
+        
+        /* Display tilt-corrected, Magnetometer-based heading (requires             */
+        /* magnetometer calibration to be useful)                                   */
+        
+        SmartDashboard.putNumber(   "IMU_CompassHeading",   gyro.getCompassHeading());
+        
+        /* Display 9-axis Heading (requires magnetometer calibration to be useful)  */
+        SmartDashboard.putNumber(   "IMU_FusedHeading",     gyro.getFusedHeading());
+
+        /* These functions are compatible w/the WPI Gyro Class, providing a simple  */
+        /* path for upgrading from the Kit-of-Parts gyro to the navx-MXP            */
+        
+        SmartDashboard.putNumber(   "IMU_TotalYaw",         gyro.getAngle());
+        SmartDashboard.putNumber(   "IMU_YawRateDPS",       gyro.getRate());
+
+        /* Display Processed Acceleration Data (Linear Acceleration, Motion Detect) */
+		SmartDashboard.putNumber(   "IMU_Accel_X",          gyro.getWorldLinearAccelX());
+        SmartDashboard.putNumber(   "IMU_Accel_Y",          gyro.getWorldLinearAccelY());
+        SmartDashboard.putBoolean(  "IMU_IsMoving",         gyro.isMoving());
+        
     }
 }
