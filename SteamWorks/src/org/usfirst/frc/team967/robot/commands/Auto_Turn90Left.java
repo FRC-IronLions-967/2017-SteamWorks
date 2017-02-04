@@ -9,9 +9,9 @@ import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
 /**
  *
  */
-public class Turn90Left extends Command {
+public class Auto_Turn90Left extends Command {
 
-    public Turn90Left() {
+    public Auto_Turn90Left() {
     	requires(Robot.driveSubsystem);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
