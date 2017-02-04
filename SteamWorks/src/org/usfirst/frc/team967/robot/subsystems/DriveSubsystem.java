@@ -154,12 +154,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     }
     
     public void log(){
-    	SmartDashboard.putNumber("power_motor",driveLeftLead.get());
-    	
-		SmartDashboard.putNumber("output", Output);
         SmartDashboard.putBoolean("High Gear", InHighGear);
-		SmartDashboard.putNumber("setPiont", turnController.getSetpoint());
-		SmartDashboard.putNumber("deltaSetPiont", turnController.getDeltaSetpoint());
    	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
         SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());
         SmartDashboard.putNumber(   "IMU_Yaw",              gyro.getYaw());

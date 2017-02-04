@@ -65,6 +65,8 @@ public class OI {
      	xbox1_b.whenPressed(new PIDTurnToAngle(90));
      	xbox1_x.whenPressed(new PIDTurnToAngle(-90));
      	xbox1_y.whenPressed(new PIDTurnToAngle(0));
+     	xbox1_lT.whenPressed(new TeleOp_ShiftDriveHigh());
+     	xbox1_lT.whenPressed(new TeleOp_ShiftDriveLow());
 //      xbox1_lb.whenPressed(new AutoTurn_0());
 //    	xbox1_rb.whenPressed(new AutoTurn_90());
 //    	xbox1_back.whenPressed(new command);
