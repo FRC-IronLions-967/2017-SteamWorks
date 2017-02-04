@@ -1,6 +1,5 @@
 package org.usfirst.frc.team967.robot;
 
-
 import org.usfirst.frc.team967.robot.commands.*;
 import org.usfirst.frc.team967.robot.commands.testing.*;
 
@@ -58,6 +57,7 @@ public class OI {
     	//*********************************************************************
     	//Setting the button variables to the commands for controller number 1
    
+<<<<<<< HEAD
     	
     	
     	
@@ -71,6 +71,20 @@ public class OI {
 //    	xbox1_rb.whenPressed(new AutoTurn_90());
 //    	xbox1_back.whenPressed(new command);
 //    	xbox1_back.whenReleased(new command);
+=======
+    	xbox1_lT.whenPressed(new TeleOp_ShiftDriveHigh());
+    	xbox1_lT.whenReleased(new TeleOp_ShiftDriveLow());
+//    	xbox1_a.whenReleased(new TeleOp_shootSpeedUp());
+//    	xbox1_a.whenPressed(new TeleOp_ShiftDriveHigh());
+//    	xbox1_b.whenPressed(new TeleOp_ShootSpeedDown());
+//    	xbox1_b.whenReleased(new TeleOp_StopShooting());
+//    	xbox1_x.whenPressed(new TeleOp_shootSpeedDown());
+//    	xbox1_y.whenPressed(new TeleOp_ShootSpeedDown());
+//    	xbox1_lb.whenPressed(new command);
+//    	xbox1_rb.whenPressed(new command);
+    	xbox1_back.whenPressed(new testOutputOn());
+    	xbox1_back.whenReleased(new testOutputOff());
+>>>>>>> refs/remotes/origin/master
 //    	xbox1_start.whenPressed(new command);
 //    	xbox1_start.whenReleased(new command);
 //    	xbox1_leftStickButton.whenPressed(new command);
@@ -78,6 +92,7 @@ public class OI {
 //
     	//**********************************************************************
     	//Setting the button variables to the commands for custom box
+<<<<<<< HEAD
 //    	customBox1.whenPressed(new TeleOp_Shooter_Feed(1));
 //    	customBox1.whenReleased(new TeleOp_Shooter_Feed(0));
 //    	customBox2.whenPressed(new TeleOp_Intake_In());
@@ -85,8 +100,17 @@ public class OI {
 //    	customBox3.whenPressed(new TeleOp_Intake_Out());
 //    	customBox3.whenReleased(new TeleOp_Intake_Stop());
 //    	customBox4.whenPressed(new command);
+=======
+    	customBox1.whenPressed(new TeleOp_Shooter_Feed(1));
+    	customBox1.whenReleased(new TeleOp_Shooter_Feed(0));
+    	customBox2.whenPressed(new TeleOp_Intake_In());
+    	customBox2.whenReleased(new TeleOp_Intake_Stop());
+    	customBox3.whenPressed(new TeleOp_Intake_Out());
+    	customBox3.whenReleased(new TeleOp_Intake_Stop());
+    	customBox4.whenPressed(new TeleOp_ShiftDriveHigh());
+>>>>>>> refs/remotes/origin/master
 //    	customBox4.whenReleased(new command);
-//    	customBox5.whenPressed(new command);
+    	customBox5.whenPressed(new TeleOp_ShiftDriveLow());
 //    	customBox5.whenReleased(new command);
 //    	customBox6.whenPressed(new command);
 //    	customBox6.whenReleased(new command);
@@ -94,8 +118,8 @@ public class OI {
 //    	customBox7.whenReleased(new command);
 //    	customBox8.whenPressed(new command);
 //    	customBox8.whenReleased(new command);
-
-
+//    	customBox.setOutput(2, true);
+    	
 //    	SmartDashboard.putData("P Up", new Testing_P_up());
 //    	SmartDashboard.putData("P down", new Testing_P_down());
 //    	SmartDashboard.putData("I Up", new Testing_I_up());

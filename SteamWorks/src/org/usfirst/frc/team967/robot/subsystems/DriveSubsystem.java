@@ -5,12 +5,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import com.kauailabs.navx.frc.AHRS;
+=======
+
+import org.usfirst.frc.team967.robot.Robot;
+>>>>>>> refs/remotes/origin/master
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
@@ -151,6 +156,13 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
     public void initDefaultCommand() {
 //    	setDefaultCommand(new TeleOp_ArcadeDrive());
+    }
+    
+    public void outputOn(){
+    	Robot.oi.getBox().setOutput(2, true);
+    }
+    public void outputOff(){
+    	Robot.oi.getBox().setOutput(2, false);
     }
     
     public void log(){

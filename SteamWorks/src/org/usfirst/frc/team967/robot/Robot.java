@@ -1,6 +1,6 @@
-
 package org.usfirst.frc.team967.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -23,7 +23,7 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
  */
 public class Robot extends IterativeRobot {
 	
-	
+	//public static final CameraSubsystem  cameraSubsystem = new CameraSubsystem();	
 	public static RobotMap robotMap;
 	public static RobotConstraints robotConstraints;
 	public static final DriveSubsystem  driveSubsystem = new DriveSubsystem();
@@ -45,11 +45,9 @@ public class Robot extends IterativeRobot {
 		robotMap = new RobotMap();
     	robotConstraints = new RobotConstraints();
 //		driveSubsystem = new DriveSubsystem();
-//		gearSubsystem = new GearSubsystem();
-//		climberSubsystem = new ClimberSubsystem();		
-//		shooterSubsystem = new ShooterSubsystem();
 		oi = new OI();
-//		chooser.addDefault("Default Auto", new ExampleCommand());
+		CameraServer.getInstance().startAutomaticCapture();
+		//		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	//	SmartDashboard.putData("Auto mode", chooser);
 	}

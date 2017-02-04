@@ -1,10 +1,9 @@
 Things to add in the future listed here:
--> Autonomous Gyro PID Control
--> Camera for streaming
 -> Autonomous Encoder PID
 -> Semi-Auto Functions
-
+-> Autonomous Gyro PID Control
 
 Completed:
 -> PID Shooter
 -> Drive code
+-> Camera for streaming
