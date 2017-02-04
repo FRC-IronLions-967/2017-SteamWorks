@@ -23,7 +23,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	public double Output;
 	
-	static final double kP = 0.004;
+	static final double kP = 0.012;
 	static final double kI = 0.00;
 	static final double kD = 0.00;
 	
@@ -150,10 +150,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	}
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(new TeleOp_ArcadeDrive());
+//    	setDefaultCommand(new TeleOp_ArcadeDrive());
     }
     
     public void log(){
+    	SmartDashboard.putNumber("power_motor",driveLeftLead.get());
+    	
 		SmartDashboard.putNumber("output", Output);
         SmartDashboard.putBoolean("High Gear", InHighGear);
 		SmartDashboard.putNumber("setPiont", turnController.getSetpoint());
