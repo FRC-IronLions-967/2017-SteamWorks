@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon;
 
+import org.usfirst.frc.team967.robot.Robot;
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
@@ -86,6 +87,13 @@ public class DriveSubsystem extends Subsystem {
 	
     public void initDefaultCommand() {
     	setDefaultCommand(new TeleOp_ArcadeDrive());
+    }
+    
+    public void outputOn(){
+    	Robot.oi.getBox().setOutput(2, true);
+    }
+    public void outputOff(){
+    	Robot.oi.getBox().setOutput(2, false);
     }
     
     public void log(){

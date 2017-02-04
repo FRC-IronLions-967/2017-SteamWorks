@@ -23,7 +23,8 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-		
+	
+	//public static final CameraSubsystem  cameraSubsystem = new CameraSubsystem();	
 	public static RobotMap robotMap;
 	public static RobotConstraints robotConstraints;
 	public static final DriveSubsystem  driveSubsystem = new DriveSubsystem();
@@ -31,9 +32,7 @@ public class Robot extends IterativeRobot {
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 	public static final GearSubsystem  gearSubsystem = new GearSubsystem();
 	public static final ClimberSubsystem  climberSubsystem = new ClimberSubsystem();
-	public static final CameraSubsystem  cameraSubsystem = new CameraSubsystem();
 	public static OI oi;
-	CameraServer serverFront;
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -48,7 +47,8 @@ public class Robot extends IterativeRobot {
     	robotConstraints = new RobotConstraints();
 //		driveSubsystem = new DriveSubsystem();
 		oi = new OI();
-//		chooser.addDefault("Default Auto", new ExampleCommand());
+		CameraServer.getInstance().startAutomaticCapture();
+		//		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	//	SmartDashboard.putData("Auto mode", chooser);
 	}
