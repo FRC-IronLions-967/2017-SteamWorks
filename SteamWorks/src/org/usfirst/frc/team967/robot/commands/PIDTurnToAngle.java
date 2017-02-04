@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class PIDTurnToAngle extends Command {
 
-	public double Angle;
+	private double Angle;
 	
     public PIDTurnToAngle(double angle) {
     	requires(Robot.driveSubsystem);

@@ -61,14 +61,12 @@ public class OI {
      	xbox1_b.whenPressed(new PIDTurnToAngle(90));
      	xbox1_x.whenPressed(new PIDTurnToAngle(-90));
      	xbox1_y.whenPressed(new PIDTurnToAngle(0));
-     	xbox1_lT.whenPressed(new TeleOp_ShiftDriveHigh());
-     	xbox1_lT.whenPressed(new TeleOp_ShiftDriveLow());
+     	xbox1_lT.whenPressed(new TeleOp_ShiftDrive("High"));
+     	xbox1_lT.whenPressed(new TeleOp_ShiftDrive("Low"));
 //      xbox1_lb.whenPressed(new command);
 //    	xbox1_rb.whenPressed(new command);
 //    	xbox1_back.whenPressed(new command);
 //    	xbox1_back.whenReleased(new command);
-    	xbox1_lT.whenPressed(new TeleOp_ShiftDriveHigh());
-    	xbox1_lT.whenReleased(new TeleOp_ShiftDriveLow());
 //    	xbox1_a.whenReleased(new TeleOp_shootSpeedUp());
 //    	xbox1_a.whenPressed(new TeleOp_ShiftDriveHigh());
 //    	xbox1_b.whenPressed(new TeleOp_ShootSpeedDown());
@@ -99,9 +97,9 @@ public class OI {
     	customBox2.whenReleased(new TeleOp_Intake_Stop());
     	customBox3.whenPressed(new TeleOp_Intake_Out());
     	customBox3.whenReleased(new TeleOp_Intake_Stop());
-    	customBox4.whenPressed(new TeleOp_ShiftDriveHigh());
+//    	customBox4.whenPressed(new TeleOp_ShiftDriveHigh());
 //    	customBox4.whenReleased(new command);
-    	customBox5.whenPressed(new TeleOp_ShiftDriveLow());
+//    	customBox5.whenPressed(new TeleOp_ShiftDriveLow());
 //    	customBox5.whenReleased(new command);
 //    	customBox6.whenPressed(new command);
 //    	customBox6.whenReleased(new command);
