@@ -33,6 +33,7 @@ public class TeleOp_GearBoxToggle extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Position = null;
     }
 
     // Called when another command which requires one or more of the same
