@@ -7,17 +7,19 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_GearBoxClosed extends Command {
+public class TeleOp_GearBox extends Command {
 
-    public TeleOp_GearBoxClosed() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+	private String Position;
+	
+    public TeleOp_GearBox(String position) {
     	requires(Robot.gearSubsystem);
+    	Position = position;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gearSubsystem.gearBoxClosed();
+    	if (Position == "Closed") Robot.gearSubsystem.gearBoxClosed();
+    	else if (Position == "Open") Robot.gearSubsystem.gearBoxOpen();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,7 +28,7 @@ public class TeleOp_GearBoxClosed extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
