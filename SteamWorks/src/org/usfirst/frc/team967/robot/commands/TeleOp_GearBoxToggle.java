@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_GearBox extends Command {
+public class TeleOp_GearBoxToggle extends Command {
 
 	private String Position;
 	
-    public TeleOp_GearBox(String position) {
+    public TeleOp_GearBoxToggle(String position) {
     	requires(Robot.gearSubsystem);
     	Position = position;
     }
@@ -28,7 +28,7 @@ public class TeleOp_GearBox extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
