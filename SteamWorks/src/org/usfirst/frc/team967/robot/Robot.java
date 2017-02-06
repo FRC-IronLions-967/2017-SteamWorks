@@ -130,6 +130,7 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
+	
 	public void log(){
     	SmartDashboard.putData(shooterSubsystem);
     	SmartDashboard.putData(climberSubsystem);
