@@ -91,7 +91,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	}
 	
 	public void arcadeDrive(double yAxis, double xAxis) {	
-		yAxis = yAxis*Math.abs(yAxis);//square the values for better control at low speeds
+		//square the values for better control at low speeds
+		yAxis = yAxis*Math.abs(yAxis);
 		xAxis = xAxis*Math.abs(xAxis);
 		
 		if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
@@ -180,6 +181,14 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public void shiftHigh() {
 	    InHighGear = true;
 	    shifter.set(DoubleSolenoid.Value.kForward);
+	}
+	public void toggleShift(){
+		if(InHighGear){
+			shiftLow();
+		}
+		else{
+			shiftHigh();
+		}
 	}
 	
     

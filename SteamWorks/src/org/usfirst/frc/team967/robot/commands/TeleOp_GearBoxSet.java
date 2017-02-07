@@ -7,21 +7,22 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_IntakeToggle extends Command {
+public class TeleOp_GearBoxSet extends Command {
+	private boolean open;
 	
-	private String Toggle;
-
-    public TeleOp_IntakeToggle(String toggle) {
-        requires(Robot.intakeSubsystem);
-        Toggle = toggle;
+    public TeleOp_GearBoxSet(boolean Open) {
+    	requires(Robot.gearSubsystem);
+    	open = Open;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (Toggle == "In")Robot.intakeSubsystem.intakeIn();
-    	else if (Toggle == "Out")Robot.intakeSubsystem.intakeOut();
-    	else if (Toggle == "stop")Robot.intakeSubsystem.intakeMove(0);;
-    	
+    	if(open){
+    		Robot.gearSubsystem.gearBoxClosed();
+    	}
+    	else{
+    		Robot.gearSubsystem.gearBoxOpen();
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,7 +36,6 @@ public class TeleOp_IntakeToggle extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Toggle = null;
     }
 
     // Called when another command which requires one or more of the same

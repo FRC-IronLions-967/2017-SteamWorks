@@ -7,19 +7,24 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_ShiftDrive extends Command {
-
-	private String Position;
+public class TeleOp_DriveShiftHigh extends Command {
+	private boolean high;
 	
-    public TeleOp_ShiftDrive(String position) {
+    public TeleOp_DriveShiftHigh(boolean High) {
+        // Use requires() here to declare subsystem dependencies
         requires(Robot.driveSubsystem);
-        Position = position;
+        high = High;
+    	// eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (Position == "Low") Robot.driveSubsystem.shiftLow();
-    	else if (Position == "High") Robot.driveSubsystem.shiftHigh();
+    	if(high){
+    		Robot.driveSubsystem.shiftLow();
+    	}
+    	else{
+    		Robot.driveSubsystem.shiftHigh();
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,7 +38,6 @@ public class TeleOp_ShiftDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Position = null;
     }
 
     // Called when another command which requires one or more of the same

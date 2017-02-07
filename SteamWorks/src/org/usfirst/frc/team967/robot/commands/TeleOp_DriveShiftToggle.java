@@ -1,26 +1,23 @@
 package org.usfirst.frc.team967.robot.commands;
 
 import org.usfirst.frc.team967.robot.Robot;
-import org.usfirst.frc.team967.robot.RobotConstraints;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class TeleOp_ClimbToggle extends Command {
+public class TeleOp_DriveShiftToggle extends Command {
 
-	private String Toggle;
-	
-    public TeleOp_ClimbToggle(String toggle) {
-        requires(Robot.climberSubsystem);
-        Toggle = toggle;
+    public TeleOp_DriveShiftToggle() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.driveSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(Toggle == "Start") Robot.climberSubsystem.climb(RobotConstraints.ClimberSubsystem_ClimberSpeed);
-    	else if (Toggle == "Stop") Robot.climberSubsystem.climb(0);
+    	Robot.driveSubsystem.toggleShift();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -34,7 +31,6 @@ public class TeleOp_ClimbToggle extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Toggle = null;
     }
 
     // Called when another command which requires one or more of the same
