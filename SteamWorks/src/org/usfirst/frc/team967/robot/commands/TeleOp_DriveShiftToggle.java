@@ -7,15 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_Intake_Stop extends Command {
+public class TeleOp_DriveShiftToggle extends Command {
 
-    public TeleOp_Intake_Stop() {
-    	requires(Robot.intakeSubsystem);
+    public TeleOp_DriveShiftToggle() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.driveSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intakeSubsystem.intakeMove(0);
+    	Robot.driveSubsystem.toggleShift();
     }
 
     // Called repeatedly when this Command is scheduled to run

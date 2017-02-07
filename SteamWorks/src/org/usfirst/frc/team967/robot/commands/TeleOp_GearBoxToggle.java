@@ -1,21 +1,20 @@
 package org.usfirst.frc.team967.robot.commands;
 
 import org.usfirst.frc.team967.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class TeleOp_Intake_Out extends Command {
-
-    public TeleOp_Intake_Out() {
-    	requires(Robot.intakeSubsystem);
+public class TeleOp_GearBoxToggle extends Command {
+	
+    public TeleOp_GearBoxToggle() {
+    	requires(Robot.gearSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intakeSubsystem.intakeOut();
+    	Robot.gearSubsystem.toggleBox();
     }
 
     // Called repeatedly when this Command is scheduled to run
