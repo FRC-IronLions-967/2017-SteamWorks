@@ -23,7 +23,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	PIDController turnController;
 	double rotateToAngleRate;
 	
-	public double Output;
+	public double PIDOutput;
 	
 	static final double kP = 0.012;
 	static final double kI = 0.00;
@@ -56,9 +56,16 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		shifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.driveShifterLow, RobotMap.driveShifterHigh); //defaults to module 0
 		
 		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);
+		driveLeftLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		driveLeftLead.reverseSensor(false);
+		driveLeftLead.reverseOutput(false);
+		driveLeftLead.configEncoderCodesPerRev(12); 
+    	
 		driveLeftFollow.changeControlMode(TalonControlMode.Follower);
 		driveLeftFollow.set(driveLeftLead.getDeviceID());
+		
 		driveRightLead.changeControlMode(TalonControlMode.PercentVbus);
+		driveRightLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		driveRightFollow.changeControlMode(TalonControlMode.Follower);
 		driveRightFollow.set(driveRightLead.getDeviceID());
 		//these will go away
@@ -110,22 +117,34 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	driveRightFollow1.set(-right);
     }
 	
-	public void moveTime(double left,double right, double time){
+/*	public void moveTime(double left,double right, double time){
 		move(left,right);
 		Timer.delay(time);
 		move(0,0);
+	}*/
+	public void pidEnable(){
+		turnController.enable();	
 	}
 	public void pidSetPoint(double input){
-		turnController.enable();	
 		turnController.setSetpoint(input);
 	}
 	public void pidWrite(double output) {		
-		Output = output;	
 		if(turnController.getDeltaSetpoint() < 0){
-			move(output,-output);
+			//move(output,-output);
+			PIDOutput = output;	
 		}
 		else {
-			move(-output,output);
+			PIDOutput = -output;
+			//move(-output,output);
+		}
+	}
+	public boolean pidDone(){
+		if(turnController.onTarget()){
+			turnController.disable();
+			return true;
+		}
+		else{
+			return false;
 		}
 	}
 	
@@ -136,7 +155,24 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public void pidStop(){
 		turnController.disable();
 	}
-	
+	public double getLEncoder(){
+		return driveLeftLead.getEncPosition();
+	}
+	public double getREncoder(){
+		return driveRightLead.getEncPosition();
+	}
+	public void zeroEncoders(){
+		driveLeftLead.setEncPosition(0);
+		driveRightLead.setEncPosition(0);
+	}
+	public boolean driveDistance(double count){
+		if((getLEncoder() + getREncoder())/2 > count){
+    		return true;
+    	}
+		else{
+			return false;
+		}
+	}
 	public void shiftLow() {
 	    InHighGear = false;
 	    shifter.set(DoubleSolenoid.Value.kReverse);
@@ -146,7 +182,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	    shifter.set(DoubleSolenoid.Value.kForward);
 	}
 	
-    public void initDefaultCommand() {
+    
+	public void initDefaultCommand() {
     	setDefaultCommand(new TeleOp_ArcadeDrive());
     }
     
@@ -158,7 +195,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     }
     
     public void log(){
-        SmartDashboard.putBoolean("High Gear", InHighGear);
+    	SmartDashboard.putNumber("Left Encoder Position", driveLeftLead.getEncPosition());
+    	SmartDashboard.putNumber("Right Encoder Position", driveRightLead.getEncPosition());
+    	
+//    	SmartDashboard.putBoolean("High Gear", InHighGear);
 //   	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
 //        SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());
 //        SmartDashboard.putNumber(   "IMU_Yaw",              gyro.getYaw());
@@ -236,6 +276,5 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 //		SmartDashboard.putNumber(   "IMU_Accel_X",          gyro.getWorldLinearAccelX());
 //        SmartDashboard.putNumber(   "IMU_Accel_Y",          gyro.getWorldLinearAccelY());
 //        SmartDashboard.putBoolean(  "IMU_IsMoving",         gyro.isMoving());
-//        
     }
 }
