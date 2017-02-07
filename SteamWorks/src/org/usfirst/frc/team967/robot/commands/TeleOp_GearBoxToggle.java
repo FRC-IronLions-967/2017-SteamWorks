@@ -1,22 +1,20 @@
 package org.usfirst.frc.team967.robot.commands;
 
 import org.usfirst.frc.team967.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Auto_1 extends Command {
-
-    public Auto_1() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.driveSubsystem);
+public class TeleOp_GearBoxToggle extends Command {
+	
+    public TeleOp_GearBoxToggle() {
+    	requires(Robot.gearSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.gearSubsystem.toggleBox();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,7 +23,7 @@ public class Auto_1 extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

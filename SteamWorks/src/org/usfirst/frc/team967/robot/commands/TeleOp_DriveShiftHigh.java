@@ -7,15 +7,24 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_Intake_Stop extends Command {
-
-    public TeleOp_Intake_Stop() {
-    	requires(Robot.intakeSubsystem);
+public class TeleOp_DriveShiftHigh extends Command {
+	private boolean high;
+	
+    public TeleOp_DriveShiftHigh(boolean High) {
+        // Use requires() here to declare subsystem dependencies
+        requires(Robot.driveSubsystem);
+        high = High;
+    	// eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intakeSubsystem.intakeMove(0);
+    	if(high){
+    		Robot.driveSubsystem.shiftLow();
+    	}
+    	else{
+    		Robot.driveSubsystem.shiftHigh();
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

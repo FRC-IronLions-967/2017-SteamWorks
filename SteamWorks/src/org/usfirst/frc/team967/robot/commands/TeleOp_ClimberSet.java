@@ -7,15 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_Intake_Out extends Command {
-
-    public TeleOp_Intake_Out() {
-    	requires(Robot.intakeSubsystem);
+public class TeleOp_ClimberSet extends Command {
+	private double power;
+	
+    public TeleOp_ClimberSet(double Power) {
+    	requires(Robot.climberSubsystem);
+    	power = Power;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intakeSubsystem.intakeOut();
+    	Robot.climberSubsystem.climb(power);
     }
 
     // Called repeatedly when this Command is scheduled to run

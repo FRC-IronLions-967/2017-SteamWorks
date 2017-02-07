@@ -7,17 +7,22 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_Intake_In extends Command {
-
-    public TeleOp_Intake_In() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.intakeSubsystem);
+public class TeleOp_GearBoxSet extends Command {
+	private boolean open;
+	
+    public TeleOp_GearBoxSet(boolean Open) {
+    	requires(Robot.gearSubsystem);
+    	open = Open;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intakeSubsystem.intakeIn();
+    	if(open){
+    		Robot.gearSubsystem.gearBoxClosed();
+    	}
+    	else{
+    		Robot.gearSubsystem.gearBoxOpen();
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

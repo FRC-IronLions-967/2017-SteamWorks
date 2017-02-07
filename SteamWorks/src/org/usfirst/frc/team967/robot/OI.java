@@ -57,6 +57,13 @@ public class OI {
     	//*********************************************************************
     	//Setting the button variables to the commands for controller number 1
     	
+    	xbox1_a.whenPressed(new PIDTurnToAngle(180));
+     	xbox1_b.whenPressed(new PIDTurnToAngle(90));
+     	xbox1_x.whenPressed(new PIDTurnToAngle(-90));
+     	xbox1_y.whenPressed(new PIDTurnToAngle(0));
+     	xbox1_lT.whenPressed(new TeleOp_DriveShiftHigh(true));
+     	xbox1_lT.whenReleased(new TeleOp_DriveShiftHigh(false));
+
     	xbox1_a.whenPressed(new Auto_Drive_Distance(50));
      	xbox1_b.whenPressed(new Auto_Drive_Distance(100));
      	xbox1_x.whenPressed(new Auto_Drive_Distance(500));
@@ -65,8 +72,6 @@ public class OI {
 //    	xbox1_rb.whenPressed(new command);
 //    	xbox1_back.whenPressed(new command);
 //    	xbox1_back.whenReleased(new command);
-    	xbox1_lT.whenPressed(new TeleOp_ShiftDriveHigh());
-    	xbox1_lT.whenReleased(new TeleOp_ShiftDriveLow());
 //    	xbox1_a.whenReleased(new TeleOp_shootSpeedUp());
 //    	xbox1_a.whenPressed(new TeleOp_ShiftDriveHigh());
 //    	xbox1_b.whenPressed(new TeleOp_ShootSpeedDown());
@@ -91,15 +96,8 @@ public class OI {
 //    	customBox3.whenPressed(new TeleOp_Intake_Out());
 //    	customBox3.whenReleased(new TeleOp_Intake_Stop());
 //    	customBox4.whenPressed(new command);
-    	customBox1.whenPressed(new TeleOp_Shooter_Feed(1));
-    	customBox1.whenReleased(new TeleOp_Shooter_Feed(0));
-    	customBox2.whenPressed(new TeleOp_Intake_In());
-    	customBox2.whenReleased(new TeleOp_Intake_Stop());
-    	customBox3.whenPressed(new TeleOp_Intake_Out());
-    	customBox3.whenReleased(new TeleOp_Intake_Stop());
-    	customBox4.whenPressed(new TeleOp_ShiftDriveHigh());
 //    	customBox4.whenReleased(new command);
-    	customBox5.whenPressed(new TeleOp_ShiftDriveLow());
+//    	customBox5.whenPressed(new TeleOp_ShiftDriveLow());
 //    	customBox5.whenReleased(new command);
 //    	customBox6.whenPressed(new command);
 //    	customBox6.whenReleased(new command);
@@ -107,7 +105,6 @@ public class OI {
 //    	customBox7.whenReleased(new command);
 //    	customBox8.whenPressed(new command);
 //    	customBox8.whenReleased(new command);
-//    	customBox.setOutput(2, true);
     	
 //    	SmartDashboard.putData("P Up", new Testing_P_up());
 //    	SmartDashboard.putData("P down", new Testing_P_down());
