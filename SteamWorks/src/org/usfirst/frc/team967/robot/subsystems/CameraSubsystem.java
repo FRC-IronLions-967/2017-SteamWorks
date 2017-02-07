@@ -206,8 +206,6 @@ public class CameraSubsystem extends Subsystem implements VisionPipeline {
 			final double ratio = bb.width / (double)bb.height;
 			if (ratio < minRatio || ratio > maxRatio) continue;
 			output.add(contour);
-			SmartDashboard.putData("Camera", (Sendable) contour);
-			SmartDashboard.putData("Camera22222222222", (Sendable) output);
 		}
 	}
 
