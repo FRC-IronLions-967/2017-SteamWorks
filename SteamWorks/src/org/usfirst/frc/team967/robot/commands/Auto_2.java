@@ -7,30 +7,26 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PIDTurnToAngle extends Command {
+public class Auto_2 extends Command {
 
-	private double Angle;
-	
-    public PIDTurnToAngle(double angle) {
+    public Auto_2() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     	requires(Robot.driveSubsystem);
-    	Angle = angle;
     }
-    
+
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveSubsystem.pidSetPoint(Angle);
-    	Robot.driveSubsystem.pidEnable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.move(Robot.driveSubsystem.PIDOutput, -Robot.driveSubsystem.PIDOutput);
-    	//Robot.driveSubsystem.pidSetPoint(Angle);
+    //	Robot.driveSubsystem.moveTime(1,1,5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.driveSubsystem.pidDone();
+        return false;
     }
 
     // Called once after isFinished returns true

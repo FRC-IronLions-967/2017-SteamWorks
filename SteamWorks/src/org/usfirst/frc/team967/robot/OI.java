@@ -57,12 +57,19 @@ public class OI {
     	//*********************************************************************
     	//Setting the button variables to the commands for controller number 1
     	
+<<<<<<< HEAD
     	xbox1_a.whenPressed(new PIDTurnToAngle(180));
      	xbox1_b.whenPressed(new PIDTurnToAngle(90));
      	xbox1_x.whenPressed(new PIDTurnToAngle(-90));
      	xbox1_y.whenPressed(new PIDTurnToAngle(0));
      	xbox1_lT.whenPressed(new TeleOp_ShiftDrive("High"));
      	xbox1_lT.whenPressed(new TeleOp_ShiftDrive("Low"));
+=======
+    	xbox1_a.whenPressed(new Auto_Drive_Distance(50));
+     	xbox1_b.whenPressed(new Auto_Drive_Distance(100));
+     	xbox1_x.whenPressed(new Auto_Drive_Distance(500));
+     	xbox1_y.whenPressed(new Auto_Drive_Distance(1000));
+>>>>>>> refs/remotes/origin/master
 //      xbox1_lb.whenPressed(new command);
 //    	xbox1_rb.whenPressed(new command);
 //    	xbox1_back.whenPressed(new command);
