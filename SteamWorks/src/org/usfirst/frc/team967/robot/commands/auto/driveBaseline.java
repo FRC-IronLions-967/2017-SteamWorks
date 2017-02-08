@@ -1,31 +1,18 @@
-package org.usfirst.frc.team967.robot.commands.testing;
+package org.usfirst.frc.team967.robot.commands.auto;
 
-import org.usfirst.frc.team967.robot.Robot;
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
-import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
+import org.usfirst.frc.team967.robot.commands.TeleOp_DriveShiftHigh;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class TestCommandGroup extends CommandGroup {
-	private double c, a;
-	private int b;
-    public TestCommandGroup() {
-    	if(Robot.cameraSubsystem.AutoButtonValue()){
-       		c = 1500;
-    		b = 90;
-    		a = 1500;
-    	}else{
-    		c = 3000;
-    		b = 180;
-    		a = 500;
-    	}
-    	addSequential(new Auto_Drive_Distance(c));
-    	addSequential(new PIDTurnToAngle(b));
-    	addSequential(new Auto_Drive_Distance(a));
-        
+public class driveBaseline extends CommandGroup {
+
+    public driveBaseline() {
+    	addSequential(new TeleOp_DriveShiftHigh(true));
+    	addSequential(new Auto_Drive_Distance(5000));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
