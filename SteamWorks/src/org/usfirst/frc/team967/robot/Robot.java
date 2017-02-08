@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
+import org.usfirst.frc.team967.robot.commands.testing.TestCommandGroup;
+import org.usfirst.frc.team967.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.IntakeSubsystem;
@@ -23,7 +26,7 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
  */
 public class Robot extends IterativeRobot {
 	
-	//public static final CameraSubsystem  cameraSubsystem = new CameraSubsystem();	
+	public static final CameraSubsystem  cameraSubsystem = new CameraSubsystem();	
 	public static RobotMap robotMap;
 	public static RobotConstraints robotConstraints;
 	public static final DriveSubsystem  driveSubsystem = new DriveSubsystem();
@@ -81,8 +84,15 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-
+		driveSubsystem.zeroEncoders();
+		driveSubsystem.shiftLow();
+		autonomousCommand = new TestCommandGroup();
+//		if(cameraSubsystem.AutoButtonValue()){
+//			autonomousCommand = new TestCommandGroup();
+//		}
+//		else{
+//			autonomousCommand = new Auto_Drive_Distance(600);
+//		}
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -112,6 +122,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		driveSubsystem.shiftLow();
 	}
 
 	/**
@@ -144,5 +155,6 @@ public class Robot extends IterativeRobot {
     	shooterSubsystem.log();
     	gearSubsystem.log();
     	climberSubsystem.log();
+    	cameraSubsystem.log();
 	}
 }

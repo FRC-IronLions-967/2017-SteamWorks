@@ -57,18 +57,18 @@ public class OI {
     	//*********************************************************************
     	//Setting the button variables to the commands for controller number 1
     	
-    	xbox1_a.whenPressed(new PIDTurnToAngle(180));
-     	xbox1_b.whenPressed(new PIDTurnToAngle(90));
-     	xbox1_x.whenPressed(new PIDTurnToAngle(-90));
-     	xbox1_y.whenPressed(new PIDTurnToAngle(0));
      	xbox1_lT.whenPressed(new TeleOp_DriveShiftHigh(true));
      	xbox1_lT.whenReleased(new TeleOp_DriveShiftHigh(false));
 
-    	xbox1_a.whenPressed(new Auto_Drive_Distance(50));
-     	xbox1_b.whenPressed(new Auto_Drive_Distance(100));
+    	xbox1_a.whenPressed(new PIDTurnToAngle(90));
+//    	xbox1_a.whenReleased(new command);
+     	xbox1_b.whenPressed(new PIDTurnToAngle(180));
+//     	xbox1_b.whenReleased(new command);
      	xbox1_x.whenPressed(new Auto_Drive_Distance(500));
+//     	xbox1_x.whenReleased(new command);
      	xbox1_y.whenPressed(new Auto_Drive_Distance(1000));
-//      xbox1_lb.whenPressed(new command);
+//      xbox1_y.whenReleased(new command);
+     	xbox1_lb.whenPressed(new Auto_resetYaw());
 //    	xbox1_rb.whenPressed(new command);
 //    	xbox1_back.whenPressed(new command);
 //    	xbox1_back.whenReleased(new command);
@@ -89,22 +89,22 @@ public class OI {
 //
     	//**********************************************************************
     	//Setting the button variables to the commands for custom box
-//    	customBox1.whenPressed(new TeleOp_Shooter_Feed(1));
-//    	customBox1.whenReleased(new TeleOp_Shooter_Feed(0));
-//    	customBox2.whenPressed(new TeleOp_Intake_In());
-//    	customBox2.whenReleased(new TeleOp_Intake_Stop());
-//    	customBox3.whenPressed(new TeleOp_Intake_Out());
-//    	customBox3.whenReleased(new TeleOp_Intake_Stop());
-//    	customBox4.whenPressed(new command);
-//    	customBox4.whenReleased(new command);
-//    	customBox5.whenPressed(new TeleOp_ShiftDriveLow());
-//    	customBox5.whenReleased(new command);
-//    	customBox6.whenPressed(new command);
-//    	customBox6.whenReleased(new command);
-//    	customBox7.whenPressed(new command);
-//    	customBox7.whenReleased(new command);
-//    	customBox8.whenPressed(new command);
-//    	customBox8.whenReleased(new command);
+    	customBox1.whenPressed(new TeleOp_Shooter_Feed(1));
+    	customBox1.whenReleased(new TeleOp_Shooter_Feed(0));
+    	customBox2.whenPressed(new TeleOp_IntakeSet(1));
+    	customBox2.whenReleased(new TeleOp_IntakeSet(0));
+    	customBox3.whenPressed(new TeleOp_IntakeSet(-1));
+    	customBox3.whenReleased(new TeleOp_IntakeSet(0));
+//    	customBox4.whenPressed(new TeleOp_);
+//    	customBox4.whenReleased(new TeleOp_);
+//    	customBox5.whenPressed(new TeleOp_);
+//    	customBox5.whenReleased(new TeleOp_);
+//    	customBox6.whenPressed(new TeleOp_);
+//    	customBox6.whenReleased(new TeleOp_);
+//    	customBox7.whenPressed(new TeleOp_);
+//    	customBox7.whenReleased(new TeleOp_);
+//    	customBox8.whenPressed(new TeleOp_);
+//    	customBox8.whenReleased(new TeleOp_);
     	
 //    	SmartDashboard.putData("P Up", new Testing_P_up());
 //    	SmartDashboard.putData("P down", new Testing_P_down());
