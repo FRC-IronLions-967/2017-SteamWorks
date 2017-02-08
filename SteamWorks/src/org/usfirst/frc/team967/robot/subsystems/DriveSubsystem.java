@@ -3,6 +3,7 @@ package org.usfirst.frc.team967.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.networktables2.*;
 import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -88,6 +89,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	     turnController.setOutputRange(-1.0, 1.0);
 	     turnController.setAbsoluteTolerance(kToleranceDegrees);
 	     turnController.setContinuous(true);
+	}
+	
+	public void networkTables(){
+		
 	}
 	
 	public void arcadeDrive(double yAxis, double xAxis) {	
