@@ -8,7 +8,6 @@ import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import com.kauailabs.navx.frc.AHRS;
@@ -26,7 +25,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	public double PIDOutput;
 	
-	static final double kP = 0.012;
+	static final double kP = 0.0125;
 	static final double kI = 0.00;
 	static final double kD = 0.00;
 	
@@ -49,26 +48,32 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public DriveSubsystem(){
 		driveLeftLead = new CANTalon(RobotMap.driveLeftLead);    // The left drive lead motor
 		driveLeftFollow = new CANTalon(RobotMap.driveLeftFollow);  // The left drive follow motor
-		driveLeftFollow1 = new CANTalon(RobotMap.driveLeftFollow1);
 		driveRightLead = new CANTalon(RobotMap.driveRightLead);   // The right drive lead motor
-		driveRightFollow = new CANTalon(RobotMap.driveRightFollow);
-		driveRightFollow1 = new CANTalon(RobotMap.driveRightFollow1);// The right drive follow motor
-		
-		shifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.driveShifterLow, RobotMap.driveShifterHigh); //defaults to module 0
+		driveRightFollow = new CANTalon(RobotMap.driveRightFollow);// The right drive follow motor
+		//will not be on the robot
+		driveLeftFollow1 = new CANTalon(RobotMap.driveLeftFollow1);
+		driveRightFollow1 = new CANTalon(RobotMap.driveRightFollow1);
+		//******************
+		shifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.driveShifterLow, RobotMap.driveShifterHigh);
 		
 		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);
 		driveLeftLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		driveLeftLead.reverseSensor(false);
-		driveLeftLead.reverseOutput(false);
-		driveLeftLead.configEncoderCodesPerRev(12); 
+		driveLeftLead.reverseSensor(true);
+		driveLeftLead.reverseOutput(true);
+		driveLeftLead.configEncoderCodesPerRev(12);
     	
 		driveLeftFollow.changeControlMode(TalonControlMode.Follower);
 		driveLeftFollow.set(driveLeftLead.getDeviceID());
 		
 		driveRightLead.changeControlMode(TalonControlMode.PercentVbus);
 		driveRightLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		driveRightLead.reverseSensor(true);
+//		driveRightLead.reverseOutput(true);
+		driveRightLead.configEncoderCodesPerRev(12);
+    	
 		driveRightFollow.changeControlMode(TalonControlMode.Follower);
 		driveRightFollow.set(driveRightLead.getDeviceID());
+		
 		//these will go away
 		driveRightFollow1.changeControlMode(TalonControlMode.PercentVbus);
 		driveLeftFollow1.changeControlMode(TalonControlMode.PercentVbus);
@@ -122,6 +127,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	driveRightLead.set(-right);
     	driveRightFollow1.set(-right);
     }
+<<<<<<< HEAD
 	/*
 	 *  public void moveTime(double left,double right, double time){
 		move(left,right);
@@ -129,6 +135,9 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		move(0,0);
 	}
 	*/
+=======
+	
+>>>>>>> refs/remotes/origin/master
 	public void pidEnable(){
 		turnController.enable();	
 	}
@@ -173,7 +182,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		driveRightLead.setEncPosition(0);
 	}
 	public boolean driveDistance(double count){
-		if((getLEncoder() + getREncoder())/2 > count){
+		if(-getLEncoder() > count){// + getREncoder())/2
     		return true;
     	}
 		else{
@@ -189,19 +198,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	    shifter.set(DoubleSolenoid.Value.kForward);
 	}
 	public void toggleShift(){
-		if(InHighGear){
-			shiftLow();
-		}
-		else{
-			shiftHigh();
-		}
+		if(InHighGear){	shiftLow();}
+		else{			shiftHigh();}
 	}
-	
-    
-	public void initDefaultCommand() {
-    	setDefaultCommand(new TeleOp_ArcadeDrive());
-    }
-    
+	//not working currently    
     public void outputOn(){
     	Robot.oi.getBox().setOutput(2, true);
     }
@@ -209,10 +209,16 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	Robot.oi.getBox().setOutput(2, false);
     }
     
+    public void initDefaultCommand() {
+    	setDefaultCommand(new TeleOp_ArcadeDrive());
+    }
+        
     public void log(){
     	SmartDashboard.putNumber("Left Encoder Position", driveLeftLead.getEncPosition());
     	SmartDashboard.putNumber("Right Encoder Position", driveRightLead.getEncPosition());
-    	
+    	SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw());
+    }
+}
 //    	SmartDashboard.putBoolean("High Gear", InHighGear);
 //   	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
 //        SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());
@@ -291,5 +297,3 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 //		SmartDashboard.putNumber(   "IMU_Accel_X",          gyro.getWorldLinearAccelX());
 //        SmartDashboard.putNumber(   "IMU_Accel_Y",          gyro.getWorldLinearAccelY());
 //        SmartDashboard.putBoolean(  "IMU_IsMoving",         gyro.isMoving());
-    }
-}
