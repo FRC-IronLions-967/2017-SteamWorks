@@ -9,8 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
-import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
-import org.usfirst.frc.team967.robot.commands.testing.TestCommandGroup;
+import org.usfirst.frc.team967.robot.commands.auto.*;
 import org.usfirst.frc.team967.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.GearSubsystem;
@@ -24,8 +23,7 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot {
-	
+public class Robot extends IterativeRobot {	
 	public static final CameraSubsystem  cameraSubsystem = new CameraSubsystem();	
 	public static RobotMap robotMap;
 	public static RobotConstraints robotConstraints;
@@ -49,14 +47,18 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		robotMap = new RobotMap();
     	robotConstraints = new RobotConstraints();
-//		driveSubsystem = new DriveSubsystem();
 		oi = new OI();
 		CameraServer.getInstance().startAutomaticCapture();
-		//		chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-	//	SmartDashboard.putData("Auto mode", chooser);
+		chooser.addDefault("Drive Forward", new driveBaseline());
+		chooser.addObject("LeftBlue", new blueLeftGear());
+		chooser.addObject("RightBlue", new blueRightGear());
+		chooser.addObject("CenterBlue", new blueCenterGear());
+		chooser.addObject("LeftRed", new redLeftGear());
+		chooser.addObject("RightRed", new redRightGear());
+		chooser.addObject("CenterRed", new redCenterGear());
+		SmartDashboard.putData("Auto mode", chooser);
 	}
-
+	
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
@@ -88,13 +90,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		driveSubsystem.zeroEncoders();
 		driveSubsystem.shiftLow();
-		autonomousCommand = new TestCommandGroup();
-//		if(cameraSubsystem.AutoButtonValue()){
-//			autonomousCommand = new TestCommandGroup();
-//		}
-//		else{
-//			autonomousCommand = new Auto_Drive_Distance(600);
-//		}
+		intakeSubsystem.shiftUpperOut();
+		autonomousCommand = chooser.getSelected();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -118,10 +115,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		driveSubsystem.shiftLow();

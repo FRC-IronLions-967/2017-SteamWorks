@@ -7,26 +7,32 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auto_2 extends Command {
-
-    public Auto_2() {
+public class TeleOp_IntakeLowerArmOut extends Command {
+	private boolean out;
+    public TeleOp_IntakeLowerArmOut(boolean Out) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.driveSubsystem);
+    	requires(Robot.intakeSubsystem);
+    	out = Out;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(out){
+    		Robot.intakeSubsystem.shiftLowerOut();
+    	}
+    	else{
+    		Robot.intakeSubsystem.shiftLowerIn();
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    //	Robot.driveSubsystem.moveTime(1,1,5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
