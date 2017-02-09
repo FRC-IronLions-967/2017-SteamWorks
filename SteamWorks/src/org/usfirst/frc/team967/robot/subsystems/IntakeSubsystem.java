@@ -41,7 +41,14 @@ public class IntakeSubsystem extends Subsystem {
 	    UpperExtended = true;
 	    upperArm.set(DoubleSolenoid.Value.kForward);
 	}
-	
+	public void upperToggle(){
+		if(UpperExtended){
+			shiftUpperIn();
+		}
+		else{
+			shiftUpperOut();
+		}
+	}
 	public void shiftLowerIn() {
 	    LowerExtended = false;
 	    lowerArm.set(DoubleSolenoid.Value.kReverse);
@@ -49,6 +56,14 @@ public class IntakeSubsystem extends Subsystem {
 	public void shiftLowerOut() {
 	    LowerExtended = true;
 	    lowerArm.set(DoubleSolenoid.Value.kForward);
+	}
+	public void lowerToggle(){
+		if(LowerExtended){
+			shiftLowerIn();
+		}
+		else{
+			shiftLowerOut();
+		}
 	}
 	
 	public void intakeMove(double power){

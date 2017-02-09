@@ -48,15 +48,15 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		CameraServer.getInstance().startAutomaticCapture();
 		chooser.addDefault("Drive Forward", new driveBaseline());
-//		chooser.addObject("LeftBlue", new command());
-//		chooser.addObject("RightBlue", new command());
-//		chooser.addObject("CenterBlue", new command());
-//		chooser.addObject("LeftRed", new command());
-//		chooser.addObject("RightRed", new command());
-//		chooser.addObject("CenterRed", new command());
+		chooser.addObject("LeftBlue", new blueLeftGear());
+		chooser.addObject("RightBlue", new blueRightGear());
+		chooser.addObject("CenterBlue", new blueCenterGear());
+		chooser.addObject("LeftRed", new redLeftGear());
+		chooser.addObject("RightRed", new redRightGear());
+		chooser.addObject("CenterRed", new redCenterGear());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
-
+	
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
@@ -88,6 +88,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		driveSubsystem.zeroEncoders();
 		driveSubsystem.shiftLow();
+		intakeSubsystem.shiftUpperOut();
 		autonomousCommand = chooser.getSelected();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
