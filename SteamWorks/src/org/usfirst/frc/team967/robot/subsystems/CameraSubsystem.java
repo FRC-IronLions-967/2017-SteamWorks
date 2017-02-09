@@ -1,6 +1,6 @@
 package org.usfirst.frc.team967.robot.subsystems;
 
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,17 +17,14 @@ import org.opencv.imgproc.Imgproc;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.vision.VisionPipeline;
-=======
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DigitalInput;
->>>>>>> refs/remotes/origin/master
 
 /**
  *
  */
-<<<<<<< HEAD
 public class CameraSubsystem extends Subsystem implements VisionPipeline {
 	
 	//Outputs
@@ -214,33 +211,28 @@ public class CameraSubsystem extends Subsystem implements VisionPipeline {
 			output.add(contour);
 		}
 	}
-
-=======
-public class CameraSubsystem extends Subsystem {
-	private DigitalInput button;
-	public boolean autoButton;
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+	}
 	
-	public CameraSubsystem(){
-		button = new DigitalInput(0);
-	}
-	public boolean AutoButtonValue(){
-		autoButton = button.get();
-		return autoButton;
-	}
-	public void log(){
-		SmartDashboard.putBoolean("Preset Button", autoButton);
-		autoButton = button.get();
-	}
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
->>>>>>> refs/remotes/origin/master
-
-    public void initDefaultCommand() {
-       
-    }
-    
-    public void log(){
-   
-    }
 }
 
+
+//public class CameraSubsystem extends Subsystem {
+//	private DigitalInput button;
+//	public boolean autoButton;
+//	
+//	public CameraSubsystem(){
+//		button = new DigitalInput(0);
+//	}
+//	public boolean AutoButtonValue(){
+//		autoButton = button.get();
+//		return autoButton;
+//	}
+//	public void log(){
+//		SmartDashboard.putBoolean("Preset Button", autoButton);
+//		autoButton = button.get();
+//	}
+//    public void initDefaultCommand() {
+//       
+//    }   

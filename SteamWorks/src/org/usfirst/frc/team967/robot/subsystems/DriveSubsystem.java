@@ -127,7 +127,6 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	driveRightLead.set(-right);
     	driveRightFollow1.set(-right);
     }
-<<<<<<< HEAD
 	/*
 	 *  public void moveTime(double left,double right, double time){
 		move(left,right);
@@ -135,10 +134,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		move(0,0);
 	}
 	*/
-=======
 	
->>>>>>> refs/remotes/origin/master
-	public void pidEnable(){
+public void pidEnable(){
 		turnController.enable();	
 	}
 	public void pidSetPoint(double input){

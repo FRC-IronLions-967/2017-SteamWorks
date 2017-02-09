@@ -9,11 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
-<<<<<<< HEAD
-=======
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
 import org.usfirst.frc.team967.robot.commands.testing.TestCommandGroup;
->>>>>>> refs/remotes/origin/master
 import org.usfirst.frc.team967.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.GearSubsystem;
