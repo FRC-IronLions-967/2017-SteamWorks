@@ -2,12 +2,13 @@ package org.usfirst.frc.team967.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc.team967.robot.RobotMap;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-/**
- *
+
+/*
+ *ready to be tested on the real robot 
  */
+
 public class GearSubsystem extends Subsystem {
 	
 	public Boolean isOpen;

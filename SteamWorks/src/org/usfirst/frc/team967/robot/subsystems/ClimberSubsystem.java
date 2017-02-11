@@ -7,7 +7,7 @@ import com.ctre.CANTalon.TalonControlMode;
 
 
 /**
- *
+ * Ready to test on the real robot
  */
 public class ClimberSubsystem extends Subsystem {
 	
