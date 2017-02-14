@@ -7,9 +7,10 @@ import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
+/*
+ *Ready to be tested on the real robot.
  */
+
 public class IntakeSubsystem extends Subsystem {
 
 	public CANTalon intakeLead;

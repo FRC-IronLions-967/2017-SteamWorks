@@ -1,6 +1,7 @@
 package org.usfirst.frc.team967.robot;
 
 import org.usfirst.frc.team967.robot.commands.*;
+import org.usfirst.frc.team967.robot.commands.auto.AutoDriveStrightAndTurn180;
 import org.usfirst.frc.team967.robot.commands.testing.*;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -82,7 +83,7 @@ public class OI {
 //    	xbox1_rb.whenPressed(new command);
     	xbox1_back.whenPressed(new testOutputOn());
     	xbox1_back.whenReleased(new testOutputOff());
-//    	xbox1_start.whenPressed(new command);
+    	xbox1_start.whenPressed(new AutoDriveStrightAndTurn180());
 //    	xbox1_start.whenReleased(new command);
 //    	xbox1_leftStickButton.whenPressed(new command);
 //    	xbox1_rightStickButton.whenPressed(new command);

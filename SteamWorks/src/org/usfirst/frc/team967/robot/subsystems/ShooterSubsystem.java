@@ -8,9 +8,10 @@ import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.TeleOp_Shoot;
 
-/**
- *
+/*
+ *Tested on the practice robot ready to be tested on the real robot.
  */
+
 public class ShooterSubsystem extends Subsystem {
     
     private CANTalon shooterLead;

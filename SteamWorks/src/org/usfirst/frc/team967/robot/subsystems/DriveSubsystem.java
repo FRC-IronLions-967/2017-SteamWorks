@@ -17,6 +17,10 @@ import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
 
+/*
+ * Works on the practice robot needs to be tested on the real robot.
+ */
+
 public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	AHRS gyro;
@@ -25,7 +29,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	public double PIDOutput;
 	
-	static final double kP = 0.0125;
+	static final double kP = 0.012588;
 	static final double kI = 0.00;
 	static final double kD = 0.00;
 	
