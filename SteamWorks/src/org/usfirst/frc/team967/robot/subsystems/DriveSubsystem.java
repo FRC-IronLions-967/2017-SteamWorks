@@ -28,7 +28,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	public double PIDOutput;
 	
-	static final double kP = 0.0125;
+	static final double kP = 0.012588;
 	static final double kI = 0.00;
 	static final double kD = 0.00;
 	
