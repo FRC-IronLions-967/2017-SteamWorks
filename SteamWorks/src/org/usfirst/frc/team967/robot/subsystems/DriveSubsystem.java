@@ -51,24 +51,25 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		driveRightLead = new CANTalon(RobotMap.driveRightLead);   	  // The right drive lead motor
 		driveRightFollow = new CANTalon(RobotMap.driveRightFollow);	  // The right drive follow motor
 		driveLeftFollow1 = new CANTalon(RobotMap.driveLeftFollow1);   // Will not be used on the comp robot.
-		driveRightFollow1 = new CANTalon(RobotMap.driveRightFollow1); // will not be used on the com robot.
+		driveRightFollow1 = new CANTalon(RobotMap.driveRightFollow1); // will not be used on the comp robot.
 		//******************
 		shifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.driveShifterLow, RobotMap.driveShifterHigh);
 		
-		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);			// changing the talon mode to PrecentVbus.
+		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);			// changing the Talon mode to PrecentVbus.
 		driveLeftLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);   // setting the feedbackDevice to a quad encoder.
 		driveLeftLead.reverseSensor(true);          // Reversing the sensor output.
 		driveLeftLead.reverseOutput(true);			// reversing the output of the motor.
 		driveLeftLead.configEncoderCodesPerRev(12); // Setting the counts on the encoder to 12.
     	
+		// Setting the motor driveLeftFollow to driveLeaftLead.
 		driveLeftFollow.changeControlMode(TalonControlMode.Follower);
 		driveLeftFollow.set(driveLeftLead.getDeviceID());
 		
-		driveRightLead.changeControlMode(TalonControlMode.PercentVbus);
-		driveRightLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		driveRightLead.reverseSensor(true);
-//		driveRightLead.reverseOutput(true);
-		driveRightLead.configEncoderCodesPerRev(12);
+		driveRightLead.changeControlMode(TalonControlMode.PercentVbus);			// changing the Talon mode to PrecentVbus.
+		driveRightLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);  // setting the feedbackDevice to a quad encoder.
+		driveRightLead.reverseSensor(true);           // Reversing the sensor output.
+//		driveRightLead.reverseOutput(true);			  // reversing the output of the motor.
+		driveRightLead.configEncoderCodesPerRev(12);  // Setting the counts on the encoder to 12.
     	
 		driveRightFollow.changeControlMode(TalonControlMode.Follower);
 		driveRightFollow.set(driveRightLead.getDeviceID());
