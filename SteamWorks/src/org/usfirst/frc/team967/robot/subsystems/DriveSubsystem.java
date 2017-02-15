@@ -22,48 +22,44 @@ import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
 
 public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
-	AHRS gyro;
-	PIDController turnController;
-	double rotateToAngleRate;
+	AHRS gyro;  					   // Creating the variable gyro as a AHRS variable.
+	PIDController turnController;      // Creating the variable turnController as a PidLoop.  
 	
-	public double PIDOutput;
+	public double PIDOutput;           // Creating a public double as PIDOutput. 
 	
-	static final double kP = 0.012588;
-	static final double kI = 0.00;
-	static final double kD = 0.00;
+	static final double kP = 0.012588; // Setting the p for the pid loop to use.
+	static final double kI = 0.00;     // Setting the I for the pid loop to use.
+	static final double kD = 0.00;     // Setting the D for the pid loop to use.
 	
-	public boolean Finished;
+	static final double kToleranceDegrees = 1.0f; // Setting the tolerance for the pid loop.
 	
-	static final double kToleranceDegrees = 1.0f;
+	private CANTalon driveLeftLead;		// Creating driveLeftLead as a motor controller.
+	private CANTalon driveLeftFollow;   // Creating driveLeftFollow as a motor controller.
+	private CANTalon driveLeftFollow1;  // Creating driveLeftFollow1 as a motor controller.
+	private CANTalon driveRightLead;	// Creating driveRightLead as a motor controller.		
+	private CANTalon driveRightFollow;	// Creating driveRightFollow as a motor controller.
+	private CANTalon driveRightFollow1;	// Creating driveRightFollow1 as a motor controller.
 	
-	private CANTalon driveLeftLead;
-	private CANTalon driveLeftFollow;
-	private CANTalon driveLeftFollow1;
-	private CANTalon driveRightLead;
-	private CANTalon driveRightFollow;
-	private CANTalon driveRightFollow1;
+	private DoubleSolenoid shifter;     // Creating the solenoid to use for shifting.
 	
-	private DoubleSolenoid shifter;
-	
-	private final double deadBand = RobotConstraints.DriveSubsystem_deadBand;
-	public boolean InHighGear;	
+	private final double deadBand = RobotConstraints.DriveSubsystem_deadBand; // Setting the deadband to what's in the RobotConstraints file.
+	public boolean InHighGear;	// Creating the variable InHighGear to tell if in high gear.
 	
 	public DriveSubsystem(){
-		driveLeftLead = new CANTalon(RobotMap.driveLeftLead);    // The left drive lead motor
-		driveLeftFollow = new CANTalon(RobotMap.driveLeftFollow);  // The left drive follow motor
-		driveRightLead = new CANTalon(RobotMap.driveRightLead);   // The right drive lead motor
-		driveRightFollow = new CANTalon(RobotMap.driveRightFollow);// The right drive follow motor
-		//will not be on the robot
-		driveLeftFollow1 = new CANTalon(RobotMap.driveLeftFollow1);
-		driveRightFollow1 = new CANTalon(RobotMap.driveRightFollow1);
+		driveLeftLead = new CANTalon(RobotMap.driveLeftLead);    	  // The left drive lead motor
+		driveLeftFollow = new CANTalon(RobotMap.driveLeftFollow);  	  // The left drive follow motor
+		driveRightLead = new CANTalon(RobotMap.driveRightLead);   	  // The right drive lead motor
+		driveRightFollow = new CANTalon(RobotMap.driveRightFollow);	  // The right drive follow motor
+		driveLeftFollow1 = new CANTalon(RobotMap.driveLeftFollow1);   // Will not be used on the comp robot.
+		driveRightFollow1 = new CANTalon(RobotMap.driveRightFollow1); // will not be used on the com robot.
 		//******************
 		shifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.driveShifterLow, RobotMap.driveShifterHigh);
 		
-		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);
-		driveLeftLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		driveLeftLead.reverseSensor(true);
-		driveLeftLead.reverseOutput(true);
-		driveLeftLead.configEncoderCodesPerRev(12);
+		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);			// changing the talon mode to PrecentVbus.
+		driveLeftLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);   // setting the feedbackDevice to a quad encoder.
+		driveLeftLead.reverseSensor(true);          // Reversing the sensor output.
+		driveLeftLead.reverseOutput(true);			// reversing the output of the motor.
+		driveLeftLead.configEncoderCodesPerRev(12); // Setting the counts on the encoder to 12.
     	
 		driveLeftFollow.changeControlMode(TalonControlMode.Follower);
 		driveLeftFollow.set(driveLeftLead.getDeviceID());
