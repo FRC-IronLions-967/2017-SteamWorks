@@ -3,3 +3,5 @@ Notes go here:
 Auto idea:
 can we detect current being pulled by the motors? 
 If so, we can use that to tell when we run into the wall for the gear auto/semi-auto functions
+
+The robot could also use the navx to tell if the robot has hit something.
