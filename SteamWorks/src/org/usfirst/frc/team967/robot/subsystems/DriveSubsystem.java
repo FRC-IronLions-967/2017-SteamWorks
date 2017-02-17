@@ -45,7 +45,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	private final double deadBand = RobotConstraints.DriveSubsystem_deadBand; // Setting the deadband to what's in the RobotConstraints file.
 	public boolean InHighGear;	// Creating the variable InHighGear to tell if in high gear.
 	
+	/*
+	 * This gets called from the main file Robot.java 
+	 * It is used to setup all of the different functions that the subsystem needs to do.
+	 */
 	public DriveSubsystem(){
+		
 		driveLeftLead = new CANTalon(RobotMap.driveLeftLead);    	  // The left drive lead motor
 		driveLeftFollow = new CANTalon(RobotMap.driveLeftFollow);  	  // The left drive follow motor
 		driveRightLead = new CANTalon(RobotMap.driveRightLead);   	  // The right drive lead motor
@@ -71,6 +76,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 //		driveRightLead.reverseOutput(true);			  // reversing the output of the motor.
 		driveRightLead.configEncoderCodesPerRev(12);  // Setting the counts on the encoder to 12.
     	
+		// setting the motor driveRightFollow to driveRightLead
 		driveRightFollow.changeControlMode(TalonControlMode.Follower);
 		driveRightFollow.set(driveRightLead.getDeviceID());
 		
@@ -78,25 +84,33 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		driveRightFollow1.changeControlMode(TalonControlMode.PercentVbus);
 		driveLeftFollow1.changeControlMode(TalonControlMode.PercentVbus);
 		
-		try {
-			 gyro = new AHRS(SPI.Port.kMXP); 
+		/*
+		 * trying to set the navx to the mxp port on the robot but if that does not work it catches the error 
+		 * and the rest of the program goes on without it.
+		 * Very important so if the navx does not work the rest of the code goes on
+		 */
+		try { 
+			 gyro = new AHRS(SPI.Port.kMXP); // setting the navx to the mxp port 
 	     } 
-		 catch (RuntimeException ex ) 
+		 catch (RuntimeException ex )  // catching if an error was called.
 		 {
-			 DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+			 DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true); // sending a message to the driver station telling that the navx is not working.
 	     }
 		 
-		 gyro.zeroYaw();
+		 gyro.zeroYaw(); // zeroing the Yaw of the gyro.
 		 
-		 turnController = new PIDController(kP, kI, kD, gyro,this);
-		 turnController.disable();
-	     turnController.setInputRange(-180.0f,  180.0f);
-	     turnController.setOutputRange(-1.0, 1.0);
-	     turnController.setAbsoluteTolerance(kToleranceDegrees);
-	     turnController.setContinuous(true);
+		 turnController = new PIDController(kP, kI, kD, gyro,this);// setting the P,I,D and the input source. 
+		 turnController.disable(); // turning of the pid loop
+	     turnController.setInputRange(-180.0f,  180.0f); // setting the input range of the pid loop
+	     turnController.setOutputRange(-1.0, 1.0); // setting the output range of the pid loop
+	     turnController.setAbsoluteTolerance(kToleranceDegrees); // setting the tolerance of the pd loop
+	     turnController.setContinuous(true); // setting if the pid code can go over the -180 to 180 line.
 	}
 	
-	public void arcadeDrive(double yAxis, double xAxis) {	
+	/*
+	 * used to change the joystick's into arcade format but with two different joysticks.
+	 */
+	public void arcadeDrive(double yAxis, double xAxis) {	 
 		//square the values for better control at low speeds
 		yAxis = yAxis*Math.abs(yAxis);
 		xAxis = xAxis*Math.abs(xAxis);
@@ -117,6 +131,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	SmartDashboard.putNumber("L/max", L/max);
     }
 	
+	/*
+	 * The only place that the code sets the power to the drive motors 
+	 *  
+	 */
 	public void move(double left, double right){
 		driveLeftLead.set(left);
 		driveLeftFollow1.set(left);
