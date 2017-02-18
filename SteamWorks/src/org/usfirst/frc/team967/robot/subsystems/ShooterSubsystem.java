@@ -46,6 +46,7 @@ public class ShooterSubsystem extends Subsystem {
     					   RobotConstraints.ShooterSubsystem_Shooter_profile);
 		shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
 		shooterFollow.set(shooterLead.getDeviceID());
+		shooterFollow.reverseOutput(true);
 		shooterFeed.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     }
 	
@@ -98,7 +99,7 @@ public class ShooterSubsystem extends Subsystem {
     }
     
     public void initDefaultCommand() {
-    	setDefaultCommand(new TeleOp_Shoot());
+//    	setDefaultCommand(new TeleOp_Shoot());
     }
     
     public void log(){

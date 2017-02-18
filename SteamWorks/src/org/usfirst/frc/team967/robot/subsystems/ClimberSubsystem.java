@@ -20,6 +20,7 @@ public class ClimberSubsystem extends Subsystem {
 		climberLead.changeControlMode(TalonControlMode.PercentVbus);
 		climberFollow.changeControlMode(TalonControlMode.Follower);
 		climberFollow.set(climberLead.getDeviceID());
+		climberFollow.reverseOutput(true);
 	}
 	
 	public void climb(double speed){

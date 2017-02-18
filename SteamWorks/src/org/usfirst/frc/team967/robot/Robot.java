@@ -116,6 +116,8 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		driveSubsystem.shiftLow();
+		intakeSubsystem.shiftLowerIn();
+		intakeSubsystem.shiftUpperOut();
 	}
 
 	/**

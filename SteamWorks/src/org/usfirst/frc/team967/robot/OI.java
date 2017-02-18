@@ -1,7 +1,6 @@
 package org.usfirst.frc.team967.robot;
 
 import org.usfirst.frc.team967.robot.commands.*;
-import org.usfirst.frc.team967.robot.commands.auto.AutoDriveStrightAndTurn180;
 import org.usfirst.frc.team967.robot.commands.testing.*;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -16,7 +15,7 @@ public class OI {
     double rightTrigger;			
     
     public AxisButton xbox1_lT = new AxisButton(xbox1, 2, .75, 1);
-    public AxisButton xbox1_RT = new AxisButton(xbox1, 3, .75, 1);
+    public AxisButton xbox1_rT = new AxisButton(xbox1, 3, .75, 1);
 
     public POVButton xbox1povN 	= new POVButton(xbox1, 0, 0);
     public POVButton xbox1povNE = new POVButton(xbox1, 0, 45);
@@ -60,52 +59,44 @@ public class OI {
     	
      	xbox1_lT.whenPressed(new TeleOp_DriveShiftHigh(true));
      	xbox1_lT.whenReleased(new TeleOp_DriveShiftHigh(false));
+//     	xbox1_rT.whenPressed(new TeleOp_DriveReverseDirection(true));
+//     	xbox1_rT.whenReleased(new TeleOp_DriveReverseDirection(false));
 
-    	xbox1_a.whenPressed(new PIDTurnToAngle(90));
-//    	xbox1_a.whenReleased(new command);
-     	xbox1_b.whenPressed(new PIDTurnToAngle(180));
-//     	xbox1_b.whenReleased(new command);
-     	xbox1_x.whenPressed(new Auto_Drive_Distance(500));
-//     	xbox1_x.whenReleased(new command);
-     	xbox1_y.whenPressed(new Auto_Drive_Distance(1000));
-//      xbox1_y.whenReleased(new command);
-     	xbox1_lb.whenPressed(new Auto_resetYaw());
-//    	xbox1_rb.whenPressed(new command);
-//    	xbox1_back.whenPressed(new command);
-//    	xbox1_back.whenReleased(new command);
-//    	xbox1_a.whenReleased(new TeleOp_shootSpeedUp());
-//    	xbox1_a.whenPressed(new TeleOp_ShiftDriveHigh());
-//    	xbox1_b.whenPressed(new TeleOp_ShootSpeedDown());
-//    	xbox1_b.whenReleased(new TeleOp_StopShooting());
-//    	xbox1_x.whenPressed(new TeleOp_shootSpeedDown());
-//    	xbox1_y.whenPressed(new TeleOp_ShootSpeedDown());
-//    	xbox1_lb.whenPressed(new command);
+    	xbox1_a.whenPressed(new TeleOp_DriveShiftToggle());
+//    	xbox1_a.whenReleased(new TeleOp_IntakeUpperArmOut(true));
+//    	xbox1_b.whenPressed(new TeleOp_DriveShiftHigh(true));
+//    	xbox1_b.whenReleased(new TeleOp_DriveShiftHigh(false));
+//    	xbox1_x.whenPressed(new TeleOp_GearBoxSet(true));
+//    	xbox1_x.whenReleased(new TeleOp_GearBoxSet(false));
+//    	xbox1_y.whenPressed(new TeleOp_IntakeLowerArmOut(true));
+//    	xbox1_y.whenReleased(new TeleOp_IntakeLowerArmOut(false));
+     	xbox1_lb.whenPressed(new TeleOp_DriveShiftToggle());
 //    	xbox1_rb.whenPressed(new command);
     	xbox1_back.whenPressed(new testOutputOn());
     	xbox1_back.whenReleased(new testOutputOff());
-    	xbox1_start.whenPressed(new AutoDriveStrightAndTurn180());
+//    	xbox1_start.whenPressed(new command());
 //    	xbox1_start.whenReleased(new command);
 //    	xbox1_leftStickButton.whenPressed(new command);
 //    	xbox1_rightStickButton.whenPressed(new command);
 //
     	//**********************************************************************
     	//Setting the button variables to the commands for custom box
-    	customBox1.whenPressed(new TeleOp_Shooter_Feed(1));
-    	customBox1.whenReleased(new TeleOp_Shooter_Feed(0));
-    	customBox2.whenPressed(new TeleOp_IntakeSet(1));
-    	customBox2.whenReleased(new TeleOp_IntakeSet(0));
-    	customBox3.whenPressed(new TeleOp_IntakeSet(-1));
-    	customBox3.whenReleased(new TeleOp_IntakeSet(0));
-//    	customBox4.whenPressed(new TeleOp_);
-//    	customBox4.whenReleased(new TeleOp_);
-//    	customBox5.whenPressed(new TeleOp_);
-//    	customBox5.whenReleased(new TeleOp_);
-//    	customBox6.whenPressed(new TeleOp_);
-//    	customBox6.whenReleased(new TeleOp_);
-//    	customBox7.whenPressed(new TeleOp_);
-//    	customBox7.whenReleased(new TeleOp_);
-//    	customBox8.whenPressed(new TeleOp_);
-//    	customBox8.whenReleased(new TeleOp_);
+    	customBox1.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
+    	customBox1.whenReleased(new TeleOp_IntakeSet(0));
+    	customBox2.whenPressed(new TeleOp_IntakeLowerArmToggle());
+//    	customBox2.whenReleased(new TeleOp_IntakeSet(0));
+    	customBox3.whenPressed(new TeleOp_GearBoxToggle());
+//    	customBox3.whenReleased(new TeleOp_IntakeSet(0));
+    	customBox4.whenPressed(new TeleOp_ShooterFeed(.75));
+    	customBox4.whenReleased(new TeleOp_ShooterFeed(0));
+    	customBox5.whenPressed(new TeleOp_ShooterFeed(.3));
+    	customBox5.whenReleased(new TeleOp_ShooterFeed(0));
+    	customBox6.whenPressed(new TeleOp_ShooterFeed(.5));
+    	customBox6.whenReleased(new TeleOp_ShooterFeed(0));
+    	customBox7.whenPressed(new TeleOp_Shoot());
+    	customBox7.whenReleased(new Testing_Stop_Flywheel());
+    	customBox8.whenPressed(new TeleOp_IntakeUpperArmToggle());
+//    	customBox8.whenReleased(new TeleOp_IntakeLowerArmOut(false));
     	
 //    	SmartDashboard.putData("P Up", new Testing_P_up());
 //    	SmartDashboard.putData("P down", new Testing_P_down());
@@ -114,8 +105,8 @@ public class OI {
 //    	SmartDashboard.putData("D Up", new Testing_D_up());
 //    	SmartDashboard.putData("D down", new Testing_D_down());
 //    	SmartDashboard.putData("Stop shooter", new Testing_Stop_Flywheel());
-//    	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
-//    	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
+    	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
+    	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
     }
     
     public void log(){

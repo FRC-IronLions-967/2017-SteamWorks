@@ -27,18 +27,18 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	public double PIDOutput;           // Creating a public double as PIDOutput. 
 	
-	static final double kP = 0.012588; // Setting the p for the pid loop to use.
-	static final double kI = 0.00;     // Setting the I for the pid loop to use.
-	static final double kD = 0.00;     // Setting the D for the pid loop to use.
+	static final double kP = 0.012588; // Setting the p for the PID loop to use.
+	static final double kI = 0.00;     // Setting the I for the PID loop to use.
+	static final double kD = 0.00;     // Setting the D for the PID loop to use.
 	
 	static final double kToleranceDegrees = 1.0f; // Setting the tolerance for the pid loop.
 	
 	private CANTalon driveLeftLead;		// Creating driveLeftLead as a motor controller.
 	private CANTalon driveLeftFollow;   // Creating driveLeftFollow as a motor controller.
-	private CANTalon driveLeftFollow1;  // Creating driveLeftFollow1 as a motor controller.
+	//private CANTalon driveLeftFollow1;  // Creating driveLeftFollow1 as a motor controller.
 	private CANTalon driveRightLead;	// Creating driveRightLead as a motor controller.		
 	private CANTalon driveRightFollow;	// Creating driveRightFollow as a motor controller.
-	private CANTalon driveRightFollow1;	// Creating driveRightFollow1 as a motor controller.
+//	private CANTalon driveRightFollow1;	// Creating driveRightFollow1 as a motor controller.
 	
 	private DoubleSolenoid shifter;     // Creating the solenoid to use for shifting.
 	
@@ -55,8 +55,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		driveLeftFollow = new CANTalon(RobotMap.driveLeftFollow);  	  // The left drive follow motor
 		driveRightLead = new CANTalon(RobotMap.driveRightLead);   	  // The right drive lead motor
 		driveRightFollow = new CANTalon(RobotMap.driveRightFollow);	  // The right drive follow motor
-		driveLeftFollow1 = new CANTalon(RobotMap.driveLeftFollow1);   // Will not be used on the comp robot.
-		driveRightFollow1 = new CANTalon(RobotMap.driveRightFollow1); // will not be used on the comp robot.
+//		driveLeftFollow1 = new CANTalon(RobotMap.driveLeftFollow1);   // Will not be used on the comp robot.
+//		driveRightFollow1 = new CANTalon(RobotMap.driveRightFollow1); // will not be used on the comp robot.
 		//******************
 		shifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.driveShifterLow, RobotMap.driveShifterHigh);
 		
@@ -81,8 +81,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		driveRightFollow.set(driveRightLead.getDeviceID());
 		
 		//these will go away
-		driveRightFollow1.changeControlMode(TalonControlMode.PercentVbus);
-		driveLeftFollow1.changeControlMode(TalonControlMode.PercentVbus);
+//		driveRightFollow1.changeControlMode(TalonControlMode.PercentVbus);
+//		driveLeftFollow1.changeControlMode(TalonControlMode.PercentVbus);
 		
 		/*
 		 * trying to set the navx to the mxp port on the robot but if that does not work it catches the error 
@@ -137,9 +137,9 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	 */
 	public void move(double left, double right){
 		driveLeftLead.set(left);
-		driveLeftFollow1.set(left);
+//		driveLeftFollow1.set(left);
     	driveRightLead.set(-right);
-    	driveRightFollow1.set(-right);
+//    	driveRightFollow1.set(-right);
     }
 	
 	public void pidEnable(){
@@ -220,7 +220,11 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     public void log(){
     	SmartDashboard.putNumber("Left Encoder Position", driveLeftLead.getEncPosition());
     	SmartDashboard.putNumber("Right Encoder Position", driveRightLead.getEncPosition());
-    	SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw());
+    //	SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw());
+    	SmartDashboard.putNumber("right lead amps", driveRightLead.getOutputCurrent());
+    	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
+    	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
+    	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
     }
 }
 //    	SmartDashboard.putBoolean("High Gear", InHighGear);

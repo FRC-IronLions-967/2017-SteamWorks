@@ -21,10 +21,10 @@ public class RobotConstraints {
 	/*** Climber Constraints ***/
 	public static double ClimberSubsystem_ClimberSpeed = .5;
 	
+	/*** Intake Constraints ***/
+	public static double IntakeSubsystem_IntakeSpeed = -.9;
 	
 	/*** Gear Constraints ***/
-//	public static int GearSubsystem_Servo_Open = 95;
-//	public static int GearSubsystem_Servo_Closed = 0;
 	
 	public RobotConstraints() {
 	

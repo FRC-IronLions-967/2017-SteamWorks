@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_Shooter_Feed extends Command {
+public class TeleOp_ShooterFeed extends Command {
 	
 	private double Speed;
 	
-    public TeleOp_Shooter_Feed(double speed) {
+    public TeleOp_ShooterFeed(double speed) {
     	requires(Robot.shooterSubsystem);
     	Speed = speed;
     }
