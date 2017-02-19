@@ -19,10 +19,10 @@ public class RobotConstraints {
 	public static final int ShooterSubsystem_ShooterSpeed = 650;//will change (450 for 1 to 1)
 	
 	/*** Climber Constraints ***/
-	public static double ClimberSubsystem_ClimberSpeed = .5;
+	public static double ClimberSubsystem_ClimberSpeed = 1;
 	
 	/*** Intake Constraints ***/
-	public static double IntakeSubsystem_IntakeSpeed = -.9;
+	public static double IntakeSubsystem_IntakeSpeed = 1;
 	
 	/*** Gear Constraints ***/
 	

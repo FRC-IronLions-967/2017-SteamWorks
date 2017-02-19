@@ -89,12 +89,12 @@ public class OI {
 //    	customBox3.whenReleased(new TeleOp_IntakeSet(0));
     	customBox4.whenPressed(new TeleOp_ShooterFeed(.75));
     	customBox4.whenReleased(new TeleOp_ShooterFeed(0));
-    	customBox5.whenPressed(new TeleOp_ShooterFeed(.3));
-    	customBox5.whenReleased(new TeleOp_ShooterFeed(0));
-    	customBox6.whenPressed(new TeleOp_ShooterFeed(.5));
-    	customBox6.whenReleased(new TeleOp_ShooterFeed(0));
-    	customBox7.whenPressed(new TeleOp_Shoot());
-    	customBox7.whenReleased(new Testing_Stop_Flywheel());
+//    	customBox5.whenPressed(new TeleOp_ClimberSet(.25));
+//    	customBox5.whenReleased(new TeleOp_ClimberSet(0));
+    	customBox6.whenPressed(new TeleOp_ClimberSet(1));
+    	customBox6.whenReleased(new TeleOp_ClimberSet(0));
+//    	customBox7.whenPressed(new TeleOp_Shoot());
+//    	customBox7.whenReleased(new Testing_Stop_Flywheel());
     	customBox8.whenPressed(new TeleOp_IntakeUpperArmToggle());
 //    	customBox8.whenReleased(new TeleOp_IntakeLowerArmOut(false));
     	

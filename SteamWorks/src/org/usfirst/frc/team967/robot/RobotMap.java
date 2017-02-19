@@ -18,8 +18,8 @@ public class RobotMap {
 	public static final int driveRightFollow = 4;
 	public static final int driveRightFollow1 = 36;
 	
-	public static final int driveShifterHigh = 1;
-	public static final int driveShifterLow = 6;
+	public static final int driveShifterHigh = 6;
+	public static final int driveShifterLow = 1;
 	//----------------------------------------
 	
 	/**-----------Shooter----------------------**/
@@ -31,8 +31,8 @@ public class RobotMap {
 	/**----------Intake-----------------------**/
 	public static final int intake = 5;
 	
-	public static final int intakeUpperOut = 2;
-	public static final int intakeUpperIn = 5;
+	public static final int intakeUpperOut = 5;
+	public static final int intakeUpperIn = 2;
 	public static final int intakeLowerOut = 4;
 	public static final int intakeLowerIn = 3;
 	//----------------------------------------

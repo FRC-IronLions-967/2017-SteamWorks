@@ -1,6 +1,8 @@
 package org.usfirst.frc.team967.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team967.robot.RobotMap;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
@@ -24,14 +26,15 @@ public class ClimberSubsystem extends Subsystem {
 	}
 	
 	public void climb(double speed){
-		climberLead.set(speed); 
+		climberLead.set(-speed); 
 	}
  
     public void initDefaultCommand() {
     //    setDefaultCommand(new command);
     }
     public void log(){
-    //	SmartDashboard.putNumber("ClimberSpeed", ClimberSpeed);
+    	SmartDashboard.putNumber("Climber Current lead", climberLead.getOutputCurrent());
+    	SmartDashboard.putNumber("Climber Current follow", climberFollow.getOutputCurrent());
     }
 }
 

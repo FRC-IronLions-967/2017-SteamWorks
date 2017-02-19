@@ -68,7 +68,7 @@ public class IntakeSubsystem extends Subsystem {
 	}
 	
 	public void intakeMove(double power){
-		intakeLead.set(power);
+		intakeLead.set(-power);
 	}
 	public void intakeIn(){
 		intakeMove(1);
