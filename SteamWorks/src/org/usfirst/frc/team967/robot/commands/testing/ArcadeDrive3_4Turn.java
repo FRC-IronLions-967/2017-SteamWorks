@@ -1,4 +1,4 @@
-package org.usfirst.frc.team967.robot.commands;
+package org.usfirst.frc.team967.robot.commands.testing;
 
 import org.usfirst.frc.team967.robot.Robot;
 
@@ -7,21 +7,19 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_Shoot extends Command {
-	private int speed;
-    public TeleOp_Shoot(int Speed) {
-        requires(Robot.shooterSubsystem);
-        speed = Speed;
+public class ArcadeDrive3_4Turn extends Command {
+
+    public ArcadeDrive3_4Turn() {
+    	requires(Robot.driveSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooterSubsystem.Shoot(speed);
+    	Robot.driveSubsystem.arcadeDrive(Robot.oi.getXbox1().getRawAxis(1), (-Robot.oi.getXbox1().getRawAxis(4)*.75));
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,5 +34,6 @@ public class TeleOp_Shoot extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+//    	end();
     }
 }

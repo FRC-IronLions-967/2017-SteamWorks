@@ -2,6 +2,7 @@ package org.usfirst.frc.team967.robot;
 
 import org.usfirst.frc.team967.robot.commands.*;
 import org.usfirst.frc.team967.robot.commands.testing.*;
+import org.usfirst.frc.team967.robot.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -93,8 +94,8 @@ public class OI {
 //    	customBox5.whenReleased(new TeleOp_());
     	customBox6.whenPressed(new TeleOp_ClimberSet(1));
     	customBox6.whenReleased(new TeleOp_ClimberSet(0));
-    	customBox7.whenPressed(new TeleOp_Shoot(RobotConstraints.ShooterSubsystem_ShooterSpeed));
-//    	customBox7.whenReleased(new TeleOp_Shoot(0));
+    	customBox7.whenPressed(new TeleOp_Shoot(Robot.shooterSubsystem.shooterRpm));
+    	customBox7.whenReleased(new TeleOp_Shoot(0));
     	customBox8.whenPressed(new TeleOp_IntakeUpperArmToggle());
 //    	customBox8.whenReleased(new TeleOp_IntakeLowerArmOut(false));
     	
@@ -104,7 +105,7 @@ public class OI {
     	SmartDashboard.putData("I down", new Testing_I_down());
     	SmartDashboard.putData("D Up", new Testing_D_up());
     	SmartDashboard.putData("D down", new Testing_D_down());
-//    	SmartDashboard.putData("Stop shooter", new Testing_Stop_Flywheel());
+    	SmartDashboard.putData("Stop shooter", new TeleOp_Shoot(0));
     	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
     	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
     }

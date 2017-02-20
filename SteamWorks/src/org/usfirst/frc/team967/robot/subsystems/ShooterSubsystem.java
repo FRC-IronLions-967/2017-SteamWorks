@@ -50,11 +50,12 @@ public class ShooterSubsystem extends Subsystem {
 		shooterFeed.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     }
 	
-	public void Shoot(){
-    	shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
-    	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
-    	shooterFollow.set(shooterLead.getDeviceID());
-		shooterLead.set(-shooterRpm);
+	public void Shoot(int speed){
+    //may need to uncomment???
+		//	shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
+    //	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
+    //	shooterFollow.set(shooterLead.getDeviceID());
+		shooterLead.set(-speed);
     }
 	
 	public void PUp(){

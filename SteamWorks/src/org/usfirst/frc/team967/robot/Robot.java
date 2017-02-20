@@ -24,14 +24,14 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {	
-	public static final CameraSubsystem  cameraSubsystem = new CameraSubsystem();	
+	public static final CameraSubsystem cameraSubsystem = new CameraSubsystem();	
 	public static RobotMap robotMap;
 	public static RobotConstraints robotConstraints;
-	public static final DriveSubsystem  driveSubsystem = new DriveSubsystem();
-	public static final ShooterSubsystem  shooterSubsystem = new ShooterSubsystem();
+	public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
+	public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-	public static final GearSubsystem  gearSubsystem = new GearSubsystem();
-	public static final ClimberSubsystem  climberSubsystem = new ClimberSubsystem();
+	public static final GearSubsystem gearSubsystem = new GearSubsystem();
+	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 	public static OI oi;
 	
 	Command autonomousCommand;
