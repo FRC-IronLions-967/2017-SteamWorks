@@ -88,7 +88,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		driveSubsystem.zeroEncoders();
 		driveSubsystem.shiftLow();
-		intakeSubsystem.shiftUpperOut();
+//		intakeSubsystem.shiftUpperOut();
 		autonomousCommand = chooser.getSelected();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -116,8 +116,10 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		driveSubsystem.shiftLow();
-		//intakeSubsystem.shiftLowerIn();
+		driveSubsystem.zeroEncoders();
+		//intakeSubsystem.shiftLowerOut();
 		//intakeSubsystem.shiftUpperOut();
+		//gearSubsystem.gearBoxClosed();
 	}
 
 	/**

@@ -62,8 +62,6 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		
 		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);			// changing the Talon mode to PrecentVbus.
 		driveLeftLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);   // setting the feedbackDevice to a quad encoder.
-		driveLeftLead.reverseSensor(true);          // Reversing the sensor output.
-		driveLeftLead.reverseOutput(true);			// reversing the output of the motor.
 		driveLeftLead.configEncoderCodesPerRev(12); // Setting the counts on the encoder to 12.
     	
 		// Setting the motor driveLeftFollow to driveLeaftLead.
@@ -72,8 +70,6 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		
 		driveRightLead.changeControlMode(TalonControlMode.PercentVbus);			// changing the Talon mode to PrecentVbus.
 		driveRightLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);  // setting the feedbackDevice to a quad encoder.
-		driveRightLead.reverseSensor(true);           // Reversing the sensor output.
-//		driveRightLead.reverseOutput(true);			  // reversing the output of the motor.
 		driveRightLead.configEncoderCodesPerRev(12);  // Setting the counts on the encoder to 12.
     	
 		// setting the motor driveRightFollow to driveRightLead
@@ -175,6 +171,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public void pidStop(){
 		turnController.disable();
 	}
+
 	public double getLEncoder(){
 		return driveLeftLead.getEncPosition();
 	}
@@ -186,20 +183,30 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		driveRightLead.setEncPosition(0);
 	}
 	public boolean driveDistance(double count){
-		if(-getLEncoder() > count){// + getREncoder())/2
-    		return true;
-    	}
+		if(count > 0){
+			if((-getLEncoder() + getREncoder())/2 > count){// + getREncoder())/2
+	    		return true;
+	    	}
+			else{
+				return false;
+			}
+		}
 		else{
-			return false;
+			if((-getLEncoder() + getREncoder())/2 < count){// + getREncoder())/2
+	    		return true;
+	    	}
+			else{
+				return false;
+			}
 		}
 	}
 	public void shiftLow() {
 	    InHighGear = false;
-	    shifter.set(DoubleSolenoid.Value.kReverse);
+	    shifter.set(DoubleSolenoid.Value.kForward);
 	}
 	public void shiftHigh() {
 	    InHighGear = true;
-	    shifter.set(DoubleSolenoid.Value.kForward);
+	    shifter.set(DoubleSolenoid.Value.kReverse);
 	}
 	public void toggleShift(){
 		if(InHighGear){	shiftLow();}
@@ -225,6 +232,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
     	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
     	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
+    	SmartDashboard.putBoolean("DriveGearHigh", InHighGear);
     }
 }
 //    	SmartDashboard.putBoolean("High Gear", InHighGear);

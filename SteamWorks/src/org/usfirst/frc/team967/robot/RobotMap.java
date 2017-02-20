@@ -31,10 +31,10 @@ public class RobotMap {
 	/**----------Intake-----------------------**/
 	public static final int intake = 5;
 	
-	public static final int intakeUpperOut = 5;
-	public static final int intakeUpperIn = 2;
-	public static final int intakeLowerOut = 4;
-	public static final int intakeLowerIn = 3;
+	public static final int intakeUpperOut = 2;
+	public static final int intakeUpperIn = 5;
+	public static final int intakeLowerOut = 3;
+	public static final int intakeLowerIn = 4;
 	//----------------------------------------
 	
 	/**----------Climber----------------------**/

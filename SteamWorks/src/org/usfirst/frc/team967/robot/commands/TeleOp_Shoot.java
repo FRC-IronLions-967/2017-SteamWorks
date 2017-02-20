@@ -8,13 +8,15 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class TeleOp_Shoot extends Command {
-
-    public TeleOp_Shoot() {
+	private int speed;
+    public TeleOp_Shoot(int Speed) {
         requires(Robot.shooterSubsystem);
+        speed = Speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+       // Robot.shooterSubsystem.shooterRpm = speed;
     }
 
     // Called repeatedly when this Command is scheduled to run

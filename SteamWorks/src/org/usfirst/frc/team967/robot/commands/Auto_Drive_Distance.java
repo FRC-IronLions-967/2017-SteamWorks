@@ -21,7 +21,12 @@ public class Auto_Drive_Distance extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveSubsystem.zeroEncoders();
-    	Robot.driveSubsystem.arcadeDrive(-.75, 0);
+    	if(counts > 0){
+    		Robot.driveSubsystem.arcadeDrive(-.75, 0);
+    	}
+    	else{
+    		Robot.driveSubsystem.arcadeDrive(.75, 0);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

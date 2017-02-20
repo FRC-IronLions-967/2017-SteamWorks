@@ -6,6 +6,7 @@ import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /*
  *Ready to be tested on the real robot.
@@ -36,11 +37,11 @@ public class IntakeSubsystem extends Subsystem {
     // here. Call these from Commands.
 	public void shiftUpperIn() {
 	    UpperExtended = false;
-	    upperArm.set(DoubleSolenoid.Value.kReverse);
+	    upperArm.set(DoubleSolenoid.Value.kForward);
 	}
 	public void shiftUpperOut() {
 	    UpperExtended = true;
-	    upperArm.set(DoubleSolenoid.Value.kForward);
+	    upperArm.set(DoubleSolenoid.Value.kReverse);
 	}
 	public void upperToggle(){
 		if(UpperExtended){
@@ -52,11 +53,11 @@ public class IntakeSubsystem extends Subsystem {
 	}
 	public void shiftLowerIn() {
 	    LowerExtended = false;
-	    lowerArm.set(DoubleSolenoid.Value.kReverse);
+	    lowerArm.set(DoubleSolenoid.Value.kForward);
 	}
 	public void shiftLowerOut() {
 	    LowerExtended = true;
-	    lowerArm.set(DoubleSolenoid.Value.kForward);
+	    lowerArm.set(DoubleSolenoid.Value.kReverse);
 	}
 	public void lowerToggle(){
 		if(LowerExtended){
@@ -83,6 +84,7 @@ public class IntakeSubsystem extends Subsystem {
     }
     
     public void log(){
-    	
+    	SmartDashboard.putBoolean("UpperExtended", UpperExtended);
+    	SmartDashboard.putBoolean("LowerExtended", LowerExtended);
     }
 }

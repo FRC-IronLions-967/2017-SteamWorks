@@ -18,7 +18,7 @@ public class ShooterSubsystem extends Subsystem {
     private CANTalon shooterFollow;
     private CANTalon shooterFeed;
     
-    int shooterRpm = RobotConstraints.ShooterSubsystem_ShooterSpeed;
+    public int shooterRpm = RobotConstraints.ShooterSubsystem_ShooterSpeed;
 	int incrementVal = 50;
     
 	double pValue = RobotConstraints.ShooterSubsystem_Shooter_P;
@@ -109,11 +109,11 @@ public class ShooterSubsystem extends Subsystem {
     	SmartDashboard.putNumber("Shooter.getSpeed", shooterLead.getSpeed());
     	SmartDashboard.putNumber("Shooter RPM", shooterRpm);
     	SmartDashboard.putNumber("Fly Wheel .get()", shooterLead.get());
-    	SmartDashboard.putNumber("Fly Wheel P", shooterLead.getP());
-    	SmartDashboard.putNumber("Fly Wheel I", shooterLead.getI());
-    	SmartDashboard.putNumber("Fly Wheel D", shooterLead.getD());
+//    	SmartDashboard.putNumber("Fly Wheel P", shooterLead.getP());
+//    	SmartDashboard.putNumber("Fly Wheel I", shooterLead.getI());
+//    	SmartDashboard.putNumber("Fly Wheel D", shooterLead.getD());
     	SmartDashboard.putNumber("Fly Wheel Setpoint", shooterLead.getSetpoint());
-    	SmartDashboard.putNumber("Encoder Position", shooterLead.getEncPosition());
+//    	SmartDashboard.putNumber("Encoder Position", shooterLead.getEncPosition());
     	SmartDashboard.putNumber("Fly Wheel Velocity", shooterLead.getEncVelocity());
     	SmartDashboard.putNumber("Talon Closed Loop Error", shooterLead.getClosedLoopError());
     }
