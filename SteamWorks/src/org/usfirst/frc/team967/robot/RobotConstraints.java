@@ -8,17 +8,15 @@ public class RobotConstraints {
 	
 	/*** Shooter Constraints ***/
 	public static int ShooterSubsystem_Shooter_Profile;
-	public static final double ShooterSubsystem_Shooter_P = .12;
+	public static final double ShooterSubsystem_Shooter_P = .15;
 	public static final double ShooterSubsystem_Shooter_I = 0;
-	public static final double ShooterSubsystem_Shooter_D = .5;
+	public static final double ShooterSubsystem_Shooter_D = .55;
 	public static final double ShooterSubsystem_Shooter_F = .014;
 	public static final int ShooterSubsystem_Shooter_Izone = 8525;
 	public static final double ShooterSubsystem_Shooter_CloseLoopRampRate = 0;
 	public static final int ShooterSubsystem_Shooter_profile = 0;
 	
-	public static final int ShooterSubsystem_ShooterSpeed = 1200;
-	public static final int ShooterSubsystem_ShooterSpeed_close = 1200;
-	public static final int ShooterSubsystem_ShooterSpeed_far = 2400;
+	public static final int ShooterSubsystem_ShooterSpeed = 1300;
 	
 	/*** Climber Constraints ***/
 	public static double ClimberSubsystem_ClimberSpeed = 1;

@@ -17,7 +17,7 @@ public class TeleOp_StopShooting extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooterSubsystem.Shoot(0);
+    //	Robot.shooterSubsystem.Shoot(0);
     }
 
     // Called repeatedly when this Command is scheduled to run

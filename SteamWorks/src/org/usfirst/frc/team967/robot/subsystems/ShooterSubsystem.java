@@ -50,12 +50,12 @@ public class ShooterSubsystem extends Subsystem {
 		shooterFeed.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     }
 	
-	public void Shoot(int speed){
+	public void Shoot(){
     //may need to uncomment???
-		//	shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
-    //	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
-    //	shooterFollow.set(shooterLead.getDeviceID());
-		shooterLead.set(-speed);
+			shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
+    	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
+    	shooterFollow.set(shooterLead.getDeviceID());
+		shooterLead.set(-shooterRpm);
     }
 	
 	public void PUp(){
@@ -100,7 +100,7 @@ public class ShooterSubsystem extends Subsystem {
     }
     
     public void initDefaultCommand() {
-//    	setDefaultCommand(new TeleOp_Shoot());
+    	setDefaultCommand(new TeleOp_Shoot());
     }
     
     public void log(){
@@ -110,11 +110,11 @@ public class ShooterSubsystem extends Subsystem {
     	SmartDashboard.putNumber("Shooter.getSpeed", shooterLead.getSpeed());
     	SmartDashboard.putNumber("Shooter RPM", shooterRpm);
     	SmartDashboard.putNumber("Fly Wheel .get()", shooterLead.get());
-//    	SmartDashboard.putNumber("Fly Wheel P", shooterLead.getP());
-//    	SmartDashboard.putNumber("Fly Wheel I", shooterLead.getI());
-//    	SmartDashboard.putNumber("Fly Wheel D", shooterLead.getD());
+    	SmartDashboard.putNumber("Fly Wheel P", shooterLead.getP());
+    	SmartDashboard.putNumber("Fly Wheel I", shooterLead.getI());
+    	SmartDashboard.putNumber("Fly Wheel D", shooterLead.getD());
     	SmartDashboard.putNumber("Fly Wheel Setpoint", shooterLead.getSetpoint());
-//    	SmartDashboard.putNumber("Encoder Position", shooterLead.getEncPosition());
+    	SmartDashboard.putNumber("Encoder Position", shooterLead.getEncPosition());
     	SmartDashboard.putNumber("Fly Wheel Velocity", shooterLead.getEncVelocity());
     	SmartDashboard.putNumber("Talon Closed Loop Error", shooterLead.getClosedLoopError());
     }
