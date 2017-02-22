@@ -42,7 +42,7 @@ public class OI {
     	JoystickButton xbox1_leftStickButton = new JoystickButton(xbox1, 9);
     	JoystickButton xbox1_rightStickButton = new JoystickButton(xbox1, 10);
     	
-    	//xbox1.getPOV();//0=north, 90=east, 180=south, 45=NE, ect.
+    	xbox1.getPOV();//0=north, 90=east, 180=south, 45=NE, ect.
     	
     	//**********************************************************************
     	// Setting up the variables to the custom button box
@@ -54,31 +54,34 @@ public class OI {
     	JoystickButton customBox6 = new JoystickButton(customBox, 6);
     	JoystickButton customBox7 = new JoystickButton(customBox, 7);
     	JoystickButton customBox8 = new JoystickButton(customBox, 8);
+    	JoystickButton customBox9 = new JoystickButton(customBox, 9);
+    	JoystickButton customBox10 = new JoystickButton(customBox, 10);
+    	JoystickButton customBox11 = new JoystickButton(customBox, 11);
     	    	
     	//*********************************************************************
     	//Setting the button variables to the commands for controller number 1
     	
      	xbox1_lT.whenPressed(new TeleOp_DriveShiftHigh(true));
      	xbox1_lT.whenReleased(new TeleOp_DriveShiftHigh(false));
-//     	xbox1_rT.whenPressed(new TeleOp_DriveReverseDirection(true));
-//     	xbox1_rT.whenReleased(new TeleOp_DriveReverseDirection(false));
+     	xbox1_rT.whenPressed(new TeleOp_GearBoxSet(true));
+     	xbox1_rT.whenReleased(new TeleOp_GearBoxSet(false));
 
     	xbox1_a.whenPressed(new TeleOp_DriveShiftToggle());
-//    	xbox1_a.whenReleased(new TeleOp_IntakeUpperArmOut(true));
-//    	xbox1_b.whenPressed(new TeleOp_DriveShiftHigh(true));
-//    	xbox1_b.whenReleased(new TeleOp_DriveShiftHigh(false));
-//    	xbox1_x.whenPressed(new TeleOp_GearBoxSet(true));
-//    	xbox1_x.whenReleased(new TeleOp_GearBoxSet(false));
-//    	xbox1_y.whenPressed(new TeleOp_IntakeLowerArmOut(true));
-//    	xbox1_y.whenReleased(new TeleOp_IntakeLowerArmOut(false));
+//    	xbox1_a.whenReleased(new TeleOp_());
+//    	xbox1_b.whenPressed(new TeleOp_());
+//    	xbox1_b.whenReleased(new TeleOp_());
+//    	xbox1_x.whenPressed(new TeleOp_());
+//    	xbox1_x.whenReleased(new TeleOp_());
+//    	xbox1_y.whenPressed(new TeleOp_());
+//    	xbox1_y.whenReleased(new TeleOp_());
      	xbox1_lb.whenPressed(new TeleOp_DriveShiftToggle());
-//    	xbox1_rb.whenPressed(new command);
+//    	xbox1_rb.whenPressed(new command());
     	xbox1_back.whenPressed(new testOutputOn());
     	xbox1_back.whenReleased(new testOutputOff());
 //    	xbox1_start.whenPressed(new command());
-//    	xbox1_start.whenReleased(new command);
-//    	xbox1_leftStickButton.whenPressed(new command);
-//    	xbox1_rightStickButton.whenPressed(new command);
+//    	xbox1_start.whenReleased(new command());
+//    	xbox1_leftStickButton.whenPressed(new command());
+//    	xbox1_rightStickButton.whenPressed(new command());
 //
     	//**********************************************************************
     	//Setting the button variables to the commands for custom box
@@ -90,14 +93,20 @@ public class OI {
     	customBox3.whenReleased(new TeleOp_GearBoxSet(false));
     	customBox4.whenPressed(new TeleOp_ShooterFeed(.75));
     	customBox4.whenReleased(new TeleOp_ShooterFeed(0));
-//    	customBox5.whenPressed(new TeleOp_());
+    	customBox5.whenPressed(new TeleOp_IntakeArmsOut(false));//pull both arms in
 //    	customBox5.whenReleased(new TeleOp_());
-    	customBox6.whenPressed(new TeleOp_ClimberSet(1));
+    	customBox6.whenPressed(new TeleOp_ClimberSet(RobotConstraints.ClimberSubsystem_ClimberSpeed));
     	customBox6.whenReleased(new TeleOp_ClimberSet(0));
 //    	customBox7.whenPressed(new TeleOp_Shoot(Robot.shooterSubsystem.shooterRpm));
 //    	customBox7.whenReleased(new TeleOp_Shoot(0));
     	customBox8.whenPressed(new TeleOp_IntakeUpperArmToggle());
 //    	customBox8.whenReleased(new TeleOp_IntakeLowerArmOut(false));
+    	customBox9.whenPressed(new TeleOp_IntakeArmsOut(true));//extend both arms
+//    	customBox9.whenReleased(new TeleOp_);
+//    	customBox10.whenPressed(new TeleOp_);
+//    	customBox10.whenReleased(new TeleOp_);
+//    	customBox11.whenPressed(new TeleOp_);
+//    	customBox11.whenReleased(new TeleOp_);
     	
     	SmartDashboard.putData("P Up", new Testing_P_up());
     	SmartDashboard.putData("P down", new Testing_P_down());
@@ -105,7 +114,6 @@ public class OI {
     	SmartDashboard.putData("I down", new Testing_I_down());
     	SmartDashboard.putData("D Up", new Testing_D_up());
     	SmartDashboard.putData("D down", new Testing_D_down());
-//    	SmartDashboard.putData("Stop shooter", new TeleOp_Shoot(0));
     	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
     	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
     }

@@ -2,6 +2,8 @@ Stuff to save and things about the robot code in general
 ->things to know when starting
 ->general notes
 
+Robot Name: CloseCall
+
 Subsystems (5):
 ->	Climber 			->	ClimberSubsystem
 ->	Drivetrain 			->	DriveSubsystem

@@ -14,7 +14,7 @@ import org.usfirst.frc.team967.robot.commands.TeleOp_Shoot;
 
 public class ShooterSubsystem extends Subsystem {
     
-    private CANTalon shooterLead;
+    public CANTalon shooterLead;
     private CANTalon shooterFollow;
     private CANTalon shooterFeed;
     
@@ -52,7 +52,7 @@ public class ShooterSubsystem extends Subsystem {
 	
 	public void Shoot(){
     //may need to uncomment???
-			shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
+		shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
     	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
     	shooterFollow.set(shooterLead.getDeviceID());
 		shooterLead.set(-shooterRpm);
@@ -100,13 +100,14 @@ public class ShooterSubsystem extends Subsystem {
     }
     
     public void initDefaultCommand() {
-    	setDefaultCommand(new TeleOp_Shoot());
+    //	setDefaultCommand(new TeleOp_Shoot());
     }
     
     public void log(){
     	SmartDashboard.putNumber("Bus Voltage", shooterLead.getBusVoltage());
     	SmartDashboard.putNumber("Output Voltage", shooterLead.getOutputVoltage());
-    	SmartDashboard.putNumber("Output Current", shooterLead.getOutputCurrent());
+    	SmartDashboard.putNumber("Output Lead Current", shooterLead.getOutputCurrent());
+    	SmartDashboard.putNumber("Output Follow Current", shooterFollow.getOutputCurrent());
     	SmartDashboard.putNumber("Shooter.getSpeed", shooterLead.getSpeed());
     	SmartDashboard.putNumber("Shooter RPM", shooterRpm);
     	SmartDashboard.putNumber("Fly Wheel .get()", shooterLead.get());

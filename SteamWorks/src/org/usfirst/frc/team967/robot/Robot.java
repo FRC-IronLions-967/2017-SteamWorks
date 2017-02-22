@@ -90,12 +90,6 @@ public class Robot extends IterativeRobot {
 		driveSubsystem.shiftLow();
 //		intakeSubsystem.shiftUpperOut();
 		autonomousCommand = chooser.getSelected();
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
@@ -120,6 +114,7 @@ public class Robot extends IterativeRobot {
 		//intakeSubsystem.shiftLowerOut();
 		//intakeSubsystem.shiftUpperOut();
 		//gearSubsystem.gearBoxClosed();
+		log();
 	}
 
 	/**
@@ -145,6 +140,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putData(intakeSubsystem);
     	SmartDashboard.putData(gearSubsystem);
     	SmartDashboard.putData(driveSubsystem);
+    	SmartDashboard.putNumber("Shooter Speed", Robot.shooterSubsystem.shooterLead.getSpeed());
     	SmartDashboard.putData(Scheduler.getInstance());
     	oi.log();
     	driveSubsystem.log();
