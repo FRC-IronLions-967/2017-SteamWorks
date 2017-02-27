@@ -7,9 +7,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *work in progress 
  */
 public class CameraSubsystem extends Subsystem {
+	public boolean rearCamera;
 	
 	public CameraSubsystem(){
-
+		rearCamera = true;
 	}
 	
 	public void log(){
