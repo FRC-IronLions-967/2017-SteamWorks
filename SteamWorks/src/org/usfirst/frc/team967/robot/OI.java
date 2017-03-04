@@ -67,12 +67,13 @@ public class OI {
      	xbox1_rT.whenReleased(new TeleOp_GearBoxSet(false));
 
     	xbox1_a.whenPressed(new TeleOp_DriveShiftToggle());
-//    	xbox1_a.whenReleased(new TeleOp_());
-//    	xbox1_b.whenPressed(new TeleOp_());
+//     	xbox1_a.whenPressed(new PIDTurnToAngle(0));
+     	//    	xbox1_a.whenReleased(new TeleOp_());
+//    	xbox1_b.whenPressed(new PIDTurnToAngle(90));
 //    	xbox1_b.whenReleased(new TeleOp_());
-//    	xbox1_x.whenPressed(new TeleOp_());
+//    	xbox1_x.whenPressed(new PIDTurnToAngle(180));
 //    	xbox1_x.whenReleased(new TeleOp_());
-//    	xbox1_y.whenPressed(new TeleOp_());
+//    	xbox1_y.whenPressed(new PIDTurnToAngle(-90));
 //    	xbox1_y.whenReleased(new TeleOp_());
      	xbox1_lb.whenPressed(new TeleOp_DriveShiftToggle());
 //    	xbox1_rb.whenPressed(new command());
@@ -97,8 +98,8 @@ public class OI {
 //    	customBox5.whenReleased(new TeleOp_());
     	customBox6.whenPressed(new TeleOp_ClimberSet(RobotConstraints.ClimberSubsystem_ClimberSpeed));
     	customBox6.whenReleased(new TeleOp_ClimberSet(0));
-//    	customBox7.whenPressed(new TeleOp_Shoot(Robot.shooterSubsystem.shooterRpm));
-//    	customBox7.whenReleased(new TeleOp_Shoot(0));
+//    	customBox7.whenPressed(new TeleOp_Shoot());//Robot.shooterSubsystem.shooterRpm
+//    	customBox7.whenReleased(new TeleOp_Shoot());//0
     	customBox8.whenPressed(new TeleOp_IntakeUpperArmToggle());
 //    	customBox8.whenReleased(new TeleOp_IntakeLowerArmOut(false));
     	customBox9.whenPressed(new TeleOp_IntakeArmsOut(true));//extend both arms
@@ -108,7 +109,7 @@ public class OI {
 //    	customBox11.whenPressed(new TeleOp_);
 //    	customBox11.whenReleased(new TeleOp_);
     	
-    	SmartDashboard.putData("P Up", new Testing_P_up());
+    /*	SmartDashboard.putData("P Up", new Testing_P_up());
     	SmartDashboard.putData("P down", new Testing_P_down());
     	SmartDashboard.putData("I Up", new Testing_I_up());
     	SmartDashboard.putData("I down", new Testing_I_down());
@@ -116,6 +117,7 @@ public class OI {
     	SmartDashboard.putData("D down", new Testing_D_down());
     	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
     	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
+    */
     }
     
     public void log(){

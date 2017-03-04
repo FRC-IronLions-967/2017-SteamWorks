@@ -27,12 +27,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	public double PIDOutput;           // Creating a public double as PIDOutput. 
 	
-	static final double kP = 0.012588; // Setting the p for the PID loop to use.
+	static final double kP = 0.018; // Setting the p for the PID loop to use.
 	static final double kI = 0.00;     // Setting the I for the PID loop to use.
-	static final double kD = 0.00;     // Setting the D for the PID loop to use.
+	static final double kD = 0.02;     // Setting the D for the PID loop to use.
 	
-	static final double kToleranceDegrees = 1.0f; // Setting the tolerance for the pid loop.
-	
+	static final double kToleranceDegrees = 5.0f; // Setting the tolerance for the pid loop.
+	//1.0f
 	private CANTalon driveLeftLead;		// Creating driveLeftLead as a motor controller.
 	private CANTalon driveLeftFollow;   // Creating driveLeftFollow as a motor controller.
 	//private CANTalon driveLeftFollow1;  // Creating driveLeftFollow1 as a motor controller.
@@ -225,23 +225,29 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     }
         
     public void log(){
-    	SmartDashboard.putNumber("Left Encoder Position", driveLeftLead.getEncPosition());
-    	SmartDashboard.putNumber("Right Encoder Position", driveRightLead.getEncPosition());
+//    	SmartDashboard.putNumber("Left Encoder Position", driveLeftLead.getEncPosition());
+//    	SmartDashboard.putNumber("Right Encoder Position", driveRightLead.getEncPosition());
     //	SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw());
-    	SmartDashboard.putNumber("right lead amps", driveRightLead.getOutputCurrent());
-    	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
-    	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
-    	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
-    	SmartDashboard.putBoolean("DriveGearHigh", InHighGear);
-    }
-}
-//    	SmartDashboard.putBoolean("High Gear", InHighGear);
-//   	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
-//        SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());
-//        SmartDashboard.putNumber(   "IMU_Yaw",              gyro.getYaw());
-//        SmartDashboard.putNumber(   "IMU_Pitch",            gyro.getPitch());
-//        SmartDashboard.putNumber(   "IMU_Roll",             gyro.getRoll());
-//        
+//    	SmartDashboard.putNumber("right lead amps", driveRightLead.getOutputCurrent());
+//    	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
+//    	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
+//    	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
+//    	SmartDashboard.putBoolean("DriveGearHigh", InHighGear);
+    
+   	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
+        SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());
+        SmartDashboard.putNumber(   "IMU_Yaw",              gyro.getYaw());
+        SmartDashboard.putNumber(   "IMU_Pitch",            gyro.getPitch());
+        SmartDashboard.putNumber(   "IMU_Roll",             gyro.getRoll());
+        SmartDashboard.putNumber(   "Error", turnController.getError());
+        SmartDashboard.putNumber(   "P", turnController.getP());
+        SmartDashboard.putNumber(   "I", turnController.getI());
+        SmartDashboard.putNumber(   "D", turnController.getD());
+        SmartDashboard.putNumber(   "Setpoint", turnController.getSetpoint());
+        
+        
+
+        //        
 //        /* Display tilt-corrected, Magnetometer-based heading (requires             */
 //        /* magnetometer calibration to be useful)                                   */
 //        
@@ -313,3 +319,6 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 //		SmartDashboard.putNumber(   "IMU_Accel_X",          gyro.getWorldLinearAccelX());
 //        SmartDashboard.putNumber(   "IMU_Accel_Y",          gyro.getWorldLinearAccelY());
 //        SmartDashboard.putBoolean(  "IMU_IsMoving",         gyro.isMoving());
+    }
+}
+        

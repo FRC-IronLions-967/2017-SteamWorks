@@ -18,10 +18,10 @@ public class TeleOp_GearBoxSet extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if(open){
-    		Robot.gearSubsystem.gearBoxClosed();
+    		Robot.gearSubsystem.gearBoxOpen();
     	}
     	else{
-    		Robot.gearSubsystem.gearBoxOpen();
+    		Robot.gearSubsystem.gearBoxClosed();
     	}
     }
 

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
 import org.usfirst.frc.team967.robot.commands.auto.*;
 import org.usfirst.frc.team967.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
@@ -47,6 +48,8 @@ public class Robot extends IterativeRobot {
     	robotConstraints = new RobotConstraints();
 		oi = new OI();
 		CameraServer.getInstance().startAutomaticCapture();
+		chooser.addObject("turn90", new PIDTurnToAngle(-90));
+		
 		chooser.addDefault("Drive Forward", new driveBaseline());
 		chooser.addObject("LeftBlue", new blueLeftGear());
 		chooser.addObject("RightBlue", new blueRightGear());
@@ -88,7 +91,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		driveSubsystem.zeroEncoders();
 		driveSubsystem.shiftLow();
-//		intakeSubsystem.shiftUpperOut();
+		gearSubsystem.gearBoxClosed();
+		//		intakeSubsystem.shiftUpperOut();
 		autonomousCommand = chooser.getSelected();
 
 		// schedule the autonomous command (example)

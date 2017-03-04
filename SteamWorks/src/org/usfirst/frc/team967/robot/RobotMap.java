@@ -18,8 +18,8 @@ public class RobotMap {
 	public static final int driveRightFollow = 4;
 	public static final int driveRightFollow1 = 36;
 	
-	public static final int driveShifterHigh = 6;
-	public static final int driveShifterLow = 1;
+	public static final int driveShifterHigh = 1;
+	public static final int driveShifterLow = 6;
 	//----------------------------------------
 	
 	/**-----------Shooter----------------------**/
@@ -43,8 +43,8 @@ public class RobotMap {
 	//----------------------------------------
 	
 	/**----------Gears------------------------**/
-	public static final int gearClosed = 7;
-	public static final int gearOpen = 0;
+	public static final int gearClosed = 0;
+	public static final int gearOpen = 7;
 	
 	//----------------------------------------
 	

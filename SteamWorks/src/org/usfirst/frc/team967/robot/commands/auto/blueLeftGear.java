@@ -1,6 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
+import org.usfirst.frc.team967.robot.commands.Auto_resetYaw;
 import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
 import org.usfirst.frc.team967.robot.commands.TeleOp_DriveShiftHigh;
 import org.usfirst.frc.team967.robot.commands.TeleOp_GearBoxSet;
@@ -13,17 +14,24 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class blueLeftGear extends CommandGroup {
 
     public blueLeftGear() {
+    	addSequential(new Auto_resetYaw());
+    	//reset Yaw
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
-    	addSequential(new Auto_Drive_Distance(3000));
+    	addSequential(new TeleOp_GearBoxSet(false));
+    	//low gear
+    	addSequential(new Auto_Drive_Distance(-3850));
     	//drive forward
-    	addSequential(new PIDTurnToAngle(70));
+    	addSequential(new Auto_resetYaw());
+    	//reset Yaw
+    	addSequential(new PIDTurnToAngle(65));
     	//turn
-    	addSequential(new TeleOp_GearBoxSet(true));
+    	addParallel(new TeleOp_GearBoxSet(true));
     	//open gear box
-    	addSequential(new Auto_Drive_Distance(1000));
+    	addSequential(new Auto_Drive_Distance(-1150));
+    	
     	//drive forward
-    	addSequential(new Auto_Drive_Distance(-1000));
+    	addSequential(new Auto_Drive_Distance(1000));
     	//drive back
     	
     	// Add Commands here:
