@@ -22,8 +22,8 @@ import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
 
 public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
-	AHRS gyro;  					   // Creating the variable gyro as a AHRS variable.
-	PIDController turnController;      // Creating the variable turnController as a PidLoop.  
+	private AHRS gyro;  					   // Creating the variable gyro as a AHRS variable.
+	private PIDController turnController;      // Creating the variable turnController as a PidLoop.  
 	
 	public double PIDOutput;           // Creating a public double as PIDOutput. 
 	
@@ -132,6 +132,18 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	 *  
 	 */
 	public void move(double left, double right){
+		if(left > 1){
+			left = 1;
+		}
+		if(left < -1){
+			left = -1;
+		}
+		if(right > 1){
+			right = 1;
+		}
+		if(right < -1){
+			right = -1;
+		}
 		driveLeftLead.set(left);
 //		driveLeftFollow1.set(left);
     	driveRightLead.set(-right);
@@ -166,6 +178,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	public void resetYaw(){
 		gyro.zeroYaw();
+	}
+	
+	public double getYaw(){
+		return gyro.getYaw();
 	}
 	
 	public void pidStop(){

@@ -12,7 +12,7 @@ public class driveBaseline extends CommandGroup {
 
     public driveBaseline() {
     	addSequential(new TeleOp_DriveShiftHigh(true));
-    	addSequential(new Auto_Drive_Distance(-6000));
+    	addSequential(new Auto_Drive_Distance(-6000, .75));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

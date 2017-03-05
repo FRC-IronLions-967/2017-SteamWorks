@@ -16,7 +16,7 @@ public class redCenterGear extends CommandGroup {
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
-    	addSequential(new Auto_Drive_Distance(500));
+    	addSequential(new Auto_Drive_Distance(500, .75));
     	//drive forward
 //    	addSequential(new Auto_Drive_Distance(-1000));
     	//drive back
