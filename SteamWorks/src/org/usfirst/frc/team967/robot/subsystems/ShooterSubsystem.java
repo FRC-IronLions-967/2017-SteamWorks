@@ -19,7 +19,7 @@ public class ShooterSubsystem extends Subsystem {
     private CANTalon shooterFeed;
     
     public int shooterRpm = RobotConstraints.ShooterSubsystem_ShooterSpeed;
-	int incrementVal = 50;
+	int incrementVal = 1;
     
 	double pValue = RobotConstraints.ShooterSubsystem_Shooter_P;
 	double iValue = RobotConstraints.ShooterSubsystem_Shooter_I;
@@ -32,6 +32,8 @@ public class ShooterSubsystem extends Subsystem {
 		
 		shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
 		shooterLead.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+//		shooterLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		
 		shooterLead.reverseSensor(false);
 		shooterLead.reverseOutput(true);
     	shooterLead.configEncoderCodesPerRev(12); 
@@ -51,10 +53,9 @@ public class ShooterSubsystem extends Subsystem {
     }
 	
 	public void Shoot(){
-    //may need to uncomment???
-		shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
-    	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
-    	shooterFollow.set(shooterLead.getDeviceID());
+	//	shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
+    //	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
+    //	shooterFollow.set(shooterLead.getDeviceID());
 		shooterLead.set(-shooterRpm);
     }
 	
@@ -100,7 +101,7 @@ public class ShooterSubsystem extends Subsystem {
     }
     
     public void initDefaultCommand() {
-    //	setDefaultCommand(new TeleOp_Shoot());
+    	setDefaultCommand(new TeleOp_Shoot());
     }
     
     public void log(){

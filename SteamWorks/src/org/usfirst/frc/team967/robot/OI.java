@@ -108,6 +108,8 @@ public class OI {
 //    	customBox11.whenPressed(new TeleOp_);
 //    	customBox11.whenReleased(new TeleOp_);
     	
+    	SmartDashboard.putData("Camera Toggle", new cameraToggle());
+    	
     	SmartDashboard.putData("P Up", new Testing_P_up());
     	SmartDashboard.putData("P down", new Testing_P_down());
     	SmartDashboard.putData("I Up", new Testing_I_up());
@@ -119,7 +121,7 @@ public class OI {
     }
     
     public void log(){
-    
+    	SmartDashboard.putNumber("Feeder Speed", xbox1.getRawAxis(1)*xbox1.getRawAxis(1));
     }
     
     public Joystick getXbox1() {

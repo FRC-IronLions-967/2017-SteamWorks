@@ -32,7 +32,7 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
  */
 public class Robot extends IterativeRobot {	
 	Thread visionThread;
-	CameraServer server;
+	//CameraServer server;
 	public static final CameraSubsystem cameraSubsystem = new CameraSubsystem();	
 	public static RobotMap robotMap;
 	public static RobotConstraints robotConstraints;
@@ -64,10 +64,8 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("RightRed", new redRightGear());
 		chooser.addObject("CenterRed", new redCenterGear());
 		SmartDashboard.putData("Auto mode", chooser);
-		visionThread = new Thread(() -> {
-			// Get the UsbCamera from CameraServer
-			server = CameraServer.getInstance();
-			
+	/*	visionThread = new Thread(() -> {
+			// Get the UsbCamera from CameraServer		
 			UsbCamera RearCamera = CameraServer.getInstance().startAutomaticCapture(0);
 			UsbCamera FrontCamera = CameraServer.getInstance().startAutomaticCapture(1);
 			
@@ -79,18 +77,10 @@ public class Robot extends IterativeRobot {
 			CvSink rearSink = CameraServer.getInstance().getVideo(RearCamera);
 			CvSink frontSink = CameraServer.getInstance().getVideo(FrontCamera);
 			// Setup a CvSource. This will send images back to the Dashboard
-			CvSource outputStream = CameraServer.getInstance().putVideo("Rectangle", 640, 480);
-/*Try what is there just to see what it does, then try to toggle between cameras
- * 
- * if(Robot)
- * 
- * 
- * 
- */
-			/*
+			CvSource dashOutput = CameraServer.getInstance().putVideo("Rectangle", 640, 480);
+
 			// Mats are very memory expensive. Lets reuse this Mat.
 			Mat mat = new Mat();
-
 			// This cannot be 'true'. The program will never exit if it is. This
 			// lets the robot stop this thread when restarting robot code or
 			// deploying.
@@ -100,7 +90,7 @@ public class Robot extends IterativeRobot {
 					// in the source mat.  If there is an error notify the output.
 					if (rearSink.grabFrame(mat) == 0) {
 						// Send the output the error.
-						outputStream.notifyError(rearSink.getError());
+						dashOutput.notifyError(rearSink.getError());
 						// skip the rest of the current iteration
 						continue;
 					}
@@ -111,21 +101,21 @@ public class Robot extends IterativeRobot {
 				else{
 					if (frontSink.grabFrame(mat) == 0) {
 						// Send the output the error.
-						outputStream.notifyError(frontSink.getError());
+						dashOutput.notifyError(frontSink.getError());
 						// skip the rest of the current iteration
 						continue;
 					}
 				}
 				// Give the output stream a new image to display
-				outputStream.putFrame(mat);
+				dashOutput.putFrame(mat);
 			}
-			if(cameraSubsystem.rearCamera){
-				outputStream.putFrame(null);
-			}
-			else{
-				outputStream.putFrame(null);
-			}
-			*/
+//			if(cameraSubsystem.rearCamera){
+//				dashOutput.putFrame(mat);
+//			}
+//			else{
+//				dashOutput.putFrame(null);
+//			}
+			/*
 //***********************************************************************
 			// Mats are very memory expensive. Lets reuse this Mat.
 			Mat mat = new Mat();
@@ -138,7 +128,7 @@ public class Robot extends IterativeRobot {
 				// in the source mat.  If there is an error notify the output.
 				if (rearSink.grabFrame(mat) == 0) {
 					// Send the output the error.
-					outputStream.notifyError(rearSink.getError());
+					dashOutput.notifyError(rearSink.getError());
 					// skip the rest of the current iteration
 					continue;
 				}
@@ -146,9 +136,43 @@ public class Robot extends IterativeRobot {
 				Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400),
 						new Scalar(255, 255, 255), 5);
 				// Give the output stream a new image to display
+				dashOutput.putFrame(mat);
+			}
+		});*/
+		/* this works*/
+		visionThread = new Thread(() -> {
+			// Get the UsbCamera from CameraServer
+			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+			// Set the resolution
+			camera.setResolution(640, 480);
+
+			// Get a CvSink. This will capture Mats from the camera
+			CvSink cvSink = CameraServer.getInstance().getVideo();
+			// Setup a CvSource. This will send images back to the Dashboard
+			CvSource outputStream = CameraServer.getInstance().putVideo("Rectangle", 640, 480);
+
+			// Mats are very memory expensive. Lets reuse this Mat.
+			Mat mat = new Mat();
+
+			// This cannot be 'true'. The program will never exit if it is. This
+			// lets the robot stop this thread when restarting robot code or
+			// deploying.
+			while (!Thread.interrupted()) {
+				// Tell the CvSink to grab a frame from the camera and put it
+				// in the source mat.  If there is an error notify the output.
+				if (cvSink.grabFrame(mat) == 0) {
+					// Send the output the error.
+					outputStream.notifyError(cvSink.getError());
+					// skip the rest of the current iteration
+					continue;
+				}
+				// Put a rectangle on the image
+				Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400),
+						new Scalar(0, 0, 255), 5);
+				// Give the output stream a new image to display
 				outputStream.putFrame(mat);
 			}
-		});
+		});	
 		visionThread.setDaemon(true);
 		visionThread.start();
 	}
