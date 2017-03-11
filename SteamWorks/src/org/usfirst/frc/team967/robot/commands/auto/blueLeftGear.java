@@ -20,7 +20,7 @@ public class blueLeftGear extends CommandGroup {
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
     	//low gear
-    	addSequential(new Auto_Drive_Distance(-3850));
+    	addSequential(new Auto_Drive_Distance(-3700));
     	//drive forward
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
@@ -29,7 +29,6 @@ public class blueLeftGear extends CommandGroup {
     	addParallel(new TeleOp_GearBoxSet(true));
     	//open gear box
     	addSequential(new Auto_Drive_Distance(-1150));
-    	
     	//drive forward
     	addSequential(new Auto_Drive_Distance(1000));
     	//drive back
