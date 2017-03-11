@@ -32,7 +32,6 @@ import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
  */
 public class Robot extends IterativeRobot {	
 	Thread visionThread;
-	//CameraServer server;
 	public static final CameraSubsystem cameraSubsystem = new CameraSubsystem();	
 	public static RobotMap robotMap;
 	public static RobotConstraints robotConstraints;
@@ -144,12 +143,12 @@ public class Robot extends IterativeRobot {
 			// Get the UsbCamera from CameraServer
 			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 			// Set the resolution
-			camera.setResolution(640, 480);
-
+			camera.setResolution(320/2, 240/2);
+/*
 			// Get a CvSink. This will capture Mats from the camera
 			CvSink cvSink = CameraServer.getInstance().getVideo();
 			// Setup a CvSource. This will send images back to the Dashboard
-			CvSource outputStream = CameraServer.getInstance().putVideo("Rectangle", 640, 480);
+			CvSource outputStream = CameraServer.getInstance().putVideo("Rectangle", 320, 240);
 
 			// Mats are very memory expensive. Lets reuse this Mat.
 			Mat mat = new Mat();
@@ -171,7 +170,8 @@ public class Robot extends IterativeRobot {
 						new Scalar(0, 0, 255), 5);
 				// Give the output stream a new image to display
 				outputStream.putFrame(mat);
-			}
+				
+			}*/
 		});	
 		visionThread.setDaemon(true);
 		visionThread.start();

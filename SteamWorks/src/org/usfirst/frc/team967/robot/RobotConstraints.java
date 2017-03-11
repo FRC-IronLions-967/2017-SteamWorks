@@ -16,7 +16,9 @@ public class RobotConstraints {
 	public static final double ShooterSubsystem_Shooter_CloseLoopRampRate = 0;
 	public static final int ShooterSubsystem_Shooter_profile = 0;
 	
-	public static final int ShooterSubsystem_ShooterSpeed = 435;//1300
+	public static final int ShooterSubsystem_ShooterSpeed = 700;
+	//435 is better
+	
 	
 	/*** Climber Constraints ***/
 	public static double ClimberSubsystem_ClimberSpeed = 1;

@@ -101,7 +101,7 @@ public class ShooterSubsystem extends Subsystem {
     }
     
     public void initDefaultCommand() {
-    	setDefaultCommand(new TeleOp_Shoot());
+    	//setDefaultCommand(new TeleOp_Shoot());
     }
     
     public void log(){
