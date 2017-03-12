@@ -4,11 +4,14 @@ public class RobotConstraints {
 	
 	/*** DRIVETRAIN Constraints ***/
 	public static final double DriveSubsystem_deadBand = .15;
-	//now that input is squared, this could probably come down
 	
 	/*** Shooter Constraints ***/
 	public static int ShooterSubsystem_Shooter_Profile;
+<<<<<<< HEAD
 	public static final double ShooterSubsystem_Shooter_P = .4;
+=======
+	public static final double ShooterSubsystem_Shooter_P = .2;//.15
+>>>>>>> refs/remotes/origin/master
 	public static final double ShooterSubsystem_Shooter_I = 0;
 	public static final double ShooterSubsystem_Shooter_D = .3;
 	public static final double ShooterSubsystem_Shooter_F = .014;
@@ -16,9 +19,13 @@ public class RobotConstraints {
 	public static final double ShooterSubsystem_Shooter_CloseLoopRampRate = 0;
 	public static final int ShooterSubsystem_Shooter_profile = 0;
 	
+<<<<<<< HEAD
 	public static final int ShooterSubsystem_ShooterSpeed = 700;
 	//435 is better
 	
+=======
+	public static final int ShooterSubsystem_ShooterSpeed = 800;
+>>>>>>> refs/remotes/origin/master
 	
 	/*** Climber Constraints ***/
 	public static double ClimberSubsystem_ClimberSpeed = 1;

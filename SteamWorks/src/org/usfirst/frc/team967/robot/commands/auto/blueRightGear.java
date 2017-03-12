@@ -15,15 +15,15 @@ public class blueRightGear extends CommandGroup {
     public blueRightGear() {
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
-    	addSequential(new Auto_Drive_Distance(3000));
+    	addSequential(new Auto_Drive_Distance(-3000, .75));
     	//drive forward
-    	addSequential(new PIDTurnToAngle(-70));
+    	addSequential(new PIDTurnToAngle(-60));
     	//turn
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
-    	addSequential(new Auto_Drive_Distance(1000));
+    	addSequential(new Auto_Drive_Distance(-2000, .75));
     	//drive forward
-    	addSequential(new Auto_Drive_Distance(-1000));
+    	addSequential(new Auto_Drive_Distance(1000, .75));
     	//drive back
     	
     	// Add Commands here:

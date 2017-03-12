@@ -25,7 +25,6 @@ public class PIDTurnToAngle extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveSubsystem.move(Robot.driveSubsystem.PIDOutput, -Robot.driveSubsystem.PIDOutput);
-    	//Robot.driveSubsystem.pidSetPoint(Angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,6 +34,7 @@ public class PIDTurnToAngle extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveSubsystem.pidStop();
     }
 
     // Called when another command which requires one or more of the same

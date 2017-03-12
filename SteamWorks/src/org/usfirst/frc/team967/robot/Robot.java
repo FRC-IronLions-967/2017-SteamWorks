@@ -12,10 +12,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
+<<<<<<< HEAD
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
+=======
+import org.usfirst.frc.team967.robot.commands.AutoDriveGyro;
+import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
+>>>>>>> refs/remotes/origin/master
 import org.usfirst.frc.team967.robot.commands.auto.*;
 import org.usfirst.frc.team967.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
@@ -54,7 +59,13 @@ public class Robot extends IterativeRobot {
 		robotMap = new RobotMap();
     	robotConstraints = new RobotConstraints();
 		oi = new OI();
+<<<<<<< HEAD
 //		CameraServer.getInstance().startAutomaticCapture();
+=======
+		CameraServer.getInstance().startAutomaticCapture();
+		chooser.addObject("ShooterBlueLeft", new blueLeftShoot());
+		
+>>>>>>> refs/remotes/origin/master
 		chooser.addDefault("Drive Forward", new driveBaseline());
 		chooser.addObject("LeftBlue", new blueLeftGear());
 		chooser.addObject("RightBlue", new blueRightGear());
@@ -208,7 +219,9 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		driveSubsystem.zeroEncoders();
 		driveSubsystem.shiftLow();
-//		intakeSubsystem.shiftUpperOut();
+		gearSubsystem.gearBoxClosed();
+		shooterSubsystem.StopShooter();
+		//		intakeSubsystem.shiftUpperOut();
 		autonomousCommand = chooser.getSelected();
 
 		// schedule the autonomous command (example)
@@ -231,6 +244,7 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.cancel();
 		driveSubsystem.shiftLow();
 		driveSubsystem.zeroEncoders();
+		shooterSubsystem.StopShooter();
 		//intakeSubsystem.shiftLowerOut();
 		//intakeSubsystem.shiftUpperOut();
 		//gearSubsystem.gearBoxClosed();

@@ -10,22 +10,24 @@ import edu.wpi.first.wpilibj.command.Command;
 	
 public class Auto_Drive_Distance extends Command {
 	private double counts;
+	private double power;
 	
-    public Auto_Drive_Distance(double distance) {
+    public Auto_Drive_Distance(double distance, double Power) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveSubsystem);
     	counts = distance;
+    	power = Power;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveSubsystem.zeroEncoders();
     	if(counts > 0){
-    		Robot.driveSubsystem.arcadeDrive(-.75, 0);
+    		Robot.driveSubsystem.arcadeDrive(-power, 0);
     	}
     	else{
-    		Robot.driveSubsystem.arcadeDrive(.75, 0);
+    		Robot.driveSubsystem.arcadeDrive(power, 0);
     	}
     }
 

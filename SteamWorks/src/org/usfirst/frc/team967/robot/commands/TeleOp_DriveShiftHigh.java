@@ -20,10 +20,10 @@ public class TeleOp_DriveShiftHigh extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if(high){
-    		Robot.driveSubsystem.shiftLow();
+    		Robot.driveSubsystem.shiftHigh();
     	}
     	else{
-    		Robot.driveSubsystem.shiftHigh();
+    		Robot.driveSubsystem.shiftLow();
     	}
     }
 
