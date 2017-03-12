@@ -104,7 +104,7 @@ public class OI {
 //    	customBox2.whenReleased(new TeleOp_IntakeSet(0));
     	customBox3.whenPressed(new TeleOp_GearBoxSet(true));
     	customBox3.whenReleased(new TeleOp_GearBoxSet(false));
-    	customBox4.whenPressed(new TeleOp_ShooterFeed(.75));
+    	customBox4.whenPressed(new TeleOp_ShooterFeed(1));
     	customBox4.whenReleased(new TeleOp_ShooterFeed(0));
     	customBox5.whenPressed(new TeleOp_IntakeArmsOut(false));//pull both arms in
 //    	customBox5.whenReleased(new TeleOp_());
@@ -120,6 +120,8 @@ public class OI {
 //    	customBox10.whenReleased(new TeleOp_);
 //    	customBox11.whenPressed(new TeleOp_);
 //    	customBox11.whenReleased(new TeleOp_);
+    	
+    	SmartDashboard.putData("Camera Toggle", new cameraToggle());
     	
     	SmartDashboard.putData("P Up", new Testing_P_up());
     	SmartDashboard.putData("P down", new Testing_P_down());
