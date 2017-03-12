@@ -135,11 +135,7 @@ public class OI {
     }
     
     public void log(){
-<<<<<<< HEAD
-    	SmartDashboard.putNumber("Feeder Speed", xbox1.getRawAxis(1)*xbox1.getRawAxis(1));
-=======
     	SmartDashboard.putNumber("Right Stick Squared", xbox1.getRawAxis(4)*xbox1.getRawAxis(4));
->>>>>>> refs/remotes/origin/master
     }
     
     public Joystick getXbox1() {
