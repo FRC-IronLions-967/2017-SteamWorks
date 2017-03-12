@@ -18,17 +18,12 @@ public class ShooterSubsystem extends Subsystem {
     private CANTalon shooterFollow;
     private CANTalon shooterFeed;
     
-<<<<<<< HEAD
-    public int shooterRpm = RobotConstraints.ShooterSubsystem_ShooterSpeed;
-	int incrementVal = 1;
-=======
-    public int shooterRpm = 0;
-	int incrementVal = 50;
->>>>>>> refs/remotes/origin/master
+    private int shooterRpm = 0;
+	private int incrementVal = 1;
     
-	double pValue = RobotConstraints.ShooterSubsystem_Shooter_P;
-	double iValue = RobotConstraints.ShooterSubsystem_Shooter_I;
-	double dValue = RobotConstraints.ShooterSubsystem_Shooter_D;
+	private double pValue = RobotConstraints.ShooterSubsystem_Shooter_P;
+	private double iValue = RobotConstraints.ShooterSubsystem_Shooter_I;
+	private double dValue = RobotConstraints.ShooterSubsystem_Shooter_D;
 	
 	public ShooterSubsystem(){
 		shooterLead = new CANTalon(RobotMap.shooterLead);
@@ -58,18 +53,10 @@ public class ShooterSubsystem extends Subsystem {
     }
 	
 	public void Shoot(){
-<<<<<<< HEAD
-	//	shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
-    //	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
-    //	shooterFollow.set(shooterLead.getDeviceID());
-		shooterLead.set(-shooterRpm);
-=======
-    //may need to uncomment???
 		shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
     	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
     	shooterFollow.set(shooterLead.getDeviceID());
 		shooterLead.set(shooterRpm);
->>>>>>> refs/remotes/origin/master
     }
 	
 	public void PUp(){
