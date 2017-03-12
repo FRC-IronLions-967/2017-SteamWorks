@@ -18,7 +18,7 @@ public class ShooterSubsystem extends Subsystem {
     private CANTalon shooterFollow;
     private CANTalon shooterFeed;
     
-    public int shooterRpm = RobotConstraints.ShooterSubsystem_ShooterSpeed;
+    public int shooterRpm = 0;
 	int incrementVal = 50;
     
 	double pValue = RobotConstraints.ShooterSubsystem_Shooter_P;
@@ -55,7 +55,7 @@ public class ShooterSubsystem extends Subsystem {
 		shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
     	shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
     	shooterFollow.set(shooterLead.getDeviceID());
-		shooterLead.set(-shooterRpm);
+		shooterLead.set(shooterRpm);
     }
 	
 	public void PUp(){
@@ -85,6 +85,11 @@ public class ShooterSubsystem extends Subsystem {
     
     public void StopShooter(){
     	shooterRpm = 0;
+    	Shoot();
+    }
+    public void StartShooter(){
+    	shooterRpm = -RobotConstraints.ShooterSubsystem_ShooterSpeed;
+    	Shoot();
     }
     
     public void ShootSpeedUp(){
@@ -100,11 +105,11 @@ public class ShooterSubsystem extends Subsystem {
     }
     
     public void initDefaultCommand() {
-    //	setDefaultCommand(new TeleOp_Shoot());
+    	//setDefaultCommand(new TeleOp_Shoot());
     }
     
     public void log(){
-    /*	SmartDashboard.putNumber("Bus Voltage", shooterLead.getBusVoltage());
+    	SmartDashboard.putNumber("Bus Voltage", shooterLead.getBusVoltage());
     	SmartDashboard.putNumber("Output Voltage", shooterLead.getOutputVoltage());
     	SmartDashboard.putNumber("Output Lead Current", shooterLead.getOutputCurrent());
     	SmartDashboard.putNumber("Output Follow Current", shooterFollow.getOutputCurrent());
@@ -118,6 +123,5 @@ public class ShooterSubsystem extends Subsystem {
     	SmartDashboard.putNumber("Encoder Position", shooterLead.getEncPosition());
     	SmartDashboard.putNumber("Fly Wheel Velocity", shooterLead.getEncVelocity());
     	SmartDashboard.putNumber("Talon Closed Loop Error", shooterLead.getClosedLoopError());
-    */
     }
 }

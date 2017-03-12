@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team967.robot.commands.AutoDriveGyro;
 import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
 import org.usfirst.frc.team967.robot.commands.auto.*;
 import org.usfirst.frc.team967.robot.subsystems.CameraSubsystem;
@@ -48,7 +49,7 @@ public class Robot extends IterativeRobot {
     	robotConstraints = new RobotConstraints();
 		oi = new OI();
 		CameraServer.getInstance().startAutomaticCapture();
-		chooser.addObject("turn90", new PIDTurnToAngle(-90));
+		chooser.addObject("ShooterBlueLeft", new blueLeftShoot());
 		
 		chooser.addDefault("Drive Forward", new driveBaseline());
 		chooser.addObject("LeftBlue", new blueLeftGear());
@@ -92,6 +93,7 @@ public class Robot extends IterativeRobot {
 		driveSubsystem.zeroEncoders();
 		driveSubsystem.shiftLow();
 		gearSubsystem.gearBoxClosed();
+		shooterSubsystem.StopShooter();
 		//		intakeSubsystem.shiftUpperOut();
 		autonomousCommand = chooser.getSelected();
 
@@ -115,6 +117,7 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.cancel();
 		driveSubsystem.shiftLow();
 		driveSubsystem.zeroEncoders();
+		shooterSubsystem.StopShooter();
 		//intakeSubsystem.shiftLowerOut();
 		//intakeSubsystem.shiftUpperOut();
 		//gearSubsystem.gearBoxClosed();

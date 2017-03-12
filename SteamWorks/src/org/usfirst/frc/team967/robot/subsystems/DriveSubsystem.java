@@ -22,8 +22,8 @@ import org.usfirst.frc.team967.robot.commands.TeleOp_ArcadeDrive;
 
 public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
-	AHRS gyro;  					   // Creating the variable gyro as a AHRS variable.
-	PIDController turnController;      // Creating the variable turnController as a PidLoop.  
+	private AHRS gyro;  					   // Creating the variable gyro as a AHRS variable.
+	private PIDController turnController;      // Creating the variable turnController as a PidLoop.  
 	
 	public double PIDOutput;           // Creating a public double as PIDOutput. 
 	
@@ -55,10 +55,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		driveLeftFollow = new CANTalon(RobotMap.driveLeftFollow);  	  // The left drive follow motor
 		driveRightLead = new CANTalon(RobotMap.driveRightLead);   	  // The right drive lead motor
 		driveRightFollow = new CANTalon(RobotMap.driveRightFollow);	  // The right drive follow motor
-//		driveLeftFollow1 = new CANTalon(RobotMap.driveLeftFollow1);   // Will not be used on the comp robot.
-//		driveRightFollow1 = new CANTalon(RobotMap.driveRightFollow1); // will not be used on the comp robot.
-		//******************
 		shifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.driveShifterLow, RobotMap.driveShifterHigh);
+
 		
 		driveLeftLead.changeControlMode(TalonControlMode.PercentVbus);			// changing the Talon mode to PrecentVbus.
 		driveLeftLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);   // setting the feedbackDevice to a quad encoder.
@@ -75,11 +73,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		// setting the motor driveRightFollow to driveRightLead
 		driveRightFollow.changeControlMode(TalonControlMode.Follower);
 		driveRightFollow.set(driveRightLead.getDeviceID());
-		
-		//these will go away
-//		driveRightFollow1.changeControlMode(TalonControlMode.PercentVbus);
-//		driveLeftFollow1.changeControlMode(TalonControlMode.PercentVbus);
-		
+			
 		/*
 		 * trying to set the navx to the mxp port on the robot but if that does not work it catches the error 
 		 * and the rest of the program goes on without it.
@@ -132,10 +126,32 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	 *  
 	 */
 	public void move(double left, double right){
+		if(left > 1){
+			left = 1;
+		}
+		if(left < -1){
+			left = -1;
+		}
+		if(right > 1){
+			right = 1;
+		}
+		if(right < -1){
+			right = -1;
+		}
+		if(left < 0 && left > -0.1){
+			left = -.1;
+		}
+		if(right < 0 && right > -0.1){
+			right = -.1;
+		}
+		if(right > 0 && right < 0.1){
+			right = .1;
+		}
+		if(left > 0 && left < 0.1){
+			left = .1;
+		}
 		driveLeftLead.set(left);
-//		driveLeftFollow1.set(left);
     	driveRightLead.set(-right);
-//    	driveRightFollow1.set(-right);
     }
 	
 	public void pidEnable(){
@@ -146,12 +162,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	}
 	public void pidWrite(double output) {		
 		if(turnController.getDeltaSetpoint() < 0){
-			//move(output,-output);
 			PIDOutput = output;	
 		}
 		else {
 			PIDOutput = -output;
-			//move(-output,output);
 		}
 	}
 	public boolean pidDone(){
@@ -166,6 +180,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	public void resetYaw(){
 		gyro.zeroYaw();
+	}
+	
+	public double getYaw(){
+		return gyro.getYaw();
 	}
 	
 	public void pidStop(){
@@ -213,13 +231,14 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		else{			shiftHigh();}
 	}
 	//not working currently    
-    public void outputOn(){
+    /*
+	public void outputOn(){
     	Robot.oi.getBox().setOutput(2, true);
     }
     public void outputOff(){
     	Robot.oi.getBox().setOutput(2, false);
     }
-    
+    */
     public void initDefaultCommand() {
     	setDefaultCommand(new TeleOp_ArcadeDrive());
     }
@@ -227,13 +246,13 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     public void log(){
 //    	SmartDashboard.putNumber("Left Encoder Position", driveLeftLead.getEncPosition());
 //    	SmartDashboard.putNumber("Right Encoder Position", driveRightLead.getEncPosition());
-    //	SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw());
+    	SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw());
 //    	SmartDashboard.putNumber("right lead amps", driveRightLead.getOutputCurrent());
 //    	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
 //    	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
 //    	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
-//    	SmartDashboard.putBoolean("DriveGearHigh", InHighGear);
-    
+    	SmartDashboard.putBoolean("DriveGearHigh", InHighGear);
+    /*
    	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
         SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());
         SmartDashboard.putNumber(   "IMU_Yaw",              gyro.getYaw());
@@ -245,7 +264,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
         SmartDashboard.putNumber(   "D", turnController.getD());
         SmartDashboard.putNumber(   "Setpoint", turnController.getSetpoint());
         
-        
+      */  
 
         //        
 //        /* Display tilt-corrected, Magnetometer-based heading (requires             */
