@@ -7,19 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_ShooterFeed extends Command {
-	
-	private double Speed;
-	
-    public TeleOp_ShooterFeed(double speed) {
+public class TeleOp_ShooterFeedStop extends Command {
+
+    public TeleOp_ShooterFeedStop() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     	requires(Robot.shooterSubsystem);
-    	Speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//Robot.shooterSubsystem.FeedShooter(Speed);
-    	Robot.shooterSubsystem.FeedPIDShooter();
+    	Robot.shooterSubsystem.FeedPIDShooterStop();
     }
 
     // Called repeatedly when this Command is scheduled to run

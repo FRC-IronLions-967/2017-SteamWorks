@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *work in progress 
  */
 public class CameraSubsystem extends Subsystem {
-	public boolean rearCamera;
+	private boolean rearCamera;
 	
 	public CameraSubsystem(){
 		rearCamera = true;
@@ -19,6 +19,9 @@ public class CameraSubsystem extends Subsystem {
 	}
 	public void toggleCamera(){
 		rearCamera = !rearCamera;
+	}
+	public boolean getCamera(){
+		return rearCamera;
 	}
 	
     // Put methods for controlling this subsystem

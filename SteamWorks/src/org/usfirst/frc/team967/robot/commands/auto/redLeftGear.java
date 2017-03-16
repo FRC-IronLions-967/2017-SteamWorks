@@ -29,10 +29,16 @@ public class redLeftGear extends CommandGroup {
     	addParallel(new TeleOp_GearBoxSet(true));
     	//open gear box
     	addSequential(new Auto_Drive_Distance(-1150, .75));
-    	
     	//drive forward
-    	addSequential(new Auto_Drive_Distance(1000, .75));
+    	addSequential(new Auto_Drive_Distance(2500, .75));
     	//drive back
+    	addSequential(new PIDTurnToAngle(0));
+    	//turn
+    	addSequential(new TeleOp_DriveShiftHigh(true));
+    	//open gear box
+    	addSequential(new Auto_Drive_Distance(-12000, 1));
+    	//drive forward
+    	
     	
     	// Add Commands here:
         // e.g. addSequential(new Command1());

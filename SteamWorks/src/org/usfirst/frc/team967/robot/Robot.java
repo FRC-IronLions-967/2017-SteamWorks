@@ -56,14 +56,15 @@ public class Robot extends IterativeRobot {
     	robotConstraints = new RobotConstraints();
 		oi = new OI();
 		CameraServer.getInstance().startAutomaticCapture();
-		chooser.addObject("ShooterBlueLeft", new blueLeftShoot());
 		chooser.addDefault("Drive Forward", new driveBaseline());
+		chooser.addObject("ShooterBlueLeft", new blueLeftShoot());
 		chooser.addObject("LeftBlue", new blueLeftGear());
-		chooser.addObject("RightBlue", new blueRightGear());
 		chooser.addObject("CenterBlue", new blueCenterGear());
+		chooser.addObject("RightBlue", new blueRightGear());
 		chooser.addObject("LeftRed", new redLeftGear());
-		chooser.addObject("RightRed", new redRightGear());
 		chooser.addObject("CenterRed", new redCenterGear());
+		chooser.addObject("RightRed", new redRightGear());
+		chooser.addObject("ShootRedRight", new redRightShoot());
 		SmartDashboard.putData("Auto mode", chooser);
 	/*	visionThread = new Thread(() -> {
 			// Get the UsbCamera from CameraServer		
@@ -212,7 +213,7 @@ public class Robot extends IterativeRobot {
 		driveSubsystem.shiftLow();
 		gearSubsystem.gearBoxClosed();
 		shooterSubsystem.StopShooter();
-		//		intakeSubsystem.shiftUpperOut();
+//		intakeSubsystem.shiftUpperOut();
 		autonomousCommand = chooser.getSelected();
 
 		// schedule the autonomous command (example)
@@ -236,6 +237,7 @@ public class Robot extends IterativeRobot {
 		driveSubsystem.shiftLow();
 		driveSubsystem.zeroEncoders();
 		shooterSubsystem.StopShooter();
+		shooterSubsystem.FeedPIDShooterStop();
 		//intakeSubsystem.shiftLowerOut();
 		//intakeSubsystem.shiftUpperOut();
 		//gearSubsystem.gearBoxClosed();

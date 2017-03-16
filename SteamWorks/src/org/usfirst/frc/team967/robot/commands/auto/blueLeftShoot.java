@@ -7,6 +7,7 @@ import org.usfirst.frc.team967.robot.commands.TeleOp_DriveShiftHigh;
 import org.usfirst.frc.team967.robot.commands.TeleOp_GearBoxSet;
 import org.usfirst.frc.team967.robot.commands.TeleOp_Shoot;
 import org.usfirst.frc.team967.robot.commands.TeleOp_ShooterFeed;
+import org.usfirst.frc.team967.robot.commands.ZeroEncoders;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -16,13 +17,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class blueLeftShoot extends CommandGroup {
 
     public blueLeftShoot() {
+    
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(true));
     	//low gear
-    	addSequential(new Auto_Drive_Distance(-3950, .75));
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
+    	addSequential(new Auto_Drive_Distance(-3900, .75));//3900//3850 on blue left gear
     	//drive forward
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
@@ -36,15 +40,18 @@ public class blueLeftShoot extends CommandGroup {
     	//drive back
     	addSequential(new PIDTurnToAngle(0));
     	//turn
-    	addSequential(new Auto_Drive_Distance(1100, .75));
+    	addSequential(new Auto_Drive_Distance(1200, .75));
     	//drive back
+    	//addSequential(new TeleOp_Shoot());
+
     	addParallel(new TeleOp_Shoot());
     	//shoot
+    	
     	addSequential(new PIDTurnToAngle(50));
     	//turn
-    	addSequential(new Auto_Drive_Distance(3000, .9));
+    	addSequential(new Auto_Drive_Distance(3100, .75));
     	//drive back
-    	addSequential(new TeleOp_ShooterFeed(1));
+    	addSequential(new TeleOp_ShooterFeed(.6));
     	
     	
         // Add Commands here:

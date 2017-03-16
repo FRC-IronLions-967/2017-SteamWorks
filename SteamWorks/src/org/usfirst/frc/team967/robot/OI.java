@@ -81,8 +81,8 @@ public class OI {
     	xbox1_a.whenPressed(new TeleOp_DriveShiftToggle());
 //     	xbox1_a.whenPressed(new command());
 //    	xbox1_a.whenReleased(new command());
-//    	xbox1_b.whenPressed(new command());
-//    	xbox1_b.whenReleased(new command());
+    	xbox1_b.whenPressed(new TeleOp_ShooterFeed(3));
+    	xbox1_b.whenReleased(new TeleOp_ShooterFeedStop());
 //    	xbox1_x.whenPressed(new command());
 //    	xbox1_x.whenReleased(new command());
 //    	xbox1_y.whenPressed(new command());
@@ -104,8 +104,8 @@ public class OI {
 //    	customBox2.whenReleased(new TeleOp_IntakeSet(0));
     	customBox3.whenPressed(new TeleOp_GearBoxSet(true));
     	customBox3.whenReleased(new TeleOp_GearBoxSet(false));
-    	customBox4.whenPressed(new TeleOp_ShooterFeed(1));
-    	customBox4.whenReleased(new TeleOp_ShooterFeed(0));
+    	customBox4.whenPressed(new TeleOp_ShooterFeed(3));
+    	customBox4.whenReleased(new TeleOp_ShooterFeedStop());
     	customBox5.whenPressed(new TeleOp_IntakeArmsOut(false));//pull both arms in
 //    	customBox5.whenReleased(new TeleOp_());
     	customBox6.whenPressed(new TeleOp_ClimberSet(RobotConstraints.ClimberSubsystem_ClimberSpeed));
