@@ -19,6 +19,7 @@ public class ShooterSubsystem extends Subsystem {
     private CANTalon shooterFeed;
     
     private int shooterRpm = 0;
+    private int feederRpm = 0;
 	private int incrementVal = 1;
     
 	private double pValue = RobotConstraints.ShooterSubsystem_Shooter_P;
@@ -49,8 +50,23 @@ public class ShooterSubsystem extends Subsystem {
 		shooterFollow.changeControlMode(CANTalon.TalonControlMode.Follower);
 		shooterFollow.set(shooterLead.getDeviceID());
 		shooterFollow.reverseOutput(true);
-		shooterFeed.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-    }
+		
+		/*** **/
+		//shooterFeed.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		shooterFeed.changeControlMode(CANTalon.TalonControlMode.Speed);
+		shooterFeed.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		
+    	shooterFeed.configEncoderCodesPerRev(12); 
+    	shooterFeed.configNominalOutputVoltage(+0.0f, -0.0f);
+    	shooterFeed.configPeakOutputVoltage(+12.0f, -12.0f);//+12.0f, -12.0f
+    	shooterFeed.setPID(RobotConstraints.ShooterSubsystem_Feeder_P, 
+    					   RobotConstraints.ShooterSubsystem_Feeder_I, 
+    					   RobotConstraints.ShooterSubsystem_Feeder_D, 
+    					   RobotConstraints.ShooterSubsystem_Feeder_F, 
+    					   RobotConstraints.ShooterSubsystem_Feeder_Izone, 
+    					   RobotConstraints.ShooterSubsystem_Feeder_CloseLoopRampRate, 
+    					   RobotConstraints.ShooterSubsystem_Feeder_profile);
+	}
 	
 	public void Shoot(){
 		shooterLead.changeControlMode(CANTalon.TalonControlMode.Speed);
@@ -104,6 +120,16 @@ public class ShooterSubsystem extends Subsystem {
     public void FeedShooter(double speed){
     	shooterFeed.set(speed);
     }
+    public void FeedPIDShooter(){
+    	shooterFeed.changeControlMode(CANTalon.TalonControlMode.Speed);
+		feederRpm = RobotConstraints.ShooterSubsystem_FeederSpeed;
+    	shooterFeed.set(feederRpm);
+    }
+    public void FeedPIDShooterStop(){
+    	shooterFeed.changeControlMode(CANTalon.TalonControlMode.Speed);
+    	feederRpm = 0;
+    	shooterFeed.set(feederRpm);
+    }
     
     public void initDefaultCommand() {
     	//setDefaultCommand(new TeleOp_Shoot());
@@ -124,5 +150,8 @@ public class ShooterSubsystem extends Subsystem {
     	SmartDashboard.putNumber("Encoder Position", shooterLead.getEncPosition());
     	SmartDashboard.putNumber("Fly Wheel Velocity", shooterLead.getEncVelocity());
     	SmartDashboard.putNumber("Talon Closed Loop Error", shooterLead.getClosedLoopError());
+    	SmartDashboard.putNumber("Feeder Speed", feederRpm);
+    	SmartDashboard.putNumber("Feeder Amps", shooterFeed.getOutputCurrent());
+    	
     }
 }

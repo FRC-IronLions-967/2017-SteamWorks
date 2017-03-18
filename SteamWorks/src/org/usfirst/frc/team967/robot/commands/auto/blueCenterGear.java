@@ -13,14 +13,29 @@ public class blueCenterGear extends CommandGroup {
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
-    	addSequential(new Auto_Drive_Distance(-3800, .75));
+    	addSequential(new Auto_Drive_Distance(-3700, .75));
     	//drive forward
     	addSequential(new Auto_Drive_Distance(2000, .75));
     	//drive back
     	addSequential(new TeleOp_GearBoxSet(false));
     	//close gear box
+    	addSequential(new PIDTurnToAngle(90));
+    	//turn 90
+    	addSequential(new TeleOp_DriveShiftHigh(true));
+    	//high gear
+    	addSequential(new Auto_Drive_Distance(-4000, .75));
+    	//drive back
+    	addSequential(new TeleOp_DriveShiftHigh(false));
+    	//low gear
+    	addSequential(new PIDTurnToAngle(0));
+    	//turn 0
+    	addSequential(new TeleOp_DriveShiftHigh(true));
+    	//high gear
+    	addSequential(new Auto_Drive_Distance(-12000, 1));
+    	//drive back
     	
-        // To run multiple commands at the same time,
+    	
+    	// To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());

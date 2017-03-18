@@ -27,10 +27,10 @@ public class blueLeftGear extends CommandGroup {
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(65));
     	//turn
-    	addParallel(new TeleOp_GearBoxSet(true));
-    	//open gear box
     	addSequential(new Auto_Drive_Distance(-1150, .75));
     	//drive forward
+    	addSequential(new TeleOp_GearBoxSet(true));
+    	//open gear box
     	addSequential(new Auto_Drive_Distance(1000, .75));
     	//drive back
     	

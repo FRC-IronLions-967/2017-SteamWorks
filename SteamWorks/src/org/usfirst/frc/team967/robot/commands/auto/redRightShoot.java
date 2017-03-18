@@ -5,44 +5,56 @@ import org.usfirst.frc.team967.robot.commands.Auto_resetYaw;
 import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
 import org.usfirst.frc.team967.robot.commands.TeleOp_DriveShiftHigh;
 import org.usfirst.frc.team967.robot.commands.TeleOp_GearBoxSet;
+import org.usfirst.frc.team967.robot.commands.TeleOp_Shoot;
+import org.usfirst.frc.team967.robot.commands.TeleOp_ShooterFeed;
+import org.usfirst.frc.team967.robot.commands.ZeroEncoders;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class redLeftGear extends CommandGroup {
+public class redRightShoot extends CommandGroup {
 
-    public redLeftGear() {
+    public redRightShoot() {
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
-    	addSequential(new TeleOp_GearBoxSet(false));
+    	addSequential(new TeleOp_GearBoxSet(true));
     	//low gear
-    	addSequential(new Auto_Drive_Distance(-3850, .75));
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
+    	addSequential(new Auto_Drive_Distance(-3900, .75));//3900//3850 on blue left gear
     	//drive forward
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
-    	addSequential(new PIDTurnToAngle(65));
+    	addSequential(new PIDTurnToAngle(-65));
     	//turn
-    	addSequential(new Auto_Drive_Distance(-1150, .75));
+    	addSequential(new Auto_Drive_Distance(-1000, .75));
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
-    	addSequential(new Auto_Drive_Distance(2500, .75));
+    	addSequential(new Auto_Drive_Distance(1000, .75));
     	//drive back
     	addSequential(new TeleOp_GearBoxSet(false));
-    	//open gear box
+    	//close gear box
     	addSequential(new PIDTurnToAngle(0));
     	//turn
-    	addSequential(new TeleOp_DriveShiftHigh(true));
-    	//open gear box
-    	addSequential(new Auto_Drive_Distance(-12000, 1));
-    	//drive forward
+    	addSequential(new Auto_Drive_Distance(1200, .75));
+    	//drive back
+    	//addSequential(new TeleOp_Shoot());
+
+    	addParallel(new TeleOp_Shoot());
+    	//shoot
     	
+    	addSequential(new PIDTurnToAngle(-50));
+    	//turn
+    	addSequential(new Auto_Drive_Distance(3100, .75));
+    	//drive back
+    	addSequential(new TeleOp_ShooterFeed(.6));
     	
-    	// Add Commands here:
+        // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.

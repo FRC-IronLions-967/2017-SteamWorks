@@ -18,7 +18,8 @@ public class TeleOp_ShooterFeed extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooterSubsystem.FeedShooter(Speed);
+    	//Robot.shooterSubsystem.FeedShooter(Speed);
+    	Robot.shooterSubsystem.FeedPIDShooter();
     }
 
     // Called repeatedly when this Command is scheduled to run

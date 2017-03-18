@@ -15,8 +15,18 @@ public class RobotConstraints {
 	public static final double ShooterSubsystem_Shooter_CloseLoopRampRate = 0;
 	public static final int ShooterSubsystem_Shooter_profile = 0;
 	
-	public static final int ShooterSubsystem_ShooterSpeed = 800;
-
+	public static final double ShooterSubsystem_Feeder_P = .2;//.15
+	public static final double ShooterSubsystem_Feeder_I = 0;
+	public static final double ShooterSubsystem_Feeder_D = .3;
+	public static final double ShooterSubsystem_Feeder_F = .014;
+	public static final int ShooterSubsystem_Feeder_Izone = 8525;
+	public static final double ShooterSubsystem_Feeder_CloseLoopRampRate = 0;
+	public static final int ShooterSubsystem_Feeder_profile = 0;
+	
+	public static final int ShooterSubsystem_FeederSpeed = 245;
+	
+	public static final int ShooterSubsystem_ShooterSpeed = 770;//800
+	//790 fly wheel with .6 feed speed
 	/*** Climber Constraints ***/
 	public static double ClimberSubsystem_ClimberSpeed = 1;
 	
