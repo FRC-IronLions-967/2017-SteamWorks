@@ -26,12 +26,14 @@ public class redLeftGear extends CommandGroup {
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(65));
     	//turn
-    	addParallel(new TeleOp_GearBoxSet(true));
-    	//open gear box
     	addSequential(new Auto_Drive_Distance(-1150, .75));
     	//drive forward
+    	addSequential(new TeleOp_GearBoxSet(true));
+    	//open gear box
     	addSequential(new Auto_Drive_Distance(2500, .75));
     	//drive back
+    	addSequential(new TeleOp_GearBoxSet(false));
+    	//open gear box
     	addSequential(new PIDTurnToAngle(0));
     	//turn
     	addSequential(new TeleOp_DriveShiftHigh(true));

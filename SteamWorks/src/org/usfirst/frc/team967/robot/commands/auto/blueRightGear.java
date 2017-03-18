@@ -22,12 +22,14 @@ public class blueRightGear extends CommandGroup {
     	//drive forward
     	addSequential(new PIDTurnToAngle(-60));
     	//turn
-    	addSequential(new TeleOp_GearBoxSet(true));
-    	//open gear box
     	addSequential(new Auto_Drive_Distance(-1100, .75));
     	//drive forward
+    	addSequential(new TeleOp_GearBoxSet(true));
+    	//open gear box
     	addSequential(new Auto_Drive_Distance(3000, .75));
     	//drive back
+    	addSequential(new TeleOp_GearBoxSet(false));
+    	//close gear box
     	addSequential(new PIDTurnToAngle(0));
     	//turn
     	addSequential(new TeleOp_DriveShiftHigh(true));

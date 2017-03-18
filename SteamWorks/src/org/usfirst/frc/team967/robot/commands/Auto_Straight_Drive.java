@@ -26,7 +26,8 @@ public class Auto_Straight_Drive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.move(power + Robot.driveSubsystem.PIDOutput, power + -Robot.driveSubsystem.PIDOutput);
+    	Robot.driveSubsystem.move(power + 2*Robot.driveSubsystem.PIDOutput, power + -2*Robot.driveSubsystem.PIDOutput);
+    	Robot.driveSubsystem.driveDistance(counts);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,6 +37,7 @@ public class Auto_Straight_Drive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveSubsystem.move(0, 0);
     	Robot.driveSubsystem.zeroEncoders();
     	Robot.driveSubsystem.pidStop();
     }

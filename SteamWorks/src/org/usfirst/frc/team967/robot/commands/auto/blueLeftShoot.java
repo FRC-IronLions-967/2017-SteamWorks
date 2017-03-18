@@ -22,7 +22,7 @@ public class blueLeftShoot extends CommandGroup {
     	//reset Yaw
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
-    	addSequential(new TeleOp_GearBoxSet(true));
+    	addSequential(new TeleOp_GearBoxSet(false));
     	//low gear
     	addSequential(new ZeroEncoders());
     	//make sure encoders are zero
@@ -32,10 +32,10 @@ public class blueLeftShoot extends CommandGroup {
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(65));
     	//turn
-    	addParallel(new TeleOp_GearBoxSet(false));
-    	//open gear box
     	addSequential(new Auto_Drive_Distance(-1000, .75));
     	//drive forward
+    	addSequential(new TeleOp_GearBoxSet(true));
+    	//open gear box
     	addSequential(new Auto_Drive_Distance(1000, .75));
     	//drive back
     	addSequential(new PIDTurnToAngle(0));
