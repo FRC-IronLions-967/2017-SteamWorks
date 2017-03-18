@@ -55,7 +55,6 @@ public class Robot extends IterativeRobot {
 		robotMap = new RobotMap();
     	robotConstraints = new RobotConstraints();
 		oi = new OI();
-		CameraServer.getInstance().startAutomaticCapture();
 		chooser.addDefault("Drive Forward", new driveBaseline());
 		chooser.addObject("ShooterBlueLeft", new blueLeftShoot());
 		chooser.addObject("LeftBlue", new blueLeftGear());
