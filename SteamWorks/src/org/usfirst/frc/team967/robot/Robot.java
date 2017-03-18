@@ -16,6 +16,8 @@ import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
+import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
 import org.usfirst.frc.team967.robot.commands.auto.*;
 import org.usfirst.frc.team967.robot.subsystems.CameraSubsystem;
@@ -56,6 +58,9 @@ public class Robot extends IterativeRobot {
     	robotConstraints = new RobotConstraints();
 		oi = new OI();
 		chooser.addDefault("Drive Forward", new driveBaseline());
+		chooser.addObject("Test", new Auto_Straight_Drive(1000, .5));
+//		chooser.addObject("Test", new Auto_Drive_Distance(1000, .5));
+		
 		chooser.addObject("ShooterBlueLeft", new blueLeftShoot());
 		chooser.addObject("LeftBlue", new blueLeftGear());
 		chooser.addObject("CenterBlue", new blueCenterGear());
@@ -209,7 +214,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		driveSubsystem.zeroEncoders();
-		driveSubsystem.shiftLow();
+		driveSubsystem.resetYaw();
+		//driveSubsystem.shiftLow();
 		gearSubsystem.gearBoxClosed();
 		shooterSubsystem.StopShooter();
 //		intakeSubsystem.shiftUpperOut();
@@ -239,7 +245,7 @@ public class Robot extends IterativeRobot {
 		shooterSubsystem.FeedPIDShooterStop();
 		//intakeSubsystem.shiftLowerOut();
 		//intakeSubsystem.shiftUpperOut();
-		//gearSubsystem.gearBoxClosed();
+		gearSubsystem.gearBoxClosed();
 		log();
 	}
 

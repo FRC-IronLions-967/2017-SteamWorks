@@ -1,6 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
+import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.Auto_resetYaw;
 import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
 import org.usfirst.frc.team967.robot.commands.TeleOp_DriveShiftHigh;
@@ -21,36 +22,34 @@ public class redRightShoot extends CommandGroup {
     	//reset Yaw
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
-    	addSequential(new TeleOp_GearBoxSet(true));
+    	addSequential(new TeleOp_GearBoxSet(false));
     	//low gear
     	addSequential(new ZeroEncoders());
     	//make sure encoders are zero
-    	addSequential(new Auto_Drive_Distance(-3900, .75));//3900//3850 on blue left gear
+    	addSequential(new Auto_Straight_Drive(-3500, .75));
+//    	addSequential(new Auto_Drive_Distance(-3900, .75));//3900//3850 on blue left gear
     	//drive forward
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(-65));
     	//turn
-    	addSequential(new Auto_Drive_Distance(-1000, .75));
+    	addSequential(new Auto_Straight_Drive(-1000, .75));
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
-    	addSequential(new Auto_Drive_Distance(1000, .75));
+    	addSequential(new Auto_Straight_Drive(1000, .75));
     	//drive back
     	addSequential(new TeleOp_GearBoxSet(false));
     	//close gear box
     	addSequential(new PIDTurnToAngle(0));
     	//turn
-    	addSequential(new Auto_Drive_Distance(1200, .75));
+    	addSequential(new Auto_Straight_Drive(600, .75));
     	//drive back
-    	//addSequential(new TeleOp_Shoot());
-
     	addParallel(new TeleOp_Shoot());
     	//shoot
-    	
     	addSequential(new PIDTurnToAngle(-50));
     	//turn
-    	addSequential(new Auto_Drive_Distance(3100, .75));
+    	addSequential(new Auto_Straight_Drive(3500, .75));
     	//drive back
     	addSequential(new TeleOp_ShooterFeed(.6));
     	

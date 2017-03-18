@@ -9,29 +9,31 @@ import org.usfirst.frc.team967.robot.commands.*;
 public class blueCenterGear extends CommandGroup {
 
     public blueCenterGear() {
+    	addSequential(new Auto_resetYaw());
+    	//low gear
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
-    	addSequential(new TeleOp_GearBoxSet(true));
-    	//open gear box
-    	addSequential(new Auto_Drive_Distance(-3700, .75));
-    	//drive forward
-    	addSequential(new Auto_Drive_Distance(2000, .75));
-    	//drive back
     	addSequential(new TeleOp_GearBoxSet(false));
+    	//open gear box
+    	addSequential(new Auto_Straight_Drive(-3300, .75));
+    	//drive forward
+    	addSequential(new TeleOp_GearBoxSet(true));
     	//close gear box
+    	addSequential(new Auto_Straight_Drive(2000, .75));
+    	//drive back
     	addSequential(new PIDTurnToAngle(90));
     	//turn 90
-    	addSequential(new TeleOp_DriveShiftHigh(true));
+//    	addSequential(new TeleOp_DriveShiftHigh(true));
     	//high gear
-    	addSequential(new Auto_Drive_Distance(-4000, .75));
+    	addSequential(new Auto_Straight_Drive(-4000, .75));
     	//drive back
-    	addSequential(new TeleOp_DriveShiftHigh(false));
+//    	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
     	addSequential(new PIDTurnToAngle(0));
     	//turn 0
-    	addSequential(new TeleOp_DriveShiftHigh(true));
+//    	addSequential(new TeleOp_DriveShiftHigh(true));
     	//high gear
-    	addSequential(new Auto_Drive_Distance(-12000, 1));
+    	addSequential(new Auto_Straight_Drive(-13000, 1));
     	//drive back
     	
     	

@@ -16,6 +16,10 @@ public class Auto_Straight_Drive extends Command {
     	requires(Robot.driveSubsystem);
     	counts = Distance;
     	power = Power;
+    	Robot.driveSubsystem.zeroEncoders();
+    	if(counts > 0){
+    		power = -power;
+    	}
     }
 
     // Called just before this Command runs the first time
@@ -27,7 +31,7 @@ public class Auto_Straight_Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveSubsystem.move(power + 2*Robot.driveSubsystem.PIDOutput, power + -2*Robot.driveSubsystem.PIDOutput);
-    	Robot.driveSubsystem.driveDistance(counts);
+    //	Robot.driveSubsystem.driveDistance(counts);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,9 +41,10 @@ public class Auto_Straight_Drive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveSubsystem.move(0, 0);
     	Robot.driveSubsystem.zeroEncoders();
     	Robot.driveSubsystem.pidStop();
+    	Robot.driveSubsystem.move(0, 0);
+    	Robot.driveSubsystem.countsmeet = true;
     }
 
     // Called when another command which requires one or more of the same
