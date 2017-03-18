@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class blueLeftShoot extends CommandGroup {
 
     public blueLeftShoot() {
-    
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new TeleOp_DriveShiftHigh(false));
@@ -27,30 +26,27 @@ public class blueLeftShoot extends CommandGroup {
     	//low gear
     	addSequential(new ZeroEncoders());
     	//make sure encoders are zero
-    	addSequential(new Auto_Straight_Drive(-4000, .75));//3900//3850 on blue left gear
-    	//drive forward
+    	addSequential(new Auto_Straight_Drive(-4150, .5));//3900//3850 on blue left gear
+    	//drive forward //.75 speed
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(65));
     	//turn
-    	addSequential(new Auto_Straight_Drive(-1000, .75));
+    	addSequential(new Auto_Straight_Drive(-900, .5));
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
-    	addSequential(new Auto_Straight_Drive(1000, .75));
+    	addSequential(new Auto_Straight_Drive(1000, .5));
     	//drive back
     	addSequential(new PIDTurnToAngle(0));
     	//turn
-    	addSequential(new Auto_Straight_Drive(1300, .75));
+    	addSequential(new Auto_Straight_Drive(1800, .5));
     	//drive back
-    	//addSequential(new TeleOp_Shoot());
-
     	addParallel(new TeleOp_Shoot());
     	//shoot
-    	
     	addSequential(new PIDTurnToAngle(50));
     	//turn
-    	addSequential(new Auto_Straight_Drive(3200, .75));
+    	addSequential(new Auto_Straight_Drive(3300, .5));
     	//drive back
     	addSequential(new TeleOp_ShooterFeed(.6));
     	

@@ -24,13 +24,13 @@ public class blueLeftGear extends CommandGroup {
     	//low gear
     	addSequential(new ZeroEncoders());
     	//make sure encoders are zero
-    	addSequential(new Auto_Straight_Drive(-4000, .5));//3900//3850 on blue left gear
+    	addSequential(new Auto_Straight_Drive(-4150, .5));//3900//3850 on blue left gear
     	//drive forward //.75 speed
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(65));
     	//turn
-    	addSequential(new Auto_Straight_Drive(-1000, .5));
+    	addSequential(new Auto_Straight_Drive(-900, .5));
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box

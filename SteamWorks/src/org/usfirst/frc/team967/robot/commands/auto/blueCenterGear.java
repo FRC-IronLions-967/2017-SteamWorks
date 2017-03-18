@@ -15,17 +15,17 @@ public class blueCenterGear extends CommandGroup {
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
     	//open gear box
-    	addSequential(new Auto_Straight_Drive(-3300, .75));
+    	addSequential(new Auto_Straight_Drive(-3400, .5));
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//close gear box
-    	addSequential(new Auto_Straight_Drive(2000, .75));
+    	addSequential(new Auto_Straight_Drive(2000, .5));
     	//drive back
     	addSequential(new PIDTurnToAngle(90));
     	//turn 90
 //    	addSequential(new TeleOp_DriveShiftHigh(true));
     	//high gear
-    	addSequential(new Auto_Straight_Drive(-4000, .75));
+    	addSequential(new Auto_Straight_Drive(-4000, .5));
     	//drive back
 //    	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
