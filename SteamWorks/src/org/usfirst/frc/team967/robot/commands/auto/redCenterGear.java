@@ -23,12 +23,12 @@ public class redCenterGear extends CommandGroup {
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
-    	//open gear box
-    	addSequential(new Auto_Straight_Drive(-3700, .75));
+    	//close gear box
+    	addSequential(new Auto_Straight_Drive(-3400, .5));
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//close gear box
-    	addSequential(new Auto_Straight_Drive(2000, .75));
+    	addSequential(new Auto_Straight_Drive(2000, .5));
     	//drive back
     	addSequential(new TeleOp_GearBoxSet(false));
     	//close gear box
@@ -36,7 +36,7 @@ public class redCenterGear extends CommandGroup {
     	//turn 90
     	addSequential(new TeleOp_DriveShiftHigh(true));
     	//high gear
-    	addSequential(new Auto_Straight_Drive(-3500, .75));
+    	addSequential(new Auto_Straight_Drive(-3500, .5));
     	//drive back
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
