@@ -104,7 +104,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public void arcadeDrive(double yAxis, double xAxis) {	 
 		//square the values for better control at low speeds
 		yAxis = yAxis*Math.abs(yAxis);
-		xAxis = xAxis*Math.abs(xAxis);
+	//	xAxis = xAxis*Math.abs(xAxis);
 		
 		if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
     	if((xAxis< deadBand) && (xAxis > -deadBand)){ xAxis=0;}
@@ -116,6 +116,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     		move(L,R);
     	}else
     		move(L/max, R/max);
+    	SmartDashboard.putNumber("X axis", xAxis);
+    	SmartDashboard.putNumber("Y axis", yAxis);
     	SmartDashboard.putNumber("R", R);
     	SmartDashboard.putNumber("L", L);
     	SmartDashboard.putNumber("R/max", R/max);

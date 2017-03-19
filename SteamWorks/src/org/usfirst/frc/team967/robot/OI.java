@@ -15,6 +15,8 @@ public class OI {
     double leftTrigger;
     double rightTrigger;			
     
+    double x = xbox1.getRawAxis(4);
+    
     public AxisButton xbox1_lT = new AxisButton(xbox1, 2, .75, 1);
     public AxisButton xbox1_rT = new AxisButton(xbox1, 3, .75, 1);
 
@@ -142,7 +144,10 @@ public class OI {
     }
     
     public void log(){
+    	x = xbox1.getRawAxis(4);
     	SmartDashboard.putNumber("Right Stick Squared", xbox1.getRawAxis(4)*xbox1.getRawAxis(4));
+    	SmartDashboard.putNumber("Right Stick mess", (double)(-(.00002*(Math.pow(x, 6))) + 0.0008*(Math.pow(x, 5)) - 0.0111*(Math.pow(x, 4)) + 0.0641*(Math.pow(x, 3)) - 0.1305*(Math.pow(x,  2)) + 0.0923*(x)));
+    	SmartDashboard.putNumber("Right Stick squared", (double)(-(Math.pow(x, 2))));
     }
     
     public Joystick getXbox1() {
