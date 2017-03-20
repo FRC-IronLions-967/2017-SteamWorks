@@ -1,6 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
+import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.TeleOp_DriveShiftHigh;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -11,8 +12,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class driveBaseline extends CommandGroup {
 
     public driveBaseline() {
-    	addSequential(new TeleOp_DriveShiftHigh(true));
-    	addSequential(new Auto_Drive_Distance(-6000, .75));
+    	addSequential(new TeleOp_DriveShiftHigh(false));
+    	addSequential(new Auto_Straight_Drive(-6000, .75));
+//    	addSequential(new Auto_Drive_Distance(-6000, .75));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

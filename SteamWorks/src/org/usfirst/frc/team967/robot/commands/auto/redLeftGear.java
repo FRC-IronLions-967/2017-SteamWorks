@@ -1,10 +1,12 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
+import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.Auto_resetYaw;
 import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
 import org.usfirst.frc.team967.robot.commands.TeleOp_DriveShiftHigh;
 import org.usfirst.frc.team967.robot.commands.TeleOp_GearBoxSet;
+import org.usfirst.frc.team967.robot.commands.ZeroEncoders;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -16,21 +18,23 @@ public class redLeftGear extends CommandGroup {
     public redLeftGear() {
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zeroed
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
     	//low gear
-    	addSequential(new Auto_Drive_Distance(-3850, .75));
+    	addSequential(new Auto_Straight_Drive(-4050, .5));
     	//drive forward
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(65));
     	//turn
-    	addSequential(new Auto_Drive_Distance(-1150, .75));
+    	addSequential(new Auto_Straight_Drive(-850, .5));
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
-    	addSequential(new Auto_Drive_Distance(2500, .75));
+    	addSequential(new Auto_Straight_Drive(2500, .5));
     	//drive back
     	addSequential(new TeleOp_GearBoxSet(false));
     	//open gear box
@@ -38,7 +42,7 @@ public class redLeftGear extends CommandGroup {
     	//turn
     	addSequential(new TeleOp_DriveShiftHigh(true));
     	//open gear box
-    	addSequential(new Auto_Drive_Distance(-12000, 1));
+    	addSequential(new Auto_Straight_Drive(-12000, 1));
     	//drive forward
     	
     	

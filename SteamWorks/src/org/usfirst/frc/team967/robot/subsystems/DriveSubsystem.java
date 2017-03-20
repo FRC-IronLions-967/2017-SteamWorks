@@ -45,7 +45,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	private final double deadBand = RobotConstraints.DriveSubsystem_deadBand; // Setting the deadband to what's in the RobotConstraints file.
 	public boolean InHighGear;	// Creating the variable InHighGear to tell if in high gear.
-	
+	public boolean countsmeet;
 	/*
 	 * This gets called from the main file Robot.java 
 	 * It is used to setup all of the different functions that the subsystem needs to do.
@@ -104,7 +104,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public void arcadeDrive(double yAxis, double xAxis) {	 
 		//square the values for better control at low speeds
 		yAxis = yAxis*Math.abs(yAxis);
-		xAxis = xAxis*Math.abs(xAxis);
+	//	xAxis = xAxis*Math.abs(xAxis);
 		
 		if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
     	if((xAxis< deadBand) && (xAxis > -deadBand)){ xAxis=0;}
@@ -116,6 +116,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     		move(L,R);
     	}else
     		move(L/max, R/max);
+    	SmartDashboard.putNumber("X axis", xAxis);
+    	SmartDashboard.putNumber("Y axis", yAxis);
     	SmartDashboard.putNumber("R", R);
     	SmartDashboard.putNumber("L", L);
     	SmartDashboard.putNumber("R/max", R/max);
@@ -202,23 +204,27 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		driveRightLead.setEncPosition(0);
 	}
 	public boolean driveDistance(double count){
+		countsmeet = false;
 		if(count > 0){
-			if((-getLEncoder() + getREncoder())/2 > count){// + getREncoder())/2
-	    		return true;
+			if((-getLEncoder() + getREncoder())/2 > count){
+				countsmeet = true;
+				return true;
 	    	}
 			else{
 				return false;
 			}
 		}
 		else{
-			if((-getLEncoder() + getREncoder())/2 < count){// + getREncoder())/2
-	    		return true;
+			if((-getLEncoder() + getREncoder())/2 < count){
+				countsmeet = true;
+				return true;
 	    	}
 			else{
 				return false;
 			}
 		}
 	}
+//	public boolean
 	public void shiftLow() {
 	    InHighGear = false;
 	    shifter.set(DoubleSolenoid.Value.kForward);
@@ -231,29 +237,21 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		if(InHighGear){	shiftLow();}
 		else{			shiftHigh();}
 	}
-	//not working currently    
-    /*
-	public void outputOn(){
-    	Robot.oi.getBox().setOutput(2, true);
-    }
-    public void outputOff(){
-    	Robot.oi.getBox().setOutput(2, false);
-    }
-    */
     public void initDefaultCommand() {
     	setDefaultCommand(new ArcadeDrive3_4Turn());
     	//	setDefaultCommand(new TeleOp_ArcadeDrive());
     }
         
     public void log(){
-//    	SmartDashboard.putNumber("Left Encoder Position", driveLeftLead.getEncPosition());
-//    	SmartDashboard.putNumber("Right Encoder Position", driveRightLead.getEncPosition());
+    	SmartDashboard.putNumber("Left Encoder Position", driveLeftLead.getEncPosition());
+    	SmartDashboard.putNumber("Right Encoder Position", driveRightLead.getEncPosition());
     	SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw());
     	SmartDashboard.putNumber("right lead amps", driveRightLead.getOutputCurrent());
     	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
     	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
     	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
     	SmartDashboard.putBoolean("DriveGearHigh", InHighGear);
+    	SmartDashboard.putBoolean("counts meet", countsmeet);
     /*
    	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
         SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());

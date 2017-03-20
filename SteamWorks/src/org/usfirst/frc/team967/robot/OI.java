@@ -15,6 +15,8 @@ public class OI {
     double leftTrigger;
     double rightTrigger;			
     
+    double x = xbox1.getRawAxis(4);
+    
     public AxisButton xbox1_lT = new AxisButton(xbox1, 2, .75, 1);
     public AxisButton xbox1_rT = new AxisButton(xbox1, 3, .75, 1);
 
@@ -46,31 +48,19 @@ public class OI {
     	
     	//**********************************************************************
     	// Setting up the variables to the custom button box
-    	JoystickButton customBox1 = new JoystickButton(customBox, 1);
-    	JoystickButton customBox2 = new JoystickButton(customBox, 2);
-    	JoystickButton customBox3 = new JoystickButton(customBox, 3);
-    	JoystickButton customBox4 = new JoystickButton(customBox, 4);
-    	JoystickButton customBox5 = new JoystickButton(customBox, 5);
-    	JoystickButton customBox6 = new JoystickButton(customBox, 6);
-    	JoystickButton customBox7 = new JoystickButton(customBox, 7);
-    	JoystickButton customBox8 = new JoystickButton(customBox, 8);
-    	JoystickButton customBox9 = new JoystickButton(customBox, 9);
-    	JoystickButton customBox10 = new JoystickButton(customBox, 10);
-    	JoystickButton customBox11 = new JoystickButton(customBox, 11);
-    	/*
-    	JoystickButton leftGreen = new JoystickButton(customBox, 1);
-    	JoystickButton leftBlack = new JoystickButton(customBox, 2);
-    	JoystickButton leftWhite = new JoystickButton(customBox, 3);
-    	JoystickButton leftThumb = new JoystickButton(customBox, 4);
-    	JoystickButton rightWhite = new JoystickButton(customBox, 4);
-    	JoystickButton rightBlack = new JoystickButton(customBox, 5);
-    	JoystickButton rightGreen = new JoystickButton(customBox, 6);
-    	JoystickButton rightThumb = new JoystickButton(customBox, 7);
-    	JoystickButton bigRed = new JoystickButton(customBox, 8);
-    	JoystickButton ShooterRockerUp = new JoystickButton(customBox, 9);
-    	JoystickButton ShooterRockerDown = new JoystickButton(customBox, 10);
+    	JoystickButton leftGreen = new JoystickButton(customBox, 4);
+    	JoystickButton leftBlack = new JoystickButton(customBox, 3);
+    	JoystickButton leftWhite = new JoystickButton(customBox, 9);
+    	JoystickButton leftThumb = new JoystickButton(customBox, 5);
+    	JoystickButton rightWhite = new JoystickButton(customBox, 6);
+    	JoystickButton rightBlack = new JoystickButton(customBox, 7);
+    	JoystickButton rightGreen = new JoystickButton(customBox, 2);
+    	JoystickButton rightThumb = new JoystickButton(customBox, 8);
+    	JoystickButton bigRed = new JoystickButton(customBox, 1);
+//    	JoystickButton ShooterRockerUp = new JoystickButton(customBox, 9);
+//    	JoystickButton ShooterRockerDown = new JoystickButton(customBox, 10);
 //    	JoystickButton customBox11 = new JoystickButton(customBox, 11);
-    	*/
+    	
     	//*********************************************************************
     	//Setting the button variables to the commands for controller number 1
     	
@@ -98,13 +88,32 @@ public class OI {
 
     	//**********************************************************************
     	//Setting the button variables to the commands for custom box
+    	bigRed.whenPressed(new TeleOp_ClimberSet(RobotConstraints.ClimberSubsystem_ClimberSpeed));
+    	bigRed.whenReleased(new TeleOp_ClimberSet(0));
+//    	leftGreen.whenPressed(new lowerBothArms());
+//    	leftGreen.whenReleased(new );
+//    	leftBlack.whenPressed(new raiseBothArms());
+//    	leftBlack.whenReleased(new );
+    	leftWhite.whenPressed(new TeleOp_IntakeLowerArmToggle());
+//    	leftWhite.whenReleased(new );
+    	leftThumb.whenPressed(new TeleOp_IntakeUpperArmOut(true));
+    	leftThumb.whenReleased(new TeleOp_IntakeUpperArmOut(false));
+    	rightGreen.whenPressed(new TeleOp_ShooterFeed(3));
+    	rightGreen.whenReleased(new TeleOp_ShooterFeedStop());
+//    	rightWhite.whenPressed(new );
+//    	rightWhite.whenReleased(new );
+    	rightBlack.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
+    	rightBlack.whenReleased(new TeleOp_IntakeSet(0));
+    	rightThumb.whenPressed(new TeleOp_Shoot());
+    	rightThumb.whenReleased(new TeleOp_StopShooting());
+    	/*    	
     	customBox1.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
     	customBox1.whenReleased(new TeleOp_IntakeSet(0));
     	customBox2.whenPressed(new TeleOp_IntakeLowerArmToggle());
 //    	customBox2.whenReleased(new TeleOp_IntakeSet(0));
     	customBox3.whenPressed(new TeleOp_GearBoxSet(true));
     	customBox3.whenReleased(new TeleOp_GearBoxSet(false));
-    	customBox4.whenPressed(new TeleOp_ShooterFeed(3));
+    	customBox4.whenPressed(new TeleOp_ShooterFeed(3)); //3
     	customBox4.whenReleased(new TeleOp_ShooterFeedStop());
     	customBox5.whenPressed(new TeleOp_IntakeArmsOut(false));//pull both arms in
 //    	customBox5.whenReleased(new TeleOp_());
@@ -120,7 +129,7 @@ public class OI {
 //    	customBox10.whenReleased(new TeleOp_);
 //    	customBox11.whenPressed(new TeleOp_);
 //    	customBox11.whenReleased(new TeleOp_);
-    	
+    	*/
     	SmartDashboard.putData("Camera Toggle", new cameraToggle());
     	
     	SmartDashboard.putData("P Up", new Testing_P_up());
@@ -135,7 +144,10 @@ public class OI {
     }
     
     public void log(){
+    	x = xbox1.getRawAxis(4);
     	SmartDashboard.putNumber("Right Stick Squared", xbox1.getRawAxis(4)*xbox1.getRawAxis(4));
+    	SmartDashboard.putNumber("Right Stick mess", (double)(-(.00002*(Math.pow(x, 6))) + 0.0008*(Math.pow(x, 5)) - 0.0111*(Math.pow(x, 4)) + 0.0641*(Math.pow(x, 3)) - 0.1305*(Math.pow(x,  2)) + 0.0923*(x)));
+    	SmartDashboard.putNumber("Right Stick squared", (double)(-(Math.pow(x, 2))));
     }
     
     public Joystick getXbox1() {

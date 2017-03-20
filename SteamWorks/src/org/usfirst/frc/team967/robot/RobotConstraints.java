@@ -1,6 +1,8 @@
 package org.usfirst.frc.team967.robot;
 
 public class RobotConstraints {
+	/*** Auto Constraints ***/
+	public static final double Auto_Speed = .5;
 	
 	/*** DRIVETRAIN Constraints ***/
 	public static final double DriveSubsystem_deadBand = .15;
@@ -23,9 +25,9 @@ public class RobotConstraints {
 	public static final double ShooterSubsystem_Feeder_CloseLoopRampRate = 0;
 	public static final int ShooterSubsystem_Feeder_profile = 0;
 	
-	public static final int ShooterSubsystem_FeederSpeed = 245;
+	public static final int ShooterSubsystem_FeederSpeed = 180;//245
 	
-	public static final int ShooterSubsystem_ShooterSpeed = 770;//800
+	public static final int ShooterSubsystem_ShooterSpeed = 770;//770 good speed//800
 	//790 fly wheel with .6 feed speed
 	/*** Climber Constraints ***/
 	public static double ClimberSubsystem_ClimberSpeed = 1;
