@@ -90,9 +90,9 @@ public class OI {
     	//Setting the button variables to the commands for custom box
     	bigRed.whenPressed(new TeleOp_ClimberSet(RobotConstraints.ClimberSubsystem_ClimberSpeed));
     	bigRed.whenReleased(new TeleOp_ClimberSet(0));
-//    	leftGreen.whenPressed(new lowerBothArms());
+    	leftGreen.whenPressed(new TeleOp_IntakeBothLower());
 //    	leftGreen.whenReleased(new );
-//    	leftBlack.whenPressed(new raiseBothArms());
+    	leftBlack.whenPressed(new TeleOp_IntakeBothRaise());
 //    	leftBlack.whenReleased(new );
     	leftWhite.whenPressed(new TeleOp_IntakeLowerArmToggle());
 //    	leftWhite.whenReleased(new );
@@ -100,8 +100,8 @@ public class OI {
     	leftThumb.whenReleased(new TeleOp_IntakeUpperArmOut(false));
     	rightGreen.whenPressed(new TeleOp_ShooterFeed(3));
     	rightGreen.whenReleased(new TeleOp_ShooterFeedStop());
-//    	rightWhite.whenPressed(new );
-//    	rightWhite.whenReleased(new );
+    	rightWhite.whenPressed(new TeleOp_GearTopSet(true));
+    	rightWhite.whenReleased(new TeleOp_GearTopSet(false));
     	rightBlack.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
     	rightBlack.whenReleased(new TeleOp_IntakeSet(0));
     	rightThumb.whenPressed(new TeleOp_Shoot());

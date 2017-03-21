@@ -104,7 +104,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public void arcadeDrive(double yAxis, double xAxis) {	 
 		//square the values for better control at low speeds
 		yAxis = yAxis*Math.abs(yAxis);
-	//	xAxis = xAxis*Math.abs(xAxis);
+		xAxis = xAxis*Math.abs(xAxis);
 		
 		if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
     	if((xAxis< deadBand) && (xAxis > -deadBand)){ xAxis=0;}
@@ -123,7 +123,33 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	SmartDashboard.putNumber("R/max", R/max);
     	SmartDashboard.putNumber("L/max", L/max);
     }
-	
+	// 0.010815180689100581 - 0.7353174468956218x + 8.812554716989258x2 - 11.619421463995128x3 + 4.534123196152433x4
+	public void arcadeDriveCurved(double yAxis, double OGxAxis) {	 
+		double x = Math.abs(OGxAxis);
+		//square the values for better control at low speeds
+		yAxis = yAxis*Math.abs(yAxis);
+		double xAxis = (double)(0.010815180689100581 - 0.7353174468956218*x + 8.812554716989258*Math.pow(x,  2) - 11.619421463995128*Math.pow(x, 3) + 4.534123196152433*Math.pow(x, 4));
+		if(OGxAxis>0){
+			xAxis = -xAxis;
+		}
+		if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
+    	if((xAxis< deadBand) && (xAxis > -deadBand)){ xAxis=0;}
+    	double L = yAxis + xAxis;
+    	double R = yAxis - xAxis;
+    	double max = Math.abs(L);
+    	if(Math.abs(R) > max) max = Math.abs(R);
+    	if((Math.abs(yAxis) <= 1) && (Math.abs(xAxis) <= 1) && (max < 1)){
+    		move(L,R);
+    	}else
+    		move(L/max, R/max);
+    	SmartDashboard.putNumber("X axis", xAxis);
+    	SmartDashboard.putNumber("Y axis", yAxis);
+    	SmartDashboard.putNumber("R", R);
+    	SmartDashboard.putNumber("L", L);
+    	SmartDashboard.putNumber("R/max", R/max);
+    	SmartDashboard.putNumber("L/max", L/max);
+    }
+
 	/*
 	 * The only place that the code sets the power to the drive motors 
 	 *  

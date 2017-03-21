@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team967.robot.RobotMap;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Relay;
 
 /*
  *ready to be tested on the real robot 
@@ -11,12 +12,14 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class GearSubsystem extends Subsystem {
 	
-	public Boolean isOpen;
+	private Boolean isOpen, isTopOpen;
 	private DoubleSolenoid gearShifter;
+	private Relay boxTop;
     
     public GearSubsystem(){
     	isOpen = false;
     	gearShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.gearOpen, RobotMap.gearClosed);
+    	boxTop = new Relay(0);
     }
 	
     public void gearBoxOpen(){
@@ -38,11 +41,31 @@ public class GearSubsystem extends Subsystem {
     public boolean isOpen(){
     	return isOpen;
     }
-    
+    public void gearTopOpen(){
+    	isTopOpen = true;
+    	boxTop.set(Relay.Value.kForward);
+    }
+    public void gearTopClosed(){
+    	isTopOpen = false;
+    	boxTop.set(Relay.Value.kReverse);
+    }
+    public void toggleTop(){
+    	if(isTopOpen){
+    		gearTopClosed();
+    	}
+    	else{
+    		gearTopOpen();
+    	}
+    }
+    public boolean isTopOpen(){
+    	return isTopOpen;
+    }
+
     public void initDefaultCommand() {
     	//setDefaultCommand(new TeleOp_GearBoxClosed());
     }
     public void log(){
-        SmartDashboard.putBoolean("Open", isOpen);
+        SmartDashboard.putBoolean("GearBox Open", isOpen);
+        SmartDashboard.putBoolean("GearBoxTop Open", isTopOpen);
     }
 }
