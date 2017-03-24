@@ -25,7 +25,7 @@ public class RobotConstraints {
 	public static final double ShooterSubsystem_Feeder_CloseLoopRampRate = 0;
 	public static final int ShooterSubsystem_Feeder_profile = 0;
 	
-	public static final int ShooterSubsystem_FeederSpeed = 180;//245
+	public static final int ShooterSubsystem_FeederSpeed = 245;//245
 	
 	public static final int ShooterSubsystem_ShooterSpeed = 770;//770 good speed//800
 	//790 fly wheel with .6 feed speed

@@ -15,7 +15,9 @@ public class blueCenterGear extends CommandGroup {
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
     	//open gear box
-    	addSequential(new Auto_Straight_Drive(-3400, .5));
+    	addSequential(new Auto_Delay(1));
+    	//wait for zero
+    	addSequential(new Auto_Straight_Drive(-3300, .5));//3400
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//close gear box

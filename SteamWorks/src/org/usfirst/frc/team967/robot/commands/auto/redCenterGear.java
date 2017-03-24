@@ -1,5 +1,6 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
+import org.usfirst.frc.team967.robot.commands.Auto_Delay;
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
 import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.Auto_resetYaw;
@@ -24,7 +25,9 @@ public class redCenterGear extends CommandGroup {
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
     	//close gear box
-    	addSequential(new Auto_Straight_Drive(-3400, .5));
+    	addSequential(new Auto_Delay(1));
+    	//wait for zero
+    	addSequential(new Auto_Straight_Drive(-3300, .5));//3400
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//close gear box

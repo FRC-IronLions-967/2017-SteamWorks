@@ -71,12 +71,13 @@ public class OI {
     	xbox1_a.whenPressed(new TeleOp_DriveShiftToggle());
 //     	xbox1_a.whenPressed(new command());
 //    	xbox1_a.whenReleased(new command());
-    	xbox1_b.whenPressed(new TeleOp_ShooterFeed(3));
-    	xbox1_b.whenReleased(new TeleOp_ShooterFeedStop());
-//    	xbox1_x.whenPressed(new command());
+//    	xbox1_b.whenPressed(new TeleOp_ShooterFeed(3));
+    	xbox1_b.whenPressed(new Auto_resetYaw());
+//    	xbox1_b.whenReleased(new TeleOp_ShooterFeedStop());
+    	xbox1_x.whenPressed(new ZeroEncoders());
 //    	xbox1_x.whenReleased(new command());
-//    	xbox1_y.whenPressed(new command());
-//    	xbox1_y.whenReleased(new command());
+    	xbox1_y.whenPressed(new TeleOp_ClimberSet(RobotConstraints.ClimberSubsystem_ClimberSpeed));
+    	xbox1_y.whenReleased(new TeleOp_ClimberSet(0));
      	xbox1_lb.whenPressed(new TeleOp_DriveShiftToggle());
 //    	xbox1_rb.whenPressed(new command());
     	xbox1_back.whenPressed(new testOutputOn());

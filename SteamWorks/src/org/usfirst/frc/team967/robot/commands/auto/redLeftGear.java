@@ -1,5 +1,6 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
+import org.usfirst.frc.team967.robot.commands.Auto_Delay;
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
 import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.Auto_resetYaw;
@@ -24,13 +25,15 @@ public class redLeftGear extends CommandGroup {
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
     	//low gear
+    	addSequential(new Auto_Delay(1));
+    	//wait for zero
     	addSequential(new Auto_Straight_Drive(-4050, .5));
     	//drive forward
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(65));
     	//turn
-    	addSequential(new Auto_Straight_Drive(-850, .5));
+    	addSequential(new Auto_Straight_Drive(-750, .5));//850
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box

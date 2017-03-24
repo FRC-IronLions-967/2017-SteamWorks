@@ -250,7 +250,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 			}
 		}
 	}
-//	public boolean
+	
 	public void shiftLow() {
 	    InHighGear = false;
 	    shifter.set(DoubleSolenoid.Value.kForward);
@@ -264,20 +264,20 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		else{			shiftHigh();}
 	}
     public void initDefaultCommand() {
-    	setDefaultCommand(new ArcadeDrive3_4Turn());
-    	//	setDefaultCommand(new TeleOp_ArcadeDrive());
+//    	setDefaultCommand(new ArcadeDrive3_4Turn());
+    	setDefaultCommand(new TeleOp_ArcadeDrive());
     }
         
     public void log(){
     	SmartDashboard.putNumber("Left Encoder Position", driveLeftLead.getEncPosition());
     	SmartDashboard.putNumber("Right Encoder Position", driveRightLead.getEncPosition());
     	SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw());
-    	SmartDashboard.putNumber("right lead amps", driveRightLead.getOutputCurrent());
-    	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
-    	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
-    	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
+//    	SmartDashboard.putNumber("right lead amps", driveRightLead.getOutputCurrent());
+//    	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
+//    	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
+//    	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
     	SmartDashboard.putBoolean("DriveGearHigh", InHighGear);
-    	SmartDashboard.putBoolean("counts meet", countsmeet);
+//    	SmartDashboard.putBoolean("counts meet", countsmeet);
     /*
    	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
         SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());

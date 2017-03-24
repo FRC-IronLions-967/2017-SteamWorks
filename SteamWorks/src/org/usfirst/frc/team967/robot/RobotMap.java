@@ -8,7 +8,8 @@ package org.usfirst.frc.team967.robot;
  */
 public class RobotMap {
 	/**-----------General---------------------**/
-	public static final int PCM = 0;
+	public static final int PCM = 1;
+	public static final int PCM2 = 2;
 	
 	/**------------Drive----------------------**/
 	public static final int driveLeftLead = 1;
@@ -18,8 +19,8 @@ public class RobotMap {
 	public static final int driveRightFollow = 4;
 	public static final int driveRightFollow1 = 36;
 	
-	public static final int driveShifterHigh = 1;
-	public static final int driveShifterLow = 6;
+	public static final int driveShifterHigh = 6;
+	public static final int driveShifterLow = 1;//1 &6
 	//----------------------------------------
 	
 	/**-----------Shooter----------------------**/
@@ -45,6 +46,8 @@ public class RobotMap {
 	/**----------Gears------------------------**/
 	public static final int gearClosed = 0;
 	public static final int gearOpen = 7;
+	public static final int topClosed = 3;
+	public static final int topOpen = 4;
 	
 	//----------------------------------------
 	

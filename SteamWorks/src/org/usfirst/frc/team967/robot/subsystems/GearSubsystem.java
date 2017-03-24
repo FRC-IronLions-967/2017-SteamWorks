@@ -13,13 +13,15 @@ import edu.wpi.first.wpilibj.Relay;
 public class GearSubsystem extends Subsystem {
 	
 	private Boolean isOpen, isTopOpen;
-	private DoubleSolenoid gearShifter;
-	private Relay boxTop;
+	private DoubleSolenoid gearShifter, topShifter;
+//	private Relay boxTop;
     
     public GearSubsystem(){
     	isOpen = false;
+    	isTopOpen = false;
     	gearShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.gearOpen, RobotMap.gearClosed);
-    	boxTop = new Relay(0);
+    	topShifter = new DoubleSolenoid(RobotMap.PCM2, RobotMap.topOpen, RobotMap.topClosed);
+//    	boxTop = new Relay(0);
     }
 	
     public void gearBoxOpen(){
@@ -43,11 +45,13 @@ public class GearSubsystem extends Subsystem {
     }
     public void gearTopOpen(){
     	isTopOpen = true;
-    	boxTop.set(Relay.Value.kForward);
+    	topShifter.set(DoubleSolenoid.Value.kForward);
+//    	boxTop.set(Relay.Value.kForward);
     }
     public void gearTopClosed(){
     	isTopOpen = false;
-    	boxTop.set(Relay.Value.kReverse);
+    	topShifter.set(DoubleSolenoid.Value.kReverse);
+//    	boxTop.set(Relay.Value.kReverse);
     }
     public void toggleTop(){
     	if(isTopOpen){

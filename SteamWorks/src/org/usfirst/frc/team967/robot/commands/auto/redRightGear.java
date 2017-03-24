@@ -1,5 +1,6 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
+import org.usfirst.frc.team967.robot.commands.Auto_Delay;
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
 import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.Auto_resetYaw;
@@ -18,20 +19,22 @@ public class redRightGear extends CommandGroup {
     public redRightGear() {
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
     	//low gear
-    	addSequential(new ZeroEncoders());
-    	//make sure encoders are zero
+    	addSequential(new Auto_Delay(1));
+    	//wait for zero
     	addSequential(new Auto_Straight_Drive(-3800, .5));
 //    	addSequential(new Auto_Drive_Distance(-3900, .75));//3900//3850 on blue left gear
     	//drive forward
-    	addSequential(new Auto_resetYaw());
+//    	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(-65));
     	//turn
-    	addSequential(new Auto_Straight_Drive(-1050, .5));
+    	addSequential(new Auto_Straight_Drive(-950, .5));//1050
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
