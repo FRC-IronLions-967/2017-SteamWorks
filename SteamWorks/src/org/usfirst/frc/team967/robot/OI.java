@@ -82,7 +82,7 @@ public class OI {
 //    	xbox1_rb.whenPressed(new command());
     	xbox1_back.whenPressed(new testOutputOn());
     	xbox1_back.whenReleased(new testOutputOff());
-//    	xbox1_start.whenPressed(new command());
+    	xbox1_start.whenPressed(new TeleOp_GearTopSet(false));
 //    	xbox1_start.whenReleased(new command());
 //    	xbox1_leftStickButton.whenPressed(new command());
 //    	xbox1_rightStickButton.whenPressed(new command());
@@ -101,8 +101,8 @@ public class OI {
     	leftThumb.whenReleased(new TeleOp_IntakeUpperArmOut(false));
     	rightGreen.whenPressed(new TeleOp_ShooterFeed(3));
     	rightGreen.whenReleased(new TeleOp_ShooterFeedStop());
-    	rightWhite.whenPressed(new TeleOp_GearTopSet(true));
-    	rightWhite.whenReleased(new TeleOp_GearTopSet(false));
+    	rightWhite.whenPressed(new TeleOp_GearTopSet(false));
+    	rightWhite.whenReleased(new TeleOp_GearTopSet(true));
     	rightBlack.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
     	rightBlack.whenReleased(new TeleOp_IntakeSet(0));
     	rightThumb.whenPressed(new TeleOp_Shoot());

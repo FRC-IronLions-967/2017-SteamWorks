@@ -45,10 +45,10 @@ public class blueLeftShoot extends CommandGroup {
     	//turn
     	addSequential(new Auto_Straight_Drive(1800, .5));
     	//drive back
-    	addParallel(new TeleOp_Shoot());
-    	//shoot
     	addSequential(new PIDTurnToAngle(50));
     	//turn
+    	addParallel(new TeleOp_Shoot());
+    	//shoot0
     	addSequential(new Auto_Straight_Drive(3300, .5));
     	//drive back
     	addSequential(new TeleOp_ShooterFeed(.6));

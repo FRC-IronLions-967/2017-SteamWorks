@@ -246,7 +246,7 @@ public class Robot extends IterativeRobot {
 		shooterSubsystem.FeedPIDShooterStop();
 		intakeSubsystem.shiftLowerIn();
 		//intakeSubsystem.shiftUpperOut();
-		gearSubsystem.gearTopClosed();
+		gearSubsystem.gearTopOpen();
 		gearSubsystem.gearBoxClosed();
 		log();
 	}

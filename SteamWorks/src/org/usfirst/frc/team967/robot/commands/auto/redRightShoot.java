@@ -29,14 +29,14 @@ public class redRightShoot extends CommandGroup {
     	//make sure encoders are zero
     	addSequential(new Auto_Delay(1));
     	//wait for zero
-    	addSequential(new Auto_Straight_Drive(-3800, .5));
+    	addSequential(new Auto_Straight_Drive(-3900, .5));
 //    	addSequential(new Auto_Drive_Distance(-3900, .75));//3900//3850 on blue left gear
     	//drive forward
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(-65));
     	//turn
-    	addSequential(new Auto_Straight_Drive(-900, .5));//1000
+    	addSequential(new Auto_Straight_Drive(-1000, .5));
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
@@ -48,10 +48,10 @@ public class redRightShoot extends CommandGroup {
     	//turn
     	addSequential(new Auto_Straight_Drive(600, .5));
     	//drive back
-    	addParallel(new TeleOp_Shoot());
-    	//shoot
     	addSequential(new PIDTurnToAngle(-50));
     	//turn
+    	addParallel(new TeleOp_Shoot());
+    	//shoot
     	addSequential(new Auto_Straight_Drive(3500, .5));
     	//drive back
     	addSequential(new TeleOp_ShooterFeed(.6));

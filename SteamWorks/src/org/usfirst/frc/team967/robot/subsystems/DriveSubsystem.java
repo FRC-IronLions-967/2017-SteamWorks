@@ -104,6 +104,9 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public void arcadeDrive(double yAxis, double xAxis) {	 
 		//square the values for better control at low speeds
 		yAxis = yAxis*Math.abs(yAxis);
+	//	if(Math.abs(xAxis) > .73){
+	//		xAxis = 1;
+	//	}
 		xAxis = xAxis*Math.abs(xAxis);
 		
 		if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
@@ -232,7 +235,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public boolean driveDistance(double count){
 		countsmeet = false;
 		if(count > 0){
-			if((-getLEncoder() + getREncoder())/2 > count){
+			if((getREncoder()) > count){
+				//if((-getLEncoder() + getREncoder())/2 > count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -241,7 +245,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 			}
 		}
 		else{
-			if((-getLEncoder() + getREncoder())/2 < count){
+			if((getREncoder()) < count){
+				//if((-getLEncoder() + getREncoder())/2 > count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -272,10 +277,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	SmartDashboard.putNumber("Left Encoder Position", driveLeftLead.getEncPosition());
     	SmartDashboard.putNumber("Right Encoder Position", driveRightLead.getEncPosition());
     	SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw());
-//    	SmartDashboard.putNumber("right lead amps", driveRightLead.getOutputCurrent());
-//    	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
-//    	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
-//    	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
+    	SmartDashboard.putNumber("right lead amps", driveRightLead.getOutputCurrent());
+    	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
+    	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
+    	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
     	SmartDashboard.putBoolean("DriveGearHigh", InHighGear);
 //    	SmartDashboard.putBoolean("counts meet", countsmeet);
     /*

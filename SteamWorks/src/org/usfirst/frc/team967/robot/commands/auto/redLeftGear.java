@@ -27,7 +27,7 @@ public class redLeftGear extends CommandGroup {
     	//low gear
     	addSequential(new Auto_Delay(1));
     	//wait for zero
-    	addSequential(new Auto_Straight_Drive(-4050, .5));
+    	addSequential(new Auto_Straight_Drive(-4150, .5));
     	//drive forward
     	addSequential(new Auto_resetYaw());
     	//reset Yaw

@@ -27,7 +27,7 @@ public class redCenterGear extends CommandGroup {
     	//close gear box
     	addSequential(new Auto_Delay(1));
     	//wait for zero
-    	addSequential(new Auto_Straight_Drive(-3300, .5));//3400
+    	addSequential(new Auto_Straight_Drive(-3400, .5));//3400
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//close gear box
