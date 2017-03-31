@@ -6,6 +6,11 @@ public class RobotConstraints {
 	
 	/*** DRIVETRAIN Constraints ***/
 	public static final double DriveSubsystem_deadBand = .15;
+	public static final double DriveSubsystem_P = .18;
+	public static final double DriveSubsystem_I = .0;
+	public static final double DriveSubsystem_D = .02;
+	public static final double DriveSubsystem_AbsoluteTolerance = 1.0f;
+	public static final double DriveSubsystem_Tolerance = 5.0f;
 	
 	/*** Shooter Constraints ***/
 	public static int ShooterSubsystem_Shooter_Profile;
