@@ -20,7 +20,7 @@ public class GearSubsystem extends Subsystem {
     	isOpen = false;
     	isTopOpen = false;
     	gearShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.gearOpen, RobotMap.gearClosed);
-    	topShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.topOpen, RobotMap.topClosed);//RobotMap.PCM2
+    	topShifter = new DoubleSolenoid(RobotMap.PCM2, RobotMap.topOpen, RobotMap.topClosed);
 //    	boxTop = new Relay(0);
     }
 	
