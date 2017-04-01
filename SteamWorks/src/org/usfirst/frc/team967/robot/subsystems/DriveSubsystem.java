@@ -254,12 +254,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	SmartDashboard.putNumber("R/max", R/max);
     	SmartDashboard.putNumber("L/max", L/max);
     }
-	public void arcadeDriveLookUp(double yAxis, double xAxis) {	 
-		double x = Math.abs(xAxis);
+	public void arcadeDriveLookUp(double yAxis, double xAxisCurve) {	 
+		double x = Math.abs(xAxisCurve);
 		//square the values for better control at low speeds
 		yAxis = yAxis*Math.abs(yAxis);
-		xAxis = turnLookUp[(int)(Double.valueOf(df.format(x))*100)];
-		if(xAxis < 0){
+		double xAxis = turnLookUp[(int)(Double.valueOf(df.format(x))*100)];
+		if(xAxisCurve > 0){
 			xAxis = -xAxis;
 		}
 		if((yAxis < deadBand) && (yAxis > -deadBand)){ yAxis=0;}
