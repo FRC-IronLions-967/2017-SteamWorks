@@ -25,6 +25,7 @@ public class Auto_Straight_Drive extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveSubsystem.pidSetPoint(Robot.driveSubsystem.getYaw());
+    	Robot.driveSubsystem.zeroEncoders();
     	Robot.driveSubsystem.pidEnable();
     }
 

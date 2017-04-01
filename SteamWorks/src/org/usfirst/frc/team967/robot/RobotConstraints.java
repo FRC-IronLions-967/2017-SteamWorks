@@ -6,9 +6,19 @@ public class RobotConstraints {
 	
 	/*** DRIVETRAIN Constraints ***/
 	public static final double DriveSubsystem_deadBand = .15;
-	public static final double DriveSubsystem_P = .18;//.18
-	public static final double DriveSubsystem_I = .0;//.0
-	public static final double DriveSubsystem_D = .02;//.02
+	/* iowa numbers
+	 * P = .018
+	 * I = 0
+	 * D = .02
+	 */
+	/* test
+	 * .018
+	 * .002
+	 * .0405
+	 */
+	public static final double DriveSubsystem_P = .018;
+	public static final double DriveSubsystem_I = .002;
+	public static final double DriveSubsystem_D = .0405;
 	public static final double DriveSubsystem_AbsoluteTolerance = 1.0f;
 	public static final double DriveSubsystem_Tolerance = 5.0f;
 	

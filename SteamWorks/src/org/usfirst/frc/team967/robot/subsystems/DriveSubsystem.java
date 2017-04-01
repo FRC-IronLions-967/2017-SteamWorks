@@ -50,7 +50,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public boolean countsmeet;
 	
 	private DecimalFormat df = new DecimalFormat("#.##");
-	
+	private int done;
 	//follows (x*.9)^2
 	private double[] turnLookUp = new double[]{	0
 												,0.000081
@@ -221,12 +221,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     		move(L,R);
     	}else
     		move(L/max, R/max);
-    	SmartDashboard.putNumber("X axis", xAxis);
-    	SmartDashboard.putNumber("Y axis", yAxis);
-    	SmartDashboard.putNumber("R", R);
-    	SmartDashboard.putNumber("L", L);
-    	SmartDashboard.putNumber("R/max", R/max);
-    	SmartDashboard.putNumber("L/max", L/max);
+//    	SmartDashboard.putNumber("X axis", xAxis);
+//    	SmartDashboard.putNumber("Y axis", yAxis);
+//    	SmartDashboard.putNumber("R", R);
+//    	SmartDashboard.putNumber("L", L);
+//    	SmartDashboard.putNumber("R/max", R/max);
+//    	SmartDashboard.putNumber("L/max", L/max);
     }
 	// 0.010815180689100581 - 0.7353174468956218x + 8.812554716989258x2 - 11.619421463995128x3 + 4.534123196152433x4
 	public void arcadeDriveCurved(double yAxis, double OGxAxis) {	 
@@ -247,12 +247,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     		move(L,R);
     	}else
     		move(L/max, R/max);
-    	SmartDashboard.putNumber("X axis", xAxis);
-    	SmartDashboard.putNumber("Y axis", yAxis);
-    	SmartDashboard.putNumber("R", R);
-    	SmartDashboard.putNumber("L", L);
-    	SmartDashboard.putNumber("R/max", R/max);
-    	SmartDashboard.putNumber("L/max", L/max);
+//    	SmartDashboard.putNumber("X axis", xAxis);
+//    	SmartDashboard.putNumber("Y axis", yAxis);
+//    	SmartDashboard.putNumber("R", R);
+//    	SmartDashboard.putNumber("L", L);
+//    	SmartDashboard.putNumber("R/max", R/max);
+//    	SmartDashboard.putNumber("L/max", L/max);
     }
 	public void arcadeDriveLookUp(double yAxis, double xAxisCurve) {	 
 		double x = Math.abs(xAxisCurve);
@@ -272,12 +272,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     		move(L,R);
     	}else
     		move(L/max, R/max);
-    	SmartDashboard.putNumber("X axis", xAxis);
-    	SmartDashboard.putNumber("Y axis", yAxis);
-    	SmartDashboard.putNumber("R", R);
-    	SmartDashboard.putNumber("L", L);
-    	SmartDashboard.putNumber("R/max", R/max);
-    	SmartDashboard.putNumber("L/max", L/max);
+//    	SmartDashboard.putNumber("X axis", xAxis);
+//    	SmartDashboard.putNumber("Y axis", yAxis);
+//    	SmartDashboard.putNumber("R", R);
+//    	SmartDashboard.putNumber("L", L);
+//    	SmartDashboard.putNumber("R/max", R/max);
+//    	SmartDashboard.putNumber("L/max", L/max);
     }
 
 	/*
@@ -329,8 +329,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	}
 	public boolean pidDone(){
 		if(turnController.onTarget()){
-			turnController.disable();
-			return true;
+			done ++;
+			if(done >=5){
+				turnController.disable();
+				return true;
+			}
+			return false;
 		}
 		else{
 			return false;
@@ -363,7 +367,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		countsmeet = false;
 		if(count > 0){
 			if((getREncoder()) > count){
-				//if((-getLEncoder() + getREncoder())/2 > count){
+//			if((-getLEncoder() + getREncoder())/2 > count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -373,7 +377,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		}
 		else{
 			if((getREncoder()) < count){
-				//if((-getLEncoder() + getREncoder())/2 > count){
+//			if((-getLEncoder() + getREncoder())/2 > count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -407,6 +411,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
     	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
     	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
+    	SmartDashboard.putNumber("right lead volt", driveRightLead.getOutputVoltage());
+    	SmartDashboard.putNumber("left lead volt", driveLeftLead.getOutputVoltage());
+    	
+    	SmartDashboard.putNumber("Drive PID Error", turnController.getError());
+    	
+    	
     	SmartDashboard.putBoolean("DriveGearHigh", InHighGear);
 //    	SmartDashboard.putBoolean("counts meet", countsmeet);
     /*
