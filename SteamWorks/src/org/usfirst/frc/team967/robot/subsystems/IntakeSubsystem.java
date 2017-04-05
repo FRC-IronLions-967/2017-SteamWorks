@@ -84,7 +84,9 @@ public class IntakeSubsystem extends Subsystem {
     }
     
     public void log(){
+    	/*
     	SmartDashboard.putBoolean("UpperExtended", UpperExtended);
     	SmartDashboard.putBoolean("LowerExtended", LowerExtended);
+    	*/
     }
 }

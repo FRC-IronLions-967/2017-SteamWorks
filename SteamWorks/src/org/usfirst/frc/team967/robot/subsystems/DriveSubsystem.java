@@ -51,6 +51,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	
 	private DecimalFormat df = new DecimalFormat("#.##");
 	private int done;
+	private int i = 0;
+	public double lol;
+	public double printTargetCount;
+	public int returnTrue;
 	//follows (x*.9)^2
 	private double[] turnLookUp = new double[]{	0
 												,0.000081
@@ -363,11 +367,44 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		driveLeftLead.setEncPosition(0);
 		driveRightLead.setEncPosition(0);
 	}
-	public boolean driveDistance(double count){
+	
+	public boolean driveDistance(double countSetpoint, double direction){
+//		i++;
+//		lol = getLEncoder();
+//		getREncoder();
+//		if(i < 20){
+//			return false;
+//		}
+		if(direction < 0){
+			if(lol > countSetpoint){
+				//if((-getLEncoder() + getREncoder())/2 > count){
+				returnTrue ++;
+				i = 0;
+				return true;
+	    	}
+			else{
+				return false;
+			}
+		}
+		else{
+			if((lol) < countSetpoint){
+				//if((-getLEncoder() + getREncoder())/2 > count){
+				returnTrue++;
+				i = 0;
+				return true;
+	    	}
+			else{
+				return false;
+			}
+		}
+	}
+	
+	public boolean OLDdriveDistance(double count){
+		//encoders must be zero before this
 		countsmeet = false;
 		if(count > 0){
 			if((getREncoder()) > count){
-//			if((-getLEncoder() + getREncoder())/2 > count){
+				//if((-getLEncoder() + getREncoder())/2 > count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -377,7 +414,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		}
 		else{
 			if((getREncoder()) < count){
-//			if((-getLEncoder() + getREncoder())/2 > count){
+				//if((-getLEncoder() + getREncoder())/2 > count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -404,8 +441,12 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     }
         
     public void log(){
-    	SmartDashboard.putNumber("Left Encoder Position", driveLeftLead.getEncPosition());
-    	SmartDashboard.putNumber("Right Encoder Position", driveRightLead.getEncPosition());
+    	lol = getREncoder();
+    	SmartDashboard.putNumber("I", i);
+    	SmartDashboard.putNumber("lol", lol);
+    	
+    	SmartDashboard.putNumber("Left Encoder Position", getLEncoder());
+    	SmartDashboard.putNumber("Right Encoder Position", getREncoder());
     	SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw());
     	SmartDashboard.putNumber("right lead amps", driveRightLead.getOutputCurrent());
     	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
@@ -415,8 +456,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	SmartDashboard.putNumber("left lead volt", driveLeftLead.getOutputVoltage());
     	
     	SmartDashboard.putNumber("Drive PID Error", turnController.getError());
-    	
-    	
+    	SmartDashboard.putNumber("Returns True", returnTrue);    	
     	SmartDashboard.putBoolean("DriveGearHigh", InHighGear);
 //    	SmartDashboard.putBoolean("counts meet", countsmeet);
     /*

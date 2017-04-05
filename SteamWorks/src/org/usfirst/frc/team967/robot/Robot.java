@@ -185,7 +185,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		Robot.driveSubsystem.pidStop();
-		Robot.driveSubsystem.zeroEncoders();
+//		Robot.driveSubsystem.zeroEncoders();
 	}
 
 	@Override
@@ -214,7 +214,7 @@ public class Robot extends IterativeRobot {
 		shooterSubsystem.StopShooter();
 //		intakeSubsystem.shiftUpperOut();
 		autonomousCommand = chooser.getSelected();
-
+		log();
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -234,7 +234,7 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		driveSubsystem.shiftLow();
-		driveSubsystem.zeroEncoders();
+//		driveSubsystem.zeroEncoders();
 		shooterSubsystem.StopShooter();
 		shooterSubsystem.FeedPIDShooterStop();
 		intakeSubsystem.shiftLowerIn();
@@ -269,12 +269,12 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putData(driveSubsystem);
     	SmartDashboard.putNumber("Shooter Speed", Robot.shooterSubsystem.shooterLead.getSpeed());
     	SmartDashboard.putData(Scheduler.getInstance());
-    	oi.log();
+    	//oi.log();
     	driveSubsystem.log();
-    	intakeSubsystem.log();
-    	shooterSubsystem.log();
-    	gearSubsystem.log();
-    	climberSubsystem.log();
-    	cameraSubsystem.log();
+    	//intakeSubsystem.log();
+    	//shooterSubsystem.log();
+    	//gearSubsystem.log();
+    	//climberSubsystem.log();
+    	//cameraSubsystem.log();
 	}
 }

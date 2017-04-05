@@ -33,8 +33,9 @@ public class ClimberSubsystem extends Subsystem {
     //    setDefaultCommand(new command);
     }
     public void log(){
-    	SmartDashboard.putNumber("Climber Current lead", climberLead.getOutputCurrent());
+    /*	SmartDashboard.putNumber("Climber Current lead", climberLead.getOutputCurrent());
     	SmartDashboard.putNumber("Climber Current follow", climberFollow.getOutputCurrent());
+    */
     }
 }
 

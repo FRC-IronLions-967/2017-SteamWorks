@@ -7,44 +7,49 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoDriveGyro extends Command {
-	double distance;
-	double power;
-    public AutoDriveGyro(double Distance, double Power) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+public class Auto_Straight_Drive_Iowa extends Command {
+	
+	private double counts;
+	private double power;
+	
+    public Auto_Straight_Drive_Iowa(double Distance, double Power) {
     	requires(Robot.driveSubsystem);
+    	counts = Distance;
     	power = Power;
-    	distance = Distance;
+    	Robot.driveSubsystem.zeroEncoders();
+    	if(counts > 0){
+    		power = -power;
+    	}
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveSubsystem.pidSetPoint(Robot.driveSubsystem.getYaw());
-    	if(distance > 0){
-    		Robot.driveSubsystem.arcadeDrive(-power, 0);
-    	}
-    	else{
-    		Robot.driveSubsystem.arcadeDrive(power, 0);
-    	}
+    	Robot.driveSubsystem.pidEnable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.move(power + Robot.driveSubsystem.PIDOutput, power-Robot.driveSubsystem.PIDOutput+.02);
+    	Robot.driveSubsystem.move(power + 2*Robot.driveSubsystem.PIDOutput, power + -2*Robot.driveSubsystem.PIDOutput);
+    //	Robot.driveSubsystem.driveDistance(counts);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.driveSubsystem.driveDistance(distance);
+        return Robot.driveSubsystem.OLDdriveDistance(counts);
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveSubsystem.zeroEncoders();
+    	Robot.driveSubsystem.pidStop();
+    	Robot.driveSubsystem.move(0, 0);
+    	Robot.driveSubsystem.countsmeet = true;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+
     }
 }

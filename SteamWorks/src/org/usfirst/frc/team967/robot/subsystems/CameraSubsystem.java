@@ -18,9 +18,6 @@ public class CameraSubsystem extends Subsystem {
 		rearCamera = true;
 	}
 	
-	public void log(){
-		SmartDashboard.putBoolean("Rear Camera", rearCamera);
-	}
 	public void toggleCamera(){
 		rearCamera = !rearCamera;
 	}
@@ -46,5 +43,10 @@ public class CameraSubsystem extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
     }
+
+	public void log(){
+		SmartDashboard.putBoolean("Time Done", timeDone);
+		SmartDashboard.putBoolean("Rear Camera", rearCamera);
+	}
 }
 

@@ -136,6 +136,7 @@ public class ShooterSubsystem extends Subsystem {
     }
     
     public void log(){
+    	/*
     	SmartDashboard.putNumber("Bus Voltage", shooterLead.getBusVoltage());
     	SmartDashboard.putNumber("Output Voltage", shooterLead.getOutputVoltage());
     	SmartDashboard.putNumber("Output Lead Current", shooterLead.getOutputCurrent());
@@ -152,6 +153,6 @@ public class ShooterSubsystem extends Subsystem {
     	SmartDashboard.putNumber("Talon Closed Loop Error", shooterLead.getClosedLoopError());
     	SmartDashboard.putNumber("Feeder Speed", feederRpm);
     	SmartDashboard.putNumber("Feeder Amps", shooterFeed.getOutputCurrent());
-    	
+    	*/
     }
 }

@@ -69,7 +69,9 @@ public class GearSubsystem extends Subsystem {
     	//setDefaultCommand(new TeleOp_GearBoxClosed());
     }
     public void log(){
-        SmartDashboard.putBoolean("GearBox Open", isOpen);
+    /*
+    	SmartDashboard.putBoolean("GearBox Open", isOpen);
         SmartDashboard.putBoolean("GearBoxTop Open", isTopOpen);
+     */    
     }
 }

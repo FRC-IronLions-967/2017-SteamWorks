@@ -131,7 +131,7 @@ public class OI {
 //    	customBox11.whenPressed(new TeleOp_);
 //    	customBox11.whenReleased(new TeleOp_);
     	*/
-    	SmartDashboard.putData("Camera Toggle", new cameraToggle());
+/*    	SmartDashboard.putData("Camera Toggle", new cameraToggle());
     	
     	SmartDashboard.putData("P Up", new Testing_P_up());
     	SmartDashboard.putData("P down", new Testing_P_down());
@@ -141,14 +141,15 @@ public class OI {
     	SmartDashboard.putData("D down", new Testing_D_down());
     	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
     	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
-    
+  */  
     }
     
     public void log(){
-    	x = xbox1.getRawAxis(4);
+   /* 	x = xbox1.getRawAxis(4);
     	SmartDashboard.putNumber("Right Stick Squared", xbox1.getRawAxis(4)*xbox1.getRawAxis(4));
     	SmartDashboard.putNumber("Right Stick mess", (double)(-(.00002*(Math.pow(x, 6))) + 0.0008*(Math.pow(x, 5)) - 0.0111*(Math.pow(x, 4)) + 0.0641*(Math.pow(x, 3)) - 0.1305*(Math.pow(x,  2)) + 0.0923*(x)));
     	SmartDashboard.putNumber("Right Stick squared", (double)(-(Math.pow(x, 2))));
+    */
     }
     
     public Joystick getXbox1() {
