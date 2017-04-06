@@ -18,10 +18,10 @@ public class Auto_Straight_Drive extends Command {
     	SmartDashboard.putNumber("Testing Distance", Distance);
     	power = Power;
     	if(power > 0){
-    		targetCounts = Robot.driveSubsystem.lol - Distance;
+    		targetCounts = Robot.driveSubsystem.getREncoder() - Distance;
     	}
     	else{
-    		targetCounts = Robot.driveSubsystem.lol + Distance;
+    		targetCounts = Robot.driveSubsystem.getREncoder() + Distance;
     	}
     }
     

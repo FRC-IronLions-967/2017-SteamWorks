@@ -55,6 +55,9 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public double lol;
 	public double printTargetCount;
 	public int returnTrue;
+	private int yawTimer = 0;
+	private int encoderTimer = 0;
+	
 	//follows (x*.9)^2
 	private double[] turnLookUp = new double[]{	0
 												,0.000081
@@ -336,6 +339,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 			done ++;
 			if(done >=5){
 				turnController.disable();
+				done = 0;
 				return true;
 			}
 			return false;
@@ -345,8 +349,16 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		}
 	}
 	
-	public void resetYaw(){
+	public boolean resetYaw(){
 		gyro.zeroYaw();
+		if(yawTimer > 10){
+			yawTimer = 0;
+			return true;
+		}
+		else{
+			yawTimer ++;
+			return false;
+		}
 	}
 	
 	public double getYaw(){
@@ -363,9 +375,17 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public double getREncoder(){
 		return driveRightLead.getEncPosition();
 	}
-	public void zeroEncoders(){
+	public boolean zeroEncoders(){	
 		driveLeftLead.setEncPosition(0);
 		driveRightLead.setEncPosition(0);
+		if(encoderTimer > 10){
+			encoderTimer = 0;
+			return true;
+		}
+		else{
+			encoderTimer ++;
+			return false;
+		}
 	}
 	
 	public boolean driveDistance(double countSetpoint, double direction){

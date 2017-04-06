@@ -19,26 +19,16 @@ public class redLeftGear extends CommandGroup {
     public redLeftGear() {
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
-    	addSequential(new Auto_Delay(1));
-    	
     	addSequential(new ZeroEncoders());
     	//make sure encoders are zeroed
-    	addSequential(new Auto_Delay(1));
-    	
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
     	//low gear
-    	addSequential(new Auto_Delay(1));
-    	//wait for zero
     	addSequential(new Auto_Straight_Drive(3500, .5));//4150
     	//drive forward
-    	addSequential(new Auto_resetYaw());
-    	//reset Yaw
     	addSequential(new PIDTurnToAngle(180));//65
     	//turn
-    	addSequential(new Auto_Delay(1));
-    	
     	addSequential(new Auto_Straight_Drive(7000, .5));//850 //750
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
