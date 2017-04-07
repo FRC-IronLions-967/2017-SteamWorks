@@ -15,39 +15,38 @@ public class Auto_Straight_Drive extends Command {
 	
     public Auto_Straight_Drive(double Distance, double Power) {
     	requires(Robot.driveSubsystem);
-    	SmartDashboard.putNumber("Testing Distance", Distance);
+    	targetCounts = Distance;
     	power = Power;
-    	if(power > 0){
-    		targetCounts = Robot.driveSubsystem.getREncoder() - Distance;
-    	}
-    	else{
-    		targetCounts = Robot.driveSubsystem.getREncoder() + Distance;
+    	Robot.driveSubsystem.zeroEncoders();
+    	if(targetCounts > 0){
+    		power = -power;
     	}
     }
-    
+
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveSubsystem.pidSetPoint(Robot.driveSubsystem.getYaw());
     	Robot.driveSubsystem.pidEnable();
     }
-    
+
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     	Robot.driveSubsystem.move(power + 2*Robot.driveSubsystem.PIDOutput, power + -2*Robot.driveSubsystem.PIDOutput);
-    	SmartDashboard.putNumber("Auto Target Counts", targetCounts);
+    //	Robot.driveSubsystem.driveDistance(counts);
     }
-    
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.driveSubsystem.driveDistance(targetCounts, power);
+        return Robot.driveSubsystem.driveDistance(targetCounts);
     }
 
     // Called once after isFinished returns true
     protected void end() {
-//    	Robot.driveSubsystem.zeroEncoders();
+    	Robot.driveSubsystem.zeroEncoders();
     	Robot.driveSubsystem.pidStop();
     	Robot.driveSubsystem.move(0, 0);
-//    	Robot.driveSubsystem.countsmeet = true;
+    	Robot.driveSubsystem.countsmeet = true;
     }
 
     // Called when another command which requires one or more of the same

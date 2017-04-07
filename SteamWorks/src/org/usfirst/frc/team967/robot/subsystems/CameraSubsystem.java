@@ -45,8 +45,8 @@ public class CameraSubsystem extends Subsystem {
     }
 
 	public void log(){
-		SmartDashboard.putBoolean("Time Done", timeDone);
-		SmartDashboard.putBoolean("Rear Camera", rearCamera);
+//		SmartDashboard.putBoolean("Time Done", timeDone);
+//		SmartDashboard.putBoolean("Rear Camera", rearCamera);
 	}
 }
 

@@ -63,13 +63,15 @@ public class OI {
     	
     	//*********************************************************************
     	//Setting the button variables to the commands for controller number 1
-    	
+    	xbox1povN.whenPressed(new TankDrive(1, 1));
+    	xbox1povE.whenPressed(new TankDrive(1, -1));
+    	xbox1povS.whenPressed(new TankDrive(-1, -1));
+    	xbox1povW.whenPressed(new TankDrive(-1, 1));
      	xbox1_lT.whenPressed(new TeleOp_DriveShiftHigh(true));
      	xbox1_lT.whenReleased(new TeleOp_DriveShiftHigh(false));
      	xbox1_rT.whenPressed(new TeleOp_GearBoxSet(true));
      	xbox1_rT.whenReleased(new TeleOp_GearBoxSet(false));
     	xbox1_a.whenPressed(new TeleOp_DriveShiftToggle());
-//     	xbox1_a.whenPressed(new command());
 //    	xbox1_a.whenReleased(new command());
 //    	xbox1_b.whenPressed(new TeleOp_ShooterFeed(3));
     	xbox1_b.whenPressed(new Auto_resetYaw());
@@ -79,9 +81,9 @@ public class OI {
     	xbox1_y.whenPressed(new TeleOp_ClimberSet(RobotConstraints.ClimberSubsystem_ClimberSpeed));
     	xbox1_y.whenReleased(new TeleOp_ClimberSet(0));
      	xbox1_lb.whenPressed(new TeleOp_DriveShiftToggle());
-//    	xbox1_rb.whenPressed(new command());
-    	xbox1_back.whenPressed(new testOutputOn());
-    	xbox1_back.whenReleased(new testOutputOff());
+    	xbox1_rb.whenPressed(new TeleOp_IntakeSet(-RobotConstraints.IntakeSubsystem_IntakeSpeed));
+//    	xbox1_back.whenPressed(new testOutputOn());
+//    	xbox1_back.whenReleased(new testOutputOff());
     	xbox1_start.whenPressed(new TeleOp_GearTopSet(false));
 //    	xbox1_start.whenReleased(new command());
 //    	xbox1_leftStickButton.whenPressed(new command());
@@ -93,10 +95,17 @@ public class OI {
     	bigRed.whenReleased(new TeleOp_ClimberSet(0));
     	leftGreen.whenPressed(new TeleOp_IntakeBothLower());
 //    	leftGreen.whenReleased(new );
+    	leftBlack.whenPressed(new TeleOp_IntakeLowerArmSet(1));
+    	leftBlack.whenReleased(new TeleOp_IntakeLowerArmSet(0));
+    	leftWhite.whenPressed(new TeleOp_IntakeLowerArmSet(-1));
+    	leftWhite.whenReleased(new TeleOp_IntakeLowerArmSet(0));
+    	/*
     	leftBlack.whenPressed(new TeleOp_IntakeBothRaise());
 //    	leftBlack.whenReleased(new );
+    	
     	leftWhite.whenPressed(new TeleOp_IntakeLowerArmToggle());
 //    	leftWhite.whenReleased(new );
+    	 */
     	leftThumb.whenPressed(new TeleOp_IntakeUpperArmOut(true));
     	leftThumb.whenReleased(new TeleOp_IntakeUpperArmOut(false));
     	rightGreen.whenPressed(new TeleOp_ShooterFeed(3));
@@ -145,11 +154,7 @@ public class OI {
     }
     
     public void log(){
-   /* 	x = xbox1.getRawAxis(4);
-    	SmartDashboard.putNumber("Right Stick Squared", xbox1.getRawAxis(4)*xbox1.getRawAxis(4));
-    	SmartDashboard.putNumber("Right Stick mess", (double)(-(.00002*(Math.pow(x, 6))) + 0.0008*(Math.pow(x, 5)) - 0.0111*(Math.pow(x, 4)) + 0.0641*(Math.pow(x, 3)) - 0.1305*(Math.pow(x,  2)) + 0.0923*(x)));
-    	SmartDashboard.putNumber("Right Stick squared", (double)(-(Math.pow(x, 2))));
-    */
+    	
     }
     
     public Joystick getXbox1() {

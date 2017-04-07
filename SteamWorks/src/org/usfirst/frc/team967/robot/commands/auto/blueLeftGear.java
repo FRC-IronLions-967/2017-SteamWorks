@@ -1,7 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
+import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.commands.Auto_Delay;
-import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
 import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.Auto_resetYaw;
 import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
@@ -27,21 +27,21 @@ public class blueLeftGear extends CommandGroup {
     	//make sure encoders are zero
     	addSequential(new Auto_Delay(1));
     	//wait for zero
-    	addSequential(new Auto_Straight_Drive(-4150, .5));//3900//3850 on blue left gear
+    	addSequential(new Auto_Straight_Drive(-4150, RobotConstraints.Auto_Speed_Half));//3900//3850 on blue left gear
     	//drive forward //.75 speed
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(65));
     	//turn
-    	addSequential(new Auto_Straight_Drive(-800, .5));//900
+    	addSequential(new Auto_Straight_Drive(-800, RobotConstraints.Auto_Speed_Half));//900
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
-    	addSequential(new Auto_Straight_Drive(1000, .5));
+    	addSequential(new Auto_Straight_Drive(1000, RobotConstraints.Auto_Speed_Half));
     	//drive back
     	addSequential(new PIDTurnToAngle(0));
     	//turn
-    	addSequential(new Auto_Straight_Drive(-12000, .5));
+    	addSequential(new Auto_Straight_Drive(-12000, RobotConstraints.Auto_Speed_Half));
     	//drive back
     	
     	// Add Commands here:

@@ -2,7 +2,10 @@ package org.usfirst.frc.team967.robot;
 
 public class RobotConstraints {
 	/*** Auto Constraints ***/
-	public static final double Auto_Speed = .5;
+	public static final double Auto_Speed_Half = .5;
+	public static final double Auto_Speed_Fast = .75;
+	public static final double Auto_Speed_Full = 1;
+	
 	
 	/*** DRIVETRAIN Constraints ***/
 	public static final double DriveSubsystem_deadBand = .15;

@@ -1,6 +1,5 @@
 Things to add in the future listed here:
 -> Semi-Auto Functions
--> PID assisted Encoder Drive straight
 -> Vision
 
 Completed:
@@ -10,3 +9,4 @@ Completed:
 -> Autonomous Gyro PID Control
 -> Autonomous Encoder PID
 -> Multiple Auto Selection
+-> PID assisted Encoder Drive straight

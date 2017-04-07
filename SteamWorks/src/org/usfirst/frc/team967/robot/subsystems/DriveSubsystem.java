@@ -337,7 +337,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public boolean pidDone(){
 		if(turnController.onTarget()){
 			done ++;
-			if(done >=5){
+			if(done >=3){
 				turnController.disable();
 				done = 0;
 				return true;
@@ -388,7 +388,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		}
 	}
 	
-	public boolean driveDistance(double countSetpoint, double direction){
+	public boolean BADdriveDistance(double countSetpoint, double direction){
 //		i++;
 //		lol = getLEncoder();
 //		getREncoder();
@@ -419,8 +419,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		}
 	}
 	
-	public boolean OLDdriveDistance(double count){
-		//encoders must be zero before this
+	public boolean driveDistance(double count){
 		countsmeet = false;
 		if(count > 0){
 			if((getREncoder()) > count){
@@ -453,25 +452,21 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	    shifter.set(DoubleSolenoid.Value.kReverse);
 	}
 	public void toggleShift(){
-		if(InHighGear){	shiftLow();}
+		if(InHighGear){	shiftLow();	}
 		else{			shiftHigh();}
 	}
     public void initDefaultCommand() {
     	setDefaultCommand(new TeleOp_ArcadeDrive());
     }
         
-    public void log(){
-    	lol = getREncoder();
-    	SmartDashboard.putNumber("I", i);
-    	SmartDashboard.putNumber("lol", lol);
-    	
+    public void log(){    	
     	SmartDashboard.putNumber("Left Encoder Position", getLEncoder());
     	SmartDashboard.putNumber("Right Encoder Position", getREncoder());
     	SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw());
     	SmartDashboard.putNumber("right lead amps", driveRightLead.getOutputCurrent());
     	SmartDashboard.putNumber("left lead amps", driveLeftLead.getOutputCurrent());
-    	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
-    	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
+//    	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
+//    	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
     	SmartDashboard.putNumber("right lead volt", driveRightLead.getOutputVoltage());
     	SmartDashboard.putNumber("left lead volt", driveLeftLead.getOutputVoltage());
     	

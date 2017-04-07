@@ -14,22 +14,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class IntakeSubsystem extends Subsystem {
 
-	public CANTalon intakeLead;
-	//public CANTalon IntakeFollow;
+	public CANTalon intakeLead, lowerArm;
 	public DoubleSolenoid upperArm;
-	public DoubleSolenoid lowerArm;
+//	public DoubleSolenoid lowerArm;
 	
 	private boolean UpperExtended;
-	private boolean LowerExtended;
+//	private boolean LowerExtended;
 	
 	public IntakeSubsystem(){
 		intakeLead = new CANTalon(RobotMap.intake);
-		//IntakeFollow = new CANTalon(RobotMap.driveLeftFollow);
+		lowerArm = new CANTalon(RobotMap.lowerArmLead);
 		upperArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeUpperIn, RobotMap.intakeUpperOut);
-		lowerArm = new DoubleSolenoid(RobotMap.PCM2, RobotMap.intakeLowerIn, RobotMap.intakeLowerOut);//RobotMap.PCM
+//		lowerArm = new DoubleSolenoid(RobotMap.PCM2, RobotMap.intakeLowerIn, RobotMap.intakeLowerOut);//RobotMap.PCM
 		
 		UpperExtended = false;
-		LowerExtended = false;
+//		LowerExtended = false;
 		
 		intakeLead.changeControlMode(TalonControlMode.PercentVbus);
     }
@@ -51,6 +50,8 @@ public class IntakeSubsystem extends Subsystem {
 			shiftUpperOut();
 		}
 	}
+	
+/*
 	public void shiftLowerIn() {
 	    LowerExtended = false;
 	    lowerArm.set(DoubleSolenoid.Value.kForward);
@@ -59,6 +60,7 @@ public class IntakeSubsystem extends Subsystem {
 	    LowerExtended = true;
 	    lowerArm.set(DoubleSolenoid.Value.kReverse);
 	}
+
 	public void lowerToggle(){
 		if(LowerExtended){
 			shiftLowerIn();
@@ -67,7 +69,16 @@ public class IntakeSubsystem extends Subsystem {
 			shiftLowerOut();
 		}
 	}
-	
+*/	
+	public void lowerArmsMove(double power){
+		lowerArm.set(-power);
+	}
+	public void lowerArmsDown(){
+		lowerArmsMove(1);
+	}
+	public void lowerArmsUp(){
+		lowerArmsMove(-1);
+	}
 	public void intakeMove(double power){
 		intakeLead.set(-power);
 	}

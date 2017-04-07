@@ -51,16 +51,14 @@ public class Robot extends IterativeRobot {
     	robotConstraints = new RobotConstraints();
 		oi = new OI();
 		chooser.addDefault("Drive Forward", new driveBaseline());
-	//	chooser.addObject("Test", new Auto_Straight_Drive(1000, .5));
-//		chooser.addObject("Test", new Auto_Drive_Distance(1000, .5));
-//		chooser.addObject("ShooterBlueLeft", new blueLeftShoot());
-//		chooser.addObject("LeftBlue", new blueLeftGear());
-//		chooser.addObject("CenterBlue", new blueCenterGear());
-//		chooser.addObject("RightBlue", new blueRightGear());
+		chooser.addObject("ShooterBlueLeft", new blueLeftShoot());
+		chooser.addObject("LeftBlue", new blueLeftGear());
+		chooser.addObject("CenterBlue", new blueCenterGear());
+		chooser.addObject("RightBlue", new blueRightGear());
 		chooser.addObject("LeftRed", new redLeftGear());
-//		chooser.addObject("CenterRed", new redCenterGear());
-//		chooser.addObject("RightRed", new redRightGear());
-//		chooser.addObject("ShootRedRight", new redRightShoot());
+		chooser.addObject("CenterRed", new redCenterGear());
+		chooser.addObject("RightRed", new redRightGear());
+		chooser.addObject("ShootRedRight", new redRightShoot());
 		SmartDashboard.putData("Auto mode", chooser);
 			visionThread = new Thread(() -> {
 			// Get the UsbCamera from CameraServer
@@ -101,10 +99,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		driveSubsystem.zeroEncoders();
-		driveSubsystem.resetYaw();
-		//driveSubsystem.shiftLow();
+//		driveSubsystem.zeroEncoders();
+//		driveSubsystem.resetYaw();
+		driveSubsystem.shiftLow();
 		gearSubsystem.gearBoxClosed();
+		gearSubsystem.gearTopOpen();
 		shooterSubsystem.StopShooter();
 //		intakeSubsystem.shiftUpperOut();
 		autonomousCommand = chooser.getSelected();
@@ -128,11 +127,10 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		driveSubsystem.shiftLow();
-//		driveSubsystem.zeroEncoders();
 		shooterSubsystem.StopShooter();
 		shooterSubsystem.FeedPIDShooterStop();
-		intakeSubsystem.shiftLowerIn();
-		//intakeSubsystem.shiftUpperOut();
+//		intakeSubsystem.shiftLowerIn();
+//		intakeSubsystem.shiftUpperOut();
 //		gearSubsystem.gearTopOpen();
 		gearSubsystem.gearBoxClosed();
 		log();
@@ -161,14 +159,14 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putData(intakeSubsystem);
     	SmartDashboard.putData(gearSubsystem);
     	SmartDashboard.putData(driveSubsystem);
-    	SmartDashboard.putNumber("Shooter Speed", Robot.shooterSubsystem.shooterLead.getSpeed());
+//    	SmartDashboard.putNumber("Shooter Speed", Robot.shooterSubsystem.shooterLead.getSpeed());
     	SmartDashboard.putData(Scheduler.getInstance());
-    	//oi.log();
+    	oi.log();
     	driveSubsystem.log();
-    	//intakeSubsystem.log();
-    	//shooterSubsystem.log();
-    	//gearSubsystem.log();
-    	//climberSubsystem.log();
-    	//cameraSubsystem.log();
+    	intakeSubsystem.log();
+    	shooterSubsystem.log();
+    	gearSubsystem.log();
+    	climberSubsystem.log();
+    	cameraSubsystem.log();
 	}
 }

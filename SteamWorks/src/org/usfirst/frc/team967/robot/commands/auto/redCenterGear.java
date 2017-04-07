@@ -1,7 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
+import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.commands.Auto_Delay;
-import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
 import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.Auto_resetYaw;
 import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
@@ -27,11 +27,11 @@ public class redCenterGear extends CommandGroup {
     	//close gear box
     	addSequential(new Auto_Delay(1));
     	//wait for zero
-    	addSequential(new Auto_Straight_Drive(-3400, .5));//3400
+    	addSequential(new Auto_Straight_Drive(-3400, RobotConstraints.Auto_Speed_Half));//3400
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//close gear box
-    	addSequential(new Auto_Straight_Drive(2000, .5));
+    	addSequential(new Auto_Straight_Drive(2000, RobotConstraints.Auto_Speed_Half));
     	//drive back
     	addSequential(new TeleOp_GearBoxSet(false));
     	//close gear box
@@ -39,7 +39,7 @@ public class redCenterGear extends CommandGroup {
     	//turn 90
     	addSequential(new TeleOp_DriveShiftHigh(true));
     	//high gear
-    	addSequential(new Auto_Straight_Drive(-3500, .5));
+    	addSequential(new Auto_Straight_Drive(-3500, RobotConstraints.Auto_Speed_Half));
     	//drive back
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
@@ -47,7 +47,7 @@ public class redCenterGear extends CommandGroup {
     	//turn straight
     	addSequential(new TeleOp_DriveShiftHigh(true));
     	//high gear
-    	addSequential(new Auto_Straight_Drive(-12000, 1));
+    	addSequential(new Auto_Straight_Drive(-12000, RobotConstraints.Auto_Speed_Full));
     	//drive back
     	
     	// Add Commands here:
