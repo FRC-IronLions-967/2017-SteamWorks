@@ -57,6 +57,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public int returnTrue;
 	private int yawTimer = 0;
 	private int encoderTimer = 0;
+	private double LEncoder, REncoder;
 	
 	//follows (x*.9)^2
 	private double[] turnLookUp = new double[]{	0
@@ -370,15 +371,19 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	}
 
 	public double getLEncoder(){
+//		LEncoder = driveLeftLead.getEncPosition();
+//		return LEncoder;
 		return driveLeftLead.getEncPosition();
 	}
 	public double getREncoder(){
+//		REncoder = driveRightLead.getEncPosition();
+//		return REncoder;
 		return driveRightLead.getEncPosition();
 	}
 	public boolean zeroEncoders(){	
 		driveLeftLead.setEncPosition(0);
 		driveRightLead.setEncPosition(0);
-		if(encoderTimer > 10){
+		if(encoderTimer > 10){//10
 			encoderTimer = 0;
 			return true;
 		}
@@ -422,8 +427,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public boolean driveDistance(double count){
 		countsmeet = false;
 		if(count > 0){
-			if((getREncoder()) > count){
-				//if((-getLEncoder() + getREncoder())/2 > count){
+//			if((getREncoder()) > count){
+			if((-getLEncoder() + getREncoder())/2 > count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -432,8 +437,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 			}
 		}
 		else{
-			if((getREncoder()) < count){
-				//if((-getLEncoder() + getREncoder())/2 > count){
+//			if((getREncoder()) < count){
+			if((-getLEncoder() + getREncoder())/2 > count){
 				countsmeet = true;
 				return true;
 	    	}

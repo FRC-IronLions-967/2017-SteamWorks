@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team967.robot.commands.Auto_Delay;
 import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.auto.*;
 import org.usfirst.frc.team967.robot.subsystems.CameraSubsystem;
@@ -38,8 +39,10 @@ public class Robot extends IterativeRobot {
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 	public static OI oi;
 	
-	Command autonomousCommand;
+	Command autonomousCommand, teleOPStart;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<Command> TeleOpChooser = new SendableChooser<>();
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -50,6 +53,9 @@ public class Robot extends IterativeRobot {
 		robotMap = new RobotMap();
     	robotConstraints = new RobotConstraints();
 		oi = new OI();
+		TeleOpChooser.addDefault("Nothing", new Auto_Delay(.1));
+		TeleOpChooser.addObject("Forward", new Auto_Straight_Drive(500, .5));
+
 		chooser.addDefault("Drive Forward", new driveBaseline());
 		chooser.addObject("ShooterBlueLeft", new blueLeftShoot());
 		chooser.addObject("LeftBlue", new blueLeftGear());

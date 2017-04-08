@@ -36,22 +36,34 @@ public class redRightShoot extends CommandGroup {
     	//reset Yaw
     	addSequential(new PIDTurnToAngle(-65));
     	//turn
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
+
     	addSequential(new Auto_Straight_Drive(-150, RobotConstraints.Auto_Speed_Fast));//1000
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
+
     	addSequential(new Auto_Straight_Drive(1400, RobotConstraints.Auto_Speed_Fast));//1500
     	//drive back
     	addSequential(new TeleOp_GearBoxSet(false));
     	//close gear box
     	addSequential(new PIDTurnToAngle(0));
     	//turn
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
+
     	addSequential(new Auto_Straight_Drive(600, RobotConstraints.Auto_Speed_Fast));
     	//drive back
     	addSequential(new PIDTurnToAngle(-50));
     	//turn
     	addParallel(new TeleOp_Shoot());
     	//shoot
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
+
     	addSequential(new Auto_Straight_Drive(3500, RobotConstraints.Auto_Speed_Fast));
     	//drive back
     	addSequential(new TeleOp_ShooterFeed(.6));

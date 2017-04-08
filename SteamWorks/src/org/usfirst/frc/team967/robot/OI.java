@@ -110,9 +110,9 @@ public class OI {
     	bigRed.whenReleased(new TeleOp_ClimberSet(0));
     	leftGreen.whenPressed(new TeleOp_IntakeBothLower());
 //    	leftGreen.whenReleased(new );
-    	leftBlack.whenPressed(new TeleOp_IntakeLowerArmSet(1));
+    	leftBlack.whenPressed(new TeleOp_IntakeLowerArmSet(.5));
     	leftBlack.whenReleased(new TeleOp_IntakeLowerArmSet(0));
-    	leftWhite.whenPressed(new TeleOp_IntakeLowerArmSet(-1));
+    	leftWhite.whenPressed(new TeleOp_IntakeLowerArmSet(-.5));
     	leftWhite.whenReleased(new TeleOp_IntakeLowerArmSet(0));
     	/*
     	leftBlack.whenPressed(new TeleOp_IntakeBothRaise());
@@ -127,7 +127,7 @@ public class OI {
     	rightGreen.whenReleased(new TeleOp_ShooterFeedStop());
     	rightWhite.whenPressed(new TeleOp_GearTopSet(false));
     	rightWhite.whenReleased(new TeleOp_GearTopSet(true));
-    	rightBlack.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
+    	rightBlack.whenPressed(new TeleOp_IntakeSet(-RobotConstraints.IntakeSubsystem_IntakeSpeed));
     	rightBlack.whenReleased(new TeleOp_IntakeSet(0));
     	rightThumb.whenPressed(new TeleOp_Shoot());
     	rightThumb.whenReleased(new TeleOp_StopShooting());

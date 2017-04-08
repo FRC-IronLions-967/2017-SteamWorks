@@ -19,22 +19,22 @@ public class redRightGear extends CommandGroup {
     public redRightGear() {
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
-    	addSequential(new ZeroEncoders());
-    	//make sure encoders are zero
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
     	//low gear
-    	addSequential(new Auto_Delay(1));
+//    	addSequential(new Auto_Delay(1));
     	//wait for zero
-    	addSequential(new Auto_Straight_Drive(-3800, RobotConstraints.Auto_Speed_Half));
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
+    	addSequential(new Auto_Straight_Drive(-3750, RobotConstraints.Auto_Speed_Half));
 //    	addSequential(new Auto_Drive_Distance(-3900, .75));//3900//3850 on blue left gear
     	//drive forward
-//    	addSequential(new Auto_resetYaw());
-    	//reset Yaw
     	addSequential(new PIDTurnToAngle(-65));
     	//turn
-    	addSequential(new Auto_Straight_Drive(-150, RobotConstraints.Auto_Speed_Half));//950 //1050
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
+    	addSequential(new Auto_Straight_Drive(-950, RobotConstraints.Auto_Speed_Half));//950 //1050
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
@@ -47,6 +47,9 @@ public class redRightGear extends CommandGroup {
     	//turn
     	addSequential(new TeleOp_DriveShiftHigh(true));
     	//drive back
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
+
     	addSequential(new Auto_Straight_Drive(-12000, RobotConstraints.Auto_Speed_Full));
     	//drive back
     	
