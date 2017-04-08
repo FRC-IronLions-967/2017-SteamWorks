@@ -19,10 +19,19 @@ public class RobotConstraints {
 	 * .002
 	 * .0405
 	 */
-	public static final double DriveSubsystem_P = .018;
-	public static final double DriveSubsystem_I = .002;
-	public static final double DriveSubsystem_D = .0405;
-	public static final double DriveSubsystem_AbsoluteTolerance = 1.0f;
+	
+	//  1/3 seconds
+	//  .05
+	
+	/*
+	 * .069
+	 * 1/6
+	 * 1/9
+	 */
+	public static final double DriveSubsystem_P = .05*.6;//.08
+	public static final double DriveSubsystem_I = 1/6;
+	public static final double DriveSubsystem_D = 1/24;
+	public static final double DriveSubsystem_AbsoluteTolerance = 2.5f;
 	public static final double DriveSubsystem_Tolerance = 5.0f;
 	
 	/*** Shooter Constraints ***/

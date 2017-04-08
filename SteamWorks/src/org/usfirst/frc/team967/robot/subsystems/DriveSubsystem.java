@@ -337,7 +337,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public boolean pidDone(){
 		if(turnController.onTarget()){
 			done ++;
-			if(done >=3){
+			if(done >=5){
 				turnController.disable();
 				done = 0;
 				return true;

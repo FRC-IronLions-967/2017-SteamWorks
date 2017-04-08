@@ -13,31 +13,34 @@ public class blueCenterGear extends CommandGroup {
     public blueCenterGear() {
     	addSequential(new Auto_resetYaw());
     	//low gear
-    	addSequential(new TeleOp_DriveShiftHigh(false));
+//    	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
     	//open gear box
     	addSequential(new Auto_Delay(1));
     	//wait for zero
-    	addSequential(new Auto_Straight_Drive(-3300, RobotConstraints.Auto_Speed_Half));//3400
+//    	addSequential(new Auto_Straight_Drive(-3300, RobotConstraints.Auto_Speed_Half));//3400
     	//drive forward
-    	addSequential(new TeleOp_GearBoxSet(true));
+//    	addSequential(new TeleOp_GearBoxSet(true));
     	//close gear box
-    	addSequential(new Auto_Straight_Drive(2000, RobotConstraints.Auto_Speed_Half));
+//    	addSequential(new Auto_Straight_Drive(2000, RobotConstraints.Auto_Speed_Half));
     	//drive back
     	addSequential(new PIDTurnToAngle(90));
     	//turn 90
+//not in real auto    	***************************************
+    	addSequential(new TeleOp_GearBoxSet(true));
+//*************************************************************
 //    	addSequential(new TeleOp_DriveShiftHigh(true));
     	//high gear
-    	addSequential(new Auto_Straight_Drive(-4000, RobotConstraints.Auto_Speed_Half));
+//    	addSequential(new Auto_Straight_Drive(-4000, RobotConstraints.Auto_Speed_Half));
     	//drive back
 //    	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
-    	addSequential(new PIDTurnToAngle(0));
+//    	addSequential(new PIDTurnToAngle(0));
     	//turn 0
 //    	addSequential(new TeleOp_DriveShiftHigh(true));
     	//high gear
-    	addSequential(new Auto_Straight_Drive(-13000, RobotConstraints.Auto_Speed_Full));
+//    	addSequential(new Auto_Straight_Drive(-13000, RobotConstraints.Auto_Speed_Full));
     	//drive back
     	
     	
