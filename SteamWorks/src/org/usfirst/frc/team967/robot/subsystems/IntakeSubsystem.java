@@ -4,6 +4,7 @@ import org.usfirst.frc.team967.robot.RobotMap;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,16 +19,19 @@ public class IntakeSubsystem extends Subsystem {
 	//public CANTalon IntakeFollow;
 	private DoubleSolenoid upperArm;
 //	public DoubleSolenoid lowerArm;
+	private DigitalInput lowerArmLimit;
 	
 	private boolean UpperExtended;
-	private boolean LowerExtended;
+//	private boolean LowerExtended;
+	private int encoderIntakeTimer = 0;
 	
 	public IntakeSubsystem(){
-		intakeLead = new CANTalon(RobotMap.intake);
-		lowerArm = new CANTalon(RobotMap.lowerArmLead);
+		intakeLead = new CANTalon(RobotMap.intakeWheelLead);
+		lowerArm = new CANTalon(RobotMap.intakeLowerArmLead);
 		//IntakeFollow = new CANTalon(RobotMap.driveLeftFollow);
-		upperArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeUpperIn, RobotMap.intakeUpperOut);
+		upperArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeShifterUpperIn, RobotMap.intakeShifterUpperOut);
 //		lowerArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeLowerIn, RobotMap.intakeLowerOut);
+		lowerArmLimit = new DigitalInput(RobotMap.intakeLimitSwitch);
 		
 		UpperExtended = false;
 //		LowerExtended = false;
@@ -99,6 +103,43 @@ public class IntakeSubsystem extends Subsystem {
 	public void intakeOut(){
 		intakeMove(-1);
 	}
+	public void bringLowerUp(){
+		if(!lowerArmLimit.get()){
+			lowerArmsMove(-.5);
+		}
+		else{
+			lowerArmsMove(-.5);
+		}
+	}
+	public boolean zeroEncoder(){	
+		if(encoderIntakeTimer > 10){
+			encoderIntakeTimer = 0;
+			return true;
+		}
+		else if(encoderIntakeTimer == 1){
+			lowerArm.setEncPosition(0);
+			encoderIntakeTimer ++;
+			return false;
+		}
+		else{
+			encoderIntakeTimer ++;
+			return false;
+		}
+	}
+	public boolean lowerArmToCount(int count){
+		if(count - 50 > lowerArm.getEncPosition()){
+			lowerArmsMove(-.5);
+			return false;
+		}
+		else if(count + 50 < lowerArm.getEncPosition()){
+			lowerArmsMove(.5);
+			return false;
+		}
+		else{
+			lowerArmsMove(0);
+			return true;
+		}
+	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -107,6 +148,6 @@ public class IntakeSubsystem extends Subsystem {
     
     public void log(){
     	SmartDashboard.putBoolean("UpperExtended", UpperExtended);
-    	SmartDashboard.putBoolean("LowerExtended", LowerExtended);
+//    	SmartDashboard.putBoolean("LowerExtended", LowerExtended);
     }
 }
