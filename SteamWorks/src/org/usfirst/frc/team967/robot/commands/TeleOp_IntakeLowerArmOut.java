@@ -1,3 +1,4 @@
+/*
 package org.usfirst.frc.team967.robot.commands;
 
 import org.usfirst.frc.team967.robot.Robot;
@@ -6,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
- */
+ * /
 public class TeleOp_IntakeLowerArmOut extends Command {
 	private boolean out;
     public TeleOp_IntakeLowerArmOut(boolean Out) {
@@ -44,3 +45,4 @@ public class TeleOp_IntakeLowerArmOut extends Command {
     protected void interrupted() {
     }
 }
+*/

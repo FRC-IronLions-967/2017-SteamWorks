@@ -18,9 +18,9 @@ public class TeleOp_ArcadeDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.arcadeDriveLookUp(Robot.oi.getXbox1().getRawAxis(1), Robot.oi.getXbox1().getRawAxis(4));
-//    	Robot.driveSubsystem.arcadeDriveCurved(Robot.oi.getXbox1().getRawAxis(1), Robot.oi.getXbox1().getRawAxis(4));
-//    	Robot.driveSubsystem.arcadeDrive(Robot.oi.getXbox1().getRawAxis(1), (-Robot.oi.getXbox1().getRawAxis(4)*.75));
+//    	Robot.driveSubsystem.arcadeDrive(Robot.oi.getXbox1().getRawAxis(1), (-Robot.oi.getXbox1().getRawAxis(4)));
+    	Robot.driveSubsystem.arcadeDriveLookUp(Robot.oi.getXbox1().getRawAxis(1), (Robot.oi.getXbox1().getRawAxis(4)));
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

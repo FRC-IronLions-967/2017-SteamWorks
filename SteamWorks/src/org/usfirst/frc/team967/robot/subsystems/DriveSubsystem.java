@@ -34,8 +34,8 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	static final double kI = RobotConstraints.DriveSubsystem_I;     // Setting the I for the PID loop to use.
 	static final double kD = RobotConstraints.DriveSubsystem_D;     // Setting the D for the PID loop to use.
 	
-	static final double kAbsoluteToleranceDegrees = RobotConstraints.DriveSubsystem_AbsoluteTolerance;
-	static final double kToleranceDegrees = RobotConstraints.DriveSubsystem_Tolerance;
+	static final double kToleranceDegrees = RobotConstraints.DriveSubsystem_Tolerance; // Setting the tolerance for the pid loop.
+	//1.0f
 	private CANTalon driveLeftLead;		// Creating driveLeftLead as a motor controller.
 	private CANTalon driveLeftFollow;   // Creating driveLeftFollow as a motor controller.
 	//private CANTalon driveLeftFollow1;  // Creating driveLeftFollow1 as a motor controller.
@@ -48,9 +48,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	private final double deadBand = RobotConstraints.DriveSubsystem_deadBand; // Setting the deadband to what's in the RobotConstraints file.
 	public boolean InHighGear;	// Creating the variable InHighGear to tell if in high gear.
 	public boolean countsmeet;
-	
+	private int yawTimer = 0;
+	private int encoderTimer = 0;
+	private int Timer = 0;
 	private DecimalFormat df = new DecimalFormat("#.##");
-	
 	//follows (x*.9)^2
 	private double[] turnLookUp = new double[]{	0
 												,0.000081
@@ -153,8 +154,11 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 												,0.777924
 												,0.793881
 												,0.81};
-
 	
+	/*
+	 * This gets called from the main file Robot.java 
+	 * It is used to setup all of the different functions that the subsystem needs to do.
+	 */
 	public DriveSubsystem(){
 		
 		driveLeftLead = new CANTalon(RobotMap.driveLeftLead);    	  // The left drive lead motor
@@ -196,10 +200,10 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		 gyro.zeroYaw(); // zeroing the Yaw of the gyro.
 		 
 		 turnController = new PIDController(kP, kI, kD, gyro,this);// setting the P,I,D and the input source. 
-		 turnController.disable(); // turning off the pid loop
+		 turnController.disable(); // turning of the pid loop
 	     turnController.setInputRange(-180.0f,  180.0f); // setting the input range of the pid loop
 	     turnController.setOutputRange(-1.0, 1.0); // setting the output range of the pid loop
-	     turnController.setAbsoluteTolerance(kAbsoluteToleranceDegrees); // setting the tolerance of the pd loop
+	     turnController.setAbsoluteTolerance(kToleranceDegrees); // setting the tolerance of the pd loop
 	     turnController.setContinuous(true); // setting if the pid code can go over the -180 to 180 line.
 	}
 	
@@ -228,15 +232,16 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	SmartDashboard.putNumber("R/max", R/max);
     	SmartDashboard.putNumber("L/max", L/max);
     }
+	/*
 	// 0.010815180689100581 - 0.7353174468956218x + 8.812554716989258x2 - 11.619421463995128x3 + 4.534123196152433x4
 	public void arcadeDriveCurved(double yAxis, double OGxAxis) {	 
 		double x = Math.abs(OGxAxis);
+		//square the values for better control at low speeds
 		yAxis = yAxis*Math.abs(yAxis);
 		double xAxis = (double)(0.010815180689100581 - 0.7353174468956218*x + 8.812554716989258*Math.pow(x,  2) - 11.619421463995128*Math.pow(x, 3) + 4.534123196152433*Math.pow(x, 4));
-		if(OGxAxis < 0){
+		if(OGxAxis>0){
 			xAxis = -xAxis;
 		}
-		
 		if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
     	if((xAxis< deadBand) && (xAxis > -deadBand)){ xAxis=0;}
     	double L = yAxis + xAxis;
@@ -253,13 +258,14 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	SmartDashboard.putNumber("L", L);
     	SmartDashboard.putNumber("R/max", R/max);
     	SmartDashboard.putNumber("L/max", L/max);
-    }
-	public void arcadeDriveLookUp(double yAxis, double xAxis) {	 
-		double x = Math.abs(xAxis);
+	}
+	*/
+	public void arcadeDriveLookUp(double yAxis, double xAxisCurve) {	 
+		double x = Math.abs(xAxisCurve);
 		//square the values for better control at low speeds
 		yAxis = yAxis*Math.abs(yAxis);
-		xAxis = turnLookUp[(int)(Double.valueOf(df.format(x))*100)];
-		if(xAxis < 0){
+		double xAxis = turnLookUp[(int)(Double.valueOf(df.format(x))*100)];
+		if(xAxisCurve > 0){
 			xAxis = -xAxis;
 		}
 		if((yAxis < deadBand) && (yAxis > -deadBand)){ yAxis=0;}
@@ -272,17 +278,16 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     		move(L,R);
     	}else
     		move(L/max, R/max);
-    	SmartDashboard.putNumber("X axis", xAxis);
-    	SmartDashboard.putNumber("Y axis", yAxis);
-    	SmartDashboard.putNumber("R", R);
-    	SmartDashboard.putNumber("L", L);
-    	SmartDashboard.putNumber("R/max", R/max);
-    	SmartDashboard.putNumber("L/max", L/max);
+//    	SmartDashboard.putNumber("X axis", xAxis);
+//    	SmartDashboard.putNumber("Y axis", yAxis);
+//    	SmartDashboard.putNumber("R", R);
+//    	SmartDashboard.putNumber("L", L);
+//    	SmartDashboard.putNumber("R/max", R/max);
+//    	SmartDashboard.putNumber("L/max", L/max);
     }
 
 	/*
-	 * The only place that the code sets the power to the drive motors 
-	 *  
+	 * The only place that the code sets the power to the drive motors  
 	 */
 	public void move(double left, double right){
 		if(left > 1){
@@ -328,17 +333,30 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		}
 	}
 	public boolean pidDone(){
-		if(turnController.onTarget()){
-			turnController.disable();
-			return true;
+		if(Math.abs(Math.abs(turnController.getSetpoint()) - Math.abs(gyro.getYaw())) < 7){
+			if(Timer > 5){
+				Timer = 0;
+				return true;
+			}
+			else{
+				Timer++;
+				return false;
+			}
 		}
 		else{
 			return false;
 		}
 	}
-	
-	public void resetYaw(){
+	public boolean resetYaw(){	
 		gyro.zeroYaw();
+		if(yawTimer > 10){
+			yawTimer = 0;
+			return true;
+		}
+		else{
+			yawTimer ++;
+			return false;
+		}	
 	}
 	
 	public double getYaw(){
@@ -355,15 +373,24 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 	public double getREncoder(){
 		return driveRightLead.getEncPosition();
 	}
-	public void zeroEncoders(){
+	
+	public boolean zeroEncoders(){	
 		driveLeftLead.setEncPosition(0);
 		driveRightLead.setEncPosition(0);
+		if(encoderTimer > 10){
+			encoderTimer = 0;
+			return true;
+		}
+		else{
+			encoderTimer ++;
+			return false;
+		}
 	}
+	
 	public boolean driveDistance(double count){
 		countsmeet = false;
 		if(count > 0){
-			if((getREncoder()) > count){
-				//if((-getLEncoder() + getREncoder())/2 > count){
+			if((-getLEncoder() + getREncoder())/2 > count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -372,8 +399,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 			}
 		}
 		else{
-			if((getREncoder()) < count){
-				//if((-getLEncoder() + getREncoder())/2 > count){
+			if((-getLEncoder() + getREncoder())/2 < count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -382,7 +408,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 			}
 		}
 	}
-	
+//	public boolean
 	public void shiftLow() {
 	    InHighGear = false;
 	    shifter.set(DoubleSolenoid.Value.kForward);
@@ -396,6 +422,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
 		else{			shiftHigh();}
 	}
     public void initDefaultCommand() {
+//    	setDefaultCommand(new ArcadeDrive3_4Turn());
     	setDefaultCommand(new TeleOp_ArcadeDrive());
     }
         
@@ -408,7 +435,7 @@ public class DriveSubsystem extends Subsystem implements PIDOutput {
     	SmartDashboard.putNumber("right follow amps", driveRightFollow.getOutputCurrent());
     	SmartDashboard.putNumber("left follow amps", driveLeftFollow.getOutputCurrent());
     	SmartDashboard.putBoolean("DriveGearHigh", InHighGear);
-//    	SmartDashboard.putBoolean("counts meet", countsmeet);
+    	SmartDashboard.putBoolean("counts meet", countsmeet);
     /*
    	 	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
         SmartDashboard.putBoolean(  "IMU_IsCalibrating",    gyro.isCalibrating());

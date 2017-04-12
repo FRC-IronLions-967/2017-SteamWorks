@@ -1,7 +1,5 @@
 package org.usfirst.frc.team967.robot;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -11,20 +9,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team967.robot.subsystems.DriveSubsystem;
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
-import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
-import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
 import org.usfirst.frc.team967.robot.commands.auto.*;
-import org.usfirst.frc.team967.robot.subsystems.CameraSubsystem;
-import org.usfirst.frc.team967.robot.subsystems.ClimberSubsystem;
-import org.usfirst.frc.team967.robot.subsystems.GearSubsystem;
-import org.usfirst.frc.team967.robot.subsystems.IntakeSubsystem;
-import org.usfirst.frc.team967.robot.subsystems.ShooterSubsystem;
+import org.usfirst.frc.team967.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -58,9 +44,7 @@ public class Robot extends IterativeRobot {
     	robotConstraints = new RobotConstraints();
 		oi = new OI();
 		chooser.addDefault("Drive Forward", new driveBaseline());
-		chooser.addObject("Test", new Auto_Straight_Drive(1000, .5));
-//		chooser.addObject("Test", new Auto_Drive_Distance(1000, .5));
-		
+//		chooser.addObject("Test", new Auto_Straight_Drive(1000, .5));	
 		chooser.addObject("ShooterBlueLeft", new blueLeftShoot());
 		chooser.addObject("LeftBlue", new blueLeftGear());
 		chooser.addObject("CenterBlue", new blueCenterGear());
@@ -70,115 +54,11 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("RightRed", new redRightGear());
 		chooser.addObject("ShootRedRight", new redRightShoot());
 		SmartDashboard.putData("Auto mode", chooser);
-	/*	visionThread = new Thread(() -> {
-			// Get the UsbCamera from CameraServer		
-			UsbCamera RearCamera = CameraServer.getInstance().startAutomaticCapture(0);
-			UsbCamera FrontCamera = CameraServer.getInstance().startAutomaticCapture(1);
-			
-			// Set the resolution
-			RearCamera.setResolution(640, 480);//half to 320, 240 ????
-			FrontCamera.setResolution(640, 480);
-			
-			// Get a CvSink. This will capture Mats from the camera
-			CvSink rearSink = CameraServer.getInstance().getVideo(RearCamera);
-			CvSink frontSink = CameraServer.getInstance().getVideo(FrontCamera);
-			// Setup a CvSource. This will send images back to the Dashboard
-			CvSource dashOutput = CameraServer.getInstance().putVideo("Rectangle", 640, 480);
-
-			// Mats are very memory expensive. Lets reuse this Mat.
-			Mat mat = new Mat();
-			// This cannot be 'true'. The program will never exit if it is. This
-			// lets the robot stop this thread when restarting robot code or
-			// deploying.
-			while (!Thread.interrupted()) {
-				if(cameraSubsystem.rearCamera){
-					// Tell the CvSink to grab a frame from the camera and put it
-					// in the source mat.  If there is an error notify the output.
-					if (rearSink.grabFrame(mat) == 0) {
-						// Send the output the error.
-						dashOutput.notifyError(rearSink.getError());
-						// skip the rest of the current iteration
-						continue;
-					}
-					// Put a rectangle on the image
-					Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400),
-							new Scalar(255, 255, 255), 5);
-				}
-				else{
-					if (frontSink.grabFrame(mat) == 0) {
-						// Send the output the error.
-						dashOutput.notifyError(frontSink.getError());
-						// skip the rest of the current iteration
-						continue;
-					}
-				}
-				// Give the output stream a new image to display
-				dashOutput.putFrame(mat);
-			}
-//			if(cameraSubsystem.rearCamera){
-//				dashOutput.putFrame(mat);
-//			}
-//			else{
-//				dashOutput.putFrame(null);
-//			}
-			/*
-//***********************************************************************
-			// Mats are very memory expensive. Lets reuse this Mat.
-			Mat mat = new Mat();
-
-			// This cannot be 'true'. The program will never exit if it is. This
-			// lets the robot stop this thread when restarting robot code or
-			// deploying.
-			while (!Thread.interrupted()) {
-				// Tell the CvSink to grab a frame from the camera and put it
-				// in the source mat.  If there is an error notify the output.
-				if (rearSink.grabFrame(mat) == 0) {
-					// Send the output the error.
-					dashOutput.notifyError(rearSink.getError());
-					// skip the rest of the current iteration
-					continue;
-				}
-				// Put a rectangle on the image
-				Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400),
-						new Scalar(255, 255, 255), 5);
-				// Give the output stream a new image to display
-				dashOutput.putFrame(mat);
-			}
-		});*/
-		/* this works*/
 		visionThread = new Thread(() -> {
 			// Get the UsbCamera from CameraServer
 			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 			// Set the resolution
-			camera.setResolution(320/2, 240/2);
-/*
-			// Get a CvSink. This will capture Mats from the camera
-			CvSink cvSink = CameraServer.getInstance().getVideo();
-			// Setup a CvSource. This will send images back to the Dashboard
-			CvSource outputStream = CameraServer.getInstance().putVideo("Rectangle", 320, 240);
-
-			// Mats are very memory expensive. Lets reuse this Mat.
-			Mat mat = new Mat();
-
-			// This cannot be 'true'. The program will never exit if it is. This
-			// lets the robot stop this thread when restarting robot code or
-			// deploying.
-			while (!Thread.interrupted()) {
-				// Tell the CvSink to grab a frame from the camera and put it
-				// in the source mat.  If there is an error notify the output.
-				if (cvSink.grabFrame(mat) == 0) {
-					// Send the output the error.
-					outputStream.notifyError(cvSink.getError());
-					// skip the rest of the current iteration
-					continue;
-				}
-				// Put a rectangle on the image
-				Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400),
-						new Scalar(0, 0, 255), 5);
-				// Give the output stream a new image to display
-				outputStream.putFrame(mat);
-				
-			}*/
+			camera.setResolution(320/2, 240/2);			
 		});	
 		visionThread.setDaemon(true);
 		visionThread.start();
@@ -219,9 +99,9 @@ public class Robot extends IterativeRobot {
 		//driveSubsystem.shiftLow();
 		gearSubsystem.gearBoxClosed();
 		shooterSubsystem.StopShooter();
-//		intakeSubsystem.shiftUpperOut();
+		cameraSubsystem.lightOn();
 		autonomousCommand = chooser.getSelected();
-
+		log();
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -241,13 +121,11 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		driveSubsystem.shiftLow();
-		driveSubsystem.zeroEncoders();
-		shooterSubsystem.StopShooter();
-		shooterSubsystem.FeedPIDShooterStop();
-		intakeSubsystem.shiftLowerIn();
-		//intakeSubsystem.shiftUpperOut();
-		gearSubsystem.gearTopOpen();
+//		driveSubsystem.zeroEncoders();
+//		shooterSubsystem.StopShooter();
+//		shooterSubsystem.FeedPIDShooterStop();
 		gearSubsystem.gearBoxClosed();
+		cameraSubsystem.lightOff();
 		log();
 	}
 
@@ -274,7 +152,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putData(intakeSubsystem);
     	SmartDashboard.putData(gearSubsystem);
     	SmartDashboard.putData(driveSubsystem);
-    	SmartDashboard.putNumber("Shooter Speed", Robot.shooterSubsystem.shooterLead.getSpeed());
+//    	SmartDashboard.putNumber("Shooter Speed", Robot.shooterSubsystem.shooterLead.getSpeed());
     	SmartDashboard.putData(Scheduler.getInstance());
     	oi.log();
     	driveSubsystem.log();

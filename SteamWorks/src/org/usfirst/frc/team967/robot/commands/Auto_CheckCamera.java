@@ -7,32 +7,38 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auto_Delay extends Command {
-	private double time;
-	
-    public Auto_Delay(double Time) {
+public class Auto_CheckCamera extends Command {
+
+    public Auto_CheckCamera() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-		time = Time;
+    	requires(Robot.driveSubsystem);
     	requires(Robot.cameraSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.cameraSubsystem.delayTime(time);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.cameraSubsystem.updatePi();
+    	if(Robot.cameraSubsystem.TurnRight){
+    		Robot.driveSubsystem.move(-.2, .2);
+    	}
+    	else if(Robot.cameraSubsystem.TurnLeft){
+    		Robot.driveSubsystem.move(.2, -.2);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.cameraSubsystem.getTimeDone();
+        return Robot.cameraSubsystem.checkCamera();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveSubsystem.move(0, 0);
     }
 
     // Called when another command which requires one or more of the same

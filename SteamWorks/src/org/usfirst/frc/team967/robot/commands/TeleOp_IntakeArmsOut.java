@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class TeleOp_IntakeArmsOut extends CommandGroup {
 
     public TeleOp_IntakeArmsOut(boolean out) {
-    	addSequential(new TeleOp_IntakeLowerArmOut(out));
+//    	addSequential(new TeleOp_IntakeLowerArmOut(out));
     	addSequential(new TeleOp_IntakeUpperArmOut(out));
         // Add Commands here:
         // e.g. addSequential(new Command1());

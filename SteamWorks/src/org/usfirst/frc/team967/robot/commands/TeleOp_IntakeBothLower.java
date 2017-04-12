@@ -17,7 +17,7 @@ public class TeleOp_IntakeBothLower extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intakeSubsystem.shiftLowerOut();
+//    	Robot.intakeSubsystem.shiftLowerOut();
     	Robot.intakeSubsystem.shiftUpperOut();
     }
 

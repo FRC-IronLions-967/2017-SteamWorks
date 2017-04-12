@@ -9,18 +9,17 @@ package org.usfirst.frc.team967.robot;
 public class RobotMap {
 	/**-----------General---------------------**/
 	public static final int PCM = 1;
-	public static final int PCM2 = 2;
 	
 	/**------------Drive----------------------**/
 	public static final int driveLeftLead = 1;
 	public static final int driveLeftFollow = 2;
-	public static final int driveLeftFollow1 = 33;
+//	public static final int driveLeftFollow1 = 33;
 	public static final int driveRightLead = 3;
 	public static final int driveRightFollow = 4;
-	public static final int driveRightFollow1 = 36;
+//	public static final int driveRightFollow1 = 36;
 	
-	public static final int driveShifterHigh = 6;
-	public static final int driveShifterLow = 1;//1 &6
+	public static final int driveShifterHigh = 6;//1
+	public static final int driveShifterLow = 1;//6
 	//----------------------------------------
 	
 	/**-----------Shooter----------------------**/
@@ -31,11 +30,12 @@ public class RobotMap {
 	
 	/**----------Intake-----------------------**/
 	public static final int intake = 5;
+	public static final int lowerArmLead = 11;
 	
 	public static final int intakeUpperOut = 2;
 	public static final int intakeUpperIn = 5;
-	public static final int intakeLowerOut = 3;
-	public static final int intakeLowerIn = 4;
+//	public static final int intakeLowerOut = 3;
+//	public static final int intakeLowerIn = 4;
 	//----------------------------------------
 	
 	/**----------Climber----------------------**/
@@ -52,6 +52,9 @@ public class RobotMap {
 	//----------------------------------------
 	
 	/**--------Camera---------------------**/
+	public static final int cameraRelay = 0;
+	public static final int cameraLeftInput = 3;
+	public static final int cameraRightInput = 1;
 	
 	//---------------------------------------
 	
