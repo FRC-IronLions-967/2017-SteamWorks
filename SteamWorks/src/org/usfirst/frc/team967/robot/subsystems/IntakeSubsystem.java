@@ -15,33 +15,33 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class IntakeSubsystem extends Subsystem {
 
-	private CANTalon intakeLead, lowerArm;
+	private CANTalon intakeLead, lowerArmMotor;
 	//public CANTalon IntakeFollow;
 	private DoubleSolenoid upperArm;
-//	public DoubleSolenoid lowerArm;
+	private DoubleSolenoid lowerArm;
 	private DigitalInput lowerArmLimit;
 	
 	private boolean UpperExtended;
-//	private boolean LowerExtended;
+	private boolean LowerExtended;
 	private int encoderIntakeTimer = 0;
 	
 	public IntakeSubsystem(){
 		intakeLead = new CANTalon(RobotMap.intakeWheelLead);
-		lowerArm = new CANTalon(RobotMap.intakeLowerArmLead);
+		lowerArmMotor = new CANTalon(RobotMap.intakeLowerArmLead);
 		//IntakeFollow = new CANTalon(RobotMap.driveLeftFollow);
 		upperArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeShifterUpperIn, RobotMap.intakeShifterUpperOut);
-//		lowerArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeLowerIn, RobotMap.intakeLowerOut);
+		lowerArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeLowerIn, RobotMap.intakeLowerOut);
 		lowerArmLimit = new DigitalInput(RobotMap.intakeLimitSwitch);
 		
 		UpperExtended = false;
 //		LowerExtended = false;
-		lowerArm.changeControlMode(TalonControlMode.PercentVbus);
-		lowerArm.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		lowerArmMotor.changeControlMode(TalonControlMode.PercentVbus);
+		lowerArmMotor.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 //		shooterLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		
 //		lowerArm.reverseSensor(false);
 //		lowerArm.reverseOutput(true);
-		lowerArm.configEncoderCodesPerRev(12); 
+		lowerArmMotor.configEncoderCodesPerRev(12); 
 //		lowerArm.configNominalOutputVoltage(+0.0f, -0.0f);
 //		lowerArm.configPeakOutputVoltage(+12.0f, 0.0f);//+12.0f, -12.0f
 
@@ -66,7 +66,7 @@ public class IntakeSubsystem extends Subsystem {
 			shiftUpperOut();
 		}
 	}
-/*
+
 	public void shiftLowerIn() {
 	    LowerExtended = false;
 	    lowerArm.set(DoubleSolenoid.Value.kForward);
@@ -83,9 +83,9 @@ public class IntakeSubsystem extends Subsystem {
 			shiftLowerOut();
 		}
 	}
-	*/
+
 	public void lowerArmsMove(double power){
-		lowerArm.set(-power);
+		lowerArmMotor.set(-power);
 	}
 	public void lowerArmsDown(){
 		lowerArmsMove(1);
@@ -117,7 +117,7 @@ public class IntakeSubsystem extends Subsystem {
 			return true;
 		}
 		else if(encoderIntakeTimer == 1){
-			lowerArm.setEncPosition(0);
+			lowerArmMotor.setEncPosition(0);
 			encoderIntakeTimer ++;
 			return false;
 		}
@@ -127,11 +127,11 @@ public class IntakeSubsystem extends Subsystem {
 		}
 	}
 	public boolean lowerArmToCount(int count){
-		if(count - 50 > lowerArm.getEncPosition()){
+		if(count - 50 > lowerArmMotor.getEncPosition()){
 			lowerArmsMove(-.5);
 			return false;
 		}
-		else if(count + 50 < lowerArm.getEncPosition()){
+		else if(count + 50 < lowerArmMotor.getEncPosition()){
 			lowerArmsMove(.5);
 			return false;
 		}

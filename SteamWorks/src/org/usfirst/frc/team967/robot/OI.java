@@ -96,10 +96,10 @@ public class OI {
      	xbox1_lb.whenPressed(new TeleOp_DriveShiftToggle());
     	xbox1_rb.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
     	xbox1_rb.whenReleased(new TeleOp_IntakeSet(0));
-    	//    	xbox1_back.whenPressed(new testOutputOn());
+    	xbox1_back.whenPressed(new TeleOp_GearTopSet(false));
 //    	xbox1_back.whenReleased(new testOutputOff());
     	xbox1_start.whenPressed(new TeleOp_GearTopSet(false));
-//    	xbox1_start.whenReleased(new command());
+    	xbox1_start.whenReleased(new TeleOp_GearTopSet(true));
 //    	xbox1_leftStickButton.whenPressed(new command());
 //    	xbox1_rightStickButton.whenPressed(new command());
 
@@ -107,12 +107,12 @@ public class OI {
     	//Setting the button variables to the commands for custom box
     	bigRed.whenPressed(new TeleOp_ClimberSet(RobotConstraints.ClimberSubsystem_ClimberSpeed));
     	bigRed.whenReleased(new TeleOp_ClimberSet(0));
-    	leftGreen.whenPressed(new TeleOp_IntakeBothLower());
-//    	leftGreen.whenReleased(new );
-    	leftBlack.whenPressed(new TeleOp_IntakeLowerArmSet(.5));
+    	leftGreen.whenPressed(new TeleOp_IntakeLowerArmSet(.5));
+    	leftGreen.whenReleased(new TeleOp_IntakeLowerArmSet(0));
+    	leftBlack.whenPressed(new TeleOp_IntakeLowerArmSet(-.5));
     	leftBlack.whenReleased(new TeleOp_IntakeLowerArmSet(0));
-    	leftWhite.whenPressed(new TeleOp_IntakeLowerArmSet(-.5));
-    	leftWhite.whenReleased(new TeleOp_IntakeLowerArmSet(0));
+    	leftWhite.whenPressed(new TeleOp_IntakeSet(-RobotConstraints.IntakeSubsystem_IntakeSpeed));
+    	leftWhite.whenReleased(new TeleOp_IntakeSet(0));
     	/*
     	leftBlack.whenPressed(new TeleOp_IntakeBothRaise());
 //    	leftBlack.whenReleased(new );
@@ -124,10 +124,11 @@ public class OI {
     	leftThumb.whenReleased(new TeleOp_IntakeUpperArmOut(false));
     	rightGreen.whenPressed(new TeleOp_ShooterFeed());
     	rightGreen.whenReleased(new TeleOp_ShooterFeedStop());
-    	rightWhite.whenPressed(new TeleOp_GearTopSet(false));
-    	rightWhite.whenReleased(new TeleOp_GearTopSet(true));
-    	rightBlack.whenPressed(new TeleOp_IntakeSet(-RobotConstraints.IntakeSubsystem_IntakeSpeed));
-    	rightBlack.whenReleased(new TeleOp_IntakeSet(0));
+    	rightWhite.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
+    	rightWhite.whenReleased(new TeleOp_IntakeSet(0));
+    	rightBlack.whenPressed(new TeleOp_GearTopSet(false));
+    	rightBlack.whenReleased(new TeleOp_GearTopSet(true));
+    	
     	rightThumb.whenPressed(new TeleOp_Shoot());
     	rightThumb.whenReleased(new TeleOp_StopShooting());
     	/*    	

@@ -19,6 +19,12 @@ public class TeleOp_IntakeLowerArmSet extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(power > 0){
+    		Robot.intakeSubsystem.shiftLowerOut();
+    	}
+    	else{
+    		Robot.intakeSubsystem.shiftLowerIn();
+    	}
     	Robot.intakeSubsystem.lowerArmsMove(power);
     }
 

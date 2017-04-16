@@ -19,13 +19,13 @@ public class blueRightGear extends CommandGroup {
     public blueRightGear() {
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zeroed
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
     	addSequential(new TeleOp_GearBoxSet(false));
     	//low gear
-    	addSequential(new ZeroEncoders());
-    	//make sure encoders are zero
-    	addSequential(new Auto_Straight_Drive(-3850, RobotConstraints.Auto_Speed_Half));
+    	addSequential(new Auto_Straight_Drive(-4100, RobotConstraints.Auto_Speed_Half));
 //    	addSequential(new Auto_Drive_Distance(-3900, .75));//3900//3850 on blue left gear
     	//drive forward
     	addSequential(new Auto_resetYaw());

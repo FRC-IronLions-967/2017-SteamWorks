@@ -33,7 +33,7 @@ public class blueLeftGear extends CommandGroup {
     	addSequential(new PIDTurnToAngle(RobotConstraints.Auto_Angle_AirShip));
     	//turn
 //*******************************************************
-    	addSequential(new Auto_CheckCamera());
+//    	addSequential(new Auto_CheckCamera());
 //*******************************************************
     	addSequential(new ZeroEncoders());
     	//make sure encoders are zero
