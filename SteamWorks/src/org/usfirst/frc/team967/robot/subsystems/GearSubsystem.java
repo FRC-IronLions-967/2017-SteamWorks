@@ -19,8 +19,8 @@ public class GearSubsystem extends Subsystem {
     public GearSubsystem(){
     	isOpen = false;
     	isTopOpen = false;
-    	gearShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.gearOpen, RobotMap.gearClosed);
-    	topShifter = new DoubleSolenoid(RobotMap.PCM2, RobotMap.topOpen, RobotMap.topClosed);
+    	topShifter = new DoubleSolenoid(RobotMap.PCM2, RobotMap.gearShifterTopOpen, RobotMap.gearShifterTopClosed);
+    	gearShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.gearShifterOpen, RobotMap.gearShifterClosed);
 //    	boxTop = new Relay(0);
     }
 	
@@ -46,12 +46,10 @@ public class GearSubsystem extends Subsystem {
     public void gearTopOpen(){
     	isTopOpen = true;
     	topShifter.set(DoubleSolenoid.Value.kForward);
-//    	boxTop.set(Relay.Value.kForward);
     }
     public void gearTopClosed(){
     	isTopOpen = false;
     	topShifter.set(DoubleSolenoid.Value.kReverse);
-//    	boxTop.set(Relay.Value.kReverse);
     }
     public void toggleTop(){
     	if(isTopOpen){
@@ -69,7 +67,7 @@ public class GearSubsystem extends Subsystem {
     	//setDefaultCommand(new TeleOp_GearBoxClosed());
     }
     public void log(){
-        SmartDashboard.putBoolean("GearBox Open", isOpen);
-        SmartDashboard.putBoolean("GearBoxTop Open", isTopOpen);
+//        SmartDashboard.putBoolean("GearBox Open", isOpen);
+//        SmartDashboard.putBoolean("GearBoxTop Open", isTopOpen);
     }
 }

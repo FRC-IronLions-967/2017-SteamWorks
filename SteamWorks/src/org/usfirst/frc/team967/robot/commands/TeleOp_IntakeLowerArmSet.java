@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team967.robot.commands;
 
 import org.usfirst.frc.team967.robot.Robot;
@@ -8,27 +7,30 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleOp_IntakeLowerArmOut extends Command {
-	private boolean out;
-    public TeleOp_IntakeLowerArmOut(boolean Out) {
+public class TeleOp_IntakeLowerArmSet extends Command {
+	private double power;
+	
+    public TeleOp_IntakeLowerArmSet(double Power) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intakeSubsystem);
-    	out = Out;
+    	power = Power;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(out){
+    	if(power > 0){
     		Robot.intakeSubsystem.shiftLowerOut();
     	}
     	else{
     		Robot.intakeSubsystem.shiftLowerIn();
     	}
+    	Robot.intakeSubsystem.lowerArmsMove(power);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

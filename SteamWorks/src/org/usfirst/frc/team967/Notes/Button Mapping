@@ -4,7 +4,19 @@ Xbox Controller:
 Left Stick Y-axis 	-> 	Throttle
 Right Stick X-axis 	-> 	Turn
 Left Trigger 		-> 	Shift (down = high Gear)
+Right Trigger		->	Release Gear (down = open)
 A Button			->	Toggle Shift
+B Button			->  Reset Gyro Yaw
+X Button			->  Zero Encoders
+Y Button			->	Climb (down = run)
+Start				->	Extend top of Gear Mechanism
+Left Bumper			->	Toggle Shift
+Right Bumper		->	Roll out Floor Pickup
+
+POV:
+	North = Forward
+West = CCW		East = CW
+	South = Back	
 
 Button Box:
 Button One			-> 	Rolls in collector belts when held down
@@ -12,6 +24,6 @@ Button Two			-> 	Toggles lower arm when pressed
 Button Three		-> 	Opens gear Box when pressed
 Button Four			-> 	Turns Feeder when held down
 Button Five			-> 	Pull both arms in when pressed
-Button Six			-> 	Runs climber when held down
+Big Red				-> 	Runs climber when held down
 Button Seven		-> 	Turns on shooter fly wheel
 Button Eight		-> 	Toggles upper arm when pressed

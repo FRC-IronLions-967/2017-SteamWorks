@@ -4,6 +4,7 @@ import org.usfirst.frc.team967.robot.RobotMap;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,25 +15,39 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class IntakeSubsystem extends Subsystem {
 
-	public CANTalon intakeLead;
+	private CANTalon intakeLead, lowerArmMotor;
 	//public CANTalon IntakeFollow;
-	public DoubleSolenoid upperArm;
-	public DoubleSolenoid lowerArm;
+	private DoubleSolenoid upperArm;
+	private DoubleSolenoid lowerArm;
+	private DigitalInput lowerArmLimit;
 	
 	private boolean UpperExtended;
 	private boolean LowerExtended;
+	private int encoderIntakeTimer = 0;
 	
 	public IntakeSubsystem(){
-		intakeLead = new CANTalon(RobotMap.intake);
+		intakeLead = new CANTalon(RobotMap.intakeWheelLead);
+		lowerArmMotor = new CANTalon(RobotMap.intakeLowerArmLead);
 		//IntakeFollow = new CANTalon(RobotMap.driveLeftFollow);
-		upperArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeUpperIn, RobotMap.intakeUpperOut);
+		upperArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeShifterUpperIn, RobotMap.intakeShifterUpperOut);
 		lowerArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.intakeLowerIn, RobotMap.intakeLowerOut);
+		lowerArmLimit = new DigitalInput(RobotMap.intakeLimitSwitch);
 		
 		UpperExtended = false;
-		LowerExtended = false;
+//		LowerExtended = false;
+		lowerArmMotor.changeControlMode(TalonControlMode.PercentVbus);
+		lowerArmMotor.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+//		shooterLead.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		
+//		lowerArm.reverseSensor(false);
+//		lowerArm.reverseOutput(true);
+		lowerArmMotor.configEncoderCodesPerRev(12); 
+//		lowerArm.configNominalOutputVoltage(+0.0f, -0.0f);
+//		lowerArm.configPeakOutputVoltage(+12.0f, 0.0f);//+12.0f, -12.0f
+
 		intakeLead.changeControlMode(TalonControlMode.PercentVbus);
     }
+	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public void shiftUpperIn() {
@@ -51,6 +66,7 @@ public class IntakeSubsystem extends Subsystem {
 			shiftUpperOut();
 		}
 	}
+
 	public void shiftLowerIn() {
 	    LowerExtended = false;
 	    lowerArm.set(DoubleSolenoid.Value.kForward);
@@ -67,6 +83,16 @@ public class IntakeSubsystem extends Subsystem {
 			shiftLowerOut();
 		}
 	}
+
+	public void lowerArmsMove(double power){
+		lowerArmMotor.set(-power);
+	}
+	public void lowerArmsDown(){
+		lowerArmsMove(1);
+	}
+	public void lowerArmsUp(){
+		lowerArmsMove(-1);
+	}
 	
 	public void intakeMove(double power){
 		intakeLead.set(-power);
@@ -77,6 +103,43 @@ public class IntakeSubsystem extends Subsystem {
 	public void intakeOut(){
 		intakeMove(-1);
 	}
+	public void bringLowerUp(){
+		if(!lowerArmLimit.get()){
+			lowerArmsMove(-.5);
+		}
+		else{
+			lowerArmsMove(-.5);
+		}
+	}
+	public boolean zeroEncoder(){	
+		if(encoderIntakeTimer > 10){
+			encoderIntakeTimer = 0;
+			return true;
+		}
+		else if(encoderIntakeTimer == 1){
+			lowerArmMotor.setEncPosition(0);
+			encoderIntakeTimer ++;
+			return false;
+		}
+		else{
+			encoderIntakeTimer ++;
+			return false;
+		}
+	}
+	public boolean lowerArmToCount(int count){
+		if(count - 50 > lowerArmMotor.getEncPosition()){
+			lowerArmsMove(-.5);
+			return false;
+		}
+		else if(count + 50 < lowerArmMotor.getEncPosition()){
+			lowerArmsMove(.5);
+			return false;
+		}
+		else{
+			lowerArmsMove(0);
+			return true;
+		}
+	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -85,6 +148,6 @@ public class IntakeSubsystem extends Subsystem {
     
     public void log(){
     	SmartDashboard.putBoolean("UpperExtended", UpperExtended);
-    	SmartDashboard.putBoolean("LowerExtended", LowerExtended);
+//    	SmartDashboard.putBoolean("LowerExtended", LowerExtended);
     }
 }

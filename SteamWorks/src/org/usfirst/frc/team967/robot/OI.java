@@ -11,15 +11,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class OI {
     private Joystick xbox1 = new Joystick(1);
     private Joystick customBox = new Joystick(0);
+    private Joystick xboxTest = new Joystick(2);
     
     double leftTrigger;
     double rightTrigger;			
     
-    double x = xbox1.getRawAxis(4);
+//    double x = xbox1.getRawAxis(4);
     
     public AxisButton xbox1_lT = new AxisButton(xbox1, 2, .75, 1);
     public AxisButton xbox1_rT = new AxisButton(xbox1, 3, .75, 1);
-
+    
+    public POVButton xbox1povC 	= new POVButton(xbox1, 0, -1);
     public POVButton xbox1povN 	= new POVButton(xbox1, 0, 0);
     public POVButton xbox1povNE = new POVButton(xbox1, 0, 45);
     public POVButton xbox1povE 	= new POVButton(xbox1, 0, 90);
@@ -30,8 +32,7 @@ public class OI {
     public POVButton xbox1povNW = new POVButton(xbox1, 0, 315);
     
     public OI() {
-    	
-    	//*******************************************************************
+       	//*******************************************************************
     	// Setting up the variables to the buttons on controller 1
     	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
     	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
@@ -43,9 +44,9 @@ public class OI {
     	JoystickButton xbox1_start = new JoystickButton(xbox1, 8);
     	JoystickButton xbox1_leftStickButton = new JoystickButton(xbox1, 9);
     	JoystickButton xbox1_rightStickButton = new JoystickButton(xbox1, 10);
-    	
-    	xbox1.getPOV();//0=north, 90=east, 180=south, 45=NE, ect.
-    	
+
+//    	xbox1.getPOV();//0=north, 90=east, 180=south, 45=NE, ect.
+
     	//**********************************************************************
     	// Setting up the variables to the custom button box
     	JoystickButton leftGreen = new JoystickButton(customBox, 4);
@@ -61,15 +62,29 @@ public class OI {
 //    	JoystickButton ShooterRockerDown = new JoystickButton(customBox, 10);
 //    	JoystickButton customBox11 = new JoystickButton(customBox, 11);
     	
+    	JoystickButton xboxTest_a = new JoystickButton(xboxTest, 1);
+    	JoystickButton xboxTest_b = new JoystickButton(xboxTest, 2);
+    	JoystickButton xboxTest_x = new JoystickButton(xboxTest, 3);
+    	JoystickButton xboxTest_y = new JoystickButton(xboxTest, 4);
+    	JoystickButton xboxTest_lb = new JoystickButton(xboxTest, 5);
+    	JoystickButton xboxTest_rb = new JoystickButton(xboxTest, 6);
+    	JoystickButton xboxTest_back = new JoystickButton(xboxTest, 7);
+    	JoystickButton xboxTest_start = new JoystickButton(xboxTest, 8);
+    	JoystickButton xboxTest_leftStickButton = new JoystickButton(xboxTest, 9);
+    	JoystickButton xboxTest_rightStickButton = new JoystickButton(xboxTest, 10);
+    	
+    	
     	//*********************************************************************
     	//Setting the button variables to the commands for controller number 1
-    	
+    	xbox1povN.whenPressed(new TankDrive(-1, -1));
+    	xbox1povE.whenPressed(new TankDrive(-1, 1));
+    	xbox1povS.whenPressed(new TankDrive(1, 1));
+    	xbox1povW.whenPressed(new TankDrive(1, -1));
      	xbox1_lT.whenPressed(new TeleOp_DriveShiftHigh(true));
      	xbox1_lT.whenReleased(new TeleOp_DriveShiftHigh(false));
      	xbox1_rT.whenPressed(new TeleOp_GearBoxSet(true));
      	xbox1_rT.whenReleased(new TeleOp_GearBoxSet(false));
     	xbox1_a.whenPressed(new TeleOp_DriveShiftToggle());
-//     	xbox1_a.whenPressed(new command());
 //    	xbox1_a.whenReleased(new command());
 //    	xbox1_b.whenPressed(new TeleOp_ShooterFeed(3));
     	xbox1_b.whenPressed(new Auto_resetYaw());
@@ -79,11 +94,12 @@ public class OI {
     	xbox1_y.whenPressed(new TeleOp_ClimberSet(RobotConstraints.ClimberSubsystem_ClimberSpeed));
     	xbox1_y.whenReleased(new TeleOp_ClimberSet(0));
      	xbox1_lb.whenPressed(new TeleOp_DriveShiftToggle());
-//    	xbox1_rb.whenPressed(new command());
-    	xbox1_back.whenPressed(new testOutputOn());
-    	xbox1_back.whenReleased(new testOutputOff());
+    	xbox1_rb.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
+    	xbox1_rb.whenReleased(new TeleOp_IntakeSet(0));
+    	xbox1_back.whenPressed(new TeleOp_GearTopSet(false));
+//    	xbox1_back.whenReleased(new testOutputOff());
     	xbox1_start.whenPressed(new TeleOp_GearTopSet(false));
-//    	xbox1_start.whenReleased(new command());
+    	xbox1_start.whenReleased(new TeleOp_GearTopSet(true));
 //    	xbox1_leftStickButton.whenPressed(new command());
 //    	xbox1_rightStickButton.whenPressed(new command());
 
@@ -91,20 +107,28 @@ public class OI {
     	//Setting the button variables to the commands for custom box
     	bigRed.whenPressed(new TeleOp_ClimberSet(RobotConstraints.ClimberSubsystem_ClimberSpeed));
     	bigRed.whenReleased(new TeleOp_ClimberSet(0));
-    	leftGreen.whenPressed(new TeleOp_IntakeBothLower());
-//    	leftGreen.whenReleased(new );
+    	leftGreen.whenPressed(new TeleOp_IntakeLowerArmSet(.5));
+    	leftGreen.whenReleased(new TeleOp_IntakeLowerArmSet(0));
+    	leftBlack.whenPressed(new TeleOp_IntakeLowerArmSet(-.5));
+    	leftBlack.whenReleased(new TeleOp_IntakeLowerArmSet(0));
+    	leftWhite.whenPressed(new TeleOp_IntakeSet(-RobotConstraints.IntakeSubsystem_IntakeSpeed));
+    	leftWhite.whenReleased(new TeleOp_IntakeSet(0));
+    	/*
     	leftBlack.whenPressed(new TeleOp_IntakeBothRaise());
 //    	leftBlack.whenReleased(new );
+    	
     	leftWhite.whenPressed(new TeleOp_IntakeLowerArmToggle());
 //    	leftWhite.whenReleased(new );
+    	 */
     	leftThumb.whenPressed(new TeleOp_IntakeUpperArmOut(true));
     	leftThumb.whenReleased(new TeleOp_IntakeUpperArmOut(false));
-    	rightGreen.whenPressed(new TeleOp_ShooterFeed(3));
+    	rightGreen.whenPressed(new TeleOp_ShooterFeed());
     	rightGreen.whenReleased(new TeleOp_ShooterFeedStop());
-    	rightWhite.whenPressed(new TeleOp_GearTopSet(false));
-    	rightWhite.whenReleased(new TeleOp_GearTopSet(true));
-    	rightBlack.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
-    	rightBlack.whenReleased(new TeleOp_IntakeSet(0));
+    	rightWhite.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
+    	rightWhite.whenReleased(new TeleOp_IntakeSet(0));
+    	rightBlack.whenPressed(new TeleOp_GearTopSet(false));
+    	rightBlack.whenReleased(new TeleOp_GearTopSet(true));
+    	
     	rightThumb.whenPressed(new TeleOp_Shoot());
     	rightThumb.whenReleased(new TeleOp_StopShooting());
     	/*    	
@@ -131,7 +155,16 @@ public class OI {
 //    	customBox11.whenPressed(new TeleOp_);
 //    	customBox11.whenReleased(new TeleOp_);
     	*/
-    	SmartDashboard.putData("Camera Toggle", new cameraToggle());
+    	xboxTest_a.whenPressed(new TeleOp_IntakeLowerArmSet(.5));
+    	xboxTest_a.whenReleased(new TeleOp_IntakeLowerArmSet(0));
+    	xboxTest_b.whenPressed(new TeleOp_IntakeLowerArmSet(-.5));
+    	xboxTest_b.whenReleased(new TeleOp_IntakeLowerArmSet(0));
+    	xboxTest_lb.whenPressed(new TeleOp_IntakeSet(-RobotConstraints.IntakeSubsystem_IntakeSpeed));
+    	xboxTest_lb.whenReleased(new TeleOp_IntakeSet(0));
+    	xboxTest_rb.whenPressed(new TeleOp_IntakeSet(RobotConstraints.IntakeSubsystem_IntakeSpeed));
+    	xboxTest_rb.whenReleased(new TeleOp_IntakeSet(0));
+
+    	/*    	SmartDashboard.putData("Camera Toggle", new cameraToggle());
     	
     	SmartDashboard.putData("P Up", new Testing_P_up());
     	SmartDashboard.putData("P down", new Testing_P_down());
@@ -141,14 +174,11 @@ public class OI {
     	SmartDashboard.putData("D down", new Testing_D_down());
     	SmartDashboard.putData("Speed Up", new Testing_Speed_up());
     	SmartDashboard.putData("Speed Down", new Testing_Speed_down());
-    
+  */  
     }
     
     public void log(){
-    	x = xbox1.getRawAxis(4);
-    	SmartDashboard.putNumber("Right Stick Squared", xbox1.getRawAxis(4)*xbox1.getRawAxis(4));
-    	SmartDashboard.putNumber("Right Stick mess", (double)(-(.00002*(Math.pow(x, 6))) + 0.0008*(Math.pow(x, 5)) - 0.0111*(Math.pow(x, 4)) + 0.0641*(Math.pow(x, 3)) - 0.1305*(Math.pow(x,  2)) + 0.0923*(x)));
-    	SmartDashboard.putNumber("Right Stick squared", (double)(-(Math.pow(x, 2))));
+    	
     }
     
     public Joystick getXbox1() {

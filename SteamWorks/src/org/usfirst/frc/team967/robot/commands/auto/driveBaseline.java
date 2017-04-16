@@ -1,10 +1,9 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
-import org.usfirst.frc.team967.robot.commands.Auto_Delay;
+import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
 import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.TeleOp_DriveShiftHigh;
-import org.usfirst.frc.team967.robot.commands.ZeroEncoders;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -15,9 +14,7 @@ public class driveBaseline extends CommandGroup {
 
     public driveBaseline() {
     	addSequential(new TeleOp_DriveShiftHigh(false));
-    	addSequential(new ZeroEncoders());
-    	addSequential(new Auto_Delay(1));
-    	addSequential(new Auto_Straight_Drive(-6000, .75));
+    	addSequential(new Auto_Straight_Drive(-6000, RobotConstraints.Auto_Speed_Fast));
 //    	addSequential(new Auto_Drive_Distance(-6000, .75));
         // Add Commands here:
         // e.g. addSequential(new Command1());

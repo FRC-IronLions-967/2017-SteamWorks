@@ -1,6 +1,6 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
-import org.usfirst.frc.team967.robot.commands.Auto_Delay;
+import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
 import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.Auto_resetYaw;
@@ -20,29 +20,34 @@ public class blueRightGear extends CommandGroup {
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
     	addSequential(new ZeroEncoders());
-    	//zero encoder
+    	//make sure encoders are zeroed
     	addSequential(new TeleOp_DriveShiftHigh(false));
     	//low gear
-    	addSequential(new Auto_Delay(1));
-    	//wait for zero
-    	addSequential(new Auto_Straight_Drive(-3500, .5));
+    	addSequential(new TeleOp_GearBoxSet(false));
+    	//low gear
+    	addSequential(new Auto_Straight_Drive(-4100, RobotConstraints.Auto_Speed_Half));
+//    	addSequential(new Auto_Drive_Distance(-3900, .75));//3900//3850 on blue left gear
     	//drive forward
-    	addSequential(new PIDTurnToAngle(-60));
+    	addSequential(new Auto_resetYaw());
+    	//reset Yaw
+    	addSequential(new PIDTurnToAngle(-RobotConstraints.Auto_Angle_AirShip));
     	//turn
-    	addSequential(new Auto_Straight_Drive(-1000, .5));//1100
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
+    	addSequential(new Auto_Straight_Drive(-1050, RobotConstraints.Auto_Speed_Half));
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
-    	addSequential(new Auto_Straight_Drive(3000, .5));
+    	addSequential(new Auto_Straight_Drive(1500, RobotConstraints.Auto_Speed_Half));
     	//drive back
     	addSequential(new TeleOp_GearBoxSet(false));
     	//close gear box
     	addSequential(new PIDTurnToAngle(0));
     	//turn
     	addSequential(new TeleOp_DriveShiftHigh(true));
-    	//open gear box
-    	addSequential(new Auto_Straight_Drive(-12000, 1));
-    	//drive forward
+    	//drive back
+    	addSequential(new Auto_Straight_Drive(-12000, RobotConstraints.Auto_Speed_Full));
+    	//drive back
     	
     	
     	// Add Commands here:

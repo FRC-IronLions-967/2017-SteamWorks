@@ -14,13 +14,13 @@ public class RobotMap {
 	/**------------Drive----------------------**/
 	public static final int driveLeftLead = 1;
 	public static final int driveLeftFollow = 2;
-	public static final int driveLeftFollow1 = 33;
+//	public static final int driveLeftFollow1 = 33;
 	public static final int driveRightLead = 3;
 	public static final int driveRightFollow = 4;
-	public static final int driveRightFollow1 = 36;
+//	public static final int driveRightFollow1 = 36;
 	
-	public static final int driveShifterHigh = 6;
-	public static final int driveShifterLow = 1;//1 &6
+	public static final int driveShifterHigh = 6;//1
+	public static final int driveShifterLow = 1;//6
 	//----------------------------------------
 	
 	/**-----------Shooter----------------------**/
@@ -30,10 +30,12 @@ public class RobotMap {
 	//----------------------------------------
 	
 	/**----------Intake-----------------------**/
-	public static final int intake = 5;
+	public static final int intakeWheelLead = 5;
+	public static final int intakeLowerArmLead = 11;
 	
-	public static final int intakeUpperOut = 2;
-	public static final int intakeUpperIn = 5;
+	public static final int intakeShifterUpperOut = 2;
+	public static final int intakeShifterUpperIn = 5;
+	public static final int intakeLimitSwitch = 0;
 	public static final int intakeLowerOut = 3;
 	public static final int intakeLowerIn = 4;
 	//----------------------------------------
@@ -44,14 +46,16 @@ public class RobotMap {
 	//----------------------------------------
 	
 	/**----------Gears------------------------**/
-	public static final int gearClosed = 0;
-	public static final int gearOpen = 7;
-	public static final int topClosed = 3;
-	public static final int topOpen = 4;
-	
+	public static final int gearShifterClosed = 0;
+	public static final int gearShifterOpen = 7;
+	public static final int gearShifterTopClosed = 3;
+	public static final int gearShifterTopOpen = 4;
 	//----------------------------------------
 	
 	/**--------Camera---------------------**/
+	public static final int cameraRelay = 0;
+	public static final int cameraLeftInput = 3;
+	public static final int cameraRightInput = 1;
 	
 	//---------------------------------------
 	

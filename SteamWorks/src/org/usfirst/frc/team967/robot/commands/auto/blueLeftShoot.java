@@ -1,6 +1,6 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
-import org.usfirst.frc.team967.robot.commands.Auto_Delay;
+import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.commands.Auto_Drive_Distance;
 import org.usfirst.frc.team967.robot.commands.Auto_Straight_Drive;
 import org.usfirst.frc.team967.robot.commands.Auto_resetYaw;
@@ -27,31 +27,31 @@ public class blueLeftShoot extends CommandGroup {
     	//low gear
     	addSequential(new ZeroEncoders());
     	//make sure encoders are zero
-    	addSequential(new Auto_Delay(1));
-    	//wait for zero
-    	addSequential(new Auto_Straight_Drive(-4150, .5));//3900//3850 on blue left gear
+    	addSequential(new Auto_Straight_Drive(-4250, RobotConstraints.Auto_Speed_Half));//3900//3850 on blue left gear
     	//drive forward //.75 speed
     	addSequential(new Auto_resetYaw());
     	//reset Yaw
-    	addSequential(new PIDTurnToAngle(65));
+    	addSequential(new PIDTurnToAngle(RobotConstraints.Auto_Angle_AirShip));
     	//turn
-    	addSequential(new Auto_Straight_Drive(-800, .5));//800
+    	addSequential(new ZeroEncoders());
+    	//make sure encoders are zero
+    	addSequential(new Auto_Straight_Drive(-500, RobotConstraints.Auto_Speed_Half));//800
     	//drive forward
     	addSequential(new TeleOp_GearBoxSet(true));
     	//open gear box
-    	addSequential(new Auto_Straight_Drive(900, .5));//1000
+    	addSequential(new Auto_Straight_Drive(1000, RobotConstraints.Auto_Speed_Half));
     	//drive back
     	addSequential(new PIDTurnToAngle(0));
     	//turn
-    	addSequential(new Auto_Straight_Drive(1800, .5));
+    	addSequential(new Auto_Straight_Drive(1800, RobotConstraints.Auto_Speed_Half));
     	//drive back
+    	addParallel(new TeleOp_Shoot());
+    	//shoot
     	addSequential(new PIDTurnToAngle(50));
     	//turn
-    	addParallel(new TeleOp_Shoot());
-    	//shoot0
-    	addSequential(new Auto_Straight_Drive(3300, .5));
+    	addSequential(new Auto_Straight_Drive(3300, RobotConstraints.Auto_Speed_Half));
     	//drive back
-    	addSequential(new TeleOp_ShooterFeed(.6));
+    	addSequential(new TeleOp_ShooterFeed());
     	
     	
         // Add Commands here:

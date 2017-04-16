@@ -2,15 +2,18 @@ package org.usfirst.frc.team967.robot;
 
 public class RobotConstraints {
 	/*** Auto Constraints ***/
-	public static final double Auto_Speed = .5;
+//	public static final double Auto_Speed = .5;
+	public static final double Auto_Speed_Half = .5;
+	public static final double Auto_Speed_Fast = .75;
+	public static final double Auto_Speed_Full = 1;
+	public static final double Auto_Angle_AirShip = 60;
 	
 	/*** DRIVETRAIN Constraints ***/
 	public static final double DriveSubsystem_deadBand = .15;
-	public static final double DriveSubsystem_P = .18;
-	public static final double DriveSubsystem_I = .0;
+	public static final double DriveSubsystem_P = .018;
+	public static final double DriveSubsystem_I = .00;
 	public static final double DriveSubsystem_D = .02;
-	public static final double DriveSubsystem_AbsoluteTolerance = 1.0f;
-	public static final double DriveSubsystem_Tolerance = 5.0f;
+	public static final double DriveSubsystem_Tolerance = 1.0f;
 	
 	/*** Shooter Constraints ***/
 	public static int ShooterSubsystem_Shooter_Profile;
@@ -31,7 +34,7 @@ public class RobotConstraints {
 	public static final int ShooterSubsystem_Feeder_profile = 0;
 	
 	public static final int ShooterSubsystem_FeederSpeed = 600;//245
-	//200
+	
 	public static final int ShooterSubsystem_ShooterSpeed = 800;//770 good speed//800
 	//790 fly wheel with .6 feed speed
 	/*** Climber Constraints ***/
@@ -39,6 +42,8 @@ public class RobotConstraints {
 	
 	/*** Intake Constraints ***/
 	public static double IntakeSubsystem_IntakeSpeed = 1;
+	public static double IntakeSubsystem_LowArmPeg = 90;
+	
 	
 	/*** Gear Constraints ***/
 	
